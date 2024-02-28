@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'on_boarding_info.dart';
-import 'on_boarding_items.dart';
 
 class IntroProvider extends ChangeNotifier {
   int introIndex = 0;
