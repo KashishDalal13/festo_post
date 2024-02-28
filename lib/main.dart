@@ -1,7 +1,8 @@
-import 'package:festo_post/OnBoarding/on_boarding_view.dart';
+
 import 'package:flutter/material.dart';
 
-import 'OnBoarding/on_boarding_view.dart';
+import 'on_boarding/on_boarding_view.dart';
+
 
 void main() {
   runApp(const MyApp());
