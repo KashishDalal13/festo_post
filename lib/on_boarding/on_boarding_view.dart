@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'on_boarding_info.dart';
 import 'onboarding_provider.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -15,58 +16,49 @@ class OnBoardingScreen extends StatelessWidget {
       create: (BuildContext context) => IntroProvider(),
       builder: (context, child) {
         IntroProvider provider = context.watch<IntroProvider>();
-        return Scaffold(
-          bottomSheet: Container(
-            color: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        return SafeArea(
+          child: Scaffold(
+            body: Column(
               children: [
-                // skip button
-                TextButton(
-                  onPressed: () => provider.onSkip(),
-                  child: const Text("Skip"),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(onPressed: () => provider.onSkip(), child: const Text("Skip")),
+                  ),
                 ),
-                // Indicator
-                SmoothPageIndicator(
-                  controller: provider.pageController,
-                  count: provider.items.length,
-                  onDotClicked: (index) => provider.pageController.animateToPage(index, duration: const Duration(milliseconds: 600), curve: Curves.easeIn),
-                  effect: const WormEffect(activeDotColor: Colors.purple,dotHeight: 10,dotWidth: 20),
+                Expanded(
+                    flex: 6,
+                    child: PageView(
+                        controller: provider.pageController,
+                        onPageChanged: (index) => provider.onIndexChange(index: index),
+                        children: provider.items.map((e) {
+                          OnBoardingInfo data = e;
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(data.image),
+                              const SizedBox(height: 15),
+                              Text(data.title, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                              const SizedBox(height: 15),
+                              Text(data.descriptions, style: const TextStyle(color: Colors.grey, fontSize: 17), textAlign: TextAlign.center),
+                            ],
+                          );
+                        }).toList())),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: SmoothPageIndicator(
+                      controller: provider.pageController,
+                      count: provider.items.length,
+                      effect: ExpandingDotsEffect(activeDotColor: AppColors.yellowFFA500, spacing: 3, dotHeight: 5, dotWidth: 10, expansionFactor: 2),
+                    ),
+                  ),
                 ),
-                // next button
-                TextButton(
-                  onPressed: () => provider.onNext(),
-                  child: const Text("Next"),
-                ),
+                Expanded(
+                  child: Align(alignment: Alignment.centerRight, child: TextButton(onPressed: () => provider.onNext(), child: const Text("Next"))),
+                )
               ],
             ),
-          ),
-          body: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 15),
-            child: PageView.builder(
-                // onPageChanged: (index)=> setState((){}),
-                itemCount: provider.items.length,
-                controller: provider.pageController,
-                itemBuilder: (context, index) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(provider.items[index].image),
-                      const SizedBox(height: 15),
-                      Text(
-                        provider.items[index].title,
-                        style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 15),
-                      Text(
-                        provider.items[index].descriptions,
-                        style: const TextStyle(color: Colors.grey, fontSize: 17),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  );
-                }),
           ),
         );
       },
@@ -74,7 +66,6 @@ class OnBoardingScreen extends StatelessWidget {
   }
 
   // Get Started Button
-
   Widget getStarted({required double width}) {
     return Container(
       decoration: BoxDecoration(color: AppColors.purple),
