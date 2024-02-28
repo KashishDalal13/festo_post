@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'on_boarding/on_boarding_view.dart';
