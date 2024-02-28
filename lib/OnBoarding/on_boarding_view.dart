@@ -16,22 +16,17 @@ class OnBoardingScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
             // skip button
             TextButton(
-              onPressed: () => pageController.jumpToPage(controller.items.length-1),
+              onPressed: () => pageController.jumpToPage(controller.items.length - 1),
               child: const Text("Skip"),
             ),
-
             // Indicator
             SmoothPageIndicator(
               controller: pageController,
               count: controller.items.length,
-              effect: const WormEffect(
-                activeDotColor: Colors.purple
-              ),
+              effect: const WormEffect(activeDotColor: Colors.purple),
             ),
-
             // next button
             TextButton(
               onPressed: () => pageController.nextPage(duration: const Duration(seconds: 1), curve: Curves.easeIn),
@@ -41,7 +36,7 @@ class OnBoardingScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 15),
+        margin: const EdgeInsets.symmetric(horizontal: 15),
         child: PageView.builder(
             itemCount: controller.items.length,
             controller: pageController,
@@ -53,8 +48,7 @@ class OnBoardingScreen extends StatelessWidget {
                   const SizedBox(height: 15),
                   Text(
                     controller.items[index].title,
-                    style: const TextStyle(
-                        fontSize: 30, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 15),
                   Text(
