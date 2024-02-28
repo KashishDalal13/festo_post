@@ -12,6 +12,7 @@ class OnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = OnBoardingItems();
     final pageController = PageController();
+    //comment
     double width = MediaQuery.of(context).size.width;
     bool isLastPage = false;
     return ChangeNotifierProvider(
