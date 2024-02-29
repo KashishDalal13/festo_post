@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
+import 'package:festo_post/theme_change/theme_settings.dart';
 import 'package:festo_post/utils/colors.dart';
+import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -16,20 +20,35 @@ class OnBoardingScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (BuildContext context) => IntroProvider(),
       builder: (context, child) {
+        ThemeSettings settings = context.watch<ThemeSettings>();
         IntroProvider provider = context.watch<IntroProvider>();
         return SafeArea(
           child: Scaffold(
             body: Column(
               children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                      onPressed: () => provider.onSkip(),
-                      child: Text(provider.introIndex == 2 ? "" : "Skip",
+                Row(
+                  children: [
+                    Switch(
+                      value: settings.switchValue,
+                      onChanged: (newValue) {
+                        // provider.toggleTheme(val: newValue);
+                        settings.toggleTheme(switchVal: newValue);
+                      },
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () => provider.onSkip(),
+                        child: Text(
+                          provider.introIndex == 2 ? "" : StrRef.skip,
                           style: TextStyle(
                               color: ColorRef.grey5c5c5c,
                               fontSize: 15,
-                              fontFamily: 'Lato'))),
+                              fontFamily: 'Lato'),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
                     // color: Colors.yellow,
@@ -83,9 +102,9 @@ class OnBoardingScreen extends StatelessWidget {
             ),
             floatingActionButton: provider.introIndex == 2
                 ? Align(
-              heightFactor: 0.3,
-                  widthFactor: 0.1,
-                  child: TextButton(
+                    heightFactor: 0.3,
+                    widthFactor: 0.1,
+                    child: TextButton(
                       onPressed: provider.onNext,
                       child: Stack(
                         alignment: const Alignment(-0.6,-0.3),
@@ -101,11 +120,18 @@ class OnBoardingScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                           Text("Get Started",style: TextStyle(fontSize: 18,fontFamily: 'Lato',fontWeight: FontWeight.bold,color: ColorRef.black202020),)
+                          Text(
+                            StrRef.getStart,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Lato',
+                                fontWeight: FontWeight.bold,
+                                color: ColorRef.black202020),
+                          )
                         ],
                       ),
                     ),
-                )
+                  )
                 : TextButton(
                     onPressed: provider.onNext,
                     child: Stack(

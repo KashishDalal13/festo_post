@@ -1,7 +1,9 @@
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/routes.dart';
+import 'package:festo_post/theme_change/theme_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import 'on_boarding/on_boarding_view.dart';
 
@@ -23,13 +25,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+        create: (BuildContext context) => ThemeSettings(),
+    builder: (context, child) {
+    ThemeSettings settings = context.watch<ThemeSettings>();
     return MaterialApp(
-      themeMode: ThemeMode.dark,
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       initialRoute: '/',
       navigatorKey: NavigationService.navigatorKey,
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
       home: const OnBoardingScreen(),
     );
+        });
   }
 }

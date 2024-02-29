@@ -4,8 +4,10 @@ class StrRef{
   onBoardTitle3 = "Download and Share",
   onBoardDesc1 = "Celebrate Festivals and Boost Your Business with Our Posts and Offers.",
   onBoardDesc2 = "Connect with your customers on every holiday with creative posts.",
-  onBoardDesc3 = "Easy to Download and Share Posts on Social Media";
-  }
+  onBoardDesc3 = "Easy to Download and Share Posts on Social Media",
+  getStart = "Get Started",
+  skip = "Skip"
+  ;}
 
   class SvgPath{
     static String onBoardImg1 = 'assets/svg/onboard1.svg' ,
