@@ -9,9 +9,18 @@ class IntroProvider extends ChangeNotifier {
   final pageController = PageController();
 
   List<OnBoardingInfo> items = [
-    OnBoardingInfo(title: StrRef.onBoardTitle1, descriptions: StrRef.onBoardDesc1, image: SvgPath.onBoardImg1),
-    OnBoardingInfo(title: StrRef.onBoardTitle2, descriptions: StrRef.onBoardDesc2, image: SvgPath.onBoardImg2),
-    OnBoardingInfo(title: StrRef.onBoardTitle3, descriptions: StrRef.onBoardDesc3, image: SvgPath.onBoardImg3),
+    OnBoardingInfo(
+        title: StrRef.onBoardTitle1,
+        descriptions: StrRef.onBoardDesc1,
+        image: SvgPath.onBoardImg1),
+    OnBoardingInfo(
+        title: StrRef.onBoardTitle2,
+        descriptions: StrRef.onBoardDesc2,
+        image: SvgPath.onBoardImg2),
+    OnBoardingInfo(
+        title: StrRef.onBoardTitle3,
+        descriptions: StrRef.onBoardDesc3,
+        image: SvgPath.onBoardImg3),
   ];
 
   void onNext() {
@@ -20,7 +29,8 @@ class IntroProvider extends ChangeNotifier {
       //implement logic for navigating to next screen
     }
     introIndex++;
-    pageController.animateToPage(introIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    pageController.animateToPage(introIndex,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
     notifyListeners();
   }
 
@@ -37,5 +47,4 @@ class IntroProvider extends ChangeNotifier {
     pageController.jumpToPage(items.length - 1);
     notifyListeners();
   }
-
 }
