@@ -42,7 +42,7 @@ class OnBoardingScreen extends StatelessWidget {
                         child: Text(
                           provider.introIndex == 2 ? "" : StrRef.skip,
                           style: TextStyle(
-                              color: AppColors.grey5c5c5c,
+                              color: ColorRef.grey5c5c5c,
                               fontSize: 15,
                               fontFamily: 'Lato'),
                         ),
@@ -90,8 +90,8 @@ class OnBoardingScreen extends StatelessWidget {
                     controller: provider.pageController,
                     count: provider.items.length,
                     effect: ExpandingDotsEffect(
-                        activeDotColor: AppColors.yellowFFA500,
-                        dotColor: AppColors.white898989,
+                        activeDotColor: ColorRef.yellowFFA500,
+                        dotColor: ColorRef.white898989,
                         spacing: 3,
                         dotHeight: 5,
                         dotWidth: 10,
@@ -107,7 +107,7 @@ class OnBoardingScreen extends StatelessWidget {
                     child: TextButton(
                       onPressed: provider.onNext,
                       child: Stack(
-                        alignment: Alignment(-0.6, -0.3),
+                        alignment: const Alignment(-0.6,-0.3),
                         children: [
                           Transform.rotate(
                             angle: 0.80,
@@ -116,7 +116,7 @@ class OnBoardingScreen extends StatelessWidget {
                               width: 168,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(28),
-                                color: AppColors.yellowFFA500,
+                                color: ColorRef.yellowFFA500,
                               ),
                             ),
                           ),
@@ -126,7 +126,7 @@ class OnBoardingScreen extends StatelessWidget {
                                 fontSize: 18,
                                 fontFamily: 'Lato',
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.black202020),
+                                color: ColorRef.black202020),
                           )
                         ],
                       ),
@@ -144,12 +144,12 @@ class OnBoardingScreen extends StatelessWidget {
                             width: 68,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(28),
-                              color: AppColors.yellowFFA500,
+                              color: ColorRef.yellowFFA500,
                             ),
                           ),
                         ),
                         Icon(Icons.arrow_forward_rounded,
-                            color: AppColors.black202020),
+                            color: ColorRef.black202020)
                       ],
                     ),
                   ),
@@ -162,7 +162,7 @@ class OnBoardingScreen extends StatelessWidget {
   // Get Started Button
   Widget getStarted({required double width}) {
     return Container(
-      decoration: BoxDecoration(color: AppColors.yellowFFA500),
+      decoration: BoxDecoration(color: ColorRef.yellowFFA500),
       width: width * .9,
       height: 55,
       child: TextButton(

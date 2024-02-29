@@ -14,7 +14,7 @@ class Injector {
     debugPrint("Shared Preferences Initialized..");
   }
 
-  static setTheme({required bool themeVal}) => prefs.setBool(PrefsKey.theme, true);
+  static void setTheme({required bool themeVal}) => prefs.setBool(PrefsKey.theme,themeVal);
 
-  static getTheme() => prefs.getBool(PrefsKey.theme) ?? false;
+  static bool getTheme() => prefs.getBool(PrefsKey.theme) ?? false;
 }
