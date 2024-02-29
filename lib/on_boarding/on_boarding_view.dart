@@ -50,7 +50,7 @@ class OnBoardingScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                /*Container(
+                Container(
                     // color: Colors.yellow,
                     margin: const EdgeInsets.only(top: 150), // flex: 6,
                     height: height / 2.4,
@@ -83,7 +83,7 @@ class OnBoardingScreen extends StatelessWidget {
                               ],
                             ),
                           );
-                        }).toList())),*/
+                        }).toList())),
                 Align(
                   alignment: Alignment.topCenter,
                   child: SmoothPageIndicator(
