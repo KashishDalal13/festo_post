@@ -20,7 +20,7 @@ class OnBoardingScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (BuildContext context) => IntroProvider(),
       builder: (context, child) {
-        ThemeSettings settings = context.watch<ThemeSettings>();
+        // ThemeSettings settings = context.watch<ThemeSettings>();
         IntroProvider provider = context.watch<IntroProvider>();
         return SafeArea(
           child: Scaffold(
@@ -29,10 +29,10 @@ class OnBoardingScreen extends StatelessWidget {
                 Row(
                   children: [
                     Switch(
-                      value: settings.switchValue,
+                      value: provider.switchValue,
                       onChanged: (newValue) {
                         // provider.toggleTheme(val: newValue);
-                        settings.toggleTheme(switchVal: newValue);
+                        provider.toggleTheme(switchVal: newValue);
                       },
                     ),
                     Align(
@@ -50,7 +50,7 @@ class OnBoardingScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
+                /*Container(
                     // color: Colors.yellow,
                     margin: const EdgeInsets.only(top: 150), // flex: 6,
                     height: height / 2.4,
@@ -83,7 +83,7 @@ class OnBoardingScreen extends StatelessWidget {
                               ],
                             ),
                           );
-                        }).toList())),
+                        }).toList())),*/
                 Align(
                   alignment: Alignment.topCenter,
                   child: SmoothPageIndicator(
