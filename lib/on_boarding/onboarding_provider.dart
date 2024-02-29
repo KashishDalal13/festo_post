@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'on_boarding_info.dart';
+import 'package:festo_post/utils/string.dart';
 
 class IntroProvider extends ChangeNotifier {
   int introIndex = 0;
@@ -8,9 +9,9 @@ class IntroProvider extends ChangeNotifier {
   final pageController = PageController();
 
   List<OnBoardingInfo> items = [
-    OnBoardingInfo(title: "Welcome to Festopost", descriptions: "Celebrate Festivals and Boost Your Business with Our Posts and Offers.", image: "assets/svg/onboard1.svg"),
-    OnBoardingInfo(title: "Simplified Post Creation", descriptions: "Connect with your customers on every holiday with creative posts.", image: "assets/svg/onboard2.svg"),
-    OnBoardingInfo(title: "Download and Share", descriptions: "Easy to Download and Share Posts on Social Media", image: "assets/svg/onboard3.svg"),
+    OnBoardingInfo(title: StrRef.onBoardTitle1, descriptions: StrRef.onBoardDesc1, image: SvgPath.onBoardImg1),
+    OnBoardingInfo(title: StrRef.onBoardTitle2, descriptions: StrRef.onBoardDesc2, image: SvgPath.onBoardImg2),
+    OnBoardingInfo(title: StrRef.onBoardTitle3, descriptions: StrRef.onBoardDesc3, image: SvgPath.onBoardImg3),
   ];
 
   void onNext() {
@@ -29,7 +30,12 @@ class IntroProvider extends ChangeNotifier {
   }
 
   void onSkip() {
+    if (introIndex == 2) {
+      return;
+      //implement logic for navigating to next screen
+    }
     pageController.jumpToPage(items.length - 1);
     notifyListeners();
   }
+
 }
