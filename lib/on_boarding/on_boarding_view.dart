@@ -11,14 +11,8 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return ChangeNotifierProvider(
       create: (BuildContext context) => IntroProvider(),
       builder: (context, child) {
@@ -29,15 +23,17 @@ class OnBoardingScreen extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.centerRight,
-                  child:  TextButton(onPressed: () => provider.onSkip(),
-                      child: Text( provider.introIndex == 2?"":"Skip", style: TextStyle(
-                          color: AppColors.grey5c5c5c,
-                          fontSize: 15,
-                          fontFamily: 'Lato'))),
+                  child: TextButton(
+                      onPressed: () => provider.onSkip(),
+                      child: Text(provider.introIndex == 2 ? "" : "Skip",
+                          style: TextStyle(
+                              color: AppColors.grey5c5c5c,
+                              fontSize: 15,
+                              fontFamily: 'Lato'))),
                 ),
                 Container(
                     // color: Colors.yellow,
-                    margin: const EdgeInsets.only(top: 150),// flex: 6,
+                    margin: const EdgeInsets.only(top: 150), // flex: 6,
                     height: height / 2.4,
                     child: PageView(
                         controller: provider.pageController,
@@ -50,18 +46,20 @@ class OnBoardingScreen extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SvgPicture.asset(
-                                    data.image, height: width - 200),
+                                SvgPicture.asset(data.image,
+                                    height: width - 200),
                                 const SizedBox(height: 15),
-                                Text(data.title, style: const TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Lato')),
+                                Text(data.title,
+                                    style: const TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Lato')),
                                 const SizedBox(height: 15),
-                                Text(data.descriptions, style: const TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                    fontFamily: 'Lato'),
+                                Text(data.descriptions,
+                                    style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 17,
+                                        fontFamily: 'Lato'),
                                     textAlign: TextAlign.center),
                               ],
                             ),
@@ -83,27 +81,52 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
               ],
             ),
-            floatingActionButton: provider.introIndex==2?const SizedBox(): TextButton(
-              onPressed: provider.onNext,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Transform.rotate(
-                    angle: 0.8,
-                    child: Container(
-                      height: 68,
-                      width: 68,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(28),
-                        color: AppColors.yellowFFA500,
+            floatingActionButton: provider.introIndex == 2
+                ? Align(
+              heightFactor: 0.3,
+                  widthFactor: 0.1,
+                  child: TextButton(
+                      onPressed: provider.onNext,
+                      child: Stack(
+                        alignment: Alignment(-0.6,-0.3),
+                        children: [
+                          Transform.rotate(
+                            angle: 0.80,
+                            child: Container(
+                              height: 168,
+                              width: 168,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(28),
+                                color: AppColors.yellowFFA500,
+                              ),
+                            ),
+                          ),
+                           Text("Get Started",style: TextStyle(fontSize: 18,fontFamily: 'Lato',fontWeight: FontWeight.bold,color: AppColors.black202020),)
+                        ],
                       ),
                     ),
+                )
+                : TextButton(
+                    onPressed: provider.onNext,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Transform.rotate(
+                          angle: 0.8,
+                          child: Container(
+                            height: 68,
+                            width: 68,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(28),
+                              color: AppColors.yellowFFA500,
+                            ),
+                          ),
+                        ),
+                        Icon(Icons.arrow_forward_rounded,
+                            color: AppColors.black202020)
+                      ],
+                    ),
                   ),
-                  Icon(
-                      Icons.arrow_forward_rounded, color: AppColors.black202020)
-                ],
-              ),
-            ),
           ),
         );
       },
