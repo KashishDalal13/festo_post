@@ -23,7 +23,7 @@ class OnBoardingScreen extends StatelessWidget {
                 Expanded(
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child:  provider.introIndex==2?SizedBox(): TextButton(onPressed: () => provider.onSkip(), child: const Text("Skip")),
+                    child:  provider.introIndex==2?const SizedBox(): TextButton(onPressed: () => provider.onSkip(), child: Text("Skip",style: TextStyle(color: AppColors.grey))),
                   ),
                 ),
                 Expanded(
