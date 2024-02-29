@@ -1,4 +1,8 @@
+import 'dart:ffi';
 
+import 'package:festo_post/theme_change/theme_settings.dart';
+import 'package:festo_post/utils/colors.dart';
+import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
