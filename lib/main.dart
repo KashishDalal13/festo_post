@@ -1,10 +1,12 @@
+import 'package:festo_post/shared/injector.dart';
 import 'package:festo_post/theme_change/theme_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'on_boarding/on_boarding_view.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Injector();
   runApp(const MyApp());
 }
 
