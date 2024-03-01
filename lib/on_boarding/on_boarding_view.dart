@@ -70,14 +70,14 @@ class OnBoardingScreen extends StatelessWidget {
                                 const SizedBox(height: 15),
                                 Text(data.title,
                                     style: const TextStyle(
-                                        fontSize: 30,
+                                        fontSize: 25,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Lato')),
                                 const SizedBox(height: 15),
                                 Text(data.descriptions,
                                     style: const TextStyle(
                                         color: Colors.grey,
-                                        fontSize: 17,
+                                        fontSize: 15,
                                         fontFamily: 'Lato'),
                                     textAlign: TextAlign.center),
                               ],
@@ -156,19 +156,6 @@ class OnBoardingScreen extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  // Get Started Button
-  Widget getStarted({required double width}) {
-    return Container(
-      decoration: BoxDecoration(color: ColorRef.yellowFFA500),
-      width: width * .9,
-      height: 55,
-      child: TextButton(
-        onPressed: () {},
-        child: const Text("Get Started", style: TextStyle(color: Colors.white)),
-      ),
     );
   }
 }
