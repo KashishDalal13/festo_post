@@ -7,5 +7,6 @@ class ColorRef {
       black202020 = const Color(0xff202020),
       white898989 = const Color(0xff898989),
       transparent = Colors.transparent,
-      white = const Color(0xffFFFFFF);
+      white = const Color(0xffFFFFFF),
+      grey929292 = const Color(0xff929292);
 }

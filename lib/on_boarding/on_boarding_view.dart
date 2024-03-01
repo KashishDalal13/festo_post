@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:festo_post/theme_change/theme_settings.dart';
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
@@ -51,39 +48,40 @@ class OnBoardingScreen extends StatelessWidget {
                   ],
                 ),
                 Container(
-                    // color: Colors.yellow,
-                    margin: const EdgeInsets.only(top: 150), // flex: 6,
-                    height: height / 2.4,
-                    child: PageView(
-                        controller: provider.pageController,
-                        onPageChanged: (index) =>
-                            provider.onIndexChange(index: index),
-                        children: provider.items.map((e) {
-                          OnBoardingInfo data = e;
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 60),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(data.image,
-                                    height: width - 200),
-                                const SizedBox(height: 15),
-                                Text(data.title,
-                                    style: const TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Lato')),
-                                const SizedBox(height: 15),
-                                Text(data.descriptions,
-                                    style: const TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 15,
-                                        fontFamily: 'Lato'),
-                                    textAlign: TextAlign.center),
-                              ],
-                            ),
-                          );
-                        }).toList())),
+                  // color: Colors.yellow,
+                  margin: const EdgeInsets.only(top: 150), // flex: 6,
+                  height: height / 2.4,
+                  child: PageView(
+                    controller: provider.pageController,
+                    onPageChanged: (index) =>
+                        provider.onIndexChange(index: index),
+                    children: provider.items.map((e) {
+                      OnBoardingInfo data = e;
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 60),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(data.image, height: width - 200),
+                            const SizedBox(height: 15),
+                            Text(data.title,
+                                style: const TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Lato')),
+                            const SizedBox(height: 15),
+                            Text(data.descriptions,
+                                style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 15,
+                                    fontFamily: 'Lato'),
+                                textAlign: TextAlign.center),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
                 Align(
                   alignment: Alignment.topCenter,
                   child: SmoothPageIndicator(
@@ -104,31 +102,36 @@ class OnBoardingScreen extends StatelessWidget {
                 ? Align(
                     heightFactor: 0.3,
                     widthFactor: 0.1,
-                    child: TextButton(
-                      onPressed: provider.onNext,
-                      child: Stack(
-                        alignment: const Alignment(-0.6,-0.3),
-                        children: [
-                          Transform.rotate(
-                            angle: 0.80,
-                            child: Container(
-                              height: 168,
-                              width: 168,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(28),
-                                color: ColorRef.yellowFFA500,
+                    child: GestureDetector(
+                      onTap: () {
+                        provider.getstarted(context);
+                      },
+                      child: Container(
+                        color: Colors.pink,
+                        child: Stack(
+                          alignment: const Alignment(-0.6, -0.3),
+                          children: [
+                            Transform.rotate(
+                              angle: 0.80,
+                              child: Container(
+                                height: 168,
+                                width: 168,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(28),
+                                  color: ColorRef.yellowFFA500,
+                                ),
                               ),
                             ),
-                          ),
-                          Text(
-                            StrRef.getStart,
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Lato',
-                                fontWeight: FontWeight.bold,
-                                color: ColorRef.black202020),
-                          )
-                        ],
+                            Text(
+                              StrRef.getStart,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Lato',
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorRef.black202020),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   )
