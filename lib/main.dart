@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'module/login_module/register_view.dart';
 import 'on_boarding/on_boarding_view.dart';
 import 'on_boarding/onboarding_provider.dart';
 
@@ -37,11 +38,14 @@ class MyApp extends StatelessWidget {
           debugPrint("Main ${provider.switchValue}");
 
           return MaterialApp(
-            /*initialRoute: '/',
-          navigatorKey: NavigationService.navigatorKey,*/
+            initialRoute: '/',
+          navigatorKey: NavigationService.navigatorKey,
             debugShowCheckedModeBanner: false,
             theme: provider.switchValue ? ThemeData.dark() : ThemeData.light(),
-            home: const OnBoardingScreen(),
+            routes: {
+              '/':(context)=> const OnBoardingScreen(),
+              'register':(context)=> const RegisterView(),
+            },
           );
         });
   }

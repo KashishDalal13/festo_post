@@ -48,4 +48,8 @@ class IntroProvider extends ChangeNotifier {
     pageController.jumpToPage(items.length - 1);
     notifyListeners();
   }
+  void getstarted(BuildContext context){
+    debugPrint("clicked");
+    Navigator.pushReplacementNamed(context, 'register');
+  }
 }
