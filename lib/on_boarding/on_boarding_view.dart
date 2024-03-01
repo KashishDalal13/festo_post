@@ -70,14 +70,14 @@ class OnBoardingScreen extends StatelessWidget {
                                 const SizedBox(height: 15),
                                 Text(data.title,
                                     style: const TextStyle(
-                                        fontSize: 30,
+                                        fontSize: 25,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Lato')),
                                 const SizedBox(height: 15),
                                 Text(data.descriptions,
                                     style: const TextStyle(
                                         color: Colors.grey,
-                                        fontSize: 17,
+                                        fontSize: 15,
                                         fontFamily: 'Lato'),
                                     textAlign: TextAlign.center),
                               ],
