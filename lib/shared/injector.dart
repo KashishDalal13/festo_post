@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Injector {
-  static late SharedPreferences prefs;
+  static SharedPreferences? prefs;
 
   Injector() {
     getInstance();
@@ -14,7 +14,7 @@ class Injector {
     debugPrint("Shared Preferences Initialized..");
   }
 
-  static void setTheme({required bool themeVal}) => prefs.setBool(PrefsKey.theme,themeVal);
+  static void setTheme({required bool themeVal}) => prefs?.setBool(PrefsKey.theme,themeVal);
 
-  static bool getTheme() => prefs.getBool(PrefsKey.theme) ?? false;
+  static bool getTheme() => prefs?.getBool(PrefsKey.theme) ?? false;
 }
