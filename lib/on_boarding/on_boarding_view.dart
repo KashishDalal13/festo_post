@@ -158,17 +158,4 @@ class OnBoardingScreen extends StatelessWidget {
       },
     );
   }
-
-  // Get Started Button
-  Widget getStarted({required double width}) {
-    return Container(
-      decoration: BoxDecoration(color: ColorRef.yellowFFA500),
-      width: width * .9,
-      height: 55,
-      child: TextButton(
-        onPressed: () {},
-        child: const Text("Get Started", style: TextStyle(color: Colors.white)),
-      ),
-    );
-  }
 }
