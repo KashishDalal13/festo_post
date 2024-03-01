@@ -20,22 +20,39 @@ class OnBoardingScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (BuildContext context) => IntroProvider(),
       builder: (context, child) {
+        // ThemeSettings settings = context.watch<ThemeSettings>();
         IntroProvider provider = context.watch<IntroProvider>();
         return SafeArea(
           child: Scaffold(
             body: Column(
               children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child:  TextButton(onPressed: () => provider.onSkip(),
-                      child: Text( provider.introIndex == 2?"":"Skip", style: TextStyle(
-                          color: AppColors.grey5c5c5c,
-                          fontSize: 15,
-                          fontFamily: 'Lato'))),
+                Row(
+                  children: [
+                    Switch(
+                      value: provider.switchValue,
+                      onChanged: (newValue) {
+                        // provider.toggleTheme(val: newValue);
+                        provider.toggleTheme(switchVal: newValue);
+                      },
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () => provider.onSkip(),
+                        child: Text(
+                          provider.introIndex == 2 ? "" : StrRef.skip,
+                          style: TextStyle(
+                              color: ColorRef.grey5c5c5c,
+                              fontSize: 15,
+                              fontFamily: 'Lato'),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
                     // color: Colors.yellow,
-                    margin: const EdgeInsets.only(top: 150),// flex: 6,
+                    margin: const EdgeInsets.only(top: 150), // flex: 6,
                     height: height / 2.4,
                     child: PageView(
                         controller: provider.pageController,
@@ -48,18 +65,20 @@ class OnBoardingScreen extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SvgPicture.asset(
-                                    data.image, height: width - 200),
+                                SvgPicture.asset(data.image,
+                                    height: width - 200),
                                 const SizedBox(height: 15),
-                                Text(data.title, style: const TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Lato')),
+                                Text(data.title,
+                                    style: const TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Lato')),
                                 const SizedBox(height: 15),
-                                Text(data.descriptions, style: const TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                    fontFamily: 'Lato'),
+                                Text(data.descriptions,
+                                    style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 17,
+                                        fontFamily: 'Lato'),
                                     textAlign: TextAlign.center),
                               ],
                             ),
@@ -71,8 +90,8 @@ class OnBoardingScreen extends StatelessWidget {
                     controller: provider.pageController,
                     count: provider.items.length,
                     effect: ExpandingDotsEffect(
-                        activeDotColor: AppColors.yellowFFA500,
-                        dotColor: AppColors.white898989,
+                        activeDotColor: ColorRef.yellowFFA500,
+                        dotColor: ColorRef.white898989,
                         spacing: 3,
                         dotHeight: 5,
                         dotWidth: 10,
@@ -81,27 +100,59 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
               ],
             ),
-            floatingActionButton: provider.introIndex==2?const SizedBox(): TextButton(
-              onPressed: provider.onNext,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Transform.rotate(
-                    angle: 0.8,
-                    child: Container(
-                      height: 68,
-                      width: 68,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(28),
-                        color: AppColors.yellowFFA500,
+            floatingActionButton: provider.introIndex == 2
+                ? Align(
+                    heightFactor: 0.3,
+                    widthFactor: 0.1,
+                    child: TextButton(
+                      onPressed: provider.onNext,
+                      child: Stack(
+                        alignment: const Alignment(-0.6,-0.3),
+                        children: [
+                          Transform.rotate(
+                            angle: 0.80,
+                            child: Container(
+                              height: 168,
+                              width: 168,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(28),
+                                color: ColorRef.yellowFFA500,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            StrRef.getStart,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Lato',
+                                fontWeight: FontWeight.bold,
+                                color: ColorRef.black202020),
+                          )
+                        ],
                       ),
                     ),
+                  )
+                : TextButton(
+                    onPressed: provider.onNext,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Transform.rotate(
+                          angle: 0.8,
+                          child: Container(
+                            height: 68,
+                            width: 68,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(28),
+                              color: ColorRef.yellowFFA500,
+                            ),
+                          ),
+                        ),
+                        Icon(Icons.arrow_forward_rounded,
+                            color: ColorRef.black202020)
+                      ],
+                    ),
                   ),
-                  Icon(
-                      Icons.arrow_forward_rounded, color: AppColors.black202020)
-                ],
-              ),
-            ),
           ),
         );
       },
@@ -111,7 +162,7 @@ class OnBoardingScreen extends StatelessWidget {
   // Get Started Button
   Widget getStarted({required double width}) {
     return Container(
-      decoration: BoxDecoration(color: AppColors.yellowFFA500),
+      decoration: BoxDecoration(color: ColorRef.yellowFFA500),
       width: width * .9,
       height: 55,
       child: TextButton(

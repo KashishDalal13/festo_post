@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'on_boarding/on_boarding_view.dart';
+import 'on_boarding/onboarding_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,15 +30,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (BuildContext context) => ThemeSettings(),
+        create: (BuildContext context) => IntroProvider(),
         builder: (context, child) {
-          ThemeSettings settings = context.watch<ThemeSettings>();
+          // ThemeSettings settings = context.watch<ThemeSettings>();
+          IntroProvider provider = context.watch<IntroProvider>();
+          debugPrint("Main ${provider.switchValue}");
+
           return MaterialApp(
-            initialRoute: '/',
-            navigatorKey: NavigationService.navigatorKey,
+            /*initialRoute: '/',
+          navigatorKey: NavigationService.navigatorKey,*/
             debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
+            theme: provider.switchValue ? ThemeData.dark() : ThemeData.light(),
             home: const OnBoardingScreen(),
           );
         });

@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
+import '../shared/injector.dart';
 import 'on_boarding_info.dart';
 import 'package:festo_post/utils/string.dart';
 
 class IntroProvider extends ChangeNotifier {
+
   int introIndex = 0;
   double process = 0.33;
   Duration? timer;
   final pageController = PageController();
+  bool switchValue = false;
+
+  void toggleTheme({required bool switchVal}) async {
+    switchValue = switchVal;
+    Injector.setTheme(themeVal: switchValue);
+    debugPrint("$switchValue");
+    // Injector.getTheme();
+    notifyListeners();
+  }
 
   List<OnBoardingInfo> items = [
-    OnBoardingInfo(
-        title: StrRef.onBoardTitle1,
-        descriptions: StrRef.onBoardDesc1,
-        image: SvgPath.onBoardImg1),
-    OnBoardingInfo(
-        title: StrRef.onBoardTitle2,
-        descriptions: StrRef.onBoardDesc2,
-        image: SvgPath.onBoardImg2),
-    OnBoardingInfo(
-        title: StrRef.onBoardTitle3,
-        descriptions: StrRef.onBoardDesc3,
-        image: SvgPath.onBoardImg3),
+    OnBoardingInfo(title: StrRef.onBoardTitle1, descriptions: StrRef.onBoardDesc1, image: SvgPath.onBoardImg1),
+    OnBoardingInfo(title: StrRef.onBoardTitle2, descriptions: StrRef.onBoardDesc2, image: SvgPath.onBoardImg2),
+    OnBoardingInfo(title: StrRef.onBoardTitle3, descriptions: StrRef.onBoardDesc3, image: SvgPath.onBoardImg3),
   ];
 
   void onNext() {
@@ -29,8 +31,7 @@ class IntroProvider extends ChangeNotifier {
       //implement logic for navigating to next screen
     }
     introIndex++;
-    pageController.animateToPage(introIndex,
-        duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    pageController.animateToPage(introIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
     notifyListeners();
   }
 

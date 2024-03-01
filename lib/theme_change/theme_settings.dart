@@ -2,16 +2,17 @@ import 'package:festo_post/shared/injector.dart';
 import 'package:flutter/material.dart';
 
 class ThemeSettings extends ChangeNotifier {
+  ThemeSettings() {
+    // switchValue = Injector.getTheme();
+  }
+
   ThemeData currentTheme = ThemeData.light();
   bool switchValue = false;
 
-  ThemeSettings() {
-    switchValue = Injector.getTheme();
-  }
-
   void toggleTheme({required bool switchVal}) async {
     switchValue = switchVal;
-    Injector.setTheme(themeVal: switchValue);
+    // Injector.setTheme(themeVal: switchValue);
+    // Injector.getTheme();
     notifyListeners();
   }
 }
