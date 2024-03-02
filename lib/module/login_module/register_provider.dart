@@ -19,6 +19,16 @@ class RegisterProvider extends ChangeNotifier {
         title2: StrRef.registerTitle2,
         image: SvgPath.loginImg1,
         descriptions: StrRef.login),
+    RegisterInfo(
+        title: "",
+        title2: StrRef.otpTitle,
+        image: SvgPath.otpImg,
+        descriptions: StrRef.resendOtp),
+    RegisterInfo(
+        title: StrRef.verified,
+        title2: StrRef.success,
+        image: SvgPath.otpSuccess,
+        descriptions: ""),
   ];
 
   void onLogin() {
@@ -30,6 +40,11 @@ class RegisterProvider extends ChangeNotifier {
   void onCreateAccount() {
     // debugPrint("$introIndex");
     introIndex = 0;
+    notifyListeners();
+  }
+  void onOTP() {
+    // debugPrint("$introIndex");
+    introIndex = 2;
     notifyListeners();
   }
 

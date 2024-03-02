@@ -16,7 +16,14 @@ class StrRef{
   whatsApp = "I Don't Have WhatsApp",
   sms = "Verify By SMS.",
   accountExists = "Already have an account?",
-  accountNotExists = "Don't have an account?"
+  accountNotExists = "Don't have an account?",
+  otp = "Verify OTP",
+  otpTitle = "Please Enter OTP Send To Your Registered Mobile Number",
+  resendOtp = "Didn't receive OTP?",
+  verifyText = "Verify",
+  verified = "Verified",
+  success = "Successfully!!!"
+
   ;}
 
   class SvgPath{
@@ -24,5 +31,7 @@ class StrRef{
     onBoardImg2 = 'assets/svg/onboard2.svg' ,
     onBoardImg3 = 'assets/svg/onboard3.svg' ,
     registerImg1 = 'assets/svg/register.svg',
-    loginImg1 = 'assets/svg/loginImg.svg';
-  }
+    loginImg1 = 'assets/svg/loginImg.svg',
+    otpImg = 'assets/svg/otp.svg',
+    otpSuccess = 'assets/svg/otpsuccess.svg'
+  ;}

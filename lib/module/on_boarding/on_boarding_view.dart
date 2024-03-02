@@ -19,7 +19,6 @@ class OnBoardingScreen extends StatelessWidget {
       create: (BuildContext context) => IntroProvider(),
       builder: (context, child) {
         ThemeSettings settings = context.watch<ThemeSettings>();
-
         IntroProvider provider = context.watch<IntroProvider>();
         return SafeArea(
           child: Scaffold(
@@ -109,7 +108,6 @@ class OnBoardingScreen extends StatelessWidget {
                         provider.getstarted(context);
                       },
                       child: Container(
-                        color: Colors.pink,
                         child: Stack(
                           alignment: const Alignment(-0.6, -0.3),
                           children: [

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../theme_change/theme_settings.dart';
 import '../../utils/colors.dart';
 
 class RegisterView extends StatelessWidget {
@@ -18,15 +19,29 @@ class RegisterView extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => RegisterProvider(),
         builder: (context, child) {
-          // ThemeSettings settings = context.watch<ThemeSettings>();
+          ThemeSettings settings = context.watch<ThemeSettings>();
           RegisterProvider provider = context.watch<RegisterProvider>();
           return SafeArea(
               child: Scaffold(
-            resizeToAvoidBottomInset: false,
+                appBar: AppBar(
+                  leading: Visibility(
+                    visible: provider.introIndex == 2,
+                    child: IconButton(
+                      onPressed: () => provider.onCreateAccount(),
+                      icon: const Icon(Icons.arrow_back_ios_rounded),
+                    ),
+                  ),
+                  title: Center(
+                    child: Text(provider.introIndex == 2 ? StrRef.otp : ""),
+                  ),
+                  // Other properties of AppBar
+                ),
+
+                resizeToAvoidBottomInset: false,
             body: Column(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(top: 150), // flex: 6,
+                  margin: const EdgeInsets.only(top: 66), // flex: 6,
                   // height: height / 1.5,
                   child: IndexedStack(
                       index: provider.introIndex,
@@ -43,15 +58,14 @@ class RegisterView extends StatelessWidget {
                                 children: [
                                   Text(
                                     data.title,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 25,
-                                        color: ColorRef.black202020,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Lato'),
                                   ),
                                   const SizedBox(width: 2),
                                   Text(
-                                    data.title2,
+                                    provider.introIndex == 2 ? "" : data.title2,
                                     style: TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold,
@@ -60,12 +74,32 @@ class RegisterView extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      margin: EdgeInsets.all(8.0), // Add margin here
+                                      child: Text(
+                                        provider.introIndex == 2 ? data.title2 : "",
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: 'Lato',
+                                        ),
+                                        textAlign: TextAlign.center, // Ensure text alignment is centered
+                                        // overflow: TextOverflow.ellipsis, // Handle overflow with ellipsis if necessary
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
                               const SizedBox(height: 15),
                               SvgPicture.asset(data.image, height: width - 200),
                               const SizedBox(height: 15),
                               Text(data.descriptions,
-                                  style: TextStyle(
-                                      color: ColorRef.black202020,
+                                  style: const TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Lato'),
@@ -98,7 +132,7 @@ class RegisterView extends StatelessWidget {
                               const SizedBox(height: 15),
                               // Button added here
                               GestureDetector(
-                                onTap: () => {debugPrint("Pressed")},
+                                onTap: () => provider.onOTP(),
                                 child: Container(
                                   height: 50,
                                   width: 400,
@@ -108,7 +142,9 @@ class RegisterView extends StatelessWidget {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      StrRef.verify,
+                                      provider.introIndex == 2
+                                          ? StrRef.verifyText
+                                          : StrRef.verify,
                                       style: TextStyle(
                                           color: ColorRef.black202020,
                                           fontSize: 18,
@@ -120,21 +156,24 @@ class RegisterView extends StatelessWidget {
                               ),
                               const SizedBox(height: 15),
                               GestureDetector(
-                                onTap: () => {debugPrint("clicked")},
+                                onTap: () => provider.onOTP(),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      StrRef.whatsApp,
-                                      style: TextStyle(
-                                          color: ColorRef.black202020,
+                                      provider.introIndex == 2
+                                          ? ""
+                                          : StrRef.whatsApp,
+                                      style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.normal,
                                           fontFamily: 'Lato'),
                                     ),
                                     const SizedBox(width: 2),
                                     Text(
-                                      StrRef.sms,
+                                      provider.introIndex == 2
+                                          ? ""
+                                          : StrRef.sms,
                                       style: TextStyle(
                                           color: ColorRef.yellowFFA500,
                                           fontSize: 18,
@@ -153,16 +192,19 @@ class RegisterView extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            StrRef.accountExists,
-                                            style: TextStyle(
-                                                color: ColorRef.black202020,
+                                            provider.introIndex == 2
+                                                ? ""
+                                                : StrRef.accountExists,
+                                            style: const TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.normal,
                                                 fontFamily: 'Lato'),
                                           ),
                                           const SizedBox(width: 5),
                                           Text(
-                                            StrRef.login,
+                                            provider.introIndex == 2
+                                                ? ""
+                                                : StrRef.login,
                                             style: TextStyle(
                                                 color: ColorRef.blue0250A4,
                                                 fontSize: 18,
@@ -179,16 +221,19 @@ class RegisterView extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            StrRef.accountNotExists,
-                                            style: TextStyle(
-                                              color: ColorRef.black202020,
+                                            provider.introIndex == 2
+                                                ? ""
+                                                : StrRef.accountNotExists,
+                                            style: const TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.normal,
                                             ),
                                           ),
                                           const SizedBox(width: 5),
                                           Text(
-                                            StrRef.register,
+                                            provider.introIndex == 2
+                                                ? ""
+                                                : StrRef.register,
                                             style: TextStyle(
                                               color: ColorRef.blue0250A4,
                                               fontSize: 18,
