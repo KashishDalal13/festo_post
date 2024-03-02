@@ -49,7 +49,7 @@ class RegisterView extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Lato'),
                                   ),
-                                  const Text("  "),
+                                  const SizedBox(width: 2),
                                   Text(
                                     data.title2,
                                     style: TextStyle(
@@ -110,10 +110,10 @@ class RegisterView extends StatelessWidget {
                                     child: Text(
                                       StrRef.verify,
                                       style: TextStyle(
-                                        color: ColorRef.black202020,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                          color: ColorRef.black202020,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Lato'),
                                     ),
                                   ),
                                 ),
@@ -127,51 +127,77 @@ class RegisterView extends StatelessWidget {
                                     Text(
                                       StrRef.whatsApp,
                                       style: TextStyle(
-                                        color: ColorRef.black202020,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                          color: ColorRef.black202020,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.normal,
+                                          fontFamily: 'Lato'),
                                     ),
-                                    const Text(" "),
+                                    const SizedBox(width: 2),
                                     Text(
                                       StrRef.sms,
                                       style: TextStyle(
-                                        color: ColorRef.yellowFFA500,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                          color: ColorRef.yellowFFA500,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.normal,
+                                          fontFamily: 'Lato'),
                                     ),
                                   ],
                                 ),
                               ),
                               const SizedBox(height: 200),
-                              GestureDetector(
-                                onTap: () => {
-                                  provider.onNext()
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      StrRef.accountExists,
-                                      style: TextStyle(
-                                        color: ColorRef.black202020,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.normal,
+                              provider.introIndex == 0
+                                  ? GestureDetector(
+                                      onTap: () => provider.onLogin(),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            StrRef.accountExists,
+                                            style: TextStyle(
+                                                color: ColorRef.black202020,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.normal,
+                                                fontFamily: 'Lato'),
+                                          ),
+                                          const SizedBox(width: 5),
+                                          Text(
+                                            StrRef.login,
+                                            style: TextStyle(
+                                                color: ColorRef.blue0250A4,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.normal,
+                                                fontFamily: 'Lato'),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    const Text(" "),
-                                    Text(
-                                      StrRef.login,
-                                      style: TextStyle(
-                                        color: ColorRef.blue0250A4,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.normal,
+                                    )
+                                  : GestureDetector(
+                                      onTap: () => provider.onCreateAccount(),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            StrRef.accountNotExists,
+                                            style: TextStyle(
+                                              color: ColorRef.black202020,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 5),
+                                          Text(
+                                            StrRef.register,
+                                            style: TextStyle(
+                                              color: ColorRef.blue0250A4,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              )
+                                    )
                             ],
                           ),
                         );

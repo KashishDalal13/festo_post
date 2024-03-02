@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../theme_change/theme_settings.dart';
 import 'on_boarding_info.dart';
 import 'onboarding_provider.dart';
 
@@ -17,7 +18,8 @@ class OnBoardingScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (BuildContext context) => IntroProvider(),
       builder: (context, child) {
-        // ThemeSettings settings = context.watch<ThemeSettings>();
+        ThemeSettings settings = context.watch<ThemeSettings>();
+
         IntroProvider provider = context.watch<IntroProvider>();
         return SafeArea(
           child: Scaffold(
@@ -26,10 +28,10 @@ class OnBoardingScreen extends StatelessWidget {
                 Row(
                   children: [
                     Switch(
-                      value: provider.switchValue,
+                      value: settings.switchValue,
                       onChanged: (newValue) {
                         // provider.toggleTheme(val: newValue);
-                        provider.toggleTheme(switchVal: newValue);
+                        settings.toggleTheme(switchVal: newValue);
                       },
                     ),
                     Align(
@@ -62,7 +64,7 @@ class OnBoardingScreen extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(data.image, height: width - 200),
+                            SvgPicture.asset(data.image, height: width - 225),
                             const SizedBox(height: 15),
                             Text(data.title,
                                 style: const TextStyle(

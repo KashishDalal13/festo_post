@@ -15,7 +15,8 @@ class StrRef{
   verify = "Verify By WhatsApp",
   whatsApp = "I Don't Have WhatsApp",
   sms = "Verify By SMS.",
-  accountExists = "Already have an account?"
+  accountExists = "Already have an account?",
+  accountNotExists = "Don't have an account?"
   ;}
 
   class SvgPath{
