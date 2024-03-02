@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
-import '../shared/injector.dart';
+import '../../shared/injector.dart';
 import 'on_boarding_info.dart';
 import 'package:festo_post/utils/string.dart';
 
 class IntroProvider extends ChangeNotifier {
-
   int introIndex = 0;
   double process = 0.33;
   Duration? timer;
   final pageController = PageController();
   bool switchValue = false;
+
+  IntroProvider() {
+    loadTheme();
+  }
+
+  loadTheme() async {
+    switchValue = await Injector.getTheme();
+    notifyListeners();
+  }
 
   void toggleTheme({required bool switchVal}) async {
     switchValue = switchVal;
@@ -48,7 +56,8 @@ class IntroProvider extends ChangeNotifier {
     pageController.jumpToPage(items.length - 1);
     notifyListeners();
   }
-  void getstarted(BuildContext context){
+
+  void getstarted(BuildContext context) {
     debugPrint("clicked");
     Navigator.pushReplacementNamed(context, 'register');
   }
