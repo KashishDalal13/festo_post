@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 
 class ThemeSettings extends ChangeNotifier {
   ThemeSettings() {
-    // switchValue = Injector.getTheme();
+    loadTheme();
   }
 
-  ThemeData currentTheme = ThemeData.light();
+  loadTheme() async {
+    switchValue = await Injector.getTheme();
+    notifyListeners();
+  }
+
   bool switchValue = false;
 
   void toggleTheme({required bool switchVal}) async {
     switchValue = switchVal;
-    // Injector.setTheme(themeVal: switchValue);
+    Injector.setTheme(themeVal: switchValue);
     // Injector.getTheme();
     notifyListeners();
   }

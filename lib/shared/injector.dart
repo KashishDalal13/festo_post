@@ -20,8 +20,8 @@ class Injector {
   }
 
   static getTheme() async {
-    debugPrint("get ${PrefsKey.theme}=>${prefs.getBool(PrefsKey.theme)}");
     prefs = await SharedPreferences.getInstance();
+    debugPrint("get ${PrefsKey.theme}=>${prefs.getBool(PrefsKey.theme)}");
     return prefs.getBool(PrefsKey.theme) ?? false;
   }
 }
