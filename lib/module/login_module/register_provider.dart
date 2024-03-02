@@ -13,6 +13,15 @@ class RegisterProvider extends ChangeNotifier{
     RegisterInfo(title: StrRef.registerTitle1,title2: StrRef.registerTitle2, image: SvgPath.loginImg1, descriptions: StrRef.login),
   ];
 
+  void onNext() {
+    if (introIndex == 1) {
+      return;
+      //implement logic for navigating to next screen
+    }
+    introIndex++;
+    pageController.animateToPage(introIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    notifyListeners();
+  }
   onIndexChange({required int index}) {
     introIndex = index;
     notifyListeners();

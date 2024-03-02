@@ -12,7 +12,10 @@ class StrRef{
   register = "Register",
   login = "Login",
   contact = "Mobile Number",
-  verify = "Verify By WhatsApp"
+  verify = "Verify By WhatsApp",
+  whatsApp = "I Don't Have WhatsApp",
+  sms = "Verify By SMS.",
+  accountExists = "Already have an account?"
   ;}
 
   class SvgPath{

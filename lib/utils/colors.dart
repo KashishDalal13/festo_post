@@ -8,5 +8,6 @@ class ColorRef {
       white898989 = const Color(0xff898989),
       transparent = Colors.transparent,
       white = const Color(0xffFFFFFF),
-      grey929292 = const Color(0xff929292);
+      grey929292 = const Color(0xff929292),
+      blue0250A4 = const Color(0xff0250A4);
 }
