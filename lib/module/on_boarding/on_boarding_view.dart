@@ -100,41 +100,38 @@ class OnBoardingScreen extends StatelessWidget {
               ],
             ),
             floatingActionButton: provider.introIndex == 2
-                ? Align(
-                    heightFactor: 0.3,
-                    widthFactor: 0.1,
-                    child: GestureDetector(
-                      onTap: () {
-                        provider.getstarted(context);
-                      },
-                      child: Container(
-                        child: Stack(
-                          alignment: const Alignment(-0.6, -0.3),
-                          children: [
-                            Transform.rotate(
-                              angle: 0.80,
-                              child: Container(
-                                height: 168,
-                                width: 168,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(28),
-                                  color: ColorRef.yellowFFA500,
-                                ),
-                              ),
+                ? GestureDetector(
+                  onTap: () {
+                    provider.getStarted(context);
+                  },
+                  child: Stack(
+                    alignment: const Alignment(1, 0.5),
+                    children: [
+                      Transform.translate(
+                        offset: const Offset(80, 50),
+                        child: Transform.rotate(
+                          angle: 0.80,
+                          child: Container(
+                            height: 168,
+                            width: 168,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(28),
+                              color: ColorRef.yellowFFA500,
                             ),
-                            Text(
-                              StrRef.getStart,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: 'Lato',
-                                  fontWeight: FontWeight.bold,
-                                  color: ColorRef.black202020),
-                            )
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  )
+                      Text(
+                        StrRef.getStart,
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: 'Lato',
+                            fontWeight: FontWeight.bold,
+                            color: ColorRef.black202020),
+                      )
+                    ],
+                  ),
+                )
                 : TextButton(
                     onPressed: provider.onNext,
                     child: Stack(

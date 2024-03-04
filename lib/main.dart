@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
             routes: {
               '/': (context) => const OnBoardingScreen(),
-              'register': (context) => const RegisterView(),
+              'register': (context) =>  RegisterView(),
             },
           );
         });

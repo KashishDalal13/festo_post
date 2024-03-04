@@ -47,12 +47,14 @@ class RegisterProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onOTP() {
+  void onOTP(String mobileNumber) {
     // debugPrint("$introIndex");
     introIndex = 2;
+    print('Mobile Number: $mobileNumber');
     startTimer(); // Start the timer when OTP screen is shown
     notifyListeners();
   }
+
 
   void onOTPsuccess() {
     // debugPrint("$introIndex");
