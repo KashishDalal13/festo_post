@@ -48,6 +48,12 @@ class RegisterProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void onOTPsuccess(){
+    debugPrint("$introIndex");
+    introIndex = 3;
+    notifyListeners();
+  }
+
   onIndexChange({required int index}) {
     introIndex = index;
     notifyListeners();

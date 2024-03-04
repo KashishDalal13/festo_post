@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../theme_change/theme_settings.dart';
 import '../../utils/colors.dart';
 
 class RegisterView extends StatelessWidget {
@@ -13,35 +14,37 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    int currentIndex = 0;
     return ChangeNotifierProvider(
-      create: (BuildContext context) => RegisterProvider(),
-      builder: (context, child) {
-        RegisterProvider provider = context.watch<RegisterProvider>();
-        return SafeArea(
-          child: Scaffold(
-            appBar: AppBar(
-              leading: Visibility(
-                visible: provider.introIndex == 2,
-                child: IconButton(
-                  onPressed: () => provider.onCreateAccount(),
-                  icon: const Icon(Icons.arrow_back_ios_rounded),
+        create: (BuildContext context) => RegisterProvider(),
+        builder: (context, child) {
+          RegisterProvider provider = context.watch<RegisterProvider>();
+          return SafeArea(
+              child: Scaffold(
+                appBar: AppBar(
+                  leading: Visibility(
+                    visible: provider.introIndex == 2,
+                    child: IconButton(
+                      onPressed: () => provider.onCreateAccount(),
+                      icon: const Icon(Icons.arrow_back_ios_rounded),
+                    ),
+                  ),
+                  title: Center(
+                    child: Text(provider.introIndex == 2 ? StrRef.otp : ""),
+                  ),
+                  // Other properties of AppBar
                 ),
-              ),
-              title: Center(
-                child: Text(provider.introIndex == 2 ? StrRef.otp : ""),
-              ),
-              // Other properties of AppBar
-            ),
-            resizeToAvoidBottomInset: false,
+
+                resizeToAvoidBottomInset: false,
             body: Column(
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 66), // flex: 6,
                   // height: height / 1.5,
                   child: IndexedStack(
-                    index: provider.introIndex,
-                    children: provider.items.map(
-                      (e) {
+                      index: provider.introIndex,
+                      children: provider.items.map((e) {
                         RegisterInfo data = e;
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 60),
@@ -75,19 +78,15 @@ class RegisterView extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Container(
-                                      margin: const EdgeInsets.all(8.0),
-                                      // Add margin here
+                                      margin: const EdgeInsets.all(8.0), // Add margin here
                                       child: Text(
-                                        provider.introIndex == 2
-                                            ? data.title2
-                                            : "",
+                                        provider.introIndex == 2 ? data.title2 : "",
                                         style: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w600,
                                           fontFamily: 'Lato',
                                         ),
-                                        textAlign: TextAlign
-                                            .center, // Ensure text alignment is centered
+                                        textAlign: TextAlign.center, // Ensure text alignment is centered
                                         // overflow: TextOverflow.ellipsis, // Handle overflow with ellipsis if necessary
                                       ),
                                     ),
@@ -132,7 +131,15 @@ class RegisterView extends StatelessWidget {
                               const SizedBox(height: 15),
                               // Button added here
                               GestureDetector(
-                                onTap: () => provider.onOTP(),
+                                onTap:() {
+                                  if(provider.introIndex == 2){
+                                    provider.onOTPsuccess();
+                                  }
+                                  else{
+                                    provider.onOTP();
+                                  }
+
+                                },
                                 child: Container(
                                   height: 50,
                                   width: 400,
@@ -160,29 +167,30 @@ class RegisterView extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
-                                      provider.introIndex == 2
-                                          ? ""
-                                          : StrRef.whatsApp,
-                                      style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.normal,
-                                          fontFamily: 'Lato'),
-                                    ),
+                                    if (provider.introIndex != 2 && provider.introIndex != 3)
+                                      Text(
+                                        StrRef.whatsApp,
+                                        style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.normal,
+                                            fontFamily: 'Lato'
+                                        ),
+                                      ),
                                     const SizedBox(width: 2),
-                                    Text(
-                                      provider.introIndex == 2
-                                          ? ""
-                                          : StrRef.sms,
-                                      style: TextStyle(
-                                          color: ColorRef.yellowFFA500,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.normal,
-                                          fontFamily: 'Lato'),
-                                    ),
+                                    if (provider.introIndex != 2 && provider.introIndex != 3)
+                                      Text(
+                                        StrRef.sms,
+                                        style: TextStyle(
+                                            color: ColorRef.yellowFFA500,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.normal,
+                                            fontFamily: 'Lato'
+                                        ),
+                                      ),
                                   ],
                                 ),
                               ),
+
                               const SizedBox(height: 200),
                               provider.introIndex == 0
                                   ? GestureDetector(
@@ -191,26 +199,26 @@ class RegisterView extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            provider.introIndex == 2
-                                                ? ""
-                                                : StrRef.accountExists,
-                                            style: const TextStyle(
+                                          if (provider.introIndex != 2 && provider.introIndex != 3)
+                                            Text(
+                                              StrRef.accountExists,
+                                              style: const TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.normal,
-                                                fontFamily: 'Lato'),
-                                          ),
+                                                fontFamily: 'Lato',
+                                              ),
+                                            ),
                                           const SizedBox(width: 5),
-                                          Text(
-                                            provider.introIndex == 2
-                                                ? ""
-                                                : StrRef.login,
-                                            style: TextStyle(
+                                          if (provider.introIndex != 2 && provider.introIndex != 3)
+                                            Text(
+                                              StrRef.login,
+                                              style: TextStyle(
                                                 color: ColorRef.blue0250A4,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.normal,
-                                                fontFamily: 'Lato'),
-                                          ),
+                                                fontFamily: 'Lato',
+                                              ),
+                                            ),
                                         ],
                                       ),
                                     )
@@ -220,41 +228,36 @@ class RegisterView extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            provider.introIndex == 2
-                                                ? ""
-                                                : StrRef.accountNotExists,
-                                            style: const TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.normal,
+                                          if (provider.introIndex != 2 && provider.introIndex != 3)
+                                            Text(
+                                              StrRef.accountNotExists,
+                                              style: const TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.normal,
+                                              ),
                                             ),
-                                          ),
                                           const SizedBox(width: 5),
-                                          Text(
-                                            provider.introIndex == 2
-                                                ? ""
-                                                : StrRef.register,
-                                            style: TextStyle(
-                                              color: ColorRef.blue0250A4,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.normal,
+                                          if (provider.introIndex != 2 && provider.introIndex != 3)
+                                            Text(
+                                              StrRef.register,
+                                              style: TextStyle(
+                                                color: ColorRef.blue0250A4,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.normal,
+                                              ),
                                             ),
-                                          ),
                                         ],
+
                                       ),
                                     )
                             ],
                           ),
                         );
-                      },
-                    ).toList(),
-                  ),
+                      }).toList()),
                 )
               ],
             ),
-          ),
-        );
-      },
-    );
+          ));
+        });
   }
 }
