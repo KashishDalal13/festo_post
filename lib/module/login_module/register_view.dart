@@ -15,7 +15,6 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    int currentIndex = 0;
     return ChangeNotifierProvider(
         create: (BuildContext context) => RegisterProvider(),
         builder: (context, child) {
@@ -104,63 +103,63 @@ class RegisterView extends StatelessWidget {
                                       fontFamily: 'Lato'),
                                   textAlign: TextAlign.center),
                               const SizedBox(height: 15),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  // Grey background color
-                                  borderRadius: BorderRadius.circular(
-                                      20), // Rounded corners
-                                ),
-                                child: TextField(
-                                  keyboardType: TextInputType.phone,
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 15),
-                                    // Adjust padding
-                                    hintText: StrRef.contact,
-                                    hintStyle: TextStyle(
-                                        fontFamily: 'Lato',
-                                        fontSize: 20,
-                                        color: ColorRef.grey929292),
-                                    prefixIcon: const Icon(Icons.phone),
-                                    // Icon added here
-                                    border: InputBorder.none, // Remove border
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 15),
-                              // Button added here
-                              GestureDetector(
-                                onTap:() {
-                                  if(provider.introIndex == 2){
-                                    provider.onOTPsuccess();
-                                  }
-                                  else{
-                                    provider.onOTP();
-                                  }
-
-                                },
-                                child: Container(
-                                  height: 50,
-                                  width: 400,
+                              if (provider.introIndex != 3)
+                                Container(
                                   decoration: BoxDecoration(
-                                    color: ColorRef.yellowFFA500,
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    color: Colors.grey[200],
+                                    // Grey background color
+                                    borderRadius: BorderRadius.circular(20), // Rounded corners
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      provider.introIndex == 2
-                                          ? StrRef.verifyText
-                                          : StrRef.verify,
-                                      style: TextStyle(
-                                          color: ColorRef.black202020,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Lato'),
+                                  child: TextField(
+                                    keyboardType: TextInputType.phone,
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.symmetric(
+                                          horizontal: 20, vertical: 15),
+                                      // Adjust padding
+                                      hintText: StrRef.contact,
+                                      hintStyle: TextStyle(
+                                          fontFamily: 'Lato',
+                                          fontSize: 20,
+                                          color: ColorRef.grey929292),
+                                      prefixIcon: const Icon(Icons.phone),
+                                      // Icon added here
+                                      border: InputBorder.none, // Remove border
                                     ),
                                   ),
                                 ),
-                              ),
+                              const SizedBox(height: 15),
+                              // Button added here
+                              if (provider.introIndex != 3)
+                                GestureDetector(
+                                  onTap:() {
+                                    if(provider.introIndex == 2){
+                                      provider.onOTPsuccess();
+                                    }
+                                    else{
+                                      provider.onOTP();
+                                    }
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    width: 400,
+                                    decoration: BoxDecoration(
+                                      color: ColorRef.yellowFFA500,
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        provider.introIndex == 2
+                                            ? StrRef.verifyText
+                                            : StrRef.verify,
+                                        style: TextStyle(
+                                            color: ColorRef.black202020,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'Lato'),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               const SizedBox(height: 15),
                               GestureDetector(
                                 onTap: () => provider.onOTP(),
