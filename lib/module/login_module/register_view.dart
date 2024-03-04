@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../theme_change/theme_settings.dart';
 import '../../utils/colors.dart';
 
 class RegisterView extends StatelessWidget {
@@ -14,38 +13,35 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    int currentIndex = 0;
     return ChangeNotifierProvider(
-        create: (BuildContext context) => RegisterProvider(),
-        builder: (context, child) {
-          ThemeSettings settings = context.watch<ThemeSettings>();
-          RegisterProvider provider = context.watch<RegisterProvider>();
-          return SafeArea(
-              child: Scaffold(
-                appBar: AppBar(
-                  leading: Visibility(
-                    visible: provider.introIndex == 2,
-                    child: IconButton(
-                      onPressed: () => provider.onCreateAccount(),
-                      icon: const Icon(Icons.arrow_back_ios_rounded),
-                    ),
-                  ),
-                  title: Center(
-                    child: Text(provider.introIndex == 2 ? StrRef.otp : ""),
-                  ),
-                  // Other properties of AppBar
+      create: (BuildContext context) => RegisterProvider(),
+      builder: (context, child) {
+        RegisterProvider provider = context.watch<RegisterProvider>();
+        return SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              leading: Visibility(
+                visible: provider.introIndex == 2,
+                child: IconButton(
+                  onPressed: () => provider.onCreateAccount(),
+                  icon: const Icon(Icons.arrow_back_ios_rounded),
                 ),
-
-                resizeToAvoidBottomInset: false,
+              ),
+              title: Center(
+                child: Text(provider.introIndex == 2 ? StrRef.otp : ""),
+              ),
+              // Other properties of AppBar
+            ),
+            resizeToAvoidBottomInset: false,
             body: Column(
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 66), // flex: 6,
                   // height: height / 1.5,
                   child: IndexedStack(
-                      index: provider.introIndex,
-                      children: provider.items.map((e) {
+                    index: provider.introIndex,
+                    children: provider.items.map(
+                      (e) {
                         RegisterInfo data = e;
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 60),
@@ -79,15 +75,19 @@ class RegisterView extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Container(
-                                      margin: EdgeInsets.all(8.0), // Add margin here
+                                      margin: const EdgeInsets.all(8.0),
+                                      // Add margin here
                                       child: Text(
-                                        provider.introIndex == 2 ? data.title2 : "",
+                                        provider.introIndex == 2
+                                            ? data.title2
+                                            : "",
                                         style: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w600,
                                           fontFamily: 'Lato',
                                         ),
-                                        textAlign: TextAlign.center, // Ensure text alignment is centered
+                                        textAlign: TextAlign
+                                            .center, // Ensure text alignment is centered
                                         // overflow: TextOverflow.ellipsis, // Handle overflow with ellipsis if necessary
                                       ),
                                     ),
@@ -246,11 +246,15 @@ class RegisterView extends StatelessWidget {
                             ],
                           ),
                         );
-                      }).toList()),
+                      },
+                    ).toList(),
+                  ),
                 )
               ],
             ),
-          ));
-        });
+          ),
+        );
+      },
+    );
   }
 }
