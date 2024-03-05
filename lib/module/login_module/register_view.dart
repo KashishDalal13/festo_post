@@ -175,7 +175,7 @@ class RegisterView extends StatelessWidget {
                                         validator: (value) {
                                           if (value == null || value.isEmpty) {
                                             return 'Please enter mobile number';
-                                          } else if (value.length < 10) {
+                                          } else if (value.length < 10 || value.length > 10) {
                                             return 'Mobile number must be 10 digits long';
                                           }
                                           return null;
@@ -244,7 +244,8 @@ class RegisterView extends StatelessWidget {
                                           borderRadius: BorderRadius.circular(12.0),
                                         ),
                                         child: Center(
-                                          child: Text(
+                                          child:
+                                          Text(
                                             provider.introIndex == 2 ? StrRef.verifyText : StrRef.verify,
                                             style: TextStyle(
                                                 color: ColorRef.black202020,

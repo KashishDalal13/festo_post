@@ -24,8 +24,10 @@ class StrRef{
   verified = "Verified",
   success = "Successfully!!!",
   referral = "Referral Code",
-  referralTittle = "Enter Referral Code And Earn Your",
-  reward = "Reward."
+  referralTittle = "Enter Referral Code And Earn Your ",
+  reward = "Reward.",
+  referralFormField = "Enter Referral Code Here",
+  submit = "Submit"
   ;}
 
   class SvgPath{
@@ -36,5 +38,6 @@ class StrRef{
     loginImg1 = 'assets/svg/loginImg.svg',
     otpImg = 'assets/svg/otp.svg',
     otpSuccess = 'assets/svg/otpsuccess.svg',
-    referral = 'assets/svg/referral.svg'
+    referral = 'assets/svg/referral.svg',
+    gift = 'assets/svg/gift.svg'
   ;}

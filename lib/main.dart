@@ -1,3 +1,4 @@
+import 'package:festo_post/module/referral_module/referral_info.dart';
 import 'package:festo_post/shared/injector.dart';
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/routes.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
             routes: {
-              '/': (context) => const OnBoardingScreen(),
+              '/': (context) => const ReferralView(),
               'register': (context) =>  RegisterView(),
             },
           );

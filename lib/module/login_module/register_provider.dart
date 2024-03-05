@@ -56,7 +56,7 @@ class RegisterProvider extends ChangeNotifier {
   void onOTPByWp(String mobileNumber) {
     // debugPrint("$introIndex");
     introIndex = 2;
-    Debugprint('Mobile Number: $mobileNumber');
+    print('Mobile Number: $mobileNumber');
     startTimer(); // Start the timer when OTP screen is shown
     notifyListeners();
   }
