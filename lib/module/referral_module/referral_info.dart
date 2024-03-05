@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../utils/string.dart';
 
-class ReferralView extends StatelessWidget {
+/*class ReferralView extends StatelessWidget {
   const ReferralView({super.key});
 
   @override
@@ -136,4 +136,4 @@ class ReferralView extends StatelessWidget {
           ));
         });
   }
-}
+}*/

@@ -58,11 +58,9 @@ class RegisterView extends StatelessWidget {
             height: 40,
             margin: const EdgeInsets.symmetric(horizontal: 40),
             decoration: BoxDecoration(color: ColorRef.yellowFFA500, borderRadius: BorderRadius.circular(15)),
-            child: Center(
-              child: Text(
-                StrRef.verify,
-                style: TextStyle(color: ColorRef.black202020, fontSize: 15, fontWeight: FontWeight.w600, fontFamily: 'Lato'),
-              ),
+            child: Text(
+              StrRef.verify,
+              style: TextStyle(color: ColorRef.black202020, fontSize: 15, fontWeight: FontWeight.w600, fontFamily: 'Lato'),
             ),
           ),
         ),

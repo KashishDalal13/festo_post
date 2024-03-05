@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             routes: {
               '/': (context) => const OnBoardingScreen(),
               'register': (context) => const UserAuthView(),
-              'referral': (context) => const ReferralView(),
+              // 'referral': (context) => const ReferralView(),
             },
           );
         });

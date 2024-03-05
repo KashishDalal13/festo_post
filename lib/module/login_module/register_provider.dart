@@ -13,35 +13,32 @@ class RegisterProvider extends ChangeNotifier {
   late Timer _timer;
 
   bool timerActive = false, toggleWhatsAppOrSms = false, toggleLoginOrRegister = false;
-  TextEditingController phoneController = TextEditingController();
+  TextEditingController phoneController = TextEditingController(), otpController = TextEditingController();
 
   List<RegisterInfo> items = [
-    RegisterInfo(
-        title: StrRef.registerTitle1,
-        title2: StrRef.registerTitle2,
-        image: SvgPath.registerImg1,
-        descriptions: StrRef.register),
-    RegisterInfo(
-        title: StrRef.registerTitle1,
-        title2: StrRef.registerTitle2,
-        image: SvgPath.loginImg1,
-        descriptions: StrRef.login),
-    RegisterInfo(
-        title: "",
-        title2: StrRef.otpTitle,
-        image: SvgPath.otpImg,
-        descriptions: StrRef.resendOtp),
-    RegisterInfo(
-        title: "",
-        title2: "",
-        image: SvgPath.otpSuccess,
-        descriptions: StrRef.verified + " " + StrRef.success),
-    RegisterInfo(
-        title: "",
-        title2: StrRef.referralTittle+" "+StrRef.reward,
-        image: SvgPath.referral,
-        descriptions: ""),
+    RegisterInfo(title: StrRef.registerTitle1, title2: StrRef.registerTitle2, image: SvgPath.registerImg1, descriptions: StrRef.register),
+    RegisterInfo(title: StrRef.registerTitle1, title2: StrRef.registerTitle2, image: SvgPath.loginImg1, descriptions: StrRef.login),
+    RegisterInfo(title: "", title2: StrRef.otpTitle, image: SvgPath.otpImg, descriptions: StrRef.resendOtp),
+    RegisterInfo(title: "", title2: "", image: SvgPath.otpSuccess, descriptions: StrRef.verified + " " + StrRef.success),
+    RegisterInfo(title: "", title2: StrRef.referralTittle + " " + StrRef.reward, image: SvgPath.referral, descriptions: ""),
   ];
+  //Roshni
+  void startTimer() {
+    timerDuration = const Duration(seconds: 50);
+    if (timerDuration != Duration.zero) {
+      _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+        final seconds = (timerDuration.inSeconds - 1);
+        if (timerDuration.inSeconds <= 0) {
+          _timer.cancel();
+          notifyListeners();
+          timerDuration = Duration.zero;
+        } else {
+          timerDuration = Duration(seconds: seconds);
+        }
+        notifyListeners();
+      });
+    }
+  }
 
   //Roshni
   void onVerify() {
@@ -69,54 +66,37 @@ class RegisterProvider extends ChangeNotifier {
       introIndex = 0;
       _timer.cancel();
     }
+    else{
+      introIndex--;
+    }
     notifyListeners();
   }
 
-  void startTimer() {
-    timerDuration = const Duration(seconds: 50);
-    if (timerDuration != Duration.zero) {
-      _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-        final seconds = (timerDuration.inSeconds - 1);
-        if (timerDuration.inSeconds <= 0) {
-          _timer.cancel();
-          notifyListeners();
-          timerDuration = Duration.zero;
-        } else {
-          timerDuration = Duration(seconds: seconds);
-        }
-        notifyListeners();
-      });
-    }
-  }
 
   onIndexChange({required int index}) {
     introIndex = index;
     notifyListeners();
   }
 
-  void onLogin() {
-    debugPrint("$introIndex");
-    introIndex = 1;
+  void onOtpVerify() {
+    if (otpController.value.text.isEmpty) {
+      Toast.toast(msg: "Please enter OTP number");
+    } else if (otpController.value.text.length < 4) {
+      Toast.toast(msg: "Please enter valid Otp number");
+    } else {
+      introIndex = 2;
+      _timer.cancel();
+    }
     notifyListeners();
   }
 
-  void onCreateAccount() {
-    // debugPrint("$introIndex");
-    introIndex = 0;
+  onSkipOrSubmit(){
+    introIndex=3;
     notifyListeners();
   }
-
-  void onOTP() {
-    // debugPrint("$introIndex");
-    introIndex = 2;
-    startTimer(); // Start the timer when OTP screen is shown
-    notifyListeners();
-  }
-
   void onOTPsuccess() {
     // debugPrint("$introIndex");
     introIndex = 3;
     notifyListeners();
   }
-
 }
