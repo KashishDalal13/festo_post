@@ -32,7 +32,7 @@ class AddDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: () => print("upload"),
+              onTap: () => debugPrint("upload"),
               child: Container(
                 height: 100,
                 width: 100,
@@ -40,27 +40,45 @@ class AddDetails extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   color: ColorRef.greyEDEDED,
                 ),
-                child: Icon(Icons.add,color: ColorRef.blue0250A4,),
+                child: Icon(
+                  Icons.add,
+                  color: ColorRef.blue0250A4,
+                ),
               ),
             ),
-            const SizedBox(height: 5,),
-            Text(StrRef.uploadPNG,style: const TextStyle(fontFamily: 'Lato',fontWeight: FontWeight.w400,fontSize: 13)),
-            const SizedBox(height: 10),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(StrRef.uploadPNG,
+                style: const TextStyle(
+                    fontFamily: 'Lato',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13)),
+            const SizedBox(height: 15),
             Flexible(
               child: ListView.builder(
+                shrinkWrap: true,
                 itemCount: provider.addDetail.length,
                 itemBuilder: (BuildContext context, int index) {
-                return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.greyEDEDED),
+                  return Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: ColorRef.greyEDEDED),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
                         hintText: provider.addDetail[index]['label'],
-                        hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: ColorRef.grey929292),
+                        hintStyle: TextStyle(
+                            fontFamily: 'Lato',
+                            fontSize: 15,
+                            color: ColorRef.grey929292),
                         prefixIcon: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: SvgPicture.asset(provider.addDetail[index]['svg']),
+                          child: SvgPicture.asset(
+                              provider.addDetail[index]['svg']),
                         ),
                         border: InputBorder.none,
                       ),
@@ -69,17 +87,25 @@ class AddDetails extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(
+              height: 15,
+            ),
             GestureDetector(
-              onTap: () =>provider.onSkipOrSubmit(),
+              onTap: () => debugPrint("add"),
               child: Container(
                 height: 40,
                 margin: const EdgeInsets.symmetric(horizontal: 40),
-                decoration: BoxDecoration(color: ColorRef.yellowFFA500, borderRadius: BorderRadius.circular(15)),
+                decoration: BoxDecoration(
+                    color: ColorRef.yellowFFA500,
+                    borderRadius: BorderRadius.circular(15)),
                 alignment: Alignment.center,
                 child: Text(
                   StrRef.submit,
-                  style: TextStyle(color: ColorRef.black202020, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
+                  style: TextStyle(
+                      color: ColorRef.black202020,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Lato'),
                 ),
               ),
             ),

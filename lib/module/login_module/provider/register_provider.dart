@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:festo_post/utils/string.dart';
 import 'package:festo_post/widget/toast.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class RegisterProvider extends ChangeNotifier {
   int introIndex = 0;
@@ -28,7 +27,7 @@ class RegisterProvider extends ChangeNotifier {
     List<Map<String, dynamic>> addDetail = [
       {"svg": SvgPath.tag, "label": StrRef.brandName, "controller": "brandName"},
       {"svg": SvgPath.suitcase, "label": StrRef.brandCat, "controller": ""},
-      {"svg": SvgPath.phone, "label": StrRef.contact, "controller""": "brandMob"},
+      {"svg": SvgPath.phone, "label": StrRef.contact, "controller": "brandMob"},
       {"svg": SvgPath.email, "label": StrRef.email, "controller": "brandEmail"},
       {"svg": SvgPath.web, "label": StrRef.website, "controller": "brandWeb"},
       {"svg": SvgPath.location, "label": StrRef.businessAddress, "controller": "brandAdd"},

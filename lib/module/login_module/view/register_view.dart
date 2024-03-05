@@ -14,7 +14,6 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     debugPrint("${ColorRef.commonBgColor}");
     return Column(
       children: [
@@ -45,7 +44,10 @@ class RegisterView extends StatelessWidget {
               constraints: const BoxConstraints(maxHeight: 45),
               contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               hintText: StrRef.contact,
-              prefixIcon: const Icon(Icons.phone, size: 20),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: SvgPicture.asset(SvgPath.phone),
+              ),
               hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: BoolRef.themeChange ? ColorRef.greyC5C5C5 : ColorRef.grey929292),
               border: InputBorder.none,
             ),
