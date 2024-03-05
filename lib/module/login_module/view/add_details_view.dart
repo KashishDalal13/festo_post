@@ -46,27 +46,29 @@ class AddDetails extends StatelessWidget {
             const SizedBox(height: 5,),
             Text(StrRef.uploadPNG,style: const TextStyle(fontFamily: 'Lato',fontWeight: FontWeight.w400,fontSize: 13)),
             const SizedBox(height: 10),
-            Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.greyEDEDED),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      hintText: provider.addDetail.first['label'],
-                      hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: ColorRef.grey929292),
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: SvgPicture.asset(SvgPath.gift),
+            Flexible(
+              child: ListView.builder(
+                itemCount: provider.addDetail.length,
+                itemBuilder: (BuildContext context, int index) {
+                return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.greyEDEDED),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        hintText: provider.addDetail[index]['label'],
+                        hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: ColorRef.grey929292),
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: SvgPicture.asset(provider.addDetail[index]['svg']),
+                        ),
+                        border: InputBorder.none,
                       ),
-                      border: InputBorder.none,
                     ),
-                  ),
-                ),
-              ],
+                  );
+                },
+              ),
             ),
-            const SizedBox(height: 5),
             GestureDetector(
               onTap: () =>provider.onSkipOrSubmit(),
               child: Container(
