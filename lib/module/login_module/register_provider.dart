@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:festo_post/widget/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:festo_post/module/login_module/register_info.dart';
 import 'package:festo_post/utils/string.dart';
@@ -8,102 +9,94 @@ class RegisterProvider extends ChangeNotifier {
   double process = 0.33;
   Duration? timer;
   final pageController = PageController();
-  int _timerDuration = 50; // Initial timer duration in seconds
+  Duration timerDuration = const Duration(seconds: 50);
   late Timer _timer;
-  bool _timerActive = false;
+
+  bool timerActive = false, toggleWhatsAppOrSms = false, toggleLoginOrRegister = false;
+  TextEditingController phoneController = TextEditingController(), otpController = TextEditingController();
 
   List<RegisterInfo> items = [
-    RegisterInfo(
-        title: StrRef.registerTitle1,
-        title2: StrRef.registerTitle2,
-        image: SvgPath.registerImg1,
-        descriptions: StrRef.register),
-    RegisterInfo(
-        title: StrRef.registerTitle1,
-        title2: StrRef.registerTitle2,
-        image: SvgPath.loginImg1,
-        descriptions: StrRef.login),
-    RegisterInfo(
-        title: "",
-        title2: StrRef.otpTitle,
-        image: SvgPath.otpImg,
-        descriptions: StrRef.resendOtp),
-    RegisterInfo(
-        title: "",
-        title2: "",
-        image: SvgPath.otpSuccess,
-        descriptions: "${StrRef.verified} ${StrRef.success}"),
-    RegisterInfo(
-        title: "",
-        title2: "${StrRef.referralTittle} ${StrRef.reward}",
-        image: SvgPath.referral,
-        descriptions: ""),
+    RegisterInfo(title: StrRef.registerTitle1, title2: StrRef.registerTitle2, image: SvgPath.registerImg1, descriptions: StrRef.register),
+    RegisterInfo(title: StrRef.registerTitle1, title2: StrRef.registerTitle2, image: SvgPath.loginImg1, descriptions: StrRef.login),
+    RegisterInfo(title: "", title2: StrRef.otpTitle, image: SvgPath.otpImg, descriptions: StrRef.resendOtp),
+    RegisterInfo(title: "", title2: "", image: SvgPath.otpSuccess, descriptions: StrRef.verified + " " + StrRef.success),
+    RegisterInfo(title: "", title2: StrRef.referralTittle + " " + StrRef.reward, image: SvgPath.referral, descriptions: ""),
   ];
-
-  void onCreateAccount() {
-    introIndex = 0;
-    notifyListeners();
-  }
-
-  void onLogin() {
-    debugPrint("$introIndex");
-    introIndex = 1;
-    notifyListeners();
-  }
-
-  void onOTPByWp(String mobileNumber) {
-    introIndex = 2;
-    print('Mobile Number: $mobileNumber $introIndex');
-    startTimer(); // Start the timer when OTP screen is shown
-    notifyListeners();
-  }
-
-  void onOTPBySMS(String mobileNumber) {
-    introIndex = 2;
-    print('Mobile Number: $mobileNumber');
-    startTimer(); // Start the timer when OTP screen is shown
-    notifyListeners();
-  }
-
-  void onOTPsuccess() {
-    introIndex = 3;
-    notifyListeners();
-  }
-
+  //Roshni
   void startTimer() {
-    _timer = Timer.periodic(
-      const Duration(seconds: 1),
-          (timer) {
-        if (_timerDuration > 0) {
-          _timerDuration--;
-          _timerActive = true; // Set timer as active
-          notifyListeners(); // Notify listeners to update the UI with the new timer value
+    timerDuration = const Duration(seconds: 50);
+    if (timerDuration != Duration.zero) {
+      _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+        final seconds = (timerDuration.inSeconds - 1);
+        if (timerDuration.inSeconds <= 0) {
+          _timer.cancel();
+          notifyListeners();
+          timerDuration = Duration.zero;
         } else {
-          _timerActive = false;
-          _timer.cancel(); // Cancel the timer when it reaches 0
+          timerDuration = Duration(seconds: seconds);
         }
-      },
-    );
+        notifyListeners();
+      });
+    }
   }
 
-  // This method resets the timer to the initial value
-  void resetTimer() {
-    _timerDuration = 50;
+  //Roshni
+  void onVerify() {
+    if (phoneController.text.isEmpty) {
+      Toast.toast(msg: "Please enter mobile number");
+    } else if (phoneController.text.length < 10) {
+      debugPrint("${phoneController.text.length}");
+      Toast.toast(msg: "Mobile number must be 10 digits long");
+    } else {
+      introIndex = 1;
+      startTimer();
+    }
     notifyListeners();
   }
 
-  // This method returns the current timer value
-  int getTimerDuration() {
-    return _timerDuration;
+  //Roshni
+  onToggleLoginOrRegister() {
+    toggleLoginOrRegister = !toggleLoginOrRegister;
+    notifyListeners();
   }
 
-  // This method returns whether the timer is active or not
-  bool isTimerActive() {
-    return _timerActive;
+  //Roshni
+  void onBack() {
+    if (introIndex == 1) {
+      introIndex = 0;
+      _timer.cancel();
+    }
+    else{
+      introIndex--;
+    }
+    notifyListeners();
   }
+
 
   onIndexChange({required int index}) {
     introIndex = index;
+    notifyListeners();
+  }
+
+  void onOtpVerify() {
+    if (otpController.value.text.isEmpty) {
+      Toast.toast(msg: "Please enter OTP number");
+    } else if (otpController.value.text.length < 4) {
+      Toast.toast(msg: "Please enter valid Otp number");
+    } else {
+      introIndex = 2;
+      _timer.cancel();
+    }
+    notifyListeners();
+  }
+
+  onSkipOrSubmit(){
+    introIndex=3;
+    notifyListeners();
+  }
+  void onOTPsuccess() {
+    // debugPrint("$introIndex");
+    introIndex = 3;
     notifyListeners();
   }
 }

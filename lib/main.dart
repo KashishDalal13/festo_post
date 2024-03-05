@@ -2,11 +2,12 @@ import 'package:festo_post/shared/injector.dart';
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/routes.dart';
 import 'package:festo_post/theme_change/theme_settings.dart';
+import 'package:festo_post/widget/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import 'module/login_module/register_view.dart';
+import 'module/login_module/user_auth_view.dart';
 import 'module/on_boarding/on_boarding_view.dart';
 import 'module/on_boarding/onboarding_provider.dart';
 
@@ -37,11 +38,12 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             initialRoute: '/',
             navigatorKey: NavigationService.navigatorKey,
+            scaffoldMessengerKey: Toast.snackBarKey,
             debugShowCheckedModeBanner: false,
             theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
             routes: {
               '/': (context) => const OnBoardingScreen(),
-              'register': (context) =>  RegisterView(),
+              'register': (context) => const UserAuthView(),
             },
           );
         });
