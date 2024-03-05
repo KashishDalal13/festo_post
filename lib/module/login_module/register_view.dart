@@ -132,8 +132,8 @@ class RegisterView extends StatelessWidget {
                                         ? Pinput(
                                       length: 4,
                                       defaultPinTheme: defaultPinTheme,
-                                      validator: (valuee) {
-                                        if (valuee == null || valuee.isEmpty) {
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
                                           return 'Please enter OTP';
                                         }
                                         return null;
@@ -228,16 +228,12 @@ class RegisterView extends StatelessWidget {
                                   if (provider.introIndex != 3)
                                     GestureDetector(
                                       onTap: () {
-                                        if ( _formKey.currentState!.validate()) {
-                                          print("form");
-                                          if (provider.introIndex == 0 || provider.introIndex == 1) { // Changed && to ||
-                                            print("register");
+                                        if (_formKey.currentState!.validate()) {
+                                          if (provider.introIndex == 2) {
+                                            provider.onOTPsuccess();
+                                          } else {
                                             provider.onOTPByWp(mobileNumberController.text);
                                           }
-                                          }
-                                        if(provider.introIndex == 2) {
-                                          print("success");
-                                          provider.onOTPsuccess();
                                         }
                                       },
                                       child: Container(
