@@ -1,14 +1,14 @@
-import 'package:festo_post/module/login_module/register_provider.dart';
+import 'package:festo_post/module/login_module/provider/register_provider.dart';
+import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../utils/colors.dart';
-
 class RegisterView extends StatelessWidget {
   final RegisterProvider provider;
-  const RegisterView({super.key,required this.provider});
+
+  const RegisterView({super.key, required this.provider});
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +58,7 @@ class RegisterView extends StatelessWidget {
             height: 40,
             margin: const EdgeInsets.symmetric(horizontal: 40),
             decoration: BoxDecoration(color: ColorRef.yellowFFA500, borderRadius: BorderRadius.circular(15)),
+            alignment: Alignment.center,
             child: Text(
               StrRef.verify,
               style: TextStyle(color: ColorRef.black202020, fontSize: 15, fontWeight: FontWeight.w600, fontFamily: 'Lato'),

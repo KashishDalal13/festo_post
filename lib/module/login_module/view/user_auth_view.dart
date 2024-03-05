@@ -1,13 +1,9 @@
-import 'package:festo_post/module/login_module/add_details_view.dart';
-import 'package:festo_post/module/login_module/referral_view.dart';
-import 'package:festo_post/module/login_module/register_provider.dart';
-import 'package:festo_post/module/login_module/register_view.dart';
+import 'package:festo_post/module/login_module/view/add_details_view.dart';
+import 'package:festo_post/module/login_module/provider/register_provider.dart';
+import 'package:festo_post/module/login_module/view/referral_view.dart';
+import 'package:festo_post/module/login_module/view/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../utils/colors.dart';
-import 'package:pinput/pinput.dart';
-
-import '../../utils/string.dart';
 import 'otp_view.dart';
 
 class UserAuthView extends StatelessWidget {
