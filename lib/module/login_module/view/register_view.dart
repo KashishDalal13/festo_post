@@ -1,4 +1,5 @@
 import 'package:festo_post/module/login_module/provider/register_provider.dart';
+import 'package:festo_post/utils/bool.dart';
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class RegisterView extends StatelessWidget {
           children: [
             Text(
               StrRef.registerTitle1,
-              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
+              style: TextStyle(fontSize: 25, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
             ),
             Text(
               StrRef.registerTitle2,
@@ -33,7 +34,7 @@ class RegisterView extends StatelessWidget {
         const SizedBox(height: 10),
         SvgPicture.asset(SvgPath.registerImg1, height: width - 150),
         Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.greyEDEDED),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.commonBgColor),
           margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
           child: TextFormField(
             keyboardType: TextInputType.phone,
@@ -44,7 +45,7 @@ class RegisterView extends StatelessWidget {
               contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               hintText: StrRef.contact,
               prefixIcon: const Icon(Icons.phone, size: 20),
-              hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: ColorRef.grey929292),
+              hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: BoolRef.themeChange ? ColorRef.greyC5C5C5 : ColorRef.grey929292),
               border: InputBorder.none,
             ),
           ),
@@ -73,8 +74,8 @@ class RegisterView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                provider.toggleWhatsAppOrSms ? StrRef.whatsApp : StrRef.whatsApp,
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.normal, fontFamily: 'Lato'),
+                StrRef.whatsApp,
+                style: TextStyle(fontSize: 15, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020, fontWeight: FontWeight.normal, fontFamily: 'Lato'),
               ),
               const SizedBox(width: 5),
               Text(
@@ -92,7 +93,7 @@ class RegisterView extends StatelessWidget {
             children: [
               Text(
                 provider.toggleLoginOrRegister ? StrRef.accountNotExists : StrRef.accountExists,
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.normal, fontFamily: 'Lato'),
+                style: TextStyle(fontSize: 15, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020, fontWeight: FontWeight.normal, fontFamily: 'Lato'),
               ),
               const SizedBox(width: 5),
               Text(

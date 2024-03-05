@@ -1,7 +1,9 @@
 import 'package:festo_post/shared/injector.dart';
+import 'package:festo_post/utils/bool.dart';
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/routes.dart';
 import 'package:festo_post/theme_change/theme_settings.dart';
+import 'package:festo_post/utils/theme.dart';
 import 'package:festo_post/widget/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,13 +34,14 @@ class MyApp extends StatelessWidget {
         create: (BuildContext context) => ThemeSettings(),
         builder: (context, child) {
           ThemeSettings settings = context.watch<ThemeSettings>();
-          debugPrint("Main ${settings.switchValue}");
+          debugPrint(" BoolRef themeChange ${BoolRef.themeChange}");
           return MaterialApp(
             initialRoute: '/',
             navigatorKey: NavigationService.navigatorKey,
             scaffoldMessengerKey: Toast.snackBarKey,
             debugShowCheckedModeBanner: false,
-            theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
+            theme:  BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
+            // theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
             routes: {
               '/': (context) => const OnBoardingScreen(),
               'register': (context) => const UserAuthView(),

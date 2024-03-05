@@ -1,3 +1,4 @@
+import 'package:festo_post/utils/bool.dart';
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class OnBoardingScreen extends StatelessWidget {
                 Row(
                   children: [
                     Switch(
-                      value: settings.switchValue,
+                      value: BoolRef.themeChange,
                       onChanged: (newValue) {
                         // provider.toggleTheme(val: newValue);
                         settings.toggleTheme(switchVal: newValue);
@@ -39,7 +40,7 @@ class OnBoardingScreen extends StatelessWidget {
                         onPressed: () => provider.onSkip(),
                         child: Text(
                           provider.introIndex == 2 ? "" : StrRef.skip,
-                          style: TextStyle(color: ColorRef.grey5c5c5c, fontSize: 15, fontFamily: 'Lato'),
+                          style: TextStyle(color: BoolRef.themeChange ? ColorRef.white : ColorRef.grey5c5c5c, fontSize: 15, fontFamily: 'Lato'),
                         ),
                       ),
                     ),
@@ -59,11 +60,13 @@ class OnBoardingScreen extends StatelessWidget {
                         children: [
                           SvgPicture.asset(data.image, height: width - 225),
                           const SizedBox(height: 15),
-                          Text(data.title, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'Lato')),
+                          Text(data.title,
+                              style: TextStyle(fontSize: 25, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020, fontWeight: FontWeight.bold, fontFamily: 'Lato')),
                           const SizedBox(height: 15),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 45),
-                            child: Text(data.descriptions, style: const TextStyle(color: Colors.grey, fontSize: 15, fontFamily: 'Lato'), textAlign: TextAlign.center),
+                            child: Text(data.descriptions,
+                                style: TextStyle(color: BoolRef.themeChange ? ColorRef.white : ColorRef.grey5c5c5c, fontSize: 15, fontFamily: 'Lato'), textAlign: TextAlign.center),
                           ),
                         ],
                       );

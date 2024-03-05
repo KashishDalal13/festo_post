@@ -17,7 +17,7 @@ class AddDetails extends StatelessWidget {
       appBar: AppBar(
           leading: IconButton(onPressed: () => provider.onBack(), icon: const Icon(Icons.arrow_back_ios_rounded, size: 20)),
           centerTitle: true,
-          title: Text(StrRef.addDetails, style: TextStyle(fontFamily: 'Lato', fontSize: 18, color: ColorRef.black202020))),
+          title: Text(StrRef.addDetails)),
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [Text("Add details")],
