@@ -29,6 +29,11 @@ class RegisterProvider extends ChangeNotifier {
         title2: "",
         image: SvgPath.otpSuccess,
         descriptions: StrRef.verified+" "+StrRef.success),
+    RegisterInfo(
+        title: "",
+        title2: StrRef.referralTittle+" "+StrRef.reward,
+        image: SvgPath.referral,
+        descriptions: ""),
   ];
 
   void onLogin() {
