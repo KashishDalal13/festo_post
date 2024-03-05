@@ -1,4 +1,6 @@
 import 'package:festo_post/shared/injector.dart';
+import 'package:festo_post/utils/bool.dart';
+import 'package:festo_post/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class ThemeSettings extends ChangeNotifier {
@@ -7,15 +9,16 @@ class ThemeSettings extends ChangeNotifier {
   }
 
   loadTheme() async {
-    switchValue = await Injector.getTheme();
+    BoolRef.themeChange = await Injector.getTheme();
+    if (BoolRef.themeChange == true) {
+      ColorRef.commonBgColor = ColorRef.grey4E6B86;
+    }
     notifyListeners();
   }
 
-  bool switchValue = false;
-
   void toggleTheme({required bool switchVal}) async {
-    switchValue = switchVal;
-    Injector.setTheme(themeVal: switchValue);
+    BoolRef.themeChange = switchVal;
+    Injector.setTheme(themeVal: BoolRef.themeChange);
     // Injector.getTheme();
     notifyListeners();
   }

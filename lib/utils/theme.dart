@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class ThemeRef {
-  ThemeData lightTheme = ThemeData(
-          scaffoldBackgroundColor: ColorRef.grey5c5c5c,
+  static ThemeData lightTheme = ThemeData(
+          appBarTheme: AppBarTheme(titleTextStyle: TextStyle(fontSize: 18, color: ColorRef.black202020),backgroundColor: ColorRef.white,centerTitle: true),
+          scaffoldBackgroundColor: ColorRef.white,
           textTheme: CustomTextTheme.textTheme,
           splashFactory: NoSplash.splashFactory,
           splashColor: ColorRef.transparent,
@@ -15,10 +16,9 @@ class ThemeRef {
           pageTransitionsTheme: const PageTransitionsTheme(builders: {
             TargetPlatform.android: CupertinoPageTransitionsBuilder(),
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
           })),
       darkTheme = ThemeData(
+          appBarTheme: AppBarTheme(titleTextStyle: TextStyle(fontSize: 18, color: ColorRef.white),backgroundColor: ColorRef.blue1E2A38),
           scaffoldBackgroundColor: ColorRef.blue1E2A38,
           textTheme: CustomTextTheme.textTheme,
           splashFactory: NoSplash.splashFactory,
@@ -29,7 +29,5 @@ class ThemeRef {
           pageTransitionsTheme: const PageTransitionsTheme(builders: {
             TargetPlatform.android: CupertinoPageTransitionsBuilder(),
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
           }));
 }

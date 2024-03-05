@@ -1,4 +1,5 @@
 import 'package:festo_post/module/login_module/provider/register_provider.dart';
+import 'package:festo_post/utils/bool.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
@@ -18,7 +19,7 @@ class OtpView extends StatelessWidget {
     final defaultPinTheme = PinTheme(
       width: 50,
       height: 50,
-      textStyle: TextStyle(fontSize: 15, color: ColorRef.black),
+      textStyle: TextStyle(fontSize: 15, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020,),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         border: Border.all(color: ColorRef.greyD6D6D6),
@@ -26,9 +27,15 @@ class OtpView extends StatelessWidget {
     );
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () => provider.onBack(), icon: const Icon(Icons.arrow_back_ios_rounded, size: 20)),
+        leading: IconButton(
+            onPressed: () => provider.onBack(),
+            icon: Icon(
+              Icons.arrow_back_ios_rounded,
+              size: 20,
+              color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020,
+            )),
         centerTitle: true,
-        title: Text(StrRef.otp, style: TextStyle(fontFamily: 'Lato', fontSize: 18, color: ColorRef.black202020)),
+        title: Text(StrRef.otp),
       ),
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -37,7 +44,7 @@ class OtpView extends StatelessWidget {
           Text(
             StrRef.otpTitle,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020, fontFamily: 'Lato'),
           ),
           const SizedBox(height: 10),
           SvgPicture.asset(SvgPath.otpImg, height: width - 120),
@@ -68,14 +75,14 @@ class OtpView extends StatelessWidget {
               Text(
                 StrRef.resendOtp,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.normal, fontFamily: 'Lato'),
+                style: TextStyle(fontSize: 15, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020, fontWeight: FontWeight.normal, fontFamily: 'Lato'),
               ),
               const SizedBox(width: 5),
               //"${timerDuration.value.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(timerDuration.value.inSeconds.remainder(60) % 60).toString().padLeft(2, '0')}",
               if (provider.introIndex == 1 && provider.timerDuration != Duration.zero)
                 Text(
                   "${provider.timerDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(provider.timerDuration.inSeconds.remainder(60) % 60).toString().padLeft(2, '0')}",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: ColorRef.blue0250A4),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
                 ),
               const SizedBox(height: 15),
             ],
