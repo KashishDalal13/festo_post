@@ -59,8 +59,7 @@ class IntroProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getstarted(BuildContext context) {
-    debugPrint("clicked");
+  void getStarted(BuildContext context) {
     Navigator.pushReplacementNamed(context, 'register');
   }
 }
