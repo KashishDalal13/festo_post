@@ -69,6 +69,7 @@ class AddDetails extends StatelessWidget {
                 },
               ),
             ),
+            SizedBox(height: 15,),
             GestureDetector(
               onTap: () =>provider.onSkipOrSubmit(),
               child: Container(
