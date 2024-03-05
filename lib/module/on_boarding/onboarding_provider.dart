@@ -26,7 +26,9 @@ class IntroProvider extends ChangeNotifier {
     // Injector.getTheme();
     notifyListeners();
   }
-
+  void getStarted(BuildContext context) {
+    Navigator.pushReplacementNamed(context, 'register');
+  }
   List<OnBoardingInfo> items = [
     OnBoardingInfo(title: StrRef.onBoardTitle1, descriptions: StrRef.onBoardDesc1, image: SvgPath.onBoardImg1),
     OnBoardingInfo(title: StrRef.onBoardTitle2, descriptions: StrRef.onBoardDesc2, image: SvgPath.onBoardImg2),
