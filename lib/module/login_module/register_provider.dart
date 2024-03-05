@@ -1,5 +1,6 @@
-import 'package:festo_post/module/login_module/register_info.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:festo_post/module/login_module/register_info.dart';
 import 'package:festo_post/utils/string.dart';
 
 class RegisterProvider extends ChangeNotifier {
@@ -7,6 +8,9 @@ class RegisterProvider extends ChangeNotifier {
   double process = 0.33;
   Duration? timer;
   final pageController = PageController();
+  int _timerDuration = 50; // Initial timer duration in seconds
+  late Timer _timer;
+  bool _timerActive = false;
 
   List<RegisterInfo> items = [
     RegisterInfo(
@@ -34,6 +38,7 @@ class RegisterProvider extends ChangeNotifier {
         title2: StrRef.referralTittle+" "+StrRef.reward,
         image: SvgPath.referral,
         descriptions: ""),
+
   ];
 
   void onLogin() {
@@ -47,16 +52,61 @@ class RegisterProvider extends ChangeNotifier {
     introIndex = 0;
     notifyListeners();
   }
-  void onOTP() {
+
+  void onOTPByWp(String mobileNumber) {
     // debugPrint("$introIndex");
     introIndex = 2;
+    print('Mobile Number: $mobileNumber');
+    startTimer(); // Start the timer when OTP screen is shown
     notifyListeners();
   }
 
-  void onOTPsuccess(){
+  void onOTPBySMS(String mobileNumber) {
+    // debugPrint("$introIndex");
+    introIndex = 2;
+    print('Mobile Number: $mobileNumber');
+    startTimer(); // Start the timer when OTP screen is shown
+    notifyListeners();
+  }
+
+
+  void onOTPsuccess() {
     // debugPrint("$introIndex");
     introIndex = 3;
     notifyListeners();
+  }
+
+  void startTimer() {
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+          (timer) {
+        if (_timerDuration > 0) {
+          _timerDuration--;
+          _timerActive = true; // Set timer as active
+          notifyListeners(); // Notify listeners to update the UI with the new timer value
+        } else {
+          _timerActive = false;
+          _timer.cancel(); // Cancel the timer when it reaches 0
+        }
+      },
+    );
+  }
+
+
+  // This method resets the timer to the initial value
+  void resetTimer() {
+    _timerDuration = 50;
+    notifyListeners();
+  }
+
+  // This method returns the current timer value
+  int getTimerDuration() {
+    return _timerDuration;
+  }
+
+  // This method returns whether the timer is active or not
+  bool isTimerActive() {
+    return _timerActive;
   }
 
   onIndexChange({required int index}) {
