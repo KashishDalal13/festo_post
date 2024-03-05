@@ -28,8 +28,15 @@ class StrRef {
       reward = "Reward.",
       referralFormField = "Enter Referral Code Here",
       submit = "Submit",
-      addDetails = "Add Details";
-}
+      addDetails = "Add Details",
+      uploadPNG = "Upload (PNG) Logo",
+      brandName = "Brand Name",
+      brandCat = "Select Brand Category",
+      email = "Email address",
+      website = "Website",
+      businessAddress = "Business Address",
+      add= "Add"
+;}
 
 class SvgPath {
   static String onBoardImg1 = 'assets/svg/onboard1.svg',
@@ -40,5 +47,12 @@ class SvgPath {
       otpImg = 'assets/svg/otp.svg',
       otpSuccess = 'assets/svg/otpsuccess.svg',
       referral = 'assets/svg/referral.svg',
-      gift = 'assets/svg/gift.svg';
-}
+      gift = 'assets/svg/gift.svg',
+      add = 'assets/svg/add.svg',
+      tag = 'assets/svg/tag.svg',
+      suitcase = 'assets/svg/suitcase.svg',
+      phone = 'assets/svg/phone.svg',
+      location = 'assets/svg/location.svg',
+      web = 'assets/svg/web.svg',
+      email = 'assets/svg/email.svg'
+;}
