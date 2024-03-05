@@ -1,9 +1,9 @@
-import 'package:festo_post/module/login_module/register_provider.dart';
+import 'package:festo_post/module/login_module/provider/register_provider.dart';
+import 'package:festo_post/utils/colors.dart';
+import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../utils/colors.dart';
-import '../../utils/string.dart';
 
 class ReferralView extends StatelessWidget {
   final RegisterProvider provider;

@@ -6,10 +6,8 @@ import 'package:festo_post/widget/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
-import 'module/login_module/user_auth_view.dart';
+import 'module/login_module/view/user_auth_view.dart';
 import 'module/on_boarding/on_boarding_view.dart';
-import 'module/on_boarding/onboarding_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

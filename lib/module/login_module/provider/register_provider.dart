@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:festo_post/widget/toast.dart';
 import 'package:flutter/material.dart';
-import 'package:festo_post/module/login_module/register_info.dart';
-import 'package:festo_post/utils/string.dart';
 
 class RegisterProvider extends ChangeNotifier {
   int introIndex = 0;
@@ -15,13 +13,6 @@ class RegisterProvider extends ChangeNotifier {
   bool timerActive = false, toggleWhatsAppOrSms = false, toggleLoginOrRegister = false;
   TextEditingController phoneController = TextEditingController(), otpController = TextEditingController();
 
-  List<RegisterInfo> items = [
-    RegisterInfo(title: StrRef.registerTitle1, title2: StrRef.registerTitle2, image: SvgPath.registerImg1, descriptions: StrRef.register),
-    RegisterInfo(title: StrRef.registerTitle1, title2: StrRef.registerTitle2, image: SvgPath.loginImg1, descriptions: StrRef.login),
-    RegisterInfo(title: "", title2: StrRef.otpTitle, image: SvgPath.otpImg, descriptions: StrRef.resendOtp),
-    RegisterInfo(title: "", title2: "", image: SvgPath.otpSuccess, descriptions: StrRef.verified + " " + StrRef.success),
-    RegisterInfo(title: "", title2: StrRef.referralTittle + " " + StrRef.reward, image: SvgPath.referral, descriptions: ""),
-  ];
   //Roshni
   void startTimer() {
     timerDuration = const Duration(seconds: 50);
