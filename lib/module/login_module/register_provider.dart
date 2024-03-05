@@ -32,14 +32,18 @@ class RegisterProvider extends ChangeNotifier {
         title: "",
         title2: "",
         image: SvgPath.otpSuccess,
-        descriptions: StrRef.verified+" "+StrRef.success),
+        descriptions: "${StrRef.verified} ${StrRef.success}"),
     RegisterInfo(
         title: "",
-        title2: StrRef.referralTittle+" "+StrRef.reward,
+        title2: "${StrRef.referralTittle} ${StrRef.reward}",
         image: SvgPath.referral,
         descriptions: ""),
-
   ];
+
+  void onCreateAccount() {
+    introIndex = 0;
+    notifyListeners();
+  }
 
   void onLogin() {
     debugPrint("$introIndex");
@@ -47,31 +51,21 @@ class RegisterProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onCreateAccount() {
-    // debugPrint("$introIndex");
-    introIndex = 0;
-    notifyListeners();
-  }
-
   void onOTPByWp(String mobileNumber) {
-    // debugPrint("$introIndex");
     introIndex = 2;
-    Debugprint('Mobile Number: $mobileNumber');
+    print('Mobile Number: $mobileNumber $introIndex');
     startTimer(); // Start the timer when OTP screen is shown
     notifyListeners();
   }
 
   void onOTPBySMS(String mobileNumber) {
-    // debugPrint("$introIndex");
     introIndex = 2;
     print('Mobile Number: $mobileNumber');
     startTimer(); // Start the timer when OTP screen is shown
     notifyListeners();
   }
 
-
   void onOTPsuccess() {
-    // debugPrint("$introIndex");
     introIndex = 3;
     notifyListeners();
   }
@@ -91,7 +85,6 @@ class RegisterProvider extends ChangeNotifier {
       },
     );
   }
-
 
   // This method resets the timer to the initial value
   void resetTimer() {
