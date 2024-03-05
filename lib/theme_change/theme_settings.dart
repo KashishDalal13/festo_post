@@ -12,13 +12,22 @@ class ThemeSettings extends ChangeNotifier {
     BoolRef.themeChange = await Injector.getTheme();
     if (BoolRef.themeChange == true) {
       ColorRef.commonBgColor = ColorRef.grey4E6B86;
+    }else{
+      ColorRef.commonBgColor = ColorRef.greyEDEDED;
     }
+    debugPrint("${ColorRef.commonBgColor}");
     notifyListeners();
   }
 
   void toggleTheme({required bool switchVal}) async {
     BoolRef.themeChange = switchVal;
     Injector.setTheme(themeVal: BoolRef.themeChange);
+    if (BoolRef.themeChange == true) {
+      ColorRef.commonBgColor = ColorRef.grey4E6B86;
+    }else{
+      ColorRef.commonBgColor = ColorRef.greyEDEDED;
+    }
+    debugPrint("${ColorRef.commonBgColor}");
     // Injector.getTheme();
     notifyListeners();
   }

@@ -15,6 +15,7 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    debugPrint("${ColorRef.commonBgColor}");
     return Column(
       children: [
         const Spacer(),
