@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => ThemeSettings(),
         builder: (context, child) {
-          ThemeSettings settings = context.watch<ThemeSettings>();
           debugPrint(" BoolRef themeChange ${BoolRef.themeChange}");
           return MaterialApp(
             initialRoute: '/',
