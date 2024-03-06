@@ -30,6 +30,8 @@ class dashboardView extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             appBar: AppBar(
+              backgroundColor: ColorRef.white,
+              surfaceTintColor: ColorRef.white,
               leading: IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.menu, size: 24, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020),
@@ -181,7 +183,7 @@ class dashboardView extends StatelessWidget {
                               ),
                               Container(
                                 height: 120,
-                                margin: const EdgeInsets.only(top: 8,bottom: 16),
+                                margin: const EdgeInsets.only(top: 8, bottom: 16),
                                 child: ListView.separated(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: provider.addTodayEvent[index]['imageList'].length,
@@ -198,18 +200,11 @@ class dashboardView extends StatelessWidget {
                         children: [
                           Text(
                             StrRef.trending,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Lato',
-                                fontSize: 15),
+                            style: const TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 15),
                           ),
                           Text(
                             StrRef.viewAll,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Lato',
-                                fontSize: 13,
-                                color: ColorRef.blue0250A4),
+                            style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: ColorRef.blue0250A4),
                           ),
                         ],
                       ),
@@ -229,13 +224,10 @@ class dashboardView extends StatelessWidget {
                                   child: Container(
                                     height: 30,
                                     width: 100,
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 5, vertical: 8),
+                                    margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
-                                      color: index == provider.trendingIndex
-                                          ? ColorRef.yellowFFA500
-                                          : ColorRef.yellowFFEDCC,
+                                      color: index == provider.trendingIndex ? ColorRef.yellowFFA500 : ColorRef.yellowFFEDCC,
                                     ),
                                     child: Center(
                                       child: Text(
@@ -250,21 +242,16 @@ class dashboardView extends StatelessWidget {
                           },
                         ),
                       ),
-                      Row(
-                        children: [
-                          ...provider.addTrendingEvent[provider.trendingIndex]
-                          ['imageList']
-                              .map(
-                                (e) => Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Image.asset(e)),
-                          )
-                              .toList(),
-                        ],
+                      SizedBox(
+                        height: 120,
+                        child: ListView.builder(scrollDirection: Axis.horizontal,shrinkWrap: true,itemCount:provider.addTrendingEvent[provider.trendingIndex]['imageList'].length ,itemBuilder: (context,innerIndex){
+                          return Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Image.asset(provider.addTrendingEvent[provider.trendingIndex]['imageList'][innerIndex]));
+                        }),
                       ),
                       const SizedBox(height: 15),
                       Row(
@@ -287,7 +274,6 @@ class dashboardView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 10), // Adjust the width as needed
                           Expanded(
                             child: Divider(
                               indent: 8.0,
@@ -310,8 +296,7 @@ class dashboardView extends StatelessWidget {
                             return Column(
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 1),
+                                  margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
                                   child: Image.asset(
                                     provider.addSeasonOffers[index]["imageList"],
                                     height: 70,
