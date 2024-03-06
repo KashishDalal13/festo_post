@@ -85,5 +85,20 @@ class SvgPath {
       festiveOffer1 = 'assets/png/festiveOffer1.png',
       festiveOffer2 = 'assets/png/festiveOffer2.png',
       festiveOffer3 = 'assets/png/festiveOffer3.png',
-      festiveOffer4 = 'assets/png/festiveOffer4.png'
+      festiveOffer4 = 'assets/png/festiveOffer4.png',
+      offerSale1 = 'assets/png/offerSale1.png',
+      offerSale2 = 'assets/png/offerSale2.png',
+      offerSale3 = 'assets/png/offerSale3.png',
+      quotes1 = 'assets/png/quotes1.png',
+      quotes2 = 'assets/png/quotes2.png',
+      quotes3 = 'assets/png/quotes3.png',
+      gretting1 = 'assets/png/gretting1.png',
+      gretting2 = 'assets/png/gretting2.png',
+      gretting3 = 'assets/png/gretting3.png',
+      MorningWish1 = 'assets/png/MorningWish1.png',
+      MorningWish2 = 'assets/png/MorningWish2.png',
+      MorningWish3 = 'assets/png/MorningWish3.png',
+      RestPeace1 = 'assets/png/RestPeace1.png',
+      RestPeace2 = 'assets/png/RestPeace2.png',
+      RestPeace3 = 'assets/png/RestPeace3.png'
 ;}
