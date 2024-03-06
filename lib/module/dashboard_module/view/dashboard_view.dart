@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:festo_post/utils/bool.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:pinput/pinput.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import '../../../utils/colors.dart';
@@ -184,6 +183,7 @@ class dashboardView extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Divider(
+                        endIndent: 15.0,
                         thickness: 1, // Adjust thickness as needed
                         color: ColorRef.grey717171, // Adjust color as needed
                       ),
@@ -199,6 +199,7 @@ class dashboardView extends StatelessWidget {
                     const SizedBox(width: 10), // Adjust the width as needed
                     Expanded(
                       child: Divider(
+                        indent: 8.0,
                         thickness: 1, // Adjust thickness as needed
                         color: ColorRef.grey717171, // Adjust color as needed
                       ),
@@ -207,7 +208,7 @@ class dashboardView extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 SizedBox(
-                  height: 500,
+                  height: 450,
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
@@ -238,8 +239,7 @@ class dashboardView extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              ...provider.addTodayEvent[index]
-                                      ['imageList']
+                              ...provider.addTodayEvent[index]['imageList']
                                   .map(
                                     (e) => Container(
                                         margin: const EdgeInsets.symmetric(
@@ -253,6 +253,138 @@ class dashboardView extends StatelessWidget {
                                   .toList(),
                             ],
                           ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      StrRef.trending,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Lato',
+                          fontSize: 15),
+                    ),
+                    Text(
+                      StrRef.viewAll,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Lato',
+                          fontSize: 13,
+                          color: ColorRef.blue0250A4),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: provider.addTrendingEvent.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              provider.onSelectTrending(index: index);
+                            },
+                            child: Container(
+                              height: 30,
+                              width: 100,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 8),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: index == provider.trendingIndex
+                                    ? ColorRef.yellowFFA500
+                                    : ColorRef.yellowFFEDCC,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  provider.addTrendingEvent[index]['label'],
+                                ),
+                              ),
+                            ),
+                          ),
+                          // SizedBox(height: 15),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+                Row(
+                  children: [
+                    ...provider.addTrendingEvent[provider.trendingIndex]
+                            ['imageList']
+                        .map(
+                          (e) => Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 8),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Image.asset(e)),
+                        )
+                        .toList(),
+                  ],
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        endIndent: 15.0,
+                        thickness: 1, // Adjust thickness as needed
+                        color: ColorRef.grey717171, // Adjust color as needed
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        StrRef.seasonalOffers,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Lato',
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10), // Adjust the width as needed
+                    Expanded(
+                      child: Divider(
+                        indent: 8.0,
+                        thickness: 1, // Adjust thickness as needed
+                        color: ColorRef.grey717171, // Adjust color as needed
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 100,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: provider.addTrendingEvent.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 1),
+                            child: Image.asset(
+                              provider.addSeasonOffers[index]["imageList"],
+                              height: 70,
+                              width: 70,
+                            ),
+                          ),
+                          Text(provider.addSeasonOffers[index]["label"]),
                         ],
                       );
                     },

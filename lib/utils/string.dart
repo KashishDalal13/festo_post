@@ -41,7 +41,9 @@ class StrRef {
       todayEvent = "Today’s Events or Days",
       navratri = "Navratri Mahotsav",
       coffee = "International Coffee Day",
-      birthday = "Vinoba Bhave’s Birthday"
+      birthday = "Vinoba Bhave’s Birthday",
+      trending = "Trending Nowdays",
+      seasonalOffers = "Festival Season Offers"
 ;}
 
 class SvgPath {
@@ -75,5 +77,13 @@ class SvgPath {
       coffee3 = 'assets/png/coffee3.png',
       bday1 = 'assets/png/bday1.png',
       bday2 = 'assets/png/bday2.png',
-      bday3 = 'assets/png/bday3.png'
+      bday3 = 'assets/png/bday3.png',
+      trend1 = 'assets/png/trend1.png',
+      trend2 = 'assets/png/trend2.png',
+      trend3 = 'assets/png/trend3.png',
+      trend4 = 'assets/png/trend4.png',
+      festiveOffer1 = 'assets/png/festiveOffer1.png',
+      festiveOffer2 = 'assets/png/festiveOffer2.png',
+      festiveOffer3 = 'assets/png/festiveOffer3.png',
+      festiveOffer4 = 'assets/png/festiveOffer4.png'
 ;}

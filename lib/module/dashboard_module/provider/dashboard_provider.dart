@@ -2,7 +2,7 @@ import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
 
 class DashboardProvider extends ChangeNotifier {
-  int _current = 0,eventIndex=0;
+  int _current = 0,eventIndex=0, trendingIndex = 0;
   int get current => _current;
 
 
@@ -19,9 +19,26 @@ class DashboardProvider extends ChangeNotifier {
     {"label": StrRef.coffee,"imageList":[SvgPath.coffee1,SvgPath.coffee2,SvgPath.coffee3]},
     {"label": StrRef.birthday,"imageList":[SvgPath.bday1,SvgPath.bday2,SvgPath.bday3]},
   ];
+  List<Map<String, dynamic>> addTrendingEvent = [
+    {"label": "Shramdaan","imageList":[SvgPath.trend1,SvgPath.trend2,SvgPath.trend3,SvgPath.trend4]},
+    {"label": "Sports","imageList":[SvgPath.coffee1,SvgPath.coffee2,SvgPath.coffee3]},
+    {"label": "Gold Medal","imageList":[SvgPath.bday1,SvgPath.bday2,SvgPath.bday3]},
+    {"label": "Politics","imageList":[SvgPath.bday1,SvgPath.bday2,SvgPath.bday3]},
+  ];
+  List<Map<String, dynamic>> addSeasonOffers = [
+    {"imageList":SvgPath.festiveOffer1,"label": "Navratri Offer"},
+    {"imageList":SvgPath.festiveOffer2,"label": "Dussehra Offers"},
+    {"imageList":SvgPath.festiveOffer3,"label": "Diwali Sale & Offers"},
+    {"imageList":SvgPath.festiveOffer4,"label": "All Offers"}
+  ];
 
   onSelectDate({required int index}){
     eventIndex=index;
+    notifyListeners();
+  }
+
+  onSelectTrending({required int index}){
+    trendingIndex=index;
     notifyListeners();
   }
 
