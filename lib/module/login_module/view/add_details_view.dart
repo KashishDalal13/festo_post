@@ -46,39 +46,26 @@ class AddDetails extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(StrRef.uploadPNG,
-                style: const TextStyle(
-                    fontFamily: 'Lato',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 13)),
-            const SizedBox(height: 15),
+            const SizedBox(height: 5,),
+            Text(StrRef.uploadPNG,style: const TextStyle(fontFamily: 'Lato',fontWeight: FontWeight.w400,fontSize: 13)),
+            const SizedBox(height: 10),
             Flexible(
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: provider.addDetail.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: ColorRef.greyEDEDED),
+                return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.greyEDEDED),
                     child: TextFormField(
+                      controller: provider.addDetail[index]['controller'],
                       decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         hintText: provider.addDetail[index]['label'],
-                        hintStyle: TextStyle(
-                            fontFamily: 'Lato',
-                            fontSize: 15,
-                            color: ColorRef.grey929292),
+                        hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: ColorRef.grey929292),
                         prefixIcon: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: SvgPicture.asset(
-                              provider.addDetail[index]['svg']),
+                          child: SvgPicture.asset(provider.addDetail[index]['svg']),
                         ),
                         border: InputBorder.none,
                       ),
@@ -91,7 +78,7 @@ class AddDetails extends StatelessWidget {
               height: 15,
             ),
             GestureDetector(
-              onTap: (){},
+              onTap: () => debugPrint("add"),
               child: Container(
                 height: 40,
                 margin: const EdgeInsets.symmetric(horizontal: 40),
