@@ -26,12 +26,12 @@ class RegisterProvider extends ChangeNotifier {
 
   // payal
     List<Map<String, dynamic>> addDetail = [
-      {"svg": SvgPath.tag, "label": StrRef.brandName, "controller": "brandName"},
-      {"svg": SvgPath.suitcase, "label": StrRef.brandCat, "controller": ""},
-      {"svg": SvgPath.phone, "label": StrRef.contact, "controller""": "brandMob"},
-      {"svg": SvgPath.email, "label": StrRef.email, "controller": "brandEmail"},
-      {"svg": SvgPath.web, "label": StrRef.website, "controller": "brandWeb"},
-      {"svg": SvgPath.location, "label": StrRef.businessAddress, "controller": "brandAdd"},
+      {"svg": SvgPath.tag, "label": StrRef.brandName, "controller": TextEditingController()},
+      {"svg": SvgPath.suitcase, "label": StrRef.brandCat, "controller": TextEditingController()},
+      {"svg": SvgPath.phone, "label": StrRef.contact, "controller""": TextEditingController()},
+      {"svg": SvgPath.email, "label": StrRef.email, "controller": TextEditingController()},
+      {"svg": SvgPath.web, "label": StrRef.website, "controller": TextEditingController()},
+      {"svg": SvgPath.location, "label": StrRef.businessAddress, "controller": TextEditingController()},
     ];
 
 
