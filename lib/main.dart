@@ -1,3 +1,4 @@
+import 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
 import 'package:festo_post/shared/injector.dart';
 import 'package:festo_post/utils/bool.dart';
 import 'package:festo_post/utils/colors.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           debugPrint(" BoolRef themeChange ${BoolRef.themeChange}");
           return MaterialApp(
-            initialRoute: '/',
+            initialRoute: 'dashboard',
             navigatorKey: NavigationService.navigatorKey,
             scaffoldMessengerKey: Toast.snackBarKey,
             debugShowCheckedModeBanner: false,
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
             routes: {
               '/': (context) => const OnBoardingScreen(),
               'register': (context) => const UserAuthView(),
+              'dashboard':(context)=>const dashboardView(),
             },
           );
         });

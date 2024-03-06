@@ -35,7 +35,13 @@ class StrRef {
       email = "Email address",
       website = "Website",
       businessAddress = "Business Address",
-      add= "Add"
+      add= "Add",
+      upcomingEvents = "Upcoming Events Or Days",
+      viewAll="View All",
+      todayEvent = "Today’s Events or Days",
+      navratri = "Navratri Mahotsav",
+      coffee = "International Coffee Day",
+      birthday = "Vinoba Bhave’s Birthday"
 ;}
 
 class SvgPath {
@@ -54,5 +60,20 @@ class SvgPath {
       phone = 'assets/svg/phone.svg',
       location = 'assets/svg/location.svg',
       web = 'assets/svg/web.svg',
-      email = 'assets/svg/email.svg'
+      email = 'assets/svg/email.svg',
+      alignLeft = 'assets/svg/align_left.svg',
+      profile = 'assets/svg/profile.svg',
+      carousel = 'assets/png/Carousel.png',
+      upcoming1 = 'assets/png/upcoming1.png',
+      upcoming2 = 'assets/png/upcoming2.png',
+      upcoming3 = 'assets/png/upcoming3.png',
+      navratri1 = 'assets/png/navratri1.png',
+      navratri2 = 'assets/png/navratri2.png',
+      navratri3 = 'assets/png/navratri3.png',
+      coffee1 = 'assets/png/coffee1.png',
+      coffee2 = 'assets/png/coffee2.png',
+      coffee3 = 'assets/png/coffee3.png',
+      bday1 = 'assets/png/bday1.png',
+      bday2 = 'assets/png/bday2.png',
+      bday3 = 'assets/png/bday3.png'
 ;}

@@ -91,7 +91,7 @@ class AddDetails extends StatelessWidget {
               height: 15,
             ),
             GestureDetector(
-              onTap: () => debugPrint("add"),
+              onTap: (){},
               child: Container(
                 height: 40,
                 margin: const EdgeInsets.symmetric(horizontal: 40),

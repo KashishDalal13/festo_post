@@ -100,13 +100,16 @@ class RegisterProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  onAddSubmit(BuildContext context){
+    Navigator.pushReplacementNamed(context, "dashboard");
+  }
+
   onSkipOrSubmit() {
     introIndex = 3;
     notifyListeners();
   }
 
   void onOTPsuccess() {
-    // debugPrint("$introIndex");
     introIndex = 3;
     notifyListeners();
   }

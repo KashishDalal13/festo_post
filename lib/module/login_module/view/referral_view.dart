@@ -73,7 +73,7 @@ class ReferralView extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           GestureDetector(
-            onTap: () => provider.onSkipOrSubmit(),
+            onTap: () => provider.onAddSubmit(context),
             child: Container(
               height: 40,
               margin: const EdgeInsets.symmetric(horizontal: 40),
