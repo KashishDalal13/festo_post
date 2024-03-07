@@ -61,4 +61,25 @@ class DashboardProvider extends ChangeNotifier {
   void onPageChanged(int index) {
     indicator(index);
   }
+
+  onViewAll({required int index}){
+    if(index==0){
+      debugPrint(StrRef.navratri);
+    }
+    else if(index==1){
+      debugPrint(StrRef.coffee);
+    }
+    else if(index==2){
+      debugPrint(StrRef.birthday);
+    }
+
+  }
+
+  onSetting(BuildContext context) {
+    Navigator.pushReplacementNamed(context, 'setting');
+  }
+
+  onProfile(BuildContext context) {
+    Navigator.pushReplacementNamed(context, 'profile');
+  }
 }

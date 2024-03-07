@@ -43,7 +43,21 @@ class StrRef {
       coffee = "International Coffee Day",
       birthday = "Vinoba Bhave’s Birthday",
       trending = "Trending Nowdays",
-      seasonalOffers = "Festival Season Offers"
+      seasonalOffers = "Festival Season Offers",
+      myAccount = "My Account",
+      contactUs = "Contact Us",
+      aboutUs = "About Us",
+      faq = "FAQ",
+      lightTheme = "Light Mode",
+      darkTheme = "Dark Mode",
+      logout = "LogOut",
+      accountDetails = "Account Details",
+      savePost = "My Saved Post",
+      brandSubscript = "My Brand & Subscriptions",
+      rewardPoints = "Referral & Reward Points",
+      transaction = "Transactions",
+      loopbots = "Loopbots Technology",
+      phnNo = "+91 92345 67890"
 ;}
 
 class SvgPath {
@@ -65,6 +79,15 @@ class SvgPath {
       email = 'assets/svg/email.svg',
       alignLeft = 'assets/svg/align_left.svg',
       profile = 'assets/svg/profile.svg',
+      contactUs = 'assets/svg/contactUs.svg',
+      aboutUs = 'assets/svg/aboutUs.svg',
+      faq = 'assets/svg/faq.svg',
+      theme = 'assets/svg/theme.svg',
+      logout = 'assets/svg/logout.svg',
+      savePost = 'assets/svg/savePost.svg',
+      rewardPoints = 'assets/svg/rewardPoints.svg',
+      transaction = 'assets/svg/transaction.svg',
+
       carousel = 'assets/png/Carousel.png',
       upcoming1 = 'assets/png/upcoming1.png',
       upcoming2 = 'assets/png/upcoming2.png',
@@ -100,5 +123,6 @@ class SvgPath {
       MorningWish3 = 'assets/png/MorningWish3.png',
       RestPeace1 = 'assets/png/RestPeace1.png',
       RestPeace2 = 'assets/png/RestPeace2.png',
-      RestPeace3 = 'assets/png/RestPeace3.png'
+      RestPeace3 = 'assets/png/RestPeace3.png',
+      logo = 'assets/png/logo.png'
 ;}
