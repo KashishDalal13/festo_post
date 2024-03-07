@@ -183,7 +183,7 @@ class dashboardView extends StatelessWidget {
                               ),
                               Container(
                                 height: 120,
-                                margin: const EdgeInsets.only(top: 8, bottom: 16),
+                                margin: const EdgeInsets.only(top: 8,bottom: 16),
                                 child: ListView.separated(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: provider.addTodayEvent[index]['imageList'].length,
@@ -210,7 +210,7 @@ class dashboardView extends StatelessWidget {
                       ),
                       SizedBox(
                         height: 50,
-                        child: ListView.builder(
+                        child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           itemCount: provider.addTrendingEvent.length,
@@ -240,18 +240,28 @@ class dashboardView extends StatelessWidget {
                               ],
                             );
                           },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(width: 5);
+                          },
                         ),
                       ),
                       SizedBox(
-                        height: 120,
-                        child: ListView.builder(scrollDirection: Axis.horizontal,shrinkWrap: true,itemCount:provider.addTrendingEvent[provider.trendingIndex]['imageList'].length ,itemBuilder: (context,innerIndex){
-                          return Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Image.asset(provider.addTrendingEvent[provider.trendingIndex]['imageList'][innerIndex]));
-                        }),
+                        height: 100,
+                        child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemCount: provider
+                                .addTrendingEvent[provider.trendingIndex]
+                                    ['imageList']
+                                .length,
+                            itemBuilder: (context, index) {
+                              return Image.asset(provider
+                                      .addTrendingEvent[provider.trendingIndex]
+                                  ['imageList'][index]);
+                            },
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(width: 15);
+                            }),
                       ),
                       const SizedBox(height: 15),
                       Row(
@@ -288,10 +298,10 @@ class dashboardView extends StatelessWidget {
                       ),
                       SizedBox(
                         height: 100,
-                        child: ListView.builder(
+                        child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
-                          itemCount: provider.addTrendingEvent.length,
+                          itemCount: provider.addSeasonOffers.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Column(
                               children: [
@@ -306,7 +316,7 @@ class dashboardView extends StatelessWidget {
                                 Text(provider.addSeasonOffers[index]["label"]),
                               ],
                             );
-                          },
+                          }, separatorBuilder: (BuildContext context, int index) {  return const SizedBox(width: 5); },
                         ),
                       ),
                     ],

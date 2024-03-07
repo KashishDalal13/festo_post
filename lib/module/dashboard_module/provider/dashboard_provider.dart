@@ -16,12 +16,12 @@ class DashboardProvider extends ChangeNotifier {
   ];
 
   List<Map<String, dynamic>> addTodayEvent = [
-    {"label": StrRef.navratri,"imageList":[SvgPath.navratri1,SvgPath.navratri2,SvgPath.navratri1]},
-    {"label": StrRef.coffee,"imageList":[SvgPath.coffee1,SvgPath.coffee2,SvgPath.coffee1]},
-    {"label": StrRef.birthday,"imageList":[SvgPath.bday1,SvgPath.bday2,SvgPath.bday1]},
+    {"label": StrRef.navratri,"imageList":[SvgPath.navratri1,SvgPath.navratri2,SvgPath.navratri1,SvgPath.navratri1,SvgPath.navratri1]},
+    {"label": StrRef.coffee,"imageList":[SvgPath.coffee1,SvgPath.coffee2,SvgPath.coffee1,SvgPath.coffee1,SvgPath.coffee1]},
+    {"label": StrRef.birthday,"imageList":[SvgPath.bday1,SvgPath.bday2,SvgPath.bday1,SvgPath.bday1,SvgPath.bday1]},
   ];
   List<Map<String, dynamic>> addTrendingEvent = [
-    {"label": "Shramdaan","imageList":[SvgPath.trend1,SvgPath.trend2,SvgPath.trend3,SvgPath.trend4]},
+    {"label": "Shramdaan","imageList":[SvgPath.trend1,SvgPath.trend2,SvgPath.trend3,SvgPath.trend3,SvgPath.trend3]},
     {"label": "Sports","imageList":[SvgPath.coffee1,SvgPath.coffee2,SvgPath.coffee3]},
     {"label": "Gold Medal","imageList":[SvgPath.bday1,SvgPath.bday2,SvgPath.bday3]},
     {"label": "Politics","imageList":[SvgPath.bday1,SvgPath.bday2,SvgPath.bday3]},
@@ -30,6 +30,8 @@ class DashboardProvider extends ChangeNotifier {
     {"imageList":SvgPath.festiveOffer1,"label": "Navratri Offer"},
     {"imageList":SvgPath.festiveOffer2,"label": "Dussehra Offers"},
     {"imageList":SvgPath.festiveOffer3,"label": "Diwali Sale & Offers"},
+    {"imageList":SvgPath.festiveOffer4,"label": "All Offers"},
+    {"imageList":SvgPath.festiveOffer4,"label": "All Offers"},
     {"imageList":SvgPath.festiveOffer4,"label": "All Offers"}
   ];
 
