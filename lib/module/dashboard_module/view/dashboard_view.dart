@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:festo_post/utils/bool.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
@@ -15,7 +14,6 @@ class dashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    int _current = 0;
     final List<String> imgList = [
       'https://example.com/image1.jpg',
       'https://example.com/image2.jpg',
@@ -245,6 +243,7 @@ class dashboardView extends StatelessWidget {
                           },
                         ),
                       ),
+                      const SizedBox(height: 5,),
                       SizedBox(
                         height: 100,
                         child: ListView.separated(
@@ -263,7 +262,7 @@ class dashboardView extends StatelessWidget {
                               return const SizedBox(width: 15);
                             }),
                       ),
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 25),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -288,13 +287,14 @@ class dashboardView extends StatelessWidget {
                             child: Divider(
                               indent: 8.0,
                               thickness: 1, // Adjust thickness as needed
-                              color: ColorRef.grey717171, // Adjust color as needed
+                              color:
+                                  ColorRef.grey717171, // Adjust color as needed
                             ),
                           ),
                         ],
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 15
                       ),
                       SizedBox(
                         height: 100,
@@ -318,6 +318,55 @@ class dashboardView extends StatelessWidget {
                             );
                           }, separatorBuilder: (BuildContext context, int index) {  return const SizedBox(width: 5); },
                         ),
+                      ),
+                      const SizedBox(height: 20,),
+                      ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: provider.addCategoryOffer.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    provider.addCategoryOffer[index]['label'],
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'Lato',
+                                        fontSize: 15),
+                                  ),
+                                  Text(
+                                    StrRef.viewAll,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: 'Lato',
+                                        fontSize: 13,
+                                        color: ColorRef.blue0250A4),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 120,
+                                child: ListView.separated(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: provider
+                                        .addCategoryOffer[index]['imageList']
+                                        .length,
+                                    itemBuilder: (context, innerIndex) =>
+                                        Image.asset(
+                                            provider.addCategoryOffer[index]
+                                            ['imageList'][innerIndex]),
+                                    separatorBuilder: (context, index) =>
+                                    const SizedBox(width: 2)),
+                              ),
+                              const SizedBox(height: 10,),
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),

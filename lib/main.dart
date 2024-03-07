@@ -1,4 +1,5 @@
 import 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
+import 'package:festo_post/profile_module/view/profile_view.dart';
 import 'package:festo_post/shared/injector.dart';
 import 'package:festo_post/utils/bool.dart';
 import 'package:festo_post/utils/colors.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'module/login_module/view/user_auth_view.dart';
 import 'module/on_boarding/on_boarding_view.dart';
+import 'module/setting_module/view/setting_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,6 +48,8 @@ class MyApp extends StatelessWidget {
               '/': (context) => const OnBoardingScreen(),
               'register': (context) => const UserAuthView(),
               'dashboard':(context)=>const dashboardView(),
+              'setting':(context)=>const SettingView(),
+              'profile':(context)=>const ProfileView(),
             },
           );
         });

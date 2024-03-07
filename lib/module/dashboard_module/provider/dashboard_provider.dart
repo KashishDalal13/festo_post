@@ -35,6 +35,14 @@ class DashboardProvider extends ChangeNotifier {
     {"imageList":SvgPath.festiveOffer4,"label": "All Offers"}
   ];
 
+  List<Map<String, dynamic>> addCategoryOffer = [
+    {"label": "Offers and Sale","imageList":[SvgPath.offerSale1,SvgPath.offerSale2,SvgPath.offerSale3,SvgPath.offerSale1,SvgPath.offerSale2]},
+    {"label": "Quotes","imageList":[SvgPath.quotes1,SvgPath.quotes2,SvgPath.quotes3,SvgPath.quotes1,SvgPath.quotes2]},
+    {"label": "Greetings and Congratulatory","imageList":[SvgPath.gretting1,SvgPath.gretting2,SvgPath.gretting3,SvgPath.gretting1,SvgPath.gretting2]},
+    {"label": "Morning Wishes","imageList":[SvgPath.MorningWish1,SvgPath.MorningWish2,SvgPath.MorningWish3,SvgPath.MorningWish1,SvgPath.MorningWish2]},
+    {"label": "Rest In Peace","imageList":[SvgPath.RestPeace1,SvgPath.RestPeace2,SvgPath.RestPeace3,SvgPath.RestPeace2,SvgPath.RestPeace1]},
+  ];
+
   onSelectDate({required int index}){
     eventIndex=index;
     notifyListeners();
@@ -52,5 +60,26 @@ class DashboardProvider extends ChangeNotifier {
 
   void onPageChanged(int index) {
     indicator(index);
+  }
+
+  onViewAll({required int index}){
+    if(index==0){
+      debugPrint(StrRef.navratri);
+    }
+    else if(index==1){
+      debugPrint(StrRef.coffee);
+    }
+    else if(index==2){
+      debugPrint(StrRef.birthday);
+    }
+
+  }
+
+  onSetting(BuildContext context) {
+    Navigator.pushReplacementNamed(context, 'setting');
+  }
+
+  onProfile(BuildContext context) {
+    Navigator.pushReplacementNamed(context, 'profile');
   }
 }
