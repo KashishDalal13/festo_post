@@ -15,10 +15,9 @@ class dashboardView extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     final List<String> imgList = [
-      'https://example.com/image1.jpg',
-      'https://example.com/image2.jpg',
-      'https://example.com/image3.jpg',
-      // Add more image URLs as needed
+      'assets/png/RestPeace2.png',
+      'assets/png/RestPeace3.png',
+      'assets/png/logo.png',
     ];
     return ChangeNotifierProvider(
       create: (BuildContext context) => DashboardProvider(),
@@ -53,17 +52,19 @@ class dashboardView extends StatelessWidget {
             body: ListView(
               children: [
                 CarouselSlider(
-                  items: imgList
-                      .map((url) => Image.asset(SvgPath.carousel))
-                      .toList(),
+                  items: [
+                    Image.asset(SvgPath.carousel), // Replace 'path_to_image1' with your actual asset path
+                    Image.asset(SvgPath.carousel2), // Replace 'path_to_image2' with your actual asset path
+                    Image.asset(SvgPath.carousel3), // Replace 'path_to_image3' with your actual asset path
+                  ],
                   options: CarouselOptions(
-                      onPageChanged: (index, reason) =>
-                          provider.onPageChanged(index),
-                      initialPage: 0,
-                      enableInfiniteScroll: true,
-                      viewportFraction: 1,
-                      height: 160,
-                      padEnds: true),
+                    onPageChanged: (index, reason) => provider.onPageChanged(index),
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    viewportFraction: 1,
+                    height: 160,
+                    padEnds: true,
+                  ),
                 ),
                 const SizedBox(
                   height: 15,

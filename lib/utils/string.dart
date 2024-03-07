@@ -89,6 +89,8 @@ class SvgPath {
       transaction = 'assets/svg/transaction.svg',
 
       carousel = 'assets/png/Carousel.png',
+      carousel2 = 'assets/png/carousel2.png',
+      carousel3 = 'assets/png/carousel3.png',
       upcoming1 = 'assets/png/upcoming1.png',
       upcoming2 = 'assets/png/upcoming2.png',
       upcoming3 = 'assets/png/upcoming3.png',
