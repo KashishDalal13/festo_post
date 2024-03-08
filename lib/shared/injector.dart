@@ -24,4 +24,12 @@ class Injector {
     debugPrint("get ${PrefsKey.theme}=>${prefs.getBool(PrefsKey.theme)}");
     return prefs.getBool(PrefsKey.theme) ?? false;
   }
+
+  static setOnBoarding() {
+    prefs.setBool(PrefsKey.onBoarding, true);
+  }
+
+  static bool getOnBoarding() {
+    return prefs.getBool(PrefsKey.onBoarding) ?? false;
+  }
 }

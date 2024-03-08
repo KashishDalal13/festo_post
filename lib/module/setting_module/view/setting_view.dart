@@ -21,7 +21,7 @@ class SettingView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
-              onPressed: () => provider.onBack(context),
+              onPressed: () => provider.onBack(),
               icon: const Icon(Icons.arrow_back_ios_rounded, size: 20),
             ),
             centerTitle: true,

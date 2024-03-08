@@ -3,6 +3,8 @@ import 'package:festo_post/utils/string.dart';
 import 'package:festo_post/widget/toast.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/routes.dart';
+
 class RegisterProvider extends ChangeNotifier {
   int introIndex = 0;
   double process = 0.33;
@@ -101,7 +103,7 @@ class RegisterProvider extends ChangeNotifier {
   }
 
   onAddSubmit(BuildContext context){
-    Navigator.pushReplacementNamed(context, "dashboard");
+    NavigationService.replaceToNamed('dashboard');
   }
 
   onSkipOrSubmit() {

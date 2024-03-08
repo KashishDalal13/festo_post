@@ -20,7 +20,7 @@ class ProfileView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
-              onPressed: () => provider.onBack(context),
+              onPressed: () => provider.onBack(),
               icon: const Icon(Icons.arrow_back_ios_rounded, size: 20),
             ),
             centerTitle: true,
@@ -60,8 +60,11 @@ class ProfileView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(StrRef.loopbots,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w400,fontFamily: "Lato"),),
-                          Text(StrRef.phnNo,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400,fontFamily: "Lato",color: ColorRef.blue0250A4)),
+                          Text(
+                            StrRef.loopbots,
+                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400, fontFamily: "Lato"),
+                          ),
+                          Text(StrRef.phnNo, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, fontFamily: "Lato", color: ColorRef.blue0250A4)),
                         ],
                       ),
                     )
@@ -81,7 +84,10 @@ class ProfileView extends StatelessWidget {
                       ),
                       child: ListTile(
                         leading: SvgPicture.asset(provider.profileDetails[index]['icon']),
-                        trailing: const Icon(Icons.arrow_forward_ios_rounded,size: 20,),
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 20,
+                        ),
                         title: Text(provider.profileDetails[index]['label']), // Generate dynamic titles
                         onTap: () {
                           // debugPrint("hii");

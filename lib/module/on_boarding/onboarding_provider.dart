@@ -1,3 +1,4 @@
+import 'package:festo_post/utils/routes.dart';
 import 'package:flutter/material.dart';
 import '../../shared/injector.dart';
 import 'on_boarding_info.dart';
@@ -12,6 +13,9 @@ class IntroProvider extends ChangeNotifier {
 
   IntroProvider() {
     loadTheme();
+    if (Injector.getOnBoarding() == true) {
+      NavigationService.replaceToNamed('register');
+    }
   }
 
   loadTheme() async {
@@ -27,8 +31,9 @@ class IntroProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getStarted(BuildContext context) {
-    Navigator.pushReplacementNamed(context, 'register');
+  void getStarted() {
+    Injector.setOnBoarding();
+    NavigationService.replaceToNamed('register');
   }
 
   List<OnBoardingInfo> items = [
