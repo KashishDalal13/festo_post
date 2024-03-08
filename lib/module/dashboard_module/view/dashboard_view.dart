@@ -181,7 +181,7 @@ class dashboardView extends StatelessWidget {
                               ),
                               Container(
                                 height: 120,
-                                margin: const EdgeInsets.only(top: 8,bottom: 16),
+                                margin: const EdgeInsets.only(top: 8, bottom: 16),
                                 child: ListView.separated(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: provider.addTodayEvent[index]['imageList'].length,
@@ -243,20 +243,17 @@ class dashboardView extends StatelessWidget {
                           },
                         ),
                       ),
-                      const SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       SizedBox(
                         height: 100,
                         child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
-                            itemCount: provider
-                                .addTrendingEvent[provider.trendingIndex]
-                                    ['imageList']
-                                .length,
+                            itemCount: provider.addTrendingEvent[provider.trendingIndex]['imageList'].length,
                             itemBuilder: (context, index) {
-                              return Image.asset(provider
-                                      .addTrendingEvent[provider.trendingIndex]
-                                  ['imageList'][index]);
+                              return Image.asset(provider.addTrendingEvent[provider.trendingIndex]['imageList'][index]);
                             },
                             separatorBuilder: (context, index) {
                               return const SizedBox(width: 15);
@@ -287,15 +284,12 @@ class dashboardView extends StatelessWidget {
                             child: Divider(
                               indent: 8.0,
                               thickness: 1, // Adjust thickness as needed
-                              color:
-                                  ColorRef.grey717171, // Adjust color as needed
+                              color: ColorRef.grey717171, // Adjust color as needed
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 15
-                      ),
+                      const SizedBox(height: 15),
                       SizedBox(
                         height: 100,
                         child: ListView.separated(
@@ -316,11 +310,16 @@ class dashboardView extends StatelessWidget {
                                 Text(provider.addSeasonOffers[index]["label"]),
                               ],
                             );
-                          }, separatorBuilder: (BuildContext context, int index) {  return const SizedBox(width: 5); },
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(width: 5);
+                          },
                         ),
                       ),
-                      const SizedBox(height: 20,),
-                      ListView.builder(
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ListView.separated(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -329,44 +328,31 @@ class dashboardView extends StatelessWidget {
                           return Column(
                             children: [
                               Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     provider.addCategoryOffer[index]['label'],
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: 'Lato',
-                                        fontSize: 15),
+                                    style: const TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 15),
                                   ),
                                   Text(
                                     StrRef.viewAll,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Lato',
-                                        fontSize: 13,
-                                        color: ColorRef.blue0250A4),
+                                    style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: ColorRef.blue0250A4),
                                   ),
                                 ],
                               ),
                               SizedBox(
-                                height: 120,
+                                height: 110,
                                 child: ListView.separated(
+                                    padding: const EdgeInsets.symmetric(vertical: 5),
                                     scrollDirection: Axis.horizontal,
-                                    itemCount: provider
-                                        .addCategoryOffer[index]['imageList']
-                                        .length,
-                                    itemBuilder: (context, innerIndex) =>
-                                        Image.asset(
-                                            provider.addCategoryOffer[index]
-                                            ['imageList'][innerIndex]),
-                                    separatorBuilder: (context, index) =>
-                                    const SizedBox(width: 2)),
+                                    itemCount: provider.addCategoryOffer[index]['imageList'].length,
+                                    itemBuilder: (context, innerIndex) => Image.asset(provider.addCategoryOffer[index]['imageList'][innerIndex]),
+                                    separatorBuilder: (context, index) => const SizedBox(width: 10)),
                               ),
-                              const SizedBox(height: 10,),
                             ],
                           );
                         },
+                        separatorBuilder: (context, index) => const SizedBox(height: 10),
                       ),
                     ],
                   ),
