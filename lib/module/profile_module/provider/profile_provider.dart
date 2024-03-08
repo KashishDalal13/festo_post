@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/routes.dart';
-import '../../utils/string.dart';
+import '../../../utils/routes.dart';
+import '../../../utils/string.dart';
 
 class ProfileProvider extends ChangeNotifier{
 

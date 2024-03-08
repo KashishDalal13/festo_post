@@ -1,19 +1,18 @@
-import 'package:festo_post/module/login_module/provider/register_provider.dart';
-import 'package:festo_post/module/setting_module/provider/setting_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/bool.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
+import '../../../utils/theme.dart';
+import '../provider/setting_provider.dart'; // Import your theme constants
 
 class SettingView extends StatelessWidget {
   const SettingView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return ChangeNotifierProvider(
       create: (BuildContext context) => SettingProvider(),
       builder: (context, child) {
@@ -34,10 +33,11 @@ class SettingView extends StatelessWidget {
             ),
           ),
           resizeToAvoidBottomInset: false,
-          body: Center(
-            child: ListView.builder(
-              itemCount: provider.settingDetails.length, // Specify the number of items
-              itemBuilder: (BuildContext context, int index) {
+          body: ListView.builder(
+            itemCount: provider.settingDetails.length,
+            itemBuilder: (BuildContext context, int index) {
+              final item = provider.settingDetails[index];
+              if (item['label'] == StrRef.darkTheme) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                   decoration: BoxDecoration(
@@ -45,16 +45,33 @@ class SettingView extends StatelessWidget {
                     border: Border.all(color: ColorRef.greyD6D6D6),
                   ),
                   child: ListTile(
-                    leading: SvgPicture.asset(provider.settingDetails[index]['icon']),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded,size: 20,),
-                    title: Text(provider.settingDetails[index]['label']), // Generate dynamic titles
-                    onTap: () {
-                      // debugPrint("hii");
-                    },
+                    leading: SvgPicture.asset(item['icon']),
+                    trailing: Switch(
+                      value: provider.switchValue,
+                      onChanged: (newValue) {
+                        provider.toggleTheme(switchVal: newValue);
+                      },
+                    ),
+                    title: Text(item['label']),
+                    onTap: () {},
                   ),
                 );
-              },
-            ),
+              } else {
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: ColorRef.greyD6D6D6),
+                  ),
+                  child: ListTile(
+                    leading: SvgPicture.asset(item['icon']),
+                    trailing: const Icon(Icons.arrow_forward_ios_rounded,size: 20,),
+                    title: Text(item['label']),
+                    onTap: () {},
+                  ),
+                );
+              }
+            },
           ),
         );
       },
