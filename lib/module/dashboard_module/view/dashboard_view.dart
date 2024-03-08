@@ -30,14 +30,14 @@ class dashboardView extends StatelessWidget {
               backgroundColor: ColorRef.white,
               surfaceTintColor: ColorRef.white,
               leading: IconButton(
-                onPressed: () {},
+                onPressed: () {provider.onSetting();},
                 icon: Icon(Icons.menu, size: 24, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020),
               ),
               centerTitle: true,
               title: Text(StrRef.registerTitle2, style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {provider.onProfile();},
                   icon: SvgPicture.asset(SvgPath.profile, width: 24, height: 24),
                 ),
               ],
