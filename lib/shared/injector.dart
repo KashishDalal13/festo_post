@@ -1,4 +1,5 @@
 import 'package:festo_post/shared/prefs_key.dart';
+import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,7 +9,19 @@ class Injector {
   Injector() {
     getInstance().then((value) {
       getTheme();
+      getRoute();
     });
+  }
+
+  getRoute() {
+    if (Injector.getOnBoarding() == true) {
+      if (Injector.getSignIn() == false) {
+        StringRef.initialRoute = 'register';
+      } else {
+        StringRef.initialRoute = 'dashboard';
+      }
+    }
+    debugPrint(StringRef.initialRoute);
   }
 
   Future<void> getInstance() async {

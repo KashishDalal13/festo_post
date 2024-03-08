@@ -14,7 +14,6 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    debugPrint("${ColorRef.commonBgColor}");
     return Column(
       children: [
         const Spacer(),
@@ -31,11 +30,14 @@ class RegisterView extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 10),
-        SvgPicture.asset(SvgPath.registerImg1, height: width - 150),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: SvgPicture.asset(SvgPath.registerImg1, height: width - 150),
+        ),
+        Text(provider.toggleLoginOrRegister ? StrRef.login : StrRef.register,style: TextStyle(fontSize: 20,color: ColorRef.black202020),),
         Container(
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.commonBgColor),
-          margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+          margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
           child: TextFormField(
             keyboardType: TextInputType.phone,
             controller: provider.phoneController,
@@ -54,7 +56,7 @@ class RegisterView extends StatelessWidget {
           onTap: () => provider.onVerify(),
           child: Container(
             height: 40,
-            margin: const EdgeInsets.symmetric(horizontal: 40),
+            margin: const EdgeInsets.symmetric(horizontal: 40,vertical: 5),
             decoration: BoxDecoration(color: ColorRef.yellowFFA500, borderRadius: BorderRadius.circular(15)),
             alignment: Alignment.center,
             child: Text(
@@ -65,7 +67,6 @@ class RegisterView extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         GestureDetector(
-          //change index
           onTap: () => provider.onVerify(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -75,10 +76,7 @@ class RegisterView extends StatelessWidget {
                 style: TextStyle(fontSize: 15, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020, fontWeight: FontWeight.normal, fontFamily: 'Lato'),
               ),
               const SizedBox(width: 5),
-              Text(
-                StrRef.sms,
-                style: TextStyle(color: ColorRef.yellowFFA500, fontSize: 15, fontWeight: FontWeight.normal, fontFamily: 'Lato'),
-              ),
+              Text(StrRef.sms, style: TextStyle(color: ColorRef.yellowFFA500, fontSize: 15, fontWeight: FontWeight.normal, fontFamily: 'Lato')),
             ],
           ),
         ),

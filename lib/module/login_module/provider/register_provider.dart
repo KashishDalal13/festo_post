@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:festo_post/shared/injector.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:festo_post/widget/toast.dart';
@@ -12,6 +13,7 @@ class RegisterProvider extends ChangeNotifier {
   Duration? timer;
   final pageController = PageController();
   Duration timerDuration = const Duration(seconds: 50);
+  String otp = '';
   late Timer _timer;
   int selected = 0;
   TextEditingController brandName = TextEditingController(),
@@ -21,7 +23,7 @@ class RegisterProvider extends ChangeNotifier {
       brandAdd = TextEditingController();
 
   bool timerActive = false, toggleWhatsAppOrSms = false, toggleLoginOrRegister = false;
-  TextEditingController phoneController = TextEditingController(), otpController = TextEditingController();
+  TextEditingController phoneController = TextEditingController(), otpController = TextEditingController(), referralCodeController = TextEditingController();
 
   // payal
   List<Map<String, dynamic>> addDetail = [
@@ -60,6 +62,12 @@ class RegisterProvider extends ChangeNotifier {
       Toast.toast(msg: "Mobile number must be 10 digits long");
     } else {
       introIndex = 1;
+      for (int i = 0; i < 4; i++) {
+        otp += Random().nextInt(10).toString();
+      }
+      notifyListeners();
+      debugPrint(otp);
+      Toast.toast(msg: "Your OTP for Festo Post is $otp");
       startTimer();
     }
     notifyListeners();
@@ -92,6 +100,8 @@ class RegisterProvider extends ChangeNotifier {
       Toast.toast(msg: "Please enter OTP number");
     } else if (otpController.value.text.length < 4) {
       Toast.toast(msg: "Please enter valid Otp number");
+    } else if (otpController.value.text != otp) {
+      Toast.toast(msg: "Wrong Otp number");
     } else {
       introIndex = 2;
       _timer.cancel();
@@ -100,8 +110,12 @@ class RegisterProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  onAddSubmit(BuildContext context) {
-    NavigationService.replaceToNamed('register');
+  onAddSubmit() {
+    if (referralCodeController.value.text.isNotEmpty) {
+      NavigationService.replaceToNamed('register');
+    } else {
+      Toast.toast(msg: "Please enter ReferralCode");
+    }
   }
 
   onSkipOrSubmit() {

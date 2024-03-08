@@ -4,6 +4,7 @@ import 'package:festo_post/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class ThemeSettings extends ChangeNotifier {
+  String initialRoute='/';
   ThemeSettings() {
     loadTheme();
   }
@@ -26,7 +27,6 @@ class ThemeSettings extends ChangeNotifier {
     }else{
       ColorRef.commonBgColor = ColorRef.greyEDEDED;
     }
-    debugPrint("${ColorRef.commonBgColor}");
     // Injector.getTheme();
     notifyListeners();
   }
