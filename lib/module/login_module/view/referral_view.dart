@@ -44,7 +44,10 @@ class ReferralView extends StatelessWidget {
             textAlign: TextAlign.center,
             text: TextSpan(
               text: StrRef.referralTittle,
-              style:  TextStyle(fontSize: 20,  color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020,),
+              style: TextStyle(
+                fontSize: 20,
+                color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020,
+              ),
               children: [
                 TextSpan(
                   text: StrRef.reward,
@@ -59,6 +62,7 @@ class ReferralView extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.commonBgColor),
             child: TextFormField(
+              controller: provider.referralCodeController,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 hintText: StrRef.referralFormField,
@@ -73,7 +77,7 @@ class ReferralView extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           GestureDetector(
-            onTap: () => provider.onAddSubmit(context),
+            onTap: () => provider.onAddSubmit(),
             child: Container(
               height: 40,
               margin: const EdgeInsets.symmetric(horizontal: 40),

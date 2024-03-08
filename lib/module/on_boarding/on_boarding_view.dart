@@ -31,7 +31,7 @@ class OnBoardingScreen extends StatelessWidget {
                       value: BoolRef.themeChange,
                       onChanged: (newValue) {
                         // provider.toggleTheme(val: newValue);
-                        settings.toggleTheme(switchVal: newValue);
+                        // settings.toggleTheme(switchVal: newValue);
                       },
                     ),
                     Align(
@@ -85,7 +85,7 @@ class OnBoardingScreen extends StatelessWidget {
             ),
             floatingActionButton: provider.introIndex == 2
                 ? GestureDetector(
-                    onTap: () => provider.getStarted(context),
+                    onTap: () => provider.getStarted(),
                     child: Stack(
                       alignment: const Alignment(1, 0.65),
                       children: [

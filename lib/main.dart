@@ -5,6 +5,7 @@ import 'package:festo_post/utils/bool.dart';
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/routes.dart';
 import 'package:festo_post/theme_change/theme_settings.dart';
+import 'package:festo_post/utils/string.dart';
 import 'package:festo_post/utils/theme.dart';
 import 'package:festo_post/widget/toast.dart';
 import 'package:flutter/material.dart';
@@ -30,29 +31,28 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (BuildContext context) => ThemeSettings(),
         builder: (context, child) {
+          debugPrint(StringRef.initialRoute);
           debugPrint(" BoolRef themeChange ${BoolRef.themeChange}");
           return MaterialApp(
-            initialRoute: 'dashboard',
+            initialRoute: StringRef.initialRoute,
             navigatorKey: NavigationService.navigatorKey,
             scaffoldMessengerKey: Toast.snackBarKey,
             debugShowCheckedModeBanner: false,
-            theme:  BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
+            theme: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
             // theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
             routes: {
               '/': (context) => const OnBoardingScreen(),
               'register': (context) => const UserAuthView(),
-              'dashboard':(context)=>const dashboardView(),
-              'setting':(context)=>const SettingView(),
-              'profile':(context)=>const ProfileView(),
+              'dashboard': (context) => const dashboardView(),
+              'setting': (context) => const SettingView(),
+              'profile': (context) => const ProfileView(),
             },
           );
         });
   }
 }
-

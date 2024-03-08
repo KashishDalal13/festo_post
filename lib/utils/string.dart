@@ -35,9 +35,9 @@ class StrRef {
       email = "Email address",
       website = "Website",
       businessAddress = "Business Address",
-      add= "Add",
+      add = "Add",
       upcomingEvents = "Upcoming Events Or Days",
-      viewAll="View All",
+      viewAll = "View All",
       todayEvent = "Today’s Events or Days",
       navratri = "Navratri Mahotsav",
       coffee = "International Coffee Day",
@@ -57,8 +57,8 @@ class StrRef {
       rewardPoints = "Referral & Reward Points",
       transaction = "Transactions",
       loopbots = "Loopbots Technology",
-      phnNo = "+91 92345 67890"
-;}
+      phnNo = "+91 92345 67890";
+}
 
 class SvgPath {
   static String onBoardImg1 = 'assets/svg/onboard1.svg',
@@ -87,7 +87,6 @@ class SvgPath {
       savePost = 'assets/svg/savePost.svg',
       rewardPoints = 'assets/svg/rewardPoints.svg',
       transaction = 'assets/svg/transaction.svg',
-
       carousel = 'assets/png/Carousel.png',
       carousel2 = 'assets/png/carousel2.png',
       carousel3 = 'assets/png/carousel3.png',
@@ -126,5 +125,9 @@ class SvgPath {
       RestPeace1 = 'assets/png/RestPeace1.png',
       RestPeace2 = 'assets/png/RestPeace2.png',
       RestPeace3 = 'assets/png/RestPeace3.png',
-      logo = 'assets/png/logo.png'
-;}
+      logo = 'assets/png/logo.png';
+}
+
+class StringRef {
+  static String initialRoute = '/';
+}

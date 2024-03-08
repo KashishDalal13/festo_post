@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/routes.dart';
 import '../../../utils/string.dart';
 
 class SettingProvider extends ChangeNotifier{
@@ -14,8 +15,8 @@ class SettingProvider extends ChangeNotifier{
   ];
 
 
-  void onBack(BuildContext context) {
-    Navigator.pushReplacementNamed(context, 'dashboard');
+  void onBack() {
+    NavigationService.replaceToNamed('dashboard');
     notifyListeners();
   }
 
