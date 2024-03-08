@@ -31,7 +31,7 @@ class OnBoardingScreen extends StatelessWidget {
                       value: BoolRef.themeChange,
                       onChanged: (newValue) {
                         // provider.toggleTheme(val: newValue);
-                        settings.toggleTheme(switchVal: newValue);
+                        // settings.toggleTheme(switchVal: newValue);
                       },
                     ),
                     Align(

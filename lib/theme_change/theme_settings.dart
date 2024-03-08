@@ -15,7 +15,6 @@ class ThemeSettings extends ChangeNotifier {
     }else{
       ColorRef.commonBgColor = ColorRef.greyEDEDED;
     }
-    debugPrint("${ColorRef.commonBgColor}");
     notifyListeners();
   }
 

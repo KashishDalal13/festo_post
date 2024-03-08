@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:festo_post/shared/injector.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:festo_post/widget/toast.dart';
 import 'package:flutter/material.dart';
@@ -19,22 +20,18 @@ class RegisterProvider extends ChangeNotifier {
       brandWeb = TextEditingController(),
       brandAdd = TextEditingController();
 
-  bool timerActive = false,
-      toggleWhatsAppOrSms = false,
-      toggleLoginOrRegister = false;
-  TextEditingController phoneController = TextEditingController(),
-      otpController = TextEditingController();
+  bool timerActive = false, toggleWhatsAppOrSms = false, toggleLoginOrRegister = false;
+  TextEditingController phoneController = TextEditingController(), otpController = TextEditingController();
 
   // payal
-    List<Map<String, dynamic>> addDetail = [
-      {"svg": SvgPath.tag, "label": StrRef.brandName, "controller": TextEditingController()},
-      {"svg": SvgPath.suitcase, "label": StrRef.brandCat, "controller": TextEditingController()},
-      {"svg": SvgPath.phone, "label": StrRef.contact, "controller""": TextEditingController()},
-      {"svg": SvgPath.email, "label": StrRef.email, "controller": TextEditingController()},
-      {"svg": SvgPath.web, "label": StrRef.website, "controller": TextEditingController()},
-      {"svg": SvgPath.location, "label": StrRef.businessAddress, "controller": TextEditingController()},
-    ];
-
+  List<Map<String, dynamic>> addDetail = [
+    {"svg": SvgPath.tag, "label": StrRef.brandName, "controller": TextEditingController()},
+    {"svg": SvgPath.suitcase, "label": StrRef.brandCat, "controller": TextEditingController()},
+    {"svg": SvgPath.phone, "label": StrRef.contact, "controller" "": TextEditingController()},
+    {"svg": SvgPath.email, "label": StrRef.email, "controller": TextEditingController()},
+    {"svg": SvgPath.web, "label": StrRef.website, "controller": TextEditingController()},
+    {"svg": SvgPath.location, "label": StrRef.businessAddress, "controller": TextEditingController()},
+  ];
 
   //Roshni
   void startTimer() {
@@ -98,20 +95,21 @@ class RegisterProvider extends ChangeNotifier {
     } else {
       introIndex = 2;
       _timer.cancel();
+      Injector.setSignIn();
     }
     notifyListeners();
   }
 
-  onAddSubmit(BuildContext context){
-    NavigationService.replaceToNamed('dashboard');
+  onAddSubmit(BuildContext context) {
+    NavigationService.replaceToNamed('register');
   }
 
   onSkipOrSubmit() {
-    introIndex = 3;
+    NavigationService.replaceToNamed('dashboard');
     notifyListeners();
   }
 
-  void onOTPsuccess() {
+  void onOtpSuccess() {
     introIndex = 3;
     notifyListeners();
   }

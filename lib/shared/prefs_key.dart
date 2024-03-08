@@ -1,3 +1,3 @@
 class PrefsKey {
-  static String theme = "theme", onBoarding = "OnBoarding";
+  static String theme = "theme", onBoarding = "OnBoarding", signIn = "signIn";
 }

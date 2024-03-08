@@ -13,13 +13,17 @@ class IntroProvider extends ChangeNotifier {
 
   IntroProvider() {
     loadTheme();
-    if (Injector.getOnBoarding() == true) {
-      NavigationService.replaceToNamed('register');
-    }
   }
 
   loadTheme() async {
     switchValue = await Injector.getTheme();
+    if (Injector.getOnBoarding() == true) {
+      if (Injector.getSignIn() == true) {
+        NavigationService.replaceToNamed('dashboard');
+      } else {
+        NavigationService.replaceToNamed('register');
+      }
+    }
     notifyListeners();
   }
 

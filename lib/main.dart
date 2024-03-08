@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           debugPrint(" BoolRef themeChange ${BoolRef.themeChange}");
           return MaterialApp(
-            initialRoute: 'dashboard',
+            initialRoute: '/',
             navigatorKey: NavigationService.navigatorKey,
             scaffoldMessengerKey: Toast.snackBarKey,
             debugShowCheckedModeBanner: false,

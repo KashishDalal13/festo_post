@@ -44,20 +44,14 @@ class RegisterView extends StatelessWidget {
               constraints: const BoxConstraints(maxHeight: 45),
               contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               hintText: StrRef.contact,
-              prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: SvgPicture.asset(SvgPath.phone),
-              ),
+              prefixIcon: Padding(padding: const EdgeInsets.symmetric(horizontal: 16.0), child: SvgPicture.asset(SvgPath.phone)),
               hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: BoolRef.themeChange ? ColorRef.greyC5C5C5 : ColorRef.grey929292),
               border: InputBorder.none,
             ),
           ),
         ),
         GestureDetector(
-          onTap: () {
-            //change index
-            provider.onVerify();
-          },
+          onTap: () => provider.onVerify(),
           child: Container(
             height: 40,
             margin: const EdgeInsets.symmetric(horizontal: 40),
