@@ -1,3 +1,4 @@
+import 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
 
@@ -5,8 +6,17 @@ import '../../../utils/routes.dart';
 
 class DashboardProvider extends ChangeNotifier {
   int _current = 0, eventIndex = 0, trendingIndex = 0;
+  late final List<String> selectedImageList;
+  late final String selectedLabel;
 
   int get current => _current;
+
+  final List<String> imgList = [
+    SvgPath.carousel,
+    SvgPath.carousel2,
+    SvgPath.carousel3
+    // Add more image URLs as needed
+  ];
 
   List<Map<String, dynamic>> addDate = [
     {
@@ -49,6 +59,7 @@ class DashboardProvider extends ChangeNotifier {
       "imageList": [SvgPath.bday1, SvgPath.bday2, SvgPath.bday1, SvgPath.bday1, SvgPath.bday1]
     },
   ];
+
   List<Map<String, dynamic>> addTrendingEvent = [
     {
       "label": "Shramdaan",
@@ -56,15 +67,15 @@ class DashboardProvider extends ChangeNotifier {
     },
     {
       "label": "Sports",
-      "imageList": [SvgPath.coffee1, SvgPath.coffee2, SvgPath.coffee3]
+      "imageList": [SvgPath.coffee1, SvgPath.coffee2, SvgPath.coffee1]
     },
     {
       "label": "Gold Medal",
-      "imageList": [SvgPath.bday1, SvgPath.bday2, SvgPath.bday3]
+      "imageList": [SvgPath.bday1, SvgPath.bday2, SvgPath.bday1]
     },
     {
       "label": "Politics",
-      "imageList": [SvgPath.bday1, SvgPath.bday2, SvgPath.bday3]
+      "imageList": [SvgPath.bday1, SvgPath.bday2, SvgPath.bday1]
     },
   ];
   List<Map<String, dynamic>> addSeasonOffers = [
@@ -118,15 +129,15 @@ class DashboardProvider extends ChangeNotifier {
     indicator(index);
   }
 
-  onViewAll({required int index}) {
-    if (index == 0) {
-      debugPrint(StrRef.navratri);
-    } else if (index == 1) {
-      debugPrint(StrRef.coffee);
-    } else if (index == 2) {
-      debugPrint(StrRef.birthday);
-    }
-  }
+  // onViewAll({required int index}) {
+  //   if (index == 0) {
+  //     addTodayEvent[index]["imageList"];
+  //   } else if (index == 1) {
+  //     debugPrint(StrRef.coffee);
+  //   } else if (index == 2) {
+  //     debugPrint(StrRef.birthday);
+  //   }
+  // }
 
   onSetting() {
     NavigationService.replaceToNamed('setting');
@@ -135,4 +146,28 @@ class DashboardProvider extends ChangeNotifier {
   onProfile() {
     NavigationService.replaceToNamed('profile');
   }
+
+  void onViewAll(BuildContext context, {required int index}) {
+    if (index == 0) {
+      selectedLabel = addTodayEvent[index]["label"];
+      selectedImageList = addTodayEvent[index]["imageList"].cast<String>();
+    } else if (index == 1) {
+      selectedLabel = addTodayEvent[index]["label"];
+      selectedImageList = addTodayEvent[index]["imageList"].cast<String>();
+    }
+    else if (index == 2) {
+      selectedLabel = addTodayEvent[index]["label"];
+      selectedImageList = addTodayEvent[index]["imageList"].cast<String>();
+    }
+    // Add more conditions for other indexes if needed
+
+    // Navigate to the next page and pass selectedImageList
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FrameEditorView(imageList: selectedImageList,label: selectedLabel),
+      ),
+    );
+  }
+
 }

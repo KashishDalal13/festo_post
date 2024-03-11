@@ -57,7 +57,8 @@ class StrRef {
       rewardPoints = "Referral & Reward Points",
       transaction = "Transactions",
       loopbots = "Loopbots Technology",
-      phnNo = "+91 92345 67890";
+      phnNo = "+91 92345 67890",
+      next = "Next";
 }
 
 class SvgPath {
@@ -87,6 +88,9 @@ class SvgPath {
       savePost = 'assets/svg/savePost.svg',
       rewardPoints = 'assets/svg/rewardPoints.svg',
       transaction = 'assets/svg/transaction.svg',
+      information = 'assets/svg/information.svg',
+      translation = 'assets/svg/translation.svg',
+
       carousel = 'assets/png/Carousel.png',
       carousel2 = 'assets/png/carousel2.png',
       carousel3 = 'assets/png/carousel3.png',
@@ -98,10 +102,8 @@ class SvgPath {
       navratri3 = 'assets/png/navratri3.png',
       coffee1 = 'assets/png/coffee1.png',
       coffee2 = 'assets/png/coffee2.png',
-      coffee3 = 'assets/png/coffee3.png',
       bday1 = 'assets/png/bday1.png',
       bday2 = 'assets/png/bday2.png',
-      bday3 = 'assets/png/bday3.png',
       trend1 = 'assets/png/trend1.png',
       trend2 = 'assets/png/trend2.png',
       trend3 = 'assets/png/trend3.png',
@@ -125,7 +127,8 @@ class SvgPath {
       RestPeace1 = 'assets/png/RestPeace1.png',
       RestPeace2 = 'assets/png/RestPeace2.png',
       RestPeace3 = 'assets/png/RestPeace3.png',
-      logo = 'assets/png/logo.png';
+      logo = 'assets/png/logo.png',
+      info = 'assets/png/info.png';
 }
 
 class StringRef {

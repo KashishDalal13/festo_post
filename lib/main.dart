@@ -1,4 +1,5 @@
 import 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
+import 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dart';
 import 'package:festo_post/shared/injector.dart';
 import 'package:festo_post/utils/bool.dart';
 import 'package:festo_post/utils/colors.dart';
@@ -10,6 +11,7 @@ import 'package:festo_post/widget/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'module/info_module/view/info_view.dart';
 import 'module/login_module/view/user_auth_view.dart';
 import 'module/on_boarding/on_boarding_view.dart';
 import 'module/profile_module/view/profile_view.dart';
@@ -31,6 +33,8 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  late final List<String> imageList;
+  late final String label;
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -51,6 +55,8 @@ class MyApp extends StatelessWidget {
               'dashboard': (context) => const dashboardView(),
               'setting': (context) => const SettingView(),
               'profile': (context) => const ProfileView(),
+              'frame': (context) =>  FrameEditorView(imageList: imageList, label: label,),
+              'info': (context) =>   InfoView(label: label),
             },
           );
         });
