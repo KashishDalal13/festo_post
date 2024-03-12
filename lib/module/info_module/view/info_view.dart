@@ -8,6 +8,7 @@ import '../../../utils/string.dart';
 
 class InfoView extends StatelessWidget {
   final String label;
+
   const InfoView({
     Key? key,
     required this.label,
@@ -24,53 +25,28 @@ class InfoView extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             resizeToAvoidBottomInset: false,
-            body: Column(
-              children: [
-                Stack(
-                  alignment: Alignment(0,1.05),
-                  children: [
-                    Stack(
-                      alignment: Alignment.topLeft,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(bottomRight: Radius.circular(30.0),bottomLeft: Radius.circular(30.0)),
-                            color: ColorRef.yellowFFA500,
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Stack(
+                    alignment: const Alignment(0, 1.15),
+                    children: [
+                      Stack(
+                        alignment: Alignment.topLeft,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                  bottomRight: Radius.circular(30.0),
+                                  bottomLeft: Radius.circular(30.0)),
+                              color: ColorRef.yellowFFA500,
+                            ),
+                            alignment: Alignment.center,
+                            child: Image.asset(
+                              SvgPath.info,
+                            ),
                           ),
-                          alignment: Alignment.center,
-                          child: Image.asset(
-                            SvgPath.info,                      ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            provider.onBack();
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            size: 24,
-                            color: BoolRef.themeChange
-                                ? ColorRef.white
-                                : ColorRef.black202020,
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    Container(color:ColorRef.blue1E2A38,child: Text("Button")),
-                  ],
-                ),
-               /* Expanded(
-                  flex: 1,
-                  child: Container(color: ColorRef.blue0250A4,
-                    child: Stack(
-                      children: [
-                        Image.asset(
-                          SvgPath.info,
-                        ),
-                        Positioned(
-                          top: 16,
-                          left: 10,
-                          child: IconButton(
+                          IconButton(
                             onPressed: () {
                               provider.onBack();
                             },
@@ -82,40 +58,180 @@ class InfoView extends StatelessWidget {
                                   : ColorRef.black202020,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(color: ColorRef.yellowFFEDCC,
-                    child: Stack(
-                      children: [
-                        Image.asset(
-                          SvgPath.info,
-                        ),
-                        Positioned(
-                          top: 16,
-                          left: 10,
-                          child: IconButton(
-                            onPressed: () {
-                              provider.onBack();
-                            },
-                            icon: Icon(
-                              Icons.arrow_back_ios_new_rounded,
-                              size: 24,
-                              color: BoolRef.themeChange
-                                  ? ColorRef.white
-                                  : ColorRef.black202020,
+                        ],
+                      ),
+                      Container(
+                        height: 50,
+                        width: 280,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: ColorRef.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(0, 1),
                             ),
+                          ],
+                        ),
+                        child: Text(
+                          label,
+                          style: TextStyle(
+                            fontFamily: 'Lato',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRef.blue0250A4,
                           ),
                         ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                    child: Column(
+                      children: [
+                        Text(
+                          StrRef.info,
+                          style: const TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'Lato',
+                              fontWeight: FontWeight.w400),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                thickness: 0.5,
+                                endIndent: 10,
+                                color: ColorRef.grey717171,
+                              ),
+                            ),
+                            Text(
+                              StrRef.tag,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Lato',
+                                  fontSize: 16,
+                                  color: ColorRef.blue0250A4),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Divider(
+                                thickness: 0.5, // Adjust thickness as needed
+                                color:
+                                    ColorRef.grey717171, // Adjust color as needed
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Stack(
+                          alignment: const Alignment(0.85, 1.70),
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: ColorRef.greyEDEDED, width: 2),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Text(
+                                  StrRef.hashtag,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'Lato',
+                                      fontSize: 14,
+                                      color: ColorRef.black505050),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: (){
+                                provider.copyToClipboard(StrRef.hashtag);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  // shape: BoxShape.circle,
+                                  borderRadius: BorderRadius.circular(50.0),
+                                  color: ColorRef.yellowFFA500,
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(20.0),
+                                  child: Icon(Icons.copy_outlined,size: 20,),
+                                ),
+                              ),
+                            )
+                          ],
+                        )
                       ],
                     ),
+                  )
+                  /* Expanded(
+                    flex: 1,
+                    child: Container(color: ColorRef.blue0250A4,
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            SvgPath.info,
+                          ),
+                          Positioned(
+                            top: 16,
+                            left: 10,
+                            child: IconButton(
+                              onPressed: () {
+                                provider.onBack();
+                              },
+                              icon: Icon(
+                                Icons.arrow_back_ios_new_rounded,
+                                size: 24,
+                                color: BoolRef.themeChange
+                                    ? ColorRef.white
+                                    : ColorRef.black202020,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),*/
-              ],
+                  Expanded(
+                    flex: 1,
+                    child: Container(color: ColorRef.yellowFFEDCC,
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            SvgPath.info,
+                          ),
+                          Positioned(
+                            top: 16,
+                            left: 10,
+                            child: IconButton(
+                              onPressed: () {
+                                provider.onBack();
+                              },
+                              icon: Icon(
+                                Icons.arrow_back_ios_new_rounded,
+                                size: 24,
+                                color: BoolRef.themeChange
+                                    ? ColorRef.white
+                                    : ColorRef.black202020,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),*/
+                ],
+              ),
             ),
           ),
         );
