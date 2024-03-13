@@ -1,6 +1,7 @@
 import 'package:festo_post/module/info_module/view/info_view.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/routes.dart';
+import '../../imageEdit_module/view/imageEdit_view.dart';
 
 class FrameEditorProvider extends ChangeNotifier {
   bool isImageSelected = true;
@@ -46,6 +47,15 @@ class FrameEditorProvider extends ChangeNotifier {
       context,
       MaterialPageRoute(
         builder: (context) => InfoView(label: label),
+      ),
+    );
+  }
+
+  void onNext(BuildContext context,final String label, String? selectedImage) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ImageEditView(label: label, selectedImage: selectedImage),
       ),
     );
   }

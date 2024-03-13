@@ -35,7 +35,7 @@ class SettingProvider extends ChangeNotifier{
     notifyListeners();
   }
   void onBack() {
-    NavigationService.replaceToNamed('dashboard');
+    NavigationService.goBack();
     notifyListeners();
   }
 

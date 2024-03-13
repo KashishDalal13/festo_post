@@ -93,6 +93,11 @@ class SvgPath {
       transaction = 'assets/svg/transaction.svg',
       information = 'assets/svg/information.svg',
       translation = 'assets/svg/translation.svg',
+      frameLogo = 'assets/svg/frame_logo.svg',
+      framePhone = 'assets/svg/frame_phone.svg',
+      frameEmail = 'assets/svg/frame_email.svg',
+      frameWeb = 'assets/svg/frame_web.svg',
+      frameLocation = 'assets/svg/frame_location.svg',
 
       carousel = 'assets/png/Carousel.png',
       carousel2 = 'assets/png/carousel2.png',
@@ -131,7 +136,11 @@ class SvgPath {
       RestPeace2 = 'assets/png/RestPeace2.png',
       RestPeace3 = 'assets/png/RestPeace3.png',
       logo = 'assets/png/logo.png',
-      info = 'assets/png/info.png';
+      info = 'assets/png/info.png',
+      contactDetail = 'assets/png/contactDetail.png',
+      mailDetail = 'assets/png/mailDetail.png',
+      webDetail = 'assets/png/webDetail.png',
+      locationDetail = 'assets/png/locationDetail.png';
 }
 
 class StringRef {

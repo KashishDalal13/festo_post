@@ -129,16 +129,6 @@ class DashboardProvider extends ChangeNotifier {
     indicator(index);
   }
 
-  // onViewAll({required int index}) {
-  //   if (index == 0) {
-  //     addTodayEvent[index]["imageList"];
-  //   } else if (index == 1) {
-  //     debugPrint(StrRef.coffee);
-  //   } else if (index == 2) {
-  //     debugPrint(StrRef.birthday);
-  //   }
-  // }
-
   onSetting() {
     NavigationService.replaceToNamed('setting');
   }

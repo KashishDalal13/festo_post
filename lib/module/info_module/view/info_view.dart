@@ -7,11 +7,11 @@ import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
 
 class InfoView extends StatelessWidget {
-  final String label;
+  String? label;
 
-  const InfoView({
+  InfoView({
     Key? key,
-    required this.label,
+    this.label,
   }) : super(key: key);
 
   @override
@@ -77,7 +77,7 @@ class InfoView extends StatelessWidget {
                           ],
                         ),
                         child: Text(
-                          label,
+                          label ?? "",
                           style: TextStyle(
                             fontFamily: 'Lato',
                             fontSize: 18,
@@ -89,8 +89,8 @@ class InfoView extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 40),
                     child: Column(
                       children: [
                         Text(
@@ -125,8 +125,8 @@ class InfoView extends StatelessWidget {
                             Expanded(
                               child: Divider(
                                 thickness: 0.5, // Adjust thickness as needed
-                                color:
-                                    ColorRef.grey717171, // Adjust color as needed
+                                color: ColorRef
+                                    .grey717171, // Adjust color as needed
                               ),
                             ),
                           ],
@@ -154,7 +154,7 @@ class InfoView extends StatelessWidget {
                               ),
                             ),
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 provider.copyToClipboard(StrRef.hashtag);
                               },
                               child: Container(
@@ -165,7 +165,10 @@ class InfoView extends StatelessWidget {
                                 ),
                                 child: const Padding(
                                   padding: EdgeInsets.all(20.0),
-                                  child: Icon(Icons.copy_outlined,size: 20,),
+                                  child: Icon(
+                                    Icons.copy_outlined,
+                                    size: 20,
+                                  ),
                                 ),
                               ),
                             )

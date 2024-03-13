@@ -4,7 +4,7 @@ import '../../../utils/routes.dart';
 
 class InfoProvider extends ChangeNotifier{
   void onBack() {
-    NavigationService.replaceToNamed('frame');
+    NavigationService.goBack();
   }
 
   void copyToClipboard(String text) {

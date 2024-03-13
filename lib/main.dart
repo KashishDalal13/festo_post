@@ -1,5 +1,6 @@
 import 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
 import 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dart';
+import 'package:festo_post/module/imageEdit_module/view/imageEdit_view.dart';
 import 'package:festo_post/shared/injector.dart';
 import 'package:festo_post/utils/bool.dart';
 import 'package:festo_post/utils/colors.dart';
@@ -33,8 +34,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  late final List<String> imageList;
-  late final String label;
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -47,7 +46,8 @@ class MyApp extends StatelessWidget {
             navigatorKey: NavigationService.navigatorKey,
             scaffoldMessengerKey: Toast.snackBarKey,
             debugShowCheckedModeBanner: false,
-            theme: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
+            theme:
+                BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
             // theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
             routes: {
               '/': (context) => const OnBoardingScreen(),
@@ -55,8 +55,9 @@ class MyApp extends StatelessWidget {
               'dashboard': (context) => const dashboardView(),
               'setting': (context) => const SettingView(),
               'profile': (context) => const ProfileView(),
-              'frame': (context) =>  FrameEditorView(imageList: imageList, label: label,),
-              'info': (context) =>   InfoView(label: label),
+              'frame': (context) => FrameEditorView(),
+              'info': (context) => InfoView(),
+              'imageEdit': (context) => ImageEditView(),
             },
           );
         });

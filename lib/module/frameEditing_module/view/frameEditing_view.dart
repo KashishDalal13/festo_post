@@ -8,14 +8,14 @@ import '../../../utils/string.dart';
 import '../provider/frameEditing_provider.dart';
 
 class FrameEditorView extends StatelessWidget {
-    FrameEditorView({
+  FrameEditorView({
     Key? key,
-    required this.imageList,
-    required this.label,
+    this.imageList,
+    this.label,
   }) : super(key: key);
 
-   late final List<String> imageList;
-  final String label;
+  List<String>? imageList;
+  String? label;
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +42,23 @@ class FrameEditorView extends StatelessWidget {
               ),
               centerTitle: true,
               title: Text(
-                label,
+                label ?? '',
                 style: const TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Lato',
-                  fontWeight: FontWeight.w400,
-                ),
+                    fontSize: 20,
+                    fontFamily: 'Lato',
+                    fontWeight: FontWeight.w400),
               ),
               actions: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    provider.onNext(
+                      context,
+                      label ?? '',
+                      provider.selectedImage != null
+                          ? provider.selectedImage!
+                          : imageList![0],
+                    );
+                  },
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
                     child: Text(
@@ -77,7 +84,7 @@ class FrameEditorView extends StatelessWidget {
                     child: Image.asset(
                       provider.selectedImage != null
                           ? provider.selectedImage!
-                          : imageList[0],
+                          : imageList![0],
                       height: 350,
                       width: 370,
                       fit: BoxFit.cover,
@@ -142,7 +149,9 @@ class FrameEditorView extends StatelessWidget {
                               child: Text(
                                 language,
                                 style: TextStyle(
-                                  color: language == 'All Languages' ? Colors.blue : null,
+                                  color: language == 'All Languages'
+                                      ? Colors.blue
+                                      : null,
                                   fontSize: 15,
                                   fontFamily: 'Lato',
                                 ),
@@ -159,10 +168,11 @@ class FrameEditorView extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       const SizedBox(width: 10),
                       GestureDetector(
-                        onTap: () {provider.onInfo(context,label);},
+                        onTap: () {
+                          provider.onInfo(context, label ?? '');
+                        },
                         child: Container(
                           height: 20,
                           width: 20,
@@ -174,12 +184,12 @@ class FrameEditorView extends StatelessWidget {
                   const SizedBox(height: 10),
                   if (provider.isImageSelected)
                     SizedBox(
-                      height:250,
+                      height: 250,
                       child: GridView.count(
                         crossAxisCount: 3,
                         mainAxisSpacing: 10.0,
                         crossAxisSpacing: 10.0,
-                        children: imageList.map((image) {
+                        children: imageList!.map((image) {
                           return GestureDetector(
                             onTap: () {
                               provider.setSelectedImage(image);

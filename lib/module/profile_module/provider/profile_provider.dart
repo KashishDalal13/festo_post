@@ -16,7 +16,7 @@ class ProfileProvider extends ChangeNotifier{
   ];
 
   onBack() {
-    NavigationService.replaceToNamed('dashboard');
+    NavigationService.goBack();
   }
 
 }
