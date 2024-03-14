@@ -61,9 +61,9 @@ class ImageEditView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 350,
-                    width: 370,
+                  GestureDetector(
+                    onScaleStart: (details) => provider.onScaleStart(details),
+                    onScaleUpdate: (details) => provider.onScaleUpdate(details, height, width),
                     child: Stack(
                       children: [
                         Container(
@@ -80,13 +80,18 @@ class ImageEditView extends StatelessWidget {
                             int index = provider.frameDetails.indexOf(e);
                             if (e["show"] == true) {
                               return Positioned(
-                                top: e['top'].toDouble(), // Convert int to double
-                                left: e['left'].toDouble(), // Convert int to double
-                                child: GestureDetector(
-                                  onPanUpdate: (details) {
-                                    provider.onPanUpdate(details, width, height, index, context);
-                                  },
-                                  child: Image.asset(e['add']),
+                                top: e['position'].dy * 350, // Convert int to double
+                                left: e['position'].dx * 370, // Convert int to double
+                                child: Transform.scale(
+                                  scale: e['scale'],
+                                  child: Transform.rotate(
+                                    angle: e['rotation'],
+                                    child: Listener(
+                                      onPointerDown: (details) => provider.onPointerDown(details, e),
+                                      onPointerUp: (details) => provider.onPointerUp(),
+                                      child: Image.asset(e['add']),
+                                    ),
+                                  ),
                                 ),
                               );
                             } else {
