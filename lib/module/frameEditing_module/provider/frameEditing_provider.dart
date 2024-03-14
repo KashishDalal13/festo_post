@@ -8,13 +8,7 @@ class FrameEditorProvider extends ChangeNotifier {
   bool isVideoSelected = false;
   String? selectedImage;
 
-  List<String> languages = [
-    'All Languages',
-    'English',
-    'Hindi',
-    'Gujarati',
-    'Marathi'
-  ];
+  List<String> languages = ['All Languages', 'English', 'Hindi', 'Gujarati', 'Marathi'];
   String selectedLanguage = 'English';
 
   void toggleSelection(bool isImage) {
@@ -42,7 +36,7 @@ class FrameEditorProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onInfo(BuildContext context,final String label) {
+  void onInfo(BuildContext context, final String label) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -51,7 +45,7 @@ class FrameEditorProvider extends ChangeNotifier {
     );
   }
 
-  void onNext(BuildContext context,final String label, String? selectedImage) {
+  void onNext(BuildContext context, final String label, String? selectedImage) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -59,5 +53,4 @@ class FrameEditorProvider extends ChangeNotifier {
       ),
     );
   }
-
 }

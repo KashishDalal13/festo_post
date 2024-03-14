@@ -35,18 +35,13 @@ class FrameEditorView extends StatelessWidget {
                 icon: Icon(
                   Icons.arrow_back_ios_new_rounded,
                   size: 24,
-                  color: BoolRef.themeChange
-                      ? ColorRef.white
-                      : ColorRef.black202020,
+                  color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020,
                 ),
               ),
               centerTitle: true,
               title: Text(
                 label ?? '',
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'Lato',
-                    fontWeight: FontWeight.w400),
+                style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400),
               ),
               actions: [
                 GestureDetector(
@@ -54,9 +49,7 @@ class FrameEditorView extends StatelessWidget {
                     provider.onNext(
                       context,
                       label ?? '',
-                      provider.selectedImage != null
-                          ? provider.selectedImage!
-                          : imageList![0],
+                      provider.selectedImage != null ? provider.selectedImage! : imageList![0],
                     );
                   },
                   child: Container(
@@ -82,9 +75,7 @@ class FrameEditorView extends StatelessWidget {
                   Container(
                     alignment: Alignment.center,
                     child: Image.asset(
-                      provider.selectedImage != null
-                          ? provider.selectedImage!
-                          : imageList![0],
+                      provider.selectedImage != null ? provider.selectedImage! : imageList![0],
                       height: 350,
                       width: 370,
                       fit: BoxFit.cover,
@@ -102,9 +93,7 @@ class FrameEditorView extends StatelessWidget {
                           width: 80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: provider.isImageSelected
-                                ? ColorRef.yellowFFA500
-                                : ColorRef.greyEDEDED,
+                            color: provider.isImageSelected ? ColorRef.yellowFFA500 : ColorRef.greyEDEDED,
                           ),
                           child: const Center(
                             child: Text("Image"),
@@ -125,9 +114,7 @@ class FrameEditorView extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: provider.isVideoSelected
-                                ? ColorRef.yellowFFA500
-                                : ColorRef.greyEDEDED,
+                            color: provider.isVideoSelected ? ColorRef.yellowFFA500 : ColorRef.greyEDEDED,
                           ),
                           child: const Center(
                             child: Text("Videos"),
@@ -149,9 +136,7 @@ class FrameEditorView extends StatelessWidget {
                               child: Text(
                                 language,
                                 style: TextStyle(
-                                  color: language == 'All Languages'
-                                      ? Colors.blue
-                                      : null,
+                                  color: language == 'All Languages' ? Colors.blue : null,
                                   fontSize: 15,
                                   fontFamily: 'Lato',
                                 ),
