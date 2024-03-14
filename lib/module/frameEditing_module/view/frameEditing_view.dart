@@ -49,8 +49,8 @@ class FrameEditorView extends StatelessWidget {
                     fontWeight: FontWeight.w400),
               ),
               actions: [
-                GestureDetector(
-                  onTap: () {
+                TextButton(
+                  onPressed: () {
                     provider.onNext(
                       context,
                       label ?? '',

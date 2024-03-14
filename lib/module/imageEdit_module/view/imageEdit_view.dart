@@ -49,9 +49,10 @@ class ImageEditView extends StatelessWidget {
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w400)),
               actions: [
-                IconButton(
+                TextButton(
                   onPressed: () {},
-                  icon: Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
+                  child:
+                      Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
                 ),
               ],
             ),
@@ -72,15 +73,17 @@ class ImageEditView extends StatelessWidget {
                         ),
                       ),
                       ...provider.frameDetails.map(
-                            (e) {
+                        (e) {
                           int index = provider.frameDetails.indexOf(e);
                           if (e["show"] == true) {
                             return Positioned(
                               top: e['top'].toDouble(), // Convert int to double
-                              left: e['left'].toDouble(), // Convert int to double
+                              left:
+                                  e['left'].toDouble(), // Convert int to double
                               child: GestureDetector(
                                 onPanUpdate: (details) {
-                                  provider.onPanUpdate(details, width, height, index);
+                                  provider.onPanUpdate(
+                                      details, width, height, index);
                                 },
                                 child: Image.asset(e['add']),
                               ),
@@ -92,9 +95,6 @@ class ImageEditView extends StatelessWidget {
                       ),
                     ],
                   ),
-
-
-
                   SizedBox(
                     height: 150,
                     child: ListView.separated(
