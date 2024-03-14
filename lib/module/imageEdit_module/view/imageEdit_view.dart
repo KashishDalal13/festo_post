@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import '../../../utils/bool.dart';
 import '../../../utils/colors.dart';
-import '../../../utils/string.dart';
 
 class ImageEditView extends StatelessWidget {
   ImageEditView({
@@ -71,7 +70,6 @@ class ImageEditView extends StatelessWidget {
                         ),
                         ...provider.frameDetails.map(
                           (e) {
-                            int index = provider.frameDetails.indexOf(e);
                             if (e["show"] == true) {
                               return Positioned(
                                 top: e['top'].toDouble(), // Convert int to double

@@ -62,7 +62,6 @@ class ImageEditProvider extends ChangeNotifier {
   ];
   Map<String, dynamic> activeItem = {};
   bool inAction = false;
-  Offset? initPos, currentPos;
   double? currentScale, currentRotation;
 
   void frameDetailsdisplay({required int index}) {
@@ -106,16 +105,12 @@ class ImageEditProvider extends ChangeNotifier {
     inAction = true;
     activeItem = data;
     debugPrint("$activeItem");
-    initPos = details.position;
-    currentPos = data['position'];
     currentScale = data['scale'];
     currentRotation = data['rotation'];
     notifyListeners();
   }
 
   onScaleStart(details) {
-    initPos = details.focalPoint;
-    currentPos = activeItem['position'];
     currentScale = activeItem['scale'];
     currentRotation = activeItem['rotation'];
     notifyListeners();
