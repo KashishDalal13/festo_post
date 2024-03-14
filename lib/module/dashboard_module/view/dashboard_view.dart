@@ -49,7 +49,12 @@ class dashboardView extends StatelessWidget {
                 CarouselSlider(
                   items: imgList.map((url) => Padding(padding: const EdgeInsets.symmetric(horizontal: 15), child: Image.asset(SvgPath.carousel))).toList(),
                   options: CarouselOptions(
-                      onPageChanged: (index, reason) => provider.onPageChanged(index), initialPage: 0, enableInfiniteScroll: true, viewportFraction: 1, height: 160, padEnds: true),
+                      onPageChanged: (index, reason) => provider.onPageChanged(index),
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      viewportFraction: 1,
+                      height: 160,
+                      padEnds: true),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -317,7 +322,7 @@ class dashboardView extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                          height: 20
                       ),
                       ListView.separated(
                         scrollDirection: Axis.vertical,
