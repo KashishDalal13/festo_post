@@ -14,13 +14,7 @@ class dashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    final List<String> imgList = [
-      'https://example.com/image1.jpg',
-      'https://example.com/image2.jpg',
-      'https://example.com/image3.jpg',
-      // Add more image URLs as needed
-    ];
-    final CarouselController _controller = CarouselController();
+
     return ChangeNotifierProvider(
       create: (BuildContext context) => DashboardProvider(),
       builder: (context, child) {
@@ -31,15 +25,28 @@ class dashboardView extends StatelessWidget {
               backgroundColor: ColorRef.white,
               surfaceTintColor: ColorRef.white,
               leading: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.menu, size: 24, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020),
+                onPressed: () {
+                  provider.onSetting();
+                },
+                icon: Icon(Icons.menu,
+                    size: 24,
+                    color: BoolRef.themeChange
+                        ? ColorRef.white
+                        : ColorRef.black202020),
               ),
               centerTitle: true,
-              title: Text(StrRef.registerTitle2, style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
+              title: Text(StrRef.registerTitle2,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.w400)),
               actions: [
                 IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(SvgPath.profile, width: 24, height: 24),
+                  onPressed: () {
+                    provider.onProfile();
+                  },
+                  icon:
+                      SvgPicture.asset(SvgPath.profile, width: 24, height: 24),
                 ),
               ],
             ),
@@ -47,26 +54,37 @@ class dashboardView extends StatelessWidget {
             body: ListView(
               children: [
                 CarouselSlider(
-                  items: imgList.map((url) => Padding(padding: const EdgeInsets.symmetric(horizontal: 15), child: Image.asset(SvgPath.carousel))).toList(),
+                  items: provider.imgList
+                      .map((url) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Image.asset(
+                                url), // Assuming url contains path to images
+                          ))
+                      .toList(),
                   options: CarouselOptions(
-                      onPageChanged: (index, reason) => provider.onPageChanged(index),
-                      initialPage: 0,
-                      enableInfiniteScroll: true,
-                      viewportFraction: 1,
-                      height: 160,
-                      padEnds: true),
+                    onPageChanged: (index, reason) =>
+                        provider.onPageChanged(index),
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    viewportFraction: 1,
+                    height: 160,
+                    padEnds: true,
+                  ),
                 ),
+                const SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: imgList.map((url) {
-                    int index = imgList.indexOf(url);
+                  children: provider.imgList.map((url) {
+                    int index = provider.imgList.indexOf(url);
                     return Container(
                       width: 8,
                       height: 8,
                       margin: const EdgeInsets.symmetric(horizontal: 2.0),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: index == provider.current ? ColorRef.yellowFFA500 : ColorRef.greyEDEDED,
+                        color: index == provider.current
+                            ? ColorRef.yellowFFA500
+                            : ColorRef.greyEDEDED,
                       ),
                     );
                   }).toList(),
@@ -80,8 +98,17 @@ class dashboardView extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(StrRef.upcomingEvents, style: const TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 16)),
-                          Text(StrRef.viewAll, style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: ColorRef.blue0250A4)),
+                          Text(StrRef.upcomingEvents,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Lato',
+                                  fontSize: 16)),
+                          Text(StrRef.viewAll,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Lato',
+                                  fontSize: 13,
+                                  color: ColorRef.blue0250A4)),
                         ],
                       ),
                       SizedBox(
@@ -103,7 +130,9 @@ class dashboardView extends StatelessWidget {
                                     width: 60,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
-                                      color: index == provider.eventIndex ? ColorRef.yellowFFA500 : ColorRef.yellowFFEDCC,
+                                      color: index == provider.eventIndex
+                                          ? ColorRef.yellowFFA500
+                                          : ColorRef.yellowFFEDCC,
                                     ),
                                     child: Center(
                                       child: Text(
@@ -126,9 +155,13 @@ class dashboardView extends StatelessWidget {
                         child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
-                            itemCount: provider.addDate[provider.eventIndex]['imageList'].length,
+                            itemCount: provider
+                                .addDate[provider.eventIndex]['imageList']
+                                .length,
                             itemBuilder: (context, index) {
-                              return Image.asset(provider.addDate[provider.eventIndex]['imageList'][index]);
+                              return Image.asset(
+                                  provider.addDate[provider.eventIndex]
+                                      ['imageList'][index]);
                             },
                             separatorBuilder: (context, index) {
                               return const SizedBox(width: 5);
@@ -142,7 +175,8 @@ class dashboardView extends StatelessWidget {
                             Expanded(
                               child: Divider(
                                 thickness: 1, // Adjust thickness as needed
-                                color: ColorRef.grey717171, // Adjust color as needed
+                                color: ColorRef
+                                    .grey717171, // Adjust color as needed
                               ),
                             ),
                             Text(
@@ -153,11 +187,13 @@ class dashboardView extends StatelessWidget {
                                 fontSize: 16,
                               ),
                             ),
-                            const SizedBox(width: 10), // Adjust the width as needed
+                            const SizedBox(width: 10),
+                            // Adjust the width as needed
                             Expanded(
                               child: Divider(
                                 thickness: 1, // Adjust thickness as needed
-                                color: ColorRef.grey717171, // Adjust color as needed
+                                color: ColorRef
+                                    .grey717171, // Adjust color as needed
                               ),
                             ),
                           ],
@@ -172,15 +208,29 @@ class dashboardView extends StatelessWidget {
                           return Column(
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     provider.addTodayEvent[index]['label'],
-                                    style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.brownBE7B00, fontSize: 15),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'Lato',
+                                        color: ColorRef.brownBE7B00,
+                                        fontSize: 15),
                                   ),
-                                  Text(
-                                    StrRef.viewAll,
-                                    style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: ColorRef.blue0250A4),
+                                  GestureDetector(
+                                    onTap: () {
+                                      provider.onViewAll(context, index: index);
+                                    },
+                                    child: Text(
+                                      StrRef.viewAll,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: 'Lato',
+                                          fontSize: 13,
+                                          color: ColorRef.blue0250A4),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -188,11 +238,19 @@ class dashboardView extends StatelessWidget {
                                 height: 120,
                                 margin: const EdgeInsets.only(top: 8, bottom: 16),
                                 child: ListView.separated(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: provider.addTodayEvent[index]['imageList'].length,
-                                    itemBuilder: (context, innerIndex) => Image.asset(provider.addTodayEvent[index]['imageList'][innerIndex]),
-                                    separatorBuilder: (context, index) => const SizedBox(width: 8)),
-                              ),
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: provider.addTodayEvent[index]['imageList'].length,
+                                  itemBuilder: (context, innerIndex) => ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset(
+                                      provider.addTodayEvent[index]['imageList'][innerIndex],
+                                      fit: BoxFit.cover, // Adjust image fit as needed
+                                    ),
+                                  ),
+                                  separatorBuilder: (context, index) => const SizedBox(width: 8),
+                                ),
+                              )
+
                             ],
                           );
                         },
@@ -203,11 +261,18 @@ class dashboardView extends StatelessWidget {
                         children: [
                           Text(
                             StrRef.trending,
-                            style: const TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 15),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Lato',
+                                fontSize: 15),
                           ),
                           Text(
                             StrRef.viewAll,
-                            style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: ColorRef.blue0250A4),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Lato',
+                                fontSize: 13,
+                                color: ColorRef.blue0250A4),
                           ),
                         ],
                       ),
@@ -227,14 +292,18 @@ class dashboardView extends StatelessWidget {
                                   child: Container(
                                     height: 30,
                                     width: 100,
-                                    margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 8),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
-                                      color: index == provider.trendingIndex ? ColorRef.yellowFFA500 : ColorRef.yellowFFEDCC,
+                                      color: index == provider.trendingIndex
+                                          ? ColorRef.yellowFFA500
+                                          : ColorRef.yellowFFEDCC,
                                     ),
                                     child: Center(
                                       child: Text(
-                                        provider.addTrendingEvent[index]['label'],
+                                        provider.addTrendingEvent[index]
+                                            ['label'],
                                       ),
                                     ),
                                   ),
@@ -256,9 +325,14 @@ class dashboardView extends StatelessWidget {
                         child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
-                            itemCount: provider.addTrendingEvent[provider.trendingIndex]['imageList'].length,
+                            itemCount: provider
+                                .addTrendingEvent[provider.trendingIndex]
+                                    ['imageList']
+                                .length,
                             itemBuilder: (context, index) {
-                              return Image.asset(provider.addTrendingEvent[provider.trendingIndex]['imageList'][index]);
+                              return Image.asset(provider
+                                      .addTrendingEvent[provider.trendingIndex]
+                                  ['imageList'][index]);
                             },
                             separatorBuilder: (context, index) {
                               return const SizedBox(width: 15);
@@ -272,7 +346,8 @@ class dashboardView extends StatelessWidget {
                             child: Divider(
                               endIndent: 15.0,
                               thickness: 1, // Adjust thickness as needed
-                              color: ColorRef.grey717171, // Adjust color as needed
+                              color:
+                                  ColorRef.grey717171, // Adjust color as needed
                             ),
                           ),
                           Center(
@@ -289,7 +364,8 @@ class dashboardView extends StatelessWidget {
                             child: Divider(
                               indent: 8.0,
                               thickness: 1, // Adjust thickness as needed
-                              color: ColorRef.grey717171, // Adjust color as needed
+                              color:
+                                  ColorRef.grey717171, // Adjust color as needed
                             ),
                           ),
                         ],
@@ -305,9 +381,11 @@ class dashboardView extends StatelessWidget {
                             return Column(
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 1),
                                   child: Image.asset(
-                                    provider.addSeasonOffers[index]["imageList"],
+                                    provider.addSeasonOffers[index]
+                                        ["imageList"],
                                     height: 70,
                                     width: 70,
                                   ),
@@ -322,7 +400,7 @@ class dashboardView extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                          height: 20
+                        height: 20,
                       ),
                       ListView.separated(
                         scrollDirection: Axis.vertical,
@@ -333,31 +411,47 @@ class dashboardView extends StatelessWidget {
                           return Column(
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     provider.addCategoryOffer[index]['label'],
-                                    style: const TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 15),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'Lato',
+                                        fontSize: 15),
                                   ),
                                   Text(
                                     StrRef.viewAll,
-                                    style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: ColorRef.blue0250A4),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: 'Lato',
+                                        fontSize: 13,
+                                        color: ColorRef.blue0250A4),
                                   ),
                                 ],
                               ),
                               SizedBox(
                                 height: 110,
                                 child: ListView.separated(
-                                    padding: const EdgeInsets.symmetric(vertical: 5),
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5),
                                     scrollDirection: Axis.horizontal,
-                                    itemCount: provider.addCategoryOffer[index]['imageList'].length,
-                                    itemBuilder: (context, innerIndex) => Image.asset(provider.addCategoryOffer[index]['imageList'][innerIndex]),
-                                    separatorBuilder: (context, index) => const SizedBox(width: 10)),
+                                    itemCount: provider
+                                        .addCategoryOffer[index]['imageList']
+                                        .length,
+                                    itemBuilder: (context, innerIndex) =>
+                                        Image.asset(
+                                            provider.addCategoryOffer[index]
+                                                ['imageList'][innerIndex]),
+                                    separatorBuilder: (context, index) =>
+                                        const SizedBox(width: 10)),
                               ),
                             ],
                           );
                         },
-                        separatorBuilder: (context, index) => const SizedBox(height: 10),
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 10),
                       ),
                     ],
                   ),

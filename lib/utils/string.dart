@@ -57,7 +57,11 @@ class StrRef {
       rewardPoints = "Referral & Reward Points",
       transaction = "Transactions",
       loopbots = "Loopbots Technology",
-      phnNo = "+91 92345 67890";
+      phnNo = "+91 92345 67890",
+      next = "Next",
+      info = "Navratri, a nine-night Hindu festival, is celebrated across India in honor of Goddess Durga. Devotees fast, pray, and engage in lively Garba and Dandiya Raas dances set to traditional music. Colorful decorations, floral arrangements, and rangoli designs adorn homes and temples. Navratri fosters community, family gatherings, and a deep connection to cultural traditions. It concludes with Dussehra, symbolizing the triumph of good over evil.",
+      tag="Tags For post",
+      hashtag="#NineNightsOfCelebration #CulturalHeritage #Devotion #NavratriNights #SpiritualJourney #GoodOverEvil #DurgaPuja #FestivalVibes #DanceToTheRhythm #ColorfulCelebration #CulturalDiversity #DivineBlessings #HarvestFestival #RitualsAndTraditions #NavratriFever#FolkMusic #DanceCelebration #SpiritualJourney";
 }
 
 class SvgPath {
@@ -87,7 +91,17 @@ class SvgPath {
       savePost = 'assets/svg/savePost.svg',
       rewardPoints = 'assets/svg/rewardPoints.svg',
       transaction = 'assets/svg/transaction.svg',
+      information = 'assets/svg/information.svg',
+      translation = 'assets/svg/translation.svg',
+      frameLogo = 'assets/svg/frame_logo.svg',
+      framePhone = 'assets/svg/frame_phone.svg',
+      frameEmail = 'assets/svg/frame_email.svg',
+      frameWeb = 'assets/svg/frame_web.svg',
+      frameLocation = 'assets/svg/frame_location.svg',
+
       carousel = 'assets/png/Carousel.png',
+      carousel2 = 'assets/png/carousel2.png',
+      carousel3 = 'assets/png/carousel3.png',
       upcoming1 = 'assets/png/upcoming1.png',
       upcoming2 = 'assets/png/upcoming2.png',
       upcoming3 = 'assets/png/upcoming3.png',
@@ -96,10 +110,8 @@ class SvgPath {
       navratri3 = 'assets/png/navratri3.png',
       coffee1 = 'assets/png/coffee1.png',
       coffee2 = 'assets/png/coffee2.png',
-      coffee3 = 'assets/png/coffee3.png',
       bday1 = 'assets/png/bday1.png',
       bday2 = 'assets/png/bday2.png',
-      bday3 = 'assets/png/bday3.png',
       trend1 = 'assets/png/trend1.png',
       trend2 = 'assets/png/trend2.png',
       trend3 = 'assets/png/trend3.png',
@@ -123,7 +135,12 @@ class SvgPath {
       RestPeace1 = 'assets/png/RestPeace1.png',
       RestPeace2 = 'assets/png/RestPeace2.png',
       RestPeace3 = 'assets/png/RestPeace3.png',
-      logo = 'assets/png/logo.png';
+      logo = 'assets/png/logo.png',
+      info = 'assets/png/info.png',
+      contactDetail = 'assets/png/contactDetail.png',
+      mailDetail = 'assets/png/mailDetail.png',
+      webDetail = 'assets/png/webDetail.png',
+      locationDetail = 'assets/png/locationDetail.png';
 }
 
 class StringRef {

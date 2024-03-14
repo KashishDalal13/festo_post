@@ -25,26 +25,15 @@ class OnBoardingScreen extends StatelessWidget {
           child: Scaffold(
             body: Column(
               children: [
-                Row(
-                  children: [
-                    Switch(
-                      value: BoolRef.themeChange,
-                      onChanged: (newValue) {
-                        // provider.toggleTheme(val: newValue);
-                        // settings.toggleTheme(switchVal: newValue);
-                      },
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () => provider.onSkip(),
+                    child: Text(
+                      provider.introIndex == 2 ? "" : StrRef.skip,
+                      style: TextStyle(color: BoolRef.themeChange ? ColorRef.white : ColorRef.grey5c5c5c, fontSize: 15, fontFamily: 'Lato'),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () => provider.onSkip(),
-                        child: Text(
-                          provider.introIndex == 2 ? "" : StrRef.skip,
-                          style: TextStyle(color: BoolRef.themeChange ? ColorRef.white : ColorRef.grey5c5c5c, fontSize: 15, fontFamily: 'Lato'),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 Container(
                   // color: Colors.yellow,
