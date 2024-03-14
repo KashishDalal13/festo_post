@@ -46,8 +46,7 @@ class MyApp extends StatelessWidget {
             navigatorKey: NavigationService.navigatorKey,
             scaffoldMessengerKey: Toast.snackBarKey,
             debugShowCheckedModeBanner: false,
-            theme:
-                BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
+            theme: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
             // theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
             routes: {
               '/': (context) => const OnBoardingScreen(),

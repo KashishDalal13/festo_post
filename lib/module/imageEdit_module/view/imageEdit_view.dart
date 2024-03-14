@@ -78,12 +78,10 @@ class ImageEditView extends StatelessWidget {
                           if (e["show"] == true) {
                             return Positioned(
                               top: e['top'].toDouble(), // Convert int to double
-                              left:
-                                  e['left'].toDouble(), // Convert int to double
+                              left: e['left'].toDouble(), // Convert int to double
                               child: GestureDetector(
                                 onPanUpdate: (details) {
-                                  provider.onPanUpdate(
-                                      details, width, height, index);
+                                  provider.onPanUpdate(details, width, height, index, context);
                                 },
                                 child: Image.asset(e['add']),
                               ),
@@ -110,8 +108,7 @@ class ImageEditView extends StatelessWidget {
                                 provider.frameDetailsdisplay(index: index);
                               },
                               child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 20),
+                                margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
                                 // height: 50,
                                 // width: 50,
                                 decoration: BoxDecoration(
