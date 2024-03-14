@@ -22,11 +22,25 @@ class ImageEditProvider extends ChangeNotifier {
   }
 
   onPanUpdate(details, double width, double height, int index, BuildContext context) {
-    frameDetails[index]['left'] += details.delta.dx;
-    frameDetails[index]['top'] += details.delta.dy;
-    debugPrint("$height $width ${height / 1.3 } $details");
-    frameDetails[index]['left'] = (frameDetails[index]['left'] as double).clamp(2, width - (width / 3));
-    frameDetails[index]['top'] = (frameDetails[index]['top'] as double).clamp(2, height - (height / 1.85));
+    double h = 0, w = 0;
+    if (height < 750 && width < 370) {
+      debugPrint("Small device");
+      h = height / 1.85;
+      w = width / 3.2;
+    } else if (height < 800 && width < 370) {
+      debugPrint("Medium device");
+      h = height / 1.96;
+      w = width / 3.2;
+    } else if (height > 800 && width > 370) {
+      debugPrint("Large device");
+      h = height / 2.26;
+      w = width / 3.66;
+    }
+    frameDetails[index]['left'] += (details.delta.dx);
+    frameDetails[index]['top'] += (details.delta.dy);
+    debugPrint("$height $width ${height / 1.3} $details");
+    frameDetails[index]['left'] = (frameDetails[index]['left'] as double).clamp(2, width - w);
+    frameDetails[index]['top'] = (frameDetails[index]['top'] as double).clamp(2, height - h);
     notifyListeners();
   }
 

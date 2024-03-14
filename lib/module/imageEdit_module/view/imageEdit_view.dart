@@ -55,37 +55,41 @@ class ImageEditView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Column(
                 children: [
-                  Stack(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        child: Image.asset(
-                          selectedImage ?? "",
-                          height: 350,
-                          width: 370,
-                          fit: BoxFit.cover,
+                  SizedBox(
+                    height: 350,
+                    width: 370,
+                    child: Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            selectedImage ?? "",
+                            height: 350,
+                            width: 370,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      ...provider.frameDetails.map(
-                        (e) {
-                          int index = provider.frameDetails.indexOf(e);
-                          if (e["show"] == true) {
-                            return Positioned(
-                              top: e['top'].toDouble(), // Convert int to double
-                              left: e['left'].toDouble(), // Convert int to double
-                              child: GestureDetector(
-                                onPanUpdate: (details) {
-                                  provider.onPanUpdate(details, width, height, index, context);
-                                },
-                                child: Image.asset(e['add']),
-                              ),
-                            );
-                          } else {
-                            return const SizedBox();
-                          }
-                        },
-                      ),
-                    ],
+                        ...provider.frameDetails.map(
+                          (e) {
+                            int index = provider.frameDetails.indexOf(e);
+                            if (e["show"] == true) {
+                              return Positioned(
+                                top: e['top'].toDouble(), // Convert int to double
+                                left: e['left'].toDouble(), // Convert int to double
+                                child: GestureDetector(
+                                  onPanUpdate: (details) {
+                                    provider.onPanUpdate(details, width, height, index, context);
+                                  },
+                                  child: Image.asset(e['add']),
+                                ),
+                              );
+                            } else {
+                              return const SizedBox();
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 150,
