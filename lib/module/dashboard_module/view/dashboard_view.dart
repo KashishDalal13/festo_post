@@ -94,7 +94,7 @@ class dashboardView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -103,12 +103,18 @@ class dashboardView extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   fontFamily: 'Lato',
                                   fontSize: 16)),
-                          Text(StrRef.viewAll,
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              StrRef.viewAll,
                               style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Lato',
-                                  fontSize: 13,
-                                  color: ColorRef.blue0250A4)),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Lato',
+                                fontSize: 13,
+                                color: ColorRef.blue0250A4,
+                              ),
+                            ),
+                          )
                         ],
                       ),
                       SizedBox(
@@ -151,7 +157,7 @@ class dashboardView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 80,
+                        height: 70,
                         child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
@@ -219,8 +225,8 @@ class dashboardView extends StatelessWidget {
                                         color: ColorRef.brownBE7B00,
                                         fontSize: 15),
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
+                                  TextButton(
+                                    onPressed: () {
                                       provider.onViewAll(context, index: index);
                                     },
                                     child: Text(
@@ -236,26 +242,31 @@ class dashboardView extends StatelessWidget {
                               ),
                               Container(
                                 height: 120,
-                                margin: const EdgeInsets.only(top: 8, bottom: 16),
+                                margin:
+                                    const EdgeInsets.only(top: 8, bottom: 10),
                                 child: ListView.separated(
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: provider.addTodayEvent[index]['imageList'].length,
-                                  itemBuilder: (context, innerIndex) => ClipRRect(
+                                  itemCount: provider
+                                      .addTodayEvent[index]['imageList'].length,
+                                  itemBuilder: (context, innerIndex) =>
+                                      ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.asset(
-                                      provider.addTodayEvent[index]['imageList'][innerIndex],
-                                      fit: BoxFit.cover, // Adjust image fit as needed
+                                      provider.addTodayEvent[index]['imageList']
+                                          [innerIndex],
+                                      fit: BoxFit
+                                          .cover, // Adjust image fit as needed
                                     ),
                                   ),
-                                  separatorBuilder: (context, index) => const SizedBox(width: 8),
+                                  separatorBuilder: (context, index) =>
+                                      const SizedBox(width: 8),
                                 ),
                               )
-
                             ],
                           );
                         },
                       ),
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -266,14 +277,18 @@ class dashboardView extends StatelessWidget {
                                 fontFamily: 'Lato',
                                 fontSize: 15),
                           ),
-                          Text(
-                            StrRef.viewAll,
-                            style: TextStyle(
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              StrRef.viewAll,
+                              style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontFamily: 'Lato',
                                 fontSize: 13,
-                                color: ColorRef.blue0250A4),
-                          ),
+                                color: ColorRef.blue0250A4,
+                              ),
+                            ),
+                          )
                         ],
                       ),
                       SizedBox(
@@ -400,7 +415,7 @@ class dashboardView extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       ListView.separated(
                         scrollDirection: Axis.vertical,
@@ -421,14 +436,18 @@ class dashboardView extends StatelessWidget {
                                         fontFamily: 'Lato',
                                         fontSize: 15),
                                   ),
-                                  Text(
-                                    StrRef.viewAll,
-                                    style: TextStyle(
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      StrRef.viewAll,
+                                      style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontFamily: 'Lato',
                                         fontSize: 13,
-                                        color: ColorRef.blue0250A4),
-                                  ),
+                                        color: ColorRef.blue0250A4,
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                               SizedBox(

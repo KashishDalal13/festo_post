@@ -26,7 +26,6 @@ class ImageEditView extends StatelessWidget {
       builder: (context, child) {
         ImageEditProvider provider = context.watch<ImageEditProvider>();
         return SafeArea(
-          bottom: true,
           child: Scaffold(
             appBar: AppBar(
               backgroundColor: ColorRef.white,
@@ -36,15 +35,22 @@ class ImageEditView extends StatelessWidget {
                 icon: Icon(
                   Icons.arrow_back_ios_new_rounded,
                   size: 24,
-                  color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020,
+                  color: BoolRef.themeChange
+                      ? ColorRef.white
+                      : ColorRef.black202020,
                 ),
               ),
               centerTitle: true,
-              title: Text(label ?? '', style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
+              title: Text(label ?? '',
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.w400)),
               actions: [
-                IconButton(
+                TextButton(
                   onPressed: () {},
-                  icon: Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
+                  child:
+                      Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
                 ),
               ],
             ),
