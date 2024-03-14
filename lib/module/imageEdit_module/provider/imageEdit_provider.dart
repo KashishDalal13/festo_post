@@ -73,7 +73,7 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  onPanUpdate(details, double width, double height, int index, BuildContext context) {
+  onPanUpdate(details, double width, double height, BuildContext context) {
     double h = 0, w = 0;
     if (height < 750 && width < 370) {
       debugPrint("Small device");
@@ -88,11 +88,11 @@ class ImageEditProvider extends ChangeNotifier {
       h = height / 2.26;
       w = width / 3.66;
     }
-    frameDetails[index]['left'] += (details.delta.dx);
-    frameDetails[index]['top'] += (details.delta.dy);
+    activeItem['left'] += (details.delta.dx);
+    activeItem['top'] += (details.delta.dy);
     debugPrint("$height $width ${height / 1.3} $details");
-    frameDetails[index]['left'] = (frameDetails[index]['left'] as double).clamp(2, width - w);
-    frameDetails[index]['top'] = (frameDetails[index]['top'] as double).clamp(2, height - h);
+    activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
+    activeItem['top'] = (activeItem['top'] as double).clamp(2, height - h);
     notifyListeners();
   }
 
@@ -121,13 +121,30 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  onScaleUpdate(details, height, width) {
-    final delta = details.focalPoint - initPos!;
-    final left = (delta.dx / width) + currentPos!.dx;
-    final top = (delta.dy / height) + currentPos!.dy;
-    activeItem['position'] = Offset(left, top);
+  onScaleUpdate(ScaleUpdateDetails details, height, width) {
+    double h = 0, w = 0;
+    if (height < 750 && width < 370) {
+      debugPrint("Small device");
+      h = height / 1.85;
+      w = width / 3.2;
+    } else if (height < 800 && width < 370) {
+      debugPrint("Medium device");
+      h = height / 1.96;
+      w = width / 3.2;
+    } else if (height > 800 && width > 370) {
+      debugPrint("Large device");
+      h = height / 2.26;
+      w = width / 3.66;
+    }
+    debugPrint("$height $width");
+    activeItem['left'] += (details.focalPointDelta.dx);
+    activeItem['top'] += (details.focalPointDelta.dy);
+    activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
+    activeItem['top'] = (activeItem['top'] as double).clamp(2, height - h);
+    activeItem['position'] = Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
     activeItem['rotation'] = details.rotation + currentRotation!;
-    double scale = max(min(details.scale * currentScale!, 3), 0.2);
+    debugPrint("$activeItem");
+    double scale = max(min(details.scale * currentScale!, 2), 0.3);
     activeItem['scale'] = scale;
     notifyListeners();
   }

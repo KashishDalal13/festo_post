@@ -32,9 +32,7 @@ class ImageEditView extends StatelessWidget {
               backgroundColor: ColorRef.white,
               surfaceTintColor: ColorRef.white,
               leading: IconButton(
-                onPressed: () {
-                  provider.onBack();
-                },
+                onPressed: () => provider.onBack(),
                 icon: Icon(
                   Icons.arrow_back_ios_new_rounded,
                   size: 24,
@@ -58,24 +56,20 @@ class ImageEditView extends StatelessWidget {
                   GestureDetector(
                     onScaleStart: (details) => provider.onScaleStart(details),
                     onScaleUpdate: (details) => provider.onScaleUpdate(details, height, width),
+                    // onPanUpdate: (details) => provider.onPanUpdate(details, width, height, context),
                     child: Stack(
                       children: [
                         Container(
                           alignment: Alignment.center,
-                          child: Image.asset(
-                            selectedImage ?? "",
-                            height: 350,
-                            width: 370,
-                            fit: BoxFit.cover,
-                          ),
+                          child: Image.asset(selectedImage ?? "", height: 350, width: 370, fit: BoxFit.cover),
                         ),
                         ...provider.frameDetails.map(
                           (e) {
                             int index = provider.frameDetails.indexOf(e);
                             if (e["show"] == true) {
                               return Positioned(
-                                top: e['position'].dy * 350, // Convert int to double
-                                left: e['position'].dx * 370, // Convert int to double
+                                top: e['top'].toDouble(), // Convert int to double
+                                left: e['left'].toDouble(), // Convert int to double
                                 child: Transform.scale(
                                   scale: e['scale'],
                                   child: Transform.rotate(
