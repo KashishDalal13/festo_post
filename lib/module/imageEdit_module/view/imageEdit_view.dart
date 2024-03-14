@@ -60,7 +60,7 @@ class ImageEditView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Column(
                 children: [
-                  Column(
+                  Stack(
                     children: [
                       Container(
                         alignment: Alignment.center,
@@ -72,16 +72,18 @@ class ImageEditView extends StatelessWidget {
                         ),
                       ),
                       ...provider.frameDetails.map(
-                        (e) {
+                            (e) {
                           int index = provider.frameDetails.indexOf(e);
                           if (e["show"] == true) {
-                            return GestureDetector(
-                              onPanUpdate: (details) => provider.onPanUpdate(
-                                  details, width, height, index),
-                              child: Positioned(
-                                  top: e['top'],
-                                  left: e['left'],
-                                  child: Image.asset(e['add'])),
+                            return Positioned(
+                              top: e['top'].toDouble(), // Convert int to double
+                              left: e['left'].toDouble(), // Convert int to double
+                              child: GestureDetector(
+                                onPanUpdate: (details) {
+                                  provider.onPanUpdate(details, width, height, index);
+                                },
+                                child: Image.asset(e['add']),
+                              ),
                             );
                           } else {
                             return const SizedBox();
@@ -90,6 +92,9 @@ class ImageEditView extends StatelessWidget {
                       ),
                     ],
                   ),
+
+
+
                   SizedBox(
                     height: 150,
                     child: ListView.separated(
