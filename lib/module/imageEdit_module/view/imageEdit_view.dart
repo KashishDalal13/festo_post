@@ -26,6 +26,7 @@ class ImageEditView extends StatelessWidget {
       builder: (context, child) {
         ImageEditProvider provider = context.watch<ImageEditProvider>();
         return SafeArea(
+          bottom: true,
           child: Scaffold(
             appBar: AppBar(
               backgroundColor: ColorRef.white,
@@ -37,17 +38,11 @@ class ImageEditView extends StatelessWidget {
                 icon: Icon(
                   Icons.arrow_back_ios_new_rounded,
                   size: 24,
-                  color: BoolRef.themeChange
-                      ? ColorRef.white
-                      : ColorRef.black202020,
+                  color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020,
                 ),
               ),
               centerTitle: true,
-              title: Text(label ?? '',
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Lato',
-                      fontWeight: FontWeight.w400)),
+              title: Text(label ?? '', style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
               actions: [
                 IconButton(
                   onPressed: () {},
@@ -72,7 +67,7 @@ class ImageEditView extends StatelessWidget {
                         ),
                       ),
                       ...provider.frameDetails.map(
-                            (e) {
+                        (e) {
                           int index = provider.frameDetails.indexOf(e);
                           if (e["show"] == true) {
                             return Positioned(
@@ -80,7 +75,7 @@ class ImageEditView extends StatelessWidget {
                               left: e['left'].toDouble(), // Convert int to double
                               child: GestureDetector(
                                 onPanUpdate: (details) {
-                                  provider.onPanUpdate(details, width, height, index);
+                                  provider.onPanUpdate(details, width, height, index, context);
                                 },
                                 child: Image.asset(e['add']),
                               ),
@@ -92,9 +87,6 @@ class ImageEditView extends StatelessWidget {
                       ),
                     ],
                   ),
-
-
-
                   SizedBox(
                     height: 150,
                     child: ListView.separated(
@@ -110,8 +102,7 @@ class ImageEditView extends StatelessWidget {
                                 provider.frameDetailsdisplay(index: index);
                               },
                               child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 20),
+                                margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
                                 // height: 50,
                                 // width: 50,
                                 decoration: BoxDecoration(
