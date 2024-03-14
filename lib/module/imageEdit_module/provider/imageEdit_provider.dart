@@ -97,7 +97,7 @@ class ImageEditProvider extends ChangeNotifier {
   }
 
   onPointerUp() {
-    inAction = true;
+    inAction = false;
     notifyListeners();
   }
 
