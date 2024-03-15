@@ -19,6 +19,7 @@ class ColorRef {
       grey717171 = const Color(0xff717171),
       brownBE7B00 = const Color(0xffBE7B00),
       black505050 = const Color(0xff505050),
+      yellow29200  = const Color(0xffE29200),
       black = Colors.black;
   static Color? commonBgColor;
 }
