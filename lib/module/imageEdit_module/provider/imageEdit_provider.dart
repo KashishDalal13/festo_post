@@ -77,7 +77,6 @@ class ImageEditProvider extends ChangeNotifier {
   Map<String, dynamic> activeItem = {};
   bool inAction = false;
   double? currentScale, currentRotation;
-
   void edit({required int index, required BuildContext context}) async {
     currentIndex = index.toString();
     debugPrint("${EditDetails[index]} $currentIndex");
@@ -266,7 +265,8 @@ class ImageEditProvider extends ChangeNotifier {
     activeItem['top'] += (details.focalPointDelta.dy);
     activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
     activeItem['top'] = (activeItem['top'] as double).clamp(2, height - h);
-    activeItem['position'] = Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
+    activeItem['position'] =
+        Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
     activeItem['rotation'] = details.rotation + currentRotation!;
     debugPrint("$activeItem");
     double scale = max(min(details.scale * currentScale!, 2), 0.3);
