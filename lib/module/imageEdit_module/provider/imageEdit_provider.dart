@@ -174,7 +174,7 @@ class ImageEditProvider extends ChangeNotifier {
           AdaptiveText(
             result,
             tapToEdit: false,
-              style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 25,fontFamily: 'Lato'),
+            style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 25,fontFamily: 'Lato'),
             onDel: () {
               // Open bottom sheet here
               showModalBottomSheet<void>(
