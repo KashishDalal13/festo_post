@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:io';
 import 'package:festo_post/utils/colors.dart';
@@ -75,7 +76,6 @@ class ImageEditProvider extends ChangeNotifier {
   Map<String, dynamic> activeItem = {};
   bool inAction = false;
   double? currentScale, currentRotation;
-
   void edit({required int index, required BuildContext context}) async {
     currentIndex = index.toString();
     debugPrint("${EditDetails[index]} $currentIndex");
@@ -168,13 +168,44 @@ class ImageEditProvider extends ChangeNotifier {
       );
 
       if (result != null) {
+        Completer<bool> completer = Completer<bool>();
+
         boardController.add(
           AdaptiveText(
             result,
-            tapToEdit: true,
+            tapToEdit: false,
+              style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 25,fontFamily: 'Lato'),
+            onDel: () {
+              // Open bottom sheet here
+              showModalBottomSheet<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return Container(
+                    height: 300, // Adjust height as needed
+                    child: const Center(
+                      child: Text(
+                        'This is a bottom sheet',
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                    ),
+                  );
+                },
+              ).then((value) {
+                completer.complete(true);
+              });
+
+              // Return the Future<bool>
+              return completer.future;
+            },
           ),
         );
       }
+
+
+
+
+
+
     } else if (index == 2) {
       ImagePicker().pickImage(source: ImageSource.gallery).then(
         (value) {
