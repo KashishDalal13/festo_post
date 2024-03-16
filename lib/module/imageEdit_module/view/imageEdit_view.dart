@@ -64,6 +64,7 @@ class ImageEditView extends StatelessWidget {
                         ...provider.frameDetails.map(
                           (e) {
                             if (e["show"] == true) {
+                              GlobalKey contentKey = GlobalKey();
                               return Positioned(
                                 top: e['top'].toDouble(), // Convert int to double
                                 left: e['left'].toDouble(), // Convert int to double
@@ -72,7 +73,7 @@ class ImageEditView extends StatelessWidget {
                                   child: Transform.rotate(
                                     angle: e['rotation'],
                                     child: Listener(
-                                      onPointerDown: (details) => provider.onPointerDown(details, e),
+                                      onPointerDown: (details) => provider.onPointerDown(details, e,contentKey),
                                       onPointerUp: (details) => provider.onPointerUp(),
                                       // child: Image.asset(e['add']),
                                       child: Container(key: e['key'], child: Text("${e['add']}")),

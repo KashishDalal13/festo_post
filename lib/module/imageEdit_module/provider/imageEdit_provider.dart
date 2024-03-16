@@ -13,6 +13,7 @@ class ImageEditProvider extends ChangeNotifier {
       "add": SvgPath.logo,
       "key": GlobalKey(),
       "show": false,
+
       "position": const Offset(0.1, 0.1),
       "top": 0.0,
       "left": 0.0,
@@ -105,10 +106,11 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  onPointerDown(details, data) {
+  onPointerDown(details, data, GlobalKey contentKey) {
     if (inAction) return;
     inAction = true;
     activeItem = data;
+    activeItem['key'] = contentKey;
     debugPrint("$activeItem");
     currentScale = data['scale'];
     currentRotation = data['rotation'];
@@ -136,7 +138,10 @@ class ImageEditProvider extends ChangeNotifier {
       h = height / 2.26;
       w = width / 3.66;
     }
-    debugPrint("$h $w");
+    GlobalKey contentKey = activeItem['key'];
+    // h = contentKey.currentContext?.size?.height ?? 0;
+    // w = contentKey.currentContext?.size?.width ?? 0;
+    debugPrint("$h $w ${contentKey.currentContext?.size?.height} ${contentKey.currentContext?.size?.width}");
     activeItem['left'] += (details.focalPointDelta.dx);
     activeItem['top'] += (details.focalPointDelta.dy);
     activeItem['left'] = (activeItem['left'] as double).clamp(2, w);
