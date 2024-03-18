@@ -15,7 +15,6 @@ class DashboardProvider extends ChangeNotifier {
     SvgPath.carousel,
     SvgPath.carousel2,
     SvgPath.carousel3
-    // Add more image URLs as needed
   ];
 
   List<Map<String, dynamic>> addDate = [
@@ -149,9 +148,6 @@ class DashboardProvider extends ChangeNotifier {
       selectedLabel = addTodayEvent[index]["label"];
       selectedImageList = addTodayEvent[index]["imageList"].cast<String>();
     }
-    // Add more conditions for other indexes if needed
-
-    // Navigate to the next page and pass selectedImageList
     Navigator.push(
       context,
       MaterialPageRoute(

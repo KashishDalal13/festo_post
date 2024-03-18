@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:io';
 import 'package:festo_post/utils/colors.dart';
@@ -14,6 +15,57 @@ class ImageEditProvider extends ChangeNotifier {
   String currentIndex = "";
   StackBoardController boardController = StackBoardController();
   final GlobalKey boardKey = GlobalKey();
+  bool isBold = false;
+  bool isItalic = false;
+  bool isUnderline = false;
+  double _fontSize = 25.0;
+  double get fontSize => _fontSize;
+  bool isUppercase = false;
+  int selectedCaseIndex = 0;
+  int selectedTextStyle = 0;
+
+  List<String> letters = ['B', 'I', 'U'];
+  List<String> cases = ['Aa', 'AA', 'aa'];
+
+  void increaseFontSize() {
+    _fontSize += 1.0;
+    notifyListeners();
+  }
+
+  void decreaseFontSize() {
+    if (_fontSize > 1.0) {
+      _fontSize -= 1.0;
+      notifyListeners();
+    }
+  }
+
+  void toggleTextStyle(String letter,int index) {
+    selectedTextStyle=index;
+    if (letter == 'B') {
+      isBold = !isBold;
+    } else if (letter == 'I') {
+      isItalic = !isItalic;
+    } else if (letter == 'U') {
+      isUnderline = !isUnderline;
+    }
+    notifyListeners();
+  }
+  String inputString = '';
+  void toggleTextCase(String selectedCase, int index) {
+    selectedCaseIndex = index;
+    if (selectedCase == 'AA') {
+      isUppercase = true;
+    }
+    if (selectedCase == 'Aa') {
+      inputString = inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
+      isUppercase = false;
+    }
+    if (selectedCase == 'aa') {
+      isUppercase = false;
+    }
+    notifyListeners();
+  }
+
   List<Map<String, dynamic>> frameDetails = [
     {
       "imageList": SvgPath.frameLogo,
@@ -75,7 +127,6 @@ class ImageEditProvider extends ChangeNotifier {
   Map<String, dynamic> activeItem = {};
   bool inAction = false;
   double? currentScale, currentRotation;
-
   void edit({required int index, required BuildContext context}) async {
     currentIndex = index.toString();
     debugPrint("${EditDetails[index]} $currentIndex");
@@ -137,12 +188,7 @@ class ImageEditProvider extends ChangeNotifier {
                   ),
                   const SizedBox(height: 20),
                   GestureDetector(
-                    onTap: () {
-                      NavigationService.goBack();
-                      boardController.add<CustomItem>(
-                        CustomItem(customText: text, onDel: () async => true),
-                      );
-                    },
+                    onTap: () => Navigator.pop(context, text),
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 90),
                       alignment: Alignment.center,
@@ -160,10 +206,19 @@ class ImageEditProvider extends ChangeNotifier {
           );
         },
       );
+
+      if (result != null) {
+        boardController.add<CustomItem>(
+          CustomItem(
+            customText: result,
+            onDel: () async => true,
+          ),
+        );
+      }
     } else if (index == 2) {
       // Add image from gallery
       ImagePicker().pickImage(source: ImageSource.gallery).then(
-        (value) {
+            (value) {
           if (value != null) {
             final imageFile = File(value.path);
             boardController.add(
@@ -176,6 +231,8 @@ class ImageEditProvider extends ChangeNotifier {
       );
     }
   }
+
+
 
   void frameDetailsdisplay({required int index}) {
     framecurrentIndex = index.toString();
@@ -249,7 +306,8 @@ class ImageEditProvider extends ChangeNotifier {
     activeItem['top'] += (details.focalPointDelta.dy);
     activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
     activeItem['top'] = (activeItem['top'] as double).clamp(2, height - h);
-    activeItem['position'] = Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
+    activeItem['position'] =
+        Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
     activeItem['rotation'] = details.rotation + currentRotation!;
     debugPrint("$activeItem");
     double scale = max(min(details.scale * currentScale!, 2), 0.3);
@@ -262,16 +320,17 @@ class ImageEditProvider extends ChangeNotifier {
   }
 }
 
+
 class CustomItem extends StackBoardItem {
   const CustomItem({
     this.customText,
     Future<bool> Function()? onDel,
     int? id,
   }) : super(
-          child: const Text(''),
-          onDel: onDel,
-          id: id,
-        );
+    child: const Text(''),
+    onDel: onDel,
+    id: id,
+  );
 
   final String? customText;
 
@@ -288,6 +347,8 @@ class CustomItem extends StackBoardItem {
       CustomItem(
         onDel: onDel,
         id: id,
-        customText: customText ?? customText,
+        customText: customText ?? this.customText,
       );
 }
+
+

@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
               'profile': (context) => const ProfileView(),
               'frame': (context) => const FrameEditorView(),
               'info': (context) => const InfoView(),
-              'imageEdit': (context) => const ImageEditView(),
+              'imageEdit': (context) => ImageEditView(),
             },
           );
         });
