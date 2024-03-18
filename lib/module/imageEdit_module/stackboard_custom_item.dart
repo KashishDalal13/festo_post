@@ -22,6 +22,6 @@ class CustomItem extends StackBoardItem {
       CustomItem(
         onDel: onDel,
         id: id,
-        childWidget: child ?? Text("custom item"),
+        childWidget: child ?? const Text("custom item"),
       );
 }

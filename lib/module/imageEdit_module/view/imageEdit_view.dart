@@ -9,14 +9,14 @@ import '../../../utils/bool.dart';
 import '../../../utils/colors.dart';
 
 class ImageEditView extends StatelessWidget {
-  ImageEditView({
+  const ImageEditView({
     Key? key,
     this.label,
     this.selectedImage,
   }) : super(key: key);
 
-  String? label;
-  String? selectedImage;
+  final String? label;
+  final String? selectedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +36,15 @@ class ImageEditView extends StatelessWidget {
                 icon: Icon(
                   Icons.arrow_back_ios_new_rounded,
                   size: 24,
-                  color: BoolRef.themeChange
-                      ? ColorRef.white
-                      : ColorRef.black202020,
+                  color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020,
                 ),
               ),
               centerTitle: true,
-              title: Text(label ?? '',
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Lato',
-                      fontWeight: FontWeight.w400)),
+              title: Text(label ?? '', style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
               actions: [
                 TextButton(
                   onPressed: () {},
-                  child:
-                      Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
+                  child: Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
                 ),
               ],
             ),
@@ -62,8 +55,7 @@ class ImageEditView extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onScaleStart: (details) => provider.onScaleStart(details),
-                    onScaleUpdate: (details) =>
-                        provider.onScaleUpdate(details, height, width),
+                    onScaleUpdate: (details) => provider.onScaleUpdate(details, height, width),
                     // onPanUpdate: (details) => provider.onPanUpdate(details, width, height, context),
                     child: Stack(
                       children: [
@@ -79,8 +71,7 @@ class ImageEditView extends StatelessWidget {
                             ),
                             background: Container(
                               alignment: Alignment.center,
-                              child: Image.asset(selectedImage ?? "",
-                                  height: 350, width: 370, fit: BoxFit.cover),
+                              child: Image.asset(selectedImage ?? "", height: 350, width: 370, fit: BoxFit.cover),
                             ),
                           ),
                         ),
@@ -97,12 +88,9 @@ class ImageEditView extends StatelessWidget {
                                   child: Transform.rotate(
                                     angle: e['rotation'],
                                     child: Listener(
-                                      onPointerDown: (details) =>
-                                          provider.onPointerDown(details, e),
-                                      onPointerUp: (details) =>
-                                          provider.onPointerUp(),
-                                      child: Container(
-                                          child: Image.asset(e['add'])),
+                                      onPointerDown: (details) => provider.onPointerDown(details, e),
+                                      onPointerUp: (details) => provider.onPointerUp(),
+                                      child: Image.asset(e['add']),
                                     ),
                                   ),
                                 ),
@@ -130,8 +118,7 @@ class ImageEditView extends StatelessWidget {
                                 provider.frameDetailsdisplay(index: index);
                               },
                               child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 20),
+                                margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
                                 // height: 50,
                                 // width: 50,
                                 decoration: BoxDecoration(
@@ -168,9 +155,7 @@ class ImageEditView extends StatelessWidget {
                     child: Container(
                       width: 370,
                       height: 81,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: ColorRef.greyEDEDED),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: ColorRef.greyEDEDED),
                       child: Center(
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
@@ -179,7 +164,7 @@ class ImageEditView extends StatelessWidget {
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: () {
-                                provider.edit(index: index,context: context);
+                                provider.edit(index: index, context: context);
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -188,14 +173,12 @@ class ImageEditView extends StatelessWidget {
                                   Container(
                                     margin: const EdgeInsets.all(10.0),
                                     padding: const EdgeInsets.all(10.0),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: ColorRef.white),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: ColorRef.white),
                                     child: SvgPicture.asset(
                                       provider.EditDetails[index]['image'],
                                     ),
                                   ),
-                                  Text(provider.EditDetails[index]['label'],style:const TextStyle(fontWeight: FontWeight.w400,fontFamily: 'Lato',fontSize: 12))
+                                  Text(provider.EditDetails[index]['label'], style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12))
                                 ],
                               ),
                             );
