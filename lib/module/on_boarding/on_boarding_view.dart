@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../theme_change/theme_settings.dart';
 import 'on_boarding_info.dart';
 import 'onboarding_provider.dart';
 
