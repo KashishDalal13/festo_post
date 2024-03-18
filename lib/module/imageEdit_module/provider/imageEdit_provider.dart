@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:math';
 import 'dart:io';
-import 'package:festo_post/module/imageEdit_module/stackboard_custom_item.dart';
 import 'package:festo_post/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stack_board/stack_board.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:math' as math;
 
 import '../../../utils/routes.dart';
 import '../../../utils/string.dart';
@@ -17,6 +15,57 @@ class ImageEditProvider extends ChangeNotifier {
   String currentIndex = "";
   StackBoardController boardController = StackBoardController();
   final GlobalKey boardKey = GlobalKey();
+  bool isBold = false;
+  bool isItalic = false;
+  bool isUnderline = false;
+  double _fontSize = 25.0;
+  double get fontSize => _fontSize;
+  bool isUppercase = false;
+  int selectedCaseIndex = 0;
+  int selectedTextStyle = 0;
+
+  List<String> letters = ['B', 'I', 'U'];
+  List<String> cases = ['Aa', 'AA', 'aa'];
+
+  void increaseFontSize() {
+    _fontSize += 1.0;
+    notifyListeners();
+  }
+
+  void decreaseFontSize() {
+    if (_fontSize > 1.0) {
+      _fontSize -= 1.0;
+      notifyListeners();
+    }
+  }
+
+  void toggleTextStyle(String letter,int index) {
+    selectedTextStyle=index;
+    if (letter == 'B') {
+      isBold = !isBold;
+    } else if (letter == 'I') {
+      isItalic = !isItalic;
+    } else if (letter == 'U') {
+      isUnderline = !isUnderline;
+    }
+    notifyListeners();
+  }
+  String inputString = '';
+  void toggleTextCase(String selectedCase, int index) {
+    selectedCaseIndex = index;
+    if (selectedCase == 'AA') {
+      isUppercase = true;
+    }
+    if (selectedCase == 'Aa') {
+      inputString = inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
+      isUppercase = false;
+    }
+    if (selectedCase == 'aa') {
+      isUppercase = false;
+    }
+    notifyListeners();
+  }
+
   List<Map<String, dynamic>> frameDetails = [
     {
       "imageList": SvgPath.frameLogo,

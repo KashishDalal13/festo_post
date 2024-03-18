@@ -62,7 +62,8 @@ class StrRef {
       info = "Navratri, a nine-night Hindu festival, is celebrated across India in honor of Goddess Durga. Devotees fast, pray, and engage in lively Garba and Dandiya Raas dances set to traditional music. Colorful decorations, floral arrangements, and rangoli designs adorn homes and temples. Navratri fosters community, family gatherings, and a deep connection to cultural traditions. It concludes with Dussehra, symbolizing the triumph of good over evil.",
       tag="Tags For post",
       hashtag="#NineNightsOfCelebration #CulturalHeritage #Devotion #NavratriNights #SpiritualJourney #GoodOverEvil #DurgaPuja #FestivalVibes #DanceToTheRhythm #ColorfulCelebration #CulturalDiversity #DivineBlessings #HarvestFestival #RitualsAndTraditions #NavratriFever#FolkMusic #DanceCelebration #SpiritualJourney",
-      editText = "Edit Text";
+      editText = "Edit Text",
+      Fonts = "Fonts";
 }
 
 class SvgPath {
