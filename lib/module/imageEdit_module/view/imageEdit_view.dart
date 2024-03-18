@@ -1,12 +1,12 @@
-import 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.dart';
-import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.dart';
+import 'package:festo_post/utils/colors.dart';
+import 'package:festo_post/utils/string.dart';
 import 'package:stack_board/stack_board.dart';
 
 import '../../../utils/bool.dart';
-import '../../../utils/colors.dart';
 
 class ImageEditView extends StatelessWidget {
   const ImageEditView({
@@ -44,7 +44,8 @@ class ImageEditView extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () {},
-                  child: Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
+                  child:
+                  Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
                 ),
               ],
             ),
@@ -55,8 +56,8 @@ class ImageEditView extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onScaleStart: (details) => provider.onScaleStart(details),
-                    onScaleUpdate: (details) => provider.onScaleUpdate(details, height, width),
-                    // onPanUpdate: (details) => provider.onPanUpdate(details, width, height, context),
+                    onScaleUpdate: (details) =>
+                        provider.onScaleUpdate(details, height, width),
                     child: Stack(
                       children: [
                         SizedBox(
@@ -69,6 +70,50 @@ class ImageEditView extends StatelessWidget {
                               borderColor: Colors.grey,
                               iconColor: Colors.white,
                             ),
+                            customBuilder: (StackBoardItem t) {
+                              if (t is CustomItem) {
+                                return ItemCase(
+                                  key: Key('StackBoardItem${t.id}'),
+                                  isCenter: false,
+                                  onDel: () async => provider.boardController.remove(t.id),
+                                  onTap: () => provider.boardController.moveItemToTop(t.id),
+                                  caseStyle: const CaseStyle(
+                                    borderColor: Colors.grey,
+                                    iconColor: Colors.white,
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return Container(
+                                            height: 250, // Adjust height as needed
+                                            child: Center(
+                                              child: Text(
+                                                'This is a bottom sheet for ${t.customText}',
+                                                style: const TextStyle(fontSize: 20),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      height: 40,
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        t.customText ?? '',
+                                        style: TextStyle(color: ColorRef.black,fontSize: 25,fontWeight: FontWeight.w600,fontFamily: 'Lato'),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              return null;
+                            },
+
+
                             background: Container(
                               alignment: Alignment.center,
                               child: Image.asset(selectedImage ?? "", height: 350, width: 370, fit: BoxFit.cover),
@@ -76,7 +121,7 @@ class ImageEditView extends StatelessWidget {
                           ),
                         ),
                         ...provider.frameDetails.map(
-                          (e) {
+                              (e) {
                             if (e["show"] == true) {
                               return Positioned(
                                 top: e['top'].toDouble(),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stack_board/stack_board.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:math' as math;
 
 import '../../../utils/routes.dart';
 import '../../../utils/string.dart';
@@ -75,25 +76,22 @@ class ImageEditProvider extends ChangeNotifier {
   Map<String, dynamic> activeItem = {};
   bool inAction = false;
   double? currentScale, currentRotation;
-
   void edit({required int index, required BuildContext context}) async {
     currentIndex = index.toString();
     debugPrint("${EditDetails[index]} $currentIndex");
     notifyListeners();
+
     if (index == 0) {
       String text = '';
-      await showDialog(
+
+      String? result = await showDialog(
         context: context,
         barrierColor: Colors.black.withOpacity(0.3),
-        // barrierDismissible: false,
-        useSafeArea: true,
         builder: (BuildContext context) {
           return Dialog(
             backgroundColor: Colors.transparent,
-            // shadowColor: Colors.black.withOpacity(0.3),
             elevation: 0,
             alignment: Alignment.center,
-            // color: ColorRef.transparent,
             child: SizedBox(
               height: 260,
               width: 300,
@@ -101,9 +99,12 @@ class ImageEditProvider extends ChangeNotifier {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: () => NavigationService.goBack(),
+                    onTap: () => Navigator.pop(context),
                     child: Container(
-                      decoration: BoxDecoration(color: ColorRef.white, borderRadius: BorderRadius.circular(15)),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       child: SvgPicture.asset(SvgPath.cancel),
                     ),
                   ),
@@ -113,12 +114,22 @@ class ImageEditProvider extends ChangeNotifier {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5),
-                      boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 2, blurRadius: 5, offset: const Offset(0, 3))],
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: Column(
                       children: [
                         TextField(
-                          decoration: const InputDecoration(hintText: 'Write Here', border: InputBorder.none),
+                          decoration: const InputDecoration(
+                            hintText: 'Write Here',
+                            border: InputBorder.none,
+                          ),
                           onChanged: (value) => text = value,
                         ),
                       ],
@@ -126,15 +137,15 @@ class ImageEditProvider extends ChangeNotifier {
                   ),
                   const SizedBox(height: 20),
                   GestureDetector(
-                    onTap: () {
-                      NavigationService.goBack();
-                      boardController.add(StackBoardItem(child: Text(text)));
-                    },
+                    onTap: () => Navigator.pop(context, text),
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 90),
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(color: ColorRef.yellowFFA500, borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(
+                        color: ColorRef.yellowFFA500,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: Text('Add', style: TextStyle(color: ColorRef.black202020)),
                     ),
                   ),
@@ -144,9 +155,19 @@ class ImageEditProvider extends ChangeNotifier {
           );
         },
       );
+
+      if (result != null) {
+        boardController.add<CustomItem>(
+          CustomItem(
+            customText: result,
+            onDel: () async => true,
+          ),
+        );
+      }
     } else if (index == 2) {
+      // Add image from gallery
       ImagePicker().pickImage(source: ImageSource.gallery).then(
-        (value) {
+            (value) {
           if (value != null) {
             final imageFile = File(value.path);
             boardController.add(
@@ -159,6 +180,8 @@ class ImageEditProvider extends ChangeNotifier {
       );
     }
   }
+
+
 
   void frameDetailsdisplay({required int index}) {
     framecurrentIndex = index.toString();
@@ -232,7 +255,8 @@ class ImageEditProvider extends ChangeNotifier {
     activeItem['top'] += (details.focalPointDelta.dy);
     activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
     activeItem['top'] = (activeItem['top'] as double).clamp(2, height - h);
-    activeItem['position'] = Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
+    activeItem['position'] =
+        Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
     activeItem['rotation'] = details.rotation + currentRotation!;
     debugPrint("$activeItem");
     double scale = max(min(details.scale * currentScale!, 2), 0.3);
@@ -244,3 +268,36 @@ class ImageEditProvider extends ChangeNotifier {
     NavigationService.goBack();
   }
 }
+
+
+class CustomItem extends StackBoardItem {
+  const CustomItem({
+    this.customText,
+    Future<bool> Function()? onDel,
+    int? id,
+  }) : super(
+    child: const Text(''),
+    onDel: onDel,
+    id: id,
+  );
+
+  final String? customText;
+
+  @override
+  CustomItem copyWith({
+    CaseStyle? caseStyle,
+    Widget? child,
+    int? id,
+    Future<bool> Function()? onDel,
+    dynamic Function(bool)? onEdit,
+    bool? tapToEdit,
+    Color? color,
+  }) =>
+      CustomItem(
+        onDel: onDel,
+        id: id,
+        customText: customText ?? this.customText,
+      );
+}
+
+
