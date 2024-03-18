@@ -19,7 +19,6 @@ class OnBoardingScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (BuildContext context) => IntroProvider(),
       builder: (context, child) {
-        ThemeSettings settings = context.watch<ThemeSettings>();
         IntroProvider provider = context.watch<IntroProvider>();
         return SafeArea(
           child: Scaffold(

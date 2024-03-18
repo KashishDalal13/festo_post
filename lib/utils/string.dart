@@ -104,6 +104,10 @@ class SvgPath {
       volume = 'assets/svg/volume.svg',
       image_gallery = 'assets/svg/image_gallery.svg',
       cancel = 'assets/svg/cancel.svg',
+      leftArrow = 'assets/svg/left-arrow.svg',
+      rightArrow = 'assets/svg/right-arrow.svg',
+      plus = 'assets/svg/plus.svg',
+      minus = 'assets/svg/minus.svg',
 
       carousel = 'assets/png/Carousel.png',
       carousel2 = 'assets/png/carousel2.png',

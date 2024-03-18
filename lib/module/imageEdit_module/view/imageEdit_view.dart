@@ -17,6 +17,11 @@ class ImageEditView extends StatelessWidget {
 
   String? label;
   String? selectedImage;
+  double _fontSize = 15;
+  bool _isBold = false;
+  bool _isItalic = false;
+  bool _isUnderline = false;
+  Color _textColor = Colors.black;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +56,7 @@ class ImageEditView extends StatelessWidget {
                 TextButton(
                   onPressed: () {},
                   child:
-                  Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
+                      Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
                 ),
               ],
             ),
@@ -81,34 +86,213 @@ class ImageEditView extends StatelessWidget {
                                 return ItemCase(
                                   key: Key('StackBoardItem${t.id}'),
                                   isCenter: false,
-                                  onDel: () async => provider.boardController.remove(t.id),
-                                  onTap: () => provider.boardController.moveItemToTop(t.id),
+                                  onDel: () async =>
+                                      provider.boardController.remove(t.id),
+                                  onTap: () => provider.boardController
+                                      .moveItemToTop(t.id),
                                   caseStyle: const CaseStyle(
                                     borderColor: Colors.grey,
                                     iconColor: Colors.white,
                                   ),
                                   child: GestureDetector(
-                                    onTap: (){
+                                    onTap: () {
                                       showModalBottomSheet(
                                         context: context,
                                         builder: (BuildContext context) {
                                           return Container(
                                             height: 230,
                                             decoration: BoxDecoration(
-                                              borderRadius: const BorderRadius.only(
-                                                  topLeft: Radius.circular(30.0),
-                                                  topRight: Radius.circular(30.0)),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(30.0),
+                                                      topRight: Radius.circular(
+                                                          30.0)),
                                               color: ColorRef.greyD6D6D6,
                                             ),
-                                            child: Center(
-                                              child: Column(
-                                                children: [
-                                                  Text(
-                                                    StrRef.editText,
-                                                    style: const TextStyle(fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
+                                            child: Column(
+                                              children: <Widget>[
+                                                const SizedBox(height: 15),
+                                                Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      StrRef.editText,
+                                                      style: const TextStyle(
+                                                          fontSize: 15,
+                                                          fontFamily: 'Lato',
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 15),
+                                                Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: Column(
+                                                        children: [
+                                                          Container(
+                                                            height: 35,
+                                                            width: 140,
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                                color: ColorRef
+                                                                    .white),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                SvgPicture.asset(
+                                                                    SvgPath
+                                                                        .leftArrow),
+                                                                Text('Fonts'),
+                                                                SvgPicture.asset(
+                                                                    SvgPath
+                                                                        .rightArrow),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: [
+                                                              Container(
+                                                                height: 35,
+                                                                width: 35,
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                5),
+                                                                    color: ColorRef
+                                                                        .white),
+                                                              ),
+                                                              Container(
+                                                                height: 35,
+                                                                width: 35,
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                5),
+                                                                    color: ColorRef
+                                                                        .white),
+                                                              ),
+                                                              Container(
+                                                                height: 35,
+                                                                width: 35,
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                5),
+                                                                    color: ColorRef
+                                                                        .white),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    const VerticalDivider(
+                                                      color: Colors.black,
+                                                      thickness: 40,
+                                                    ),
+                                                    Expanded(
+                                                      child: Column(
+                                                        children: [
+                                                          Container(
+                                                            height: 35,
+                                                            width: 140,
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                                color: ColorRef
+                                                                    .white),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                SvgPicture.asset(
+                                                                    SvgPath
+                                                                        .plus),
+                                                                Text('15'),
+                                                                SvgPicture.asset(
+                                                                    SvgPath
+                                                                        .minus),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: [
+                                                              Container(
+                                                                height: 35,
+                                                                width: 35,
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                5),
+                                                                    color: ColorRef
+                                                                        .white),
+                                                              ),
+                                                              Container(
+                                                                height: 35,
+                                                                width: 35,
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                5),
+                                                                    color: ColorRef
+                                                                        .white),
+                                                              ),
+                                                              Container(
+                                                                height: 35,
+                                                                width: 35,
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                5),
+                                                                    color: ColorRef
+                                                                        .white),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
                                             ),
                                           );
                                         },
@@ -120,7 +304,11 @@ class ImageEditView extends StatelessWidget {
                                       alignment: Alignment.center,
                                       child: Text(
                                         t.customText ?? '',
-                                        style: TextStyle(color: ColorRef.black,fontSize: 25,fontWeight: FontWeight.w600,fontFamily: 'Lato'),
+                                        style: TextStyle(
+                                            color: ColorRef.black,
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.w600,
+                                            fontFamily: 'Lato'),
                                       ),
                                     ),
                                   ),
@@ -128,8 +316,6 @@ class ImageEditView extends StatelessWidget {
                               }
                               return null;
                             },
-
-
                             background: Container(
                               alignment: Alignment.center,
                               child: Image.asset(selectedImage ?? "",
@@ -138,7 +324,7 @@ class ImageEditView extends StatelessWidget {
                           ),
                         ),
                         ...provider.frameDetails.map(
-                              (e) {
+                          (e) {
                             if (e["show"] == true) {
                               return Positioned(
                                 top: e['top'].toDouble(),
@@ -232,7 +418,7 @@ class ImageEditView extends StatelessWidget {
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: () {
-                                provider.edit(index: index,context: context);
+                                provider.edit(index: index, context: context);
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -248,7 +434,13 @@ class ImageEditView extends StatelessWidget {
                                       provider.EditDetails[index]['image'],
                                     ),
                                   ),
-                                  Text(provider.EditDetails[index]['label'] ?? '',style:const TextStyle(fontWeight: FontWeight.w400,fontFamily: 'Lato',fontSize: 12)) // Add null check here
+                                  Text(
+                                      provider.EditDetails[index]['label'] ??
+                                          '',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: 'Lato',
+                                          fontSize: 12)) // Add null check here
                                 ],
                               ),
                             );

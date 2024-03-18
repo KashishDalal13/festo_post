@@ -8,14 +8,10 @@ import '../../../utils/string.dart';
 import '../provider/frameEditing_provider.dart';
 
 class FrameEditorView extends StatelessWidget {
-  FrameEditorView({
-    Key? key,
-    this.imageList,
-    this.label,
-  }) : super(key: key);
+  final List<String>? imageList;
+  final String? label;
 
-  List<String>? imageList;
-  String? label;
+  const FrameEditorView({Key? key, this.imageList, this.label}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +134,7 @@ class FrameEditorView extends StatelessWidget {
                       onTap: () {
                         provider.onInfo(context, label ?? '');
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 20,
                         width: 20,
                         child: SvgPicture.asset(SvgPath.information),

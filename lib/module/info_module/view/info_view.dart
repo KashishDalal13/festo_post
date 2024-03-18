@@ -7,9 +7,9 @@ import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
 
 class InfoView extends StatelessWidget {
-  String? label;
+  final String? label;
 
-  InfoView({
+  const InfoView({
     Key? key,
     this.label,
   }) : super(key: key);

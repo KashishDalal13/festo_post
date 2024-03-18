@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
-import '../../../utils/bool.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
-import '../../../utils/theme.dart';
 import '../provider/setting_provider.dart'; // Import your theme constants
 
 class SettingView extends StatelessWidget {

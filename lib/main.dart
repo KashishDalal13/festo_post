@@ -30,10 +30,12 @@ Future<void> main() async {
     //set as per theme
     systemNavigationBarIconBrightness: Brightness.dark, //set as per theme
   ));
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -54,8 +56,8 @@ class MyApp extends StatelessWidget {
               'dashboard': (context) => const dashboardView(),
               'setting': (context) => const SettingView(),
               'profile': (context) => const ProfileView(),
-              'frame': (context) => FrameEditorView(),
-              'info': (context) => InfoView(),
+              'frame': (context) => const FrameEditorView(),
+              'info': (context) => const InfoView(),
               'imageEdit': (context) => ImageEditView(),
             },
           );
