@@ -130,11 +130,11 @@ class DashboardProvider extends ChangeNotifier {
   }
 
   onSetting() {
-    NavigationService.replaceToNamed('setting');
+    NavigationService.routeToNamed('setting');
   }
 
   onProfile() {
-    NavigationService.replaceToNamed('profile');
+    NavigationService.routeToNamed('profile');
   }
 
   void onViewAll(BuildContext context, {required int index}) {

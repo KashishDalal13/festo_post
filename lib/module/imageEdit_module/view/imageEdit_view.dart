@@ -93,11 +93,21 @@ class ImageEditView extends StatelessWidget {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return Container(
-                                            height: 250, // Adjust height as needed
+                                            height: 230,
+                                            decoration: BoxDecoration(
+                                              borderRadius: const BorderRadius.only(
+                                                  topLeft: Radius.circular(30.0),
+                                                  topRight: Radius.circular(30.0)),
+                                              color: ColorRef.greyD6D6D6,
+                                            ),
                                             child: Center(
-                                              child: Text(
-                                                'This is a bottom sheet for ${t.customText}',
-                                                style: const TextStyle(fontSize: 20),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    StrRef.editText,
+                                                    style: const TextStyle(fontSize: 15),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           );
