@@ -110,6 +110,8 @@ class SvgPath {
       plus = 'assets/svg/plus.svg',
       minus = 'assets/svg/minus.svg',
 
+
+      colorWheel = 'assets/png/colorWheel.png',
       carousel = 'assets/png/Carousel.png',
       carousel2 = 'assets/png/carousel2.png',
       carousel3 = 'assets/png/carousel3.png',

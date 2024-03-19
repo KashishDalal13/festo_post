@@ -23,6 +23,30 @@ class ImageEditProvider extends ChangeNotifier {
   bool isUppercase = false;
   int selectedCaseIndex = 0;
   int selectedTextStyle = 0;
+  // Color selectedColor = const Color(0xff505050);
+  Color _selectedColor = const Color(0xff505050);
+  List<Color> colors = [
+    Colors.red,
+    Colors.green,
+    Colors.blue,
+    Colors.yellow,
+    Colors.purple,
+    Colors.orange,
+    Colors.teal,
+    Colors.indigo,
+    Colors.brown,
+    Colors.black,
+    Colors.grey,
+    Colors.white,
+  ];
+  List<double> shadeOpacities = [0.5, 0.4, 0.3, 0.2, 0.1];
+  Color get selectedColor => _selectedColor;
+
+  void onColorChange(Color color) {
+    _selectedColor = color;
+    notifyListeners();
+  }
+
 
   List<String> letters = ['B', 'I', 'U'];
   List<String> cases = ['Aa', 'AA', 'aa'];
