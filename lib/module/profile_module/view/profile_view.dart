@@ -7,7 +7,7 @@ import '../../../utils/string.dart';
 import '../provider/profile_provider.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({Key? key});
+  const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
