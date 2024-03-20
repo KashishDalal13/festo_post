@@ -13,16 +13,20 @@ import '../../../utils/string.dart';
 class ImageEditProvider extends ChangeNotifier {
   String framecurrentIndex = "";
   String currentIndex = "";
+  int stickerIndex = 0;
   StackBoardController boardController = StackBoardController();
   final GlobalKey boardKey = GlobalKey();
   bool isBold = false;
   bool isItalic = false;
   bool isUnderline = false;
   double _fontSize = 25.0;
+
   double get fontSize => _fontSize;
   bool isUppercase = false;
-  int selectedCaseIndex = 0;
-  int selectedTextStyle = 0;
+  String selectedTextCase = '';
+  String selectedCaseIndex = '';
+  String selectedTextStyle = '';
+
   // Color selectedColor = const Color(0xff505050);
   Color _selectedColor = const Color(0xff505050);
   List<Color> colors = [
@@ -40,13 +44,13 @@ class ImageEditProvider extends ChangeNotifier {
     Colors.white,
   ];
   List<double> shadeOpacities = [0.5, 0.4, 0.3, 0.2, 0.1];
+
   Color get selectedColor => _selectedColor;
 
   void onColorChange(Color color) {
     _selectedColor = color;
     notifyListeners();
   }
-
 
   List<String> letters = ['B', 'I', 'U'];
   List<String> cases = ['Aa', 'AA', 'aa'];
@@ -63,8 +67,8 @@ class ImageEditProvider extends ChangeNotifier {
     }
   }
 
-  void toggleTextStyle(String letter,int index) {
-    selectedTextStyle=index;
+  void toggleTextStyle(String letter, int index) {
+    selectedTextStyle = index.toString();
     if (letter == 'B') {
       isBold = !isBold;
     } else if (letter == 'I') {
@@ -74,17 +78,21 @@ class ImageEditProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
   String inputString = '';
+
   void toggleTextCase(String selectedCase, int index) {
-    selectedCaseIndex = index;
+    selectedCaseIndex = index.toString();
     if (selectedCase == 'AA') {
+      selectedTextCase='AA';
       isUppercase = true;
     }
     if (selectedCase == 'Aa') {
-      inputString = inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
+      selectedTextCase='Aa';
       isUppercase = false;
     }
     if (selectedCase == 'aa') {
+      selectedTextCase='aa';
       isUppercase = false;
     }
     notifyListeners();
@@ -148,9 +156,52 @@ class ImageEditProvider extends ChangeNotifier {
     {"image": SvgPath.image_gallery, "label": "Image"},
     {"image": SvgPath.volume, "label": "Audio"},
   ];
+
+  List<Map<String, dynamic>> stickerList = [
+    {
+      "label": "All",
+      "imageList": [
+        SvgPath.sticker4,
+        SvgPath.sticker1,
+        SvgPath.sticker10,
+        SvgPath.sticker1,
+        SvgPath.sticker2
+      ]
+    },
+    {
+      "label": "Sale",
+      "imageList": [SvgPath.sticker3, SvgPath.sticker5, SvgPath.sticker7]
+    },
+    {
+      "label": "Food",
+      "imageList": [SvgPath.sticker8, SvgPath.sticker6, SvgPath.sticker10]
+    },
+    {
+      "label": "Birthday",
+      "imageList": [SvgPath.sticker9, SvgPath.sticker5, SvgPath.sticker1]
+    },
+    {
+      "label": "Thankyou",
+      "imageList": [SvgPath.sticker10, SvgPath.sticker4, SvgPath.sticker8]
+    },
+    {
+      "label": "Welcome",
+      "imageList": [SvgPath.sticker6, SvgPath.sticker7, SvgPath.sticker9]
+    },
+    {
+      "label": "Summer",
+      "imageList": [SvgPath.sticker2, SvgPath.sticker3, SvgPath.sticker5]
+    },
+    {
+      "label": "Fashion",
+      "imageList": [SvgPath.sticker7, SvgPath.sticker4, SvgPath.sticker3]
+    },
+  ];
+
   Map<String, dynamic> activeItem = {};
   bool inAction = false;
   double? currentScale, currentRotation;
+
   void edit({required int index, required BuildContext context}) async {
     currentIndex = index.toString();
     debugPrint("${EditDetails[index]} $currentIndex");
@@ -185,7 +236,8 @@ class ImageEditProvider extends ChangeNotifier {
                   ),
                   const SizedBox(height: 10),
                   Container(
-                    padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 110),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 50, horizontal: 110),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5),
@@ -221,7 +273,8 @@ class ImageEditProvider extends ChangeNotifier {
                         color: ColorRef.yellowFFA500,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Text('Add', style: TextStyle(color: ColorRef.black202020)),
+                      child: Text('Add',
+                          style: TextStyle(color: ColorRef.black202020)),
                     ),
                   ),
                 ],
@@ -239,13 +292,113 @@ class ImageEditProvider extends ChangeNotifier {
           ),
         );
       }
-    } else if(index == 1){
-      debugPrint("stickers");
-    }
-    else if (index == 2) {
+    } else if (index == 1) {
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return Container(
+                height: 420,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    topRight: Radius.circular(10.0),
+                  ),
+                  color: ColorRef.greyEDEDED,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 50,
+                        width: 390,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          // padding: EdgeInsets.all(10.0),
+                          shrinkWrap: true,
+                          itemCount: stickerList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  onSelectSticker(index: index);
+                                });
+                              },
+                              child: Container(
+                                height: 30,
+                                width: 76,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 5, vertical: 8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: index == stickerIndex
+                                      ? ColorRef.yellowFFA500
+                                      : ColorRef.white,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    stickerList[index]['label'],
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontFamily: 'Lato',
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(width: 5);
+                          },
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GridView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          // Adjust the cross axis count as needed
+                          crossAxisSpacing: 15,
+                          // Adjust the spacing between grid items as needed
+                          mainAxisSpacing:
+                              15, // Adjust the spacing between rows as needed
+                        ),
+                        itemCount:
+                            stickerList[stickerIndex]['imageList'].length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              // Add the selected image to the StackBoard
+                              boardController.add(
+                                StackBoardItem(
+                                  child: Image.asset(stickerList[stickerIndex]
+                                      ['imageList'][index]),
+                                ),
+                              );
+                            },
+                            child: Image.asset(
+                                stickerList[stickerIndex]['imageList'][index]),
+                          );
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      );
+    } else if (index == 2) {
       // Add image from gallery
       ImagePicker().pickImage(source: ImageSource.gallery).then(
-            (value) {
+        (value) {
           if (value != null) {
             final imageFile = File(value.path);
             boardController.add(
@@ -258,8 +411,6 @@ class ImageEditProvider extends ChangeNotifier {
       );
     }
   }
-
-
 
   void frameDetailsdisplay({required int index}) {
     framecurrentIndex = index.toString();
@@ -345,8 +496,16 @@ class ImageEditProvider extends ChangeNotifier {
   void onBack() {
     NavigationService.goBack();
   }
-}
 
+  void onSelectSticker({required int index}) {
+    stickerIndex = index;
+    String selectedStickerLabel = stickerList[index]['label'];
+    if (selectedStickerLabel == 'Sports') {
+      debugPrint("Sports");
+    }
+    notifyListeners();
+  }
+}
 
 class CustomItem extends StackBoardItem {
   const CustomItem({
@@ -354,10 +513,10 @@ class CustomItem extends StackBoardItem {
     Future<bool> Function()? onDel,
     int? id,
   }) : super(
-    child: const Text(''),
-    onDel: onDel,
-    id: id,
-  );
+          child: const Text(''),
+          onDel: onDel,
+          id: id,
+        );
 
   final String? customText;
 
@@ -377,5 +536,3 @@ class CustomItem extends StackBoardItem {
         customText: customText ?? this.customText,
       );
 }
-
-

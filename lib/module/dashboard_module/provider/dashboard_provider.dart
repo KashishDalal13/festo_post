@@ -77,6 +77,7 @@ class DashboardProvider extends ChangeNotifier {
       "imageList": [SvgPath.bday1, SvgPath.bday2, SvgPath.bday1]
     },
   ];
+
   List<Map<String, dynamic>> addSeasonOffers = [
     {"imageList": SvgPath.festiveOffer1, "label": "Navratri Offer"},
     {"imageList": SvgPath.festiveOffer2, "label": "Dussehra Offers"},
