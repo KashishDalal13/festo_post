@@ -5,7 +5,6 @@ import 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.d
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:stack_board/stack_board.dart';
-import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 
 import '../../../utils/bool.dart';
 
@@ -84,6 +83,7 @@ class ImageEditView extends StatelessWidget {
                                     onTap: () {
                                       showModalBottomSheet(
                                         context: context,
+                                        backgroundColor: ColorRef.transparent,
                                         builder: (BuildContext context) {
                                           return StatefulBuilder(
                                             builder: (context, setState) {
@@ -240,7 +240,7 @@ class ImageEditView extends StatelessWidget {
                                                                         onTap: () {
                                                                           setState(() {
                                                                             provider.toggleTextCase(provider.cases[index], index);
-                                                                          }); // Update the UI
+                                                                          });
                                                                         },
                                                                         child: Container(
                                                                           height: 35,
@@ -273,95 +273,104 @@ class ImageEditView extends StatelessWidget {
                                                     Column(
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children: <Widget>[
-                                                        GestureDetector(
-                                                          onTap: () {
-                                                            showDialog(
-                                                              context: context,
-                                                              builder: (BuildContext context) {
-                                                                return Padding(
-                                                                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                                                                  child: Dialog(
-                                                                    insetPadding: const EdgeInsets.all(10),
-                                                                    backgroundColor: Color(0xffEDEDED),
-                                                                    shape: RoundedRectangleBorder(
-                                                                      borderRadius: BorderRadius.circular(5.0),
-                                                                    ),
-                                                                    child: Padding(
-                                                                      padding: const EdgeInsets.all(20.0),
-                                                                      child: GridView.builder(
-                                                                        shrinkWrap: true,
-                                                                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                                                          crossAxisCount: 6,
-                                                                          crossAxisSpacing: 10,
-                                                                          mainAxisSpacing: 10,
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                          children: [
+                                                            GestureDetector(
+                                                              onTap:(){
+                                                              setState(() {
+                                                                showDialog(
+                                                                  context: context,
+                                                                  builder: (BuildContext context) {
+                                                                    return Padding(
+                                                                      padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                                                                      child: Dialog(
+                                                                        insetPadding: const EdgeInsets.all(10),
+                                                                        backgroundColor: ColorRef.greyEDEDED,
+                                                                        shape: RoundedRectangleBorder(
+                                                                          borderRadius: BorderRadius.circular(5.0),
                                                                         ),
-                                                                        itemCount: provider.colors.length,
-                                                                        itemBuilder: (BuildContext context, int index) {
-                                                                          Color color = provider.colors[index];
-                                                                          return GestureDetector(
-                                                                            onTap: () {
-                                                                              provider.onColorChange(color);
-                                                                              Navigator.pop(context);
-                                                                            },
-                                                                            child: Container(
-                                                                              height: 2,
-                                                                              width: 2,
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.circular(2),
-                                                                                color: color,
-                                                                              ),
+                                                                        child: Padding(
+                                                                          padding: const EdgeInsets.all(25.0),
+                                                                          child: GridView.builder(
+                                                                            shrinkWrap: true,
+                                                                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                              crossAxisCount: 6,
+                                                                              crossAxisSpacing: 15,
+                                                                              mainAxisSpacing: 10,
                                                                             ),
-                                                                          );
-                                                                        },
+                                                                            itemCount: provider.colors.length,
+                                                                            itemBuilder: (BuildContext context, int index) {
+                                                                              Color color = provider.colors[index];
+                                                                              return GestureDetector(
+                                                                                onTap: () {
+                                                                                  setState((){
+                                                                                    provider.onColorChange(color);
+                                                                                  Navigator.pop(context);});
+                                                                                },
+                                                                                child: Container(
+                                                                                  height: 2,
+                                                                                  width: 2,
+                                                                                  decoration: BoxDecoration(
+                                                                                    borderRadius: BorderRadius.circular(10),
+                                                                                    color: color,
+                                                                                  ),
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                          ),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  ),
+                                                                    );
+                                                                  },
                                                                 );
+                                                              });
                                                               },
-                                                            );
-                                                          },
-                                                          child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            children: [
-                                                              Container(
+                                                              child: Container(
                                                                 height: 40,
                                                                 width: 40,
                                                                 decoration: BoxDecoration(
                                                                   color: Colors.white,
                                                                   borderRadius: BorderRadius.circular(10),
                                                                 ),
-                                                                child: Image.asset(SvgPath.colorWheel),
+                                                                child: Image.asset(SvgPath.colorWheel), // Make sure SvgPath.colorWheel is defined
                                                               ),
-                                                              const SizedBox(width: 10),
-                                                              SizedBox(
-                                                                height: 40, // Adjust the height according to your needs
-                                                                width: 40 * 5,
-                                                                child: ListView.separated(
-                                                                  scrollDirection: Axis.horizontal,
-                                                                  itemCount: 5,
-                                                                  separatorBuilder: (BuildContext context, int index) {
-                                                                    return const SizedBox(width: 10); // Add a SizedBox with width 2 between each container
-                                                                  },
-                                                                  itemBuilder: (BuildContext context, int index) {
-                                                                    double opacity = 0;
-                                                                    setState(() {
-                                                                      opacity = index < provider.shadeOpacities.length ? provider.shadeOpacities[index] : 0.0;
-                                                                    });
-                                                                    return Container(
+                                                            ),
+                                                            const SizedBox(width: 10),
+                                                            SizedBox(
+                                                              height: 40,
+                                                              width: 250,
+                                                              child: ListView.separated(
+                                                                scrollDirection: Axis.horizontal,
+                                                                itemCount: provider.shadeOpacities.length, // Adjusted itemCount to the length of shadeOpacities
+                                                                separatorBuilder: (BuildContext context, int index) {
+                                                                  return const SizedBox(width: 10);
+                                                                },
+                                                                itemBuilder: (BuildContext context, int index) {
+                                                                  double opacity = provider.shadeOpacities[index];
+                                                                  return GestureDetector(
+                                                                    onTap: () {
+                                                                      setState(() {
+                                                                        provider.onColorOpacityChange(opacity);
+                                                                      });
+                                                                    },
+                                                                    child: Container(
                                                                       height: 40,
                                                                       width: 40,
                                                                       decoration: BoxDecoration(
                                                                         color: provider.selectedColor.withOpacity(opacity),
                                                                         borderRadius: BorderRadius.circular(10),
                                                                       ),
-                                                                    );
-                                                                  },
-                                                                ),
+                                                                    ),
+                                                                  );
+                                                                },
                                                               ),
-                                                            ],
-                                                          ),
+                                                            ),
+
+                                                          ],
                                                         ),
+
                                                       ],
                                                     ),
                                                   ],
@@ -414,7 +423,7 @@ class ImageEditView extends StatelessWidget {
                                     child: Listener(
                                       onPointerDown: (details) => provider.onPointerDown(details, e),
                                       onPointerUp: (details) => provider.onPointerUp(),
-                                      child: Container(child: Image.asset(e['add'])),
+                                      child: Image.asset(e['add']),
                                     ),
                                   ),
                                 ),

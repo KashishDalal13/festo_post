@@ -23,27 +23,49 @@ class ImageEditProvider extends ChangeNotifier {
   bool isUppercase = false;
   int selectedCaseIndex = 0;
   int selectedTextStyle = 0;
-  // Color selectedColor = const Color(0xff505050);
-  Color _selectedColor = const Color(0xff505050);
+  Color _selectedColor = ColorRef.black202020;
   List<Color> colors = [
-    Colors.red,
-    Colors.green,
-    Colors.blue,
-    Colors.yellow,
-    Colors.purple,
-    Colors.orange,
-    Colors.teal,
-    Colors.indigo,
-    Colors.brown,
-    Colors.black,
-    Colors.grey,
-    Colors.white,
+    ColorRef.black202020,
+    ColorRef.black3F3E3E,
+    ColorRef.black616161,
+    ColorRef.grey848484,
+    ColorRef.greyB3B3B3,
+    ColorRef.whiteFFFFFF,
+    ColorRef.blue1950AA,
+    ColorRef.blue0566CF,
+    ColorRef.blue670F7F,
+    ColorRef.blue5239A1,
+    ColorRef.red9A0058,
+    ColorRef.green017374,
+    ColorRef.green0A6609,
+    ColorRef.green1F9C1E,
+    ColorRef.green86BB09,
+    ColorRef.green20CE1C,
+    ColorRef.orangeD2622D,
+    ColorRef.brown4E2E2F,
+    ColorRef.pinkC12194,
+    ColorRef.redEE103F,
+    ColorRef.pinkF28F8F,
+    ColorRef.pinkBA68C8,
+    ColorRef.redE60406,
+    ColorRef.orangeF25206,
+    ColorRef.orangeFA7C03,
+    ColorRef.orangeFFA500,
+    ColorRef.yellowFFE309,
+    ColorRef.blue00D4FC,
+    ColorRef.pinkFF8EDE,
+    ColorRef.blue005B87,
   ];
-  List<double> shadeOpacities = [0.5, 0.4, 0.3, 0.2, 0.1];
+  List<double> shadeOpacities = [0.6, 0.5, 0.4, 0.3, 0.2];
   Color get selectedColor => _selectedColor;
 
   void onColorChange(Color color) {
     _selectedColor = color;
+    notifyListeners();
+  }
+
+  void onColorOpacityChange(double opacity) {
+    _selectedColor = _selectedColor.withOpacity(opacity);
     notifyListeners();
   }
 
@@ -81,7 +103,7 @@ class ImageEditProvider extends ChangeNotifier {
       isUppercase = true;
     }
     if (selectedCase == 'Aa') {
-      inputString = inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
+      inputString = inputString. substring(0, 1).toUpperCase() + inputString.substring(1);
       isUppercase = false;
     }
     if (selectedCase == 'aa') {
@@ -239,7 +261,10 @@ class ImageEditProvider extends ChangeNotifier {
           ),
         );
       }
-    } else if (index == 2) {
+    } else if(index == 1){
+      debugPrint("stickers");
+    }
+    else if (index == 2) {
       // Add image from gallery
       ImagePicker().pickImage(source: ImageSource.gallery).then(
             (value) {
