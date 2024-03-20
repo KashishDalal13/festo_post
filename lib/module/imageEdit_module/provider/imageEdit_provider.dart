@@ -239,7 +239,10 @@ class ImageEditProvider extends ChangeNotifier {
           ),
         );
       }
-    } else if (index == 2) {
+    } else if(index == 1){
+      debugPrint("stickers");
+    }
+    else if (index == 2) {
       // Add image from gallery
       ImagePicker().pickImage(source: ImageSource.gallery).then(
             (value) {

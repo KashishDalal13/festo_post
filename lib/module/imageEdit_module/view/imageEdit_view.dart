@@ -273,6 +273,8 @@ class ImageEditView extends StatelessWidget {
                                                     Column(
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children: <Widget>[
+                                                        // Make sure to import necessary packages and classes
+
                                                         GestureDetector(
                                                           onTap: () {
                                                             showDialog(
@@ -304,8 +306,8 @@ class ImageEditView extends StatelessWidget {
                                                                               Navigator.pop(context);
                                                                             },
                                                                             child: Container(
-                                                                              height: 2,
-                                                                              width: 2,
+                                                                              height: 40,
+                                                                              width: 40,
                                                                               decoration: BoxDecoration(
                                                                                 borderRadius: BorderRadius.circular(2),
                                                                                 color: color,
@@ -331,23 +333,20 @@ class ImageEditView extends StatelessWidget {
                                                                   color: Colors.white,
                                                                   borderRadius: BorderRadius.circular(10),
                                                                 ),
-                                                                child: Image.asset(SvgPath.colorWheel),
+                                                                child: Image.asset(SvgPath.colorWheel), // Make sure SvgPath.colorWheel is defined
                                                               ),
                                                               const SizedBox(width: 10),
                                                               SizedBox(
-                                                                height: 40, // Adjust the height according to your needs
+                                                                height: 40,
                                                                 width: 40 * 5,
                                                                 child: ListView.separated(
                                                                   scrollDirection: Axis.horizontal,
                                                                   itemCount: 5,
                                                                   separatorBuilder: (BuildContext context, int index) {
-                                                                    return const SizedBox(width: 10); // Add a SizedBox with width 2 between each container
+                                                                    return const SizedBox(width: 10);
                                                                   },
                                                                   itemBuilder: (BuildContext context, int index) {
-                                                                    double opacity = 0;
-                                                                    setState(() {
-                                                                      opacity = index < provider.shadeOpacities.length ? provider.shadeOpacities[index] : 0.0;
-                                                                    });
+                                                                    double opacity = index < provider.shadeOpacities.length ? provider.shadeOpacities[index] : 0.0;
                                                                     return Container(
                                                                       height: 40,
                                                                       width: 40,
@@ -362,6 +361,7 @@ class ImageEditView extends StatelessWidget {
                                                             ],
                                                           ),
                                                         ),
+
                                                       ],
                                                     ),
                                                   ],
