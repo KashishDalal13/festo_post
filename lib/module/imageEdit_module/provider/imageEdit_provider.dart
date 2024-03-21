@@ -361,6 +361,7 @@ class ImageEditProvider extends ChangeNotifier {
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         gridDelegate:
+
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
                           // Adjust the cross axis count as needed
