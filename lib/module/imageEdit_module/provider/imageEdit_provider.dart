@@ -19,6 +19,7 @@ class ImageEditProvider extends ChangeNotifier {
   bool isItalic = false;
   bool isUnderline = false;
   double _fontSize = 25.0;
+
   double get fontSize => _fontSize;
   bool isUppercase = false;
   int selectedCaseIndex = 0;
@@ -39,8 +40,8 @@ class ImageEditProvider extends ChangeNotifier {
     }
   }
 
-  void toggleTextStyle(String letter,int index) {
-    selectedTextStyle=index;
+  void toggleTextStyle(String letter, int index) {
+    selectedTextStyle = index;
     if (letter == 'B') {
       isBold = !isBold;
     } else if (letter == 'I') {
@@ -50,7 +51,9 @@ class ImageEditProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
   String inputString = '';
+
   void toggleTextCase(String selectedCase, int index) {
     selectedCaseIndex = index;
     if (selectedCase == 'AA') {
@@ -127,6 +130,7 @@ class ImageEditProvider extends ChangeNotifier {
   Map<String, dynamic> activeItem = {};
   bool inAction = false;
   double? currentScale, currentRotation;
+
   void edit({required int index, required BuildContext context}) async {
     currentIndex = index.toString();
     debugPrint("${EditDetails[index]} $currentIndex");
@@ -166,12 +170,7 @@ class ImageEditProvider extends ChangeNotifier {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5),
                       boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: const Offset(0, 3),
-                        ),
+                        BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 2, blurRadius: 5, offset: const Offset(0, 3)),
                       ],
                     ),
                     child: Column(
@@ -218,7 +217,7 @@ class ImageEditProvider extends ChangeNotifier {
     } else if (index == 2) {
       // Add image from gallery
       ImagePicker().pickImage(source: ImageSource.gallery).then(
-            (value) {
+        (value) {
           if (value != null) {
             final imageFile = File(value.path);
             boardController.add(
@@ -231,8 +230,6 @@ class ImageEditProvider extends ChangeNotifier {
       );
     }
   }
-
-
 
   void frameDetailsdisplay({required int index}) {
     framecurrentIndex = index.toString();
@@ -306,8 +303,7 @@ class ImageEditProvider extends ChangeNotifier {
     activeItem['top'] += (details.focalPointDelta.dy);
     activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
     activeItem['top'] = (activeItem['top'] as double).clamp(2, height - h);
-    activeItem['position'] =
-        Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
+    activeItem['position'] = Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
     activeItem['rotation'] = details.rotation + currentRotation!;
     debugPrint("$activeItem");
     double scale = max(min(details.scale * currentScale!, 2), 0.3);
@@ -320,17 +316,16 @@ class ImageEditProvider extends ChangeNotifier {
   }
 }
 
-
 class CustomItem extends StackBoardItem {
   const CustomItem({
     this.customText,
     Future<bool> Function()? onDel,
     int? id,
   }) : super(
-    child: const Text(''),
-    onDel: onDel,
-    id: id,
-  );
+          child: const Text(''),
+          onDel: onDel,
+          id: id,
+        );
 
   final String? customText;
 
@@ -350,5 +345,3 @@ class CustomItem extends StackBoardItem {
         customText: customText ?? this.customText,
       );
 }
-
-
