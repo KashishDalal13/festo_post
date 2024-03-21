@@ -110,6 +110,8 @@ class SvgPath {
       plus = 'assets/svg/plus.svg',
       minus = 'assets/svg/minus.svg',
 
+
+      colorWheel = 'assets/png/colorWheel.png',
       carousel = 'assets/png/Carousel.png',
       carousel2 = 'assets/png/carousel2.png',
       carousel3 = 'assets/png/carousel3.png',
@@ -151,8 +153,18 @@ class SvgPath {
       contactDetail = 'assets/png/contactDetail.png',
       mailDetail = 'assets/png/mailDetail.png',
       webDetail = 'assets/png/webDetail.png',
-      locationDetail = 'assets/png/locationDetail.png';
-}
+      locationDetail = 'assets/png/locationDetail.png',
+      sticker1 = 'assets/png/sticker1.png',
+      sticker2 = 'assets/png/sticker2.png',
+      sticker3 = 'assets/png/sticker3.png',
+      sticker4 = 'assets/png/sticker4.png',
+      sticker5 = 'assets/png/sticker5.png',
+      sticker6 = 'assets/png/sticker6.png',
+      sticker7 = 'assets/png/sticker7.png',
+      sticker8 = 'assets/png/sticker8.png',
+      sticker9 = 'assets/png/sticker9.png',
+      sticker10 = 'assets/png/sticker10.png'
+;}
 
 class StringRef {
   static String initialRoute = '/';
