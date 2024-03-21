@@ -21,6 +21,9 @@ class ColorRef {
       brownBE7B00 = const Color(0xffBE7B00),
       black505050 = const Color(0xff505050),
       yellow29200  = const Color(0xffE29200),
+      blueEFF6FF  = const Color(0xffEFF6FF),
+      blue007494 = const Color(0xff007494),
+      red8C0016 = const Color(0xff8C0016),
 
       black202020 = const Color(0xff202020),
       black3F3E3E  = const Color(0xff3F3E3E),

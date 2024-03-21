@@ -104,6 +104,72 @@ flutter:
        fonts:
          - asset: fonts/Lato-Regular.ttf
          - asset: fonts/Lato-Bold.ttf
+         - asset: fonts/Lato-Italic.ttf
+     - family: AltoneTrial
+       fonts:
+         - asset: fonts/AltoneTrial-Regular.ttf
+     - family: Archivo
+       fonts:
+         - asset: fonts/Archivo-Medium.ttf
+     - family: avenir
+       fonts:
+         - asset: fonts/avenir_medium.otf
+         - asset: fonts/avenir_roman.otf
+         - asset: fonts/avenir_black.otf
+         - asset: fonts/avenir_book.otf
+         - asset: fonts/avenir_heavy.otf
+     - family: BalooTamma2
+       fonts:
+         - asset: fonts/BalooTamma2-Medium.ttf
+         - asset: fonts/BalooTamma2-Regular.ttf
+     - family: Cardo
+       fonts:
+         - asset: fonts/Cardo-Regular.ttf
+     - family: DenkOne
+       fonts:
+         - asset: fonts/DenkOne-Regular.ttf
+     - family: Fondamento
+       fonts:
+         - asset: fonts/Fondamento-Regular.ttf
+     - family: HelveticaNeue
+       fonts:
+         - asset: fonts/HelveticaNeue-Medium.ttf
+     - family: Italianno
+       fonts:
+         - asset: fonts/Italianno-Regular.ttf
+     - family: LondrinaSolid
+       fonts:
+         - asset: fonts/LondrinaSolid-Regular.ttf
+     - family: MankSans
+       fonts:
+         - asset: fonts/MankSans-Medium.ttf
+     - family: Market Fresh
+       fonts:
+         - asset: fonts/Market Fresh.ttf
+     - family: Market Fresh ALL CAPS
+       fonts:
+         - asset: fonts/Market Fresh ALL CAPS.ttf
+     - family: Mostery
+       fonts:
+         - asset: fonts/Mostery.ttf
+     - family: Play
+       fonts:
+         - asset: fonts/Play-Regular.ttf
+     - family: Poppins
+       fonts:
+         - asset: fonts/Poppins-Regular.ttf
+     - family: Roboto
+       fonts:
+         - asset: fonts/Roboto-Regular.ttf
+     - family: Rodano
+       fonts:
+         - asset: fonts/Rodano.otf
+     - family: Sriracha
+       fonts:
+         - asset: fonts/Sriracha-Regular.ttf
+     - family: Trocchi
+       fonts:
+         - asset: fonts/Trocchi-Regular.ttf
 #           style: italic
 
   # For details regarding fonts from package dependencies,

@@ -5,7 +5,6 @@ import 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.d
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:stack_board/stack_board.dart';
-import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 
 import '../../../utils/bool.dart';
 
@@ -37,22 +36,15 @@ class ImageEditView extends StatelessWidget {
                 icon: Icon(
                   Icons.arrow_back_ios_new_rounded,
                   size: 24,
-                  color: BoolRef.themeChange
-                      ? ColorRef.white
-                      : ColorRef.black202020,
+                  color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020,
                 ),
               ),
               centerTitle: true,
-              title: Text(label ?? '',
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Lato',
-                      fontWeight: FontWeight.w400)),
+              title: Text(label ?? '', style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
               actions: [
                 TextButton(
                   onPressed: () {},
-                  child:
-                      Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
+                  child: Icon(Icons.check, size: 24, color: ColorRef.blue0250A4),
                 ),
               ],
             ),
@@ -63,29 +55,26 @@ class ImageEditView extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onScaleStart: (details) => provider.onScaleStart(details),
-                    onScaleUpdate: (details) =>
-                        provider.onScaleUpdate(details, height, width),
+                    onScaleUpdate: (details) => provider.onScaleUpdate(details, height, width),
                     child: Stack(
                       children: [
                         SizedBox(
-                          width: 350, // or provide your desired width
-                          height: 370,
+                          width: 350,
+                          height: 350,
                           child: StackBoard(
                             key: provider.boardKey,
                             controller: provider.boardController,
                             caseStyle: const CaseStyle(
                               borderColor: Colors.grey,
-                              iconColor: Colors.white,
+                              iconColor: Colors.white,boxAspectRatio: 2
                             ),
                             customBuilder: (StackBoardItem t) {
                               if (t is CustomItem) {
                                 return ItemCase(
                                   key: Key('StackBoardItem${t.id}'),
                                   isCenter: false,
-                                  onDel: () async =>
-                                      provider.boardController.remove(t.id),
-                                  onTap: () => provider.boardController
-                                      .moveItemToTop(t.id),
+                                  onDel: () async => provider.boardController.remove(t.id),
+                                  onTap: () => provider.boardController.moveItemToTop(t.id),
                                   caseStyle: const CaseStyle(
                                     borderColor: Colors.grey,
                                     iconColor: Colors.white,
@@ -94,18 +83,16 @@ class ImageEditView extends StatelessWidget {
                                     onTap: () {
                                       showModalBottomSheet(
                                         context: context,
+                                        backgroundColor: ColorRef.transparent,
                                         builder: (BuildContext context) {
                                           return StatefulBuilder(
                                             builder: (context, setState) {
                                               return Container(
                                                 height: 230,
                                                 decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(30.0),
-                                                    topRight:
-                                                        Radius.circular(30.0),
+                                                  borderRadius: const BorderRadius.only(
+                                                    topLeft: Radius.circular(30.0),
+                                                    topRight: Radius.circular(30.0),
                                                   ),
                                                   color: ColorRef.greyEDEDED,
                                                 ),
@@ -113,21 +100,15 @@ class ImageEditView extends StatelessWidget {
                                                   children: <Widget>[
                                                     const SizedBox(height: 15),
                                                     Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
+                                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                                      mainAxisAlignment: MainAxisAlignment.center,
                                                       children: [
                                                         Text(
                                                           StrRef.editText,
-                                                          style:
-                                                              const TextStyle(
+                                                          style: const TextStyle(
                                                             fontSize: 15,
                                                             fontFamily: 'Lato',
-                                                            fontWeight:
-                                                                FontWeight.w400,
+                                                            fontWeight: FontWeight.w400,
                                                           ),
                                                         ),
                                                       ],
@@ -138,100 +119,98 @@ class ImageEditView extends StatelessWidget {
                                                         Expanded(
                                                           child: Column(
                                                             children: [
-                                                              Container(
-                                                                height: 35,
-                                                                width: 140,
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .all(2),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5),
-                                                                  color: ColorRef
-                                                                      .white,
-                                                                ),
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceEvenly,
-                                                                  children: [
-                                                                    SvgPicture.asset(
-                                                                        SvgPath
-                                                                            .leftArrow),
-                                                                    Text(
-                                                                      StrRef
-                                                                          .Fonts,
-                                                                      style: const TextStyle(
-                                                                          fontFamily:
-                                                                              'Lato',
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
+                                                              SingleChildScrollView(
+                                                                scrollDirection: Axis.vertical,
+                                                                child: PopupMenuButton<String>(
+                                                                  shadowColor: ColorRef.black202020,
+                                                                  offset: Offset(0, 1),
+                                                                  color: ColorRef.white,
+                                                                  position: PopupMenuPosition.under,
+                                                                  shape: RoundedRectangleBorder(
+                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                  ),
+                                                                  itemBuilder: (BuildContext context) {
+                                                                    return provider.fontFamilies.map((String fontFamily) {
+                                                                      final bool isSelected = provider.selectedFontFamily == fontFamily;
+                                                                      return PopupMenuItem<String>(
+                                                                        height: 2,
+                                                                        value: fontFamily,
+                                                                        child: Container(
+                                                                          padding: const EdgeInsets.all(5),
+                                                                          decoration: isSelected
+                                                                              ? BoxDecoration(
+                                                                                  color: ColorRef.blue1950AA.withOpacity(0.1),
+                                                                                  borderRadius: BorderRadius.circular(4),
+                                                                                )
+                                                                              : null,
+                                                                          child: Center(
+                                                                            child: Text(
+                                                                              fontFamily,
+                                                                              style: TextStyle(
+                                                                                color: ColorRef.black202020,
+                                                                                fontSize: 15,
+                                                                                fontFamily: fontFamily,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    }).toList();
+                                                                  },
+                                                                  onSelected: (String selectedFontFamily) {
+                                                                    setState(() {
+                                                                      provider.setSelectedFontFamily(selectedFontFamily);
+                                                                    });
+                                                                  },
+                                                                  child: Container(
+                                                                    padding: const EdgeInsets.symmetric(vertical: 7),
+                                                                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                                                                    decoration: BoxDecoration(
+                                                                      borderRadius: BorderRadius.circular(5),
+                                                                      color: ColorRef.white,
                                                                     ),
-                                                                    SvgPicture.asset(
-                                                                        SvgPath
-                                                                            .rightArrow),
-                                                                  ],
+                                                                    child: Center(
+                                                                      child: Text(
+                                                                        provider.selectedFontFamily == '' ? "Fonts" : provider.selectedFontFamily,
+                                                                        style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
+                                                                      ),
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ),
                                                               const SizedBox(
                                                                 height: 15,
                                                               ),
                                                               Padding(
-                                                                padding: const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        30.0),
+                                                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                                                                 child: SizedBox(
                                                                   height: 35,
-                                                                  child: ListView
-                                                                      .separated(
-                                                                    scrollDirection:
-                                                                        Axis.horizontal,
-                                                                    itemCount: provider
-                                                                        .letters
-                                                                        .length,
-                                                                    separatorBuilder: (context,
-                                                                            index) =>
-                                                                        const SizedBox(
-                                                                            width:
-                                                                                15),
-                                                                    itemBuilder:
-                                                                        (context,
-                                                                            index) {
+                                                                  child: ListView.separated(
+                                                                    scrollDirection: Axis.horizontal,
+                                                                    itemCount: provider.letters.length,
+                                                                    separatorBuilder: (context, index) => const SizedBox(width: 10),
+                                                                    itemBuilder: (context, index) {
                                                                       return GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          setState(
-                                                                              () {
-                                                                            provider.toggleTextStyle(provider.letters[index],
-                                                                                index);
-                                                                          }); // Update the UI
+                                                                        onTap: () {
+                                                                          setState(() {
+                                                                            provider.toggleTextStyle(provider.letters[index], index);
+                                                                          });
                                                                         },
-                                                                        child:
-                                                                            Container(
-                                                                          height:
-                                                                              35,
-                                                                          width:
-                                                                              35,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(5),
-                                                                            color: (provider.selectedTextStyle == index.toString()&&(provider.isBold||provider.isUnderline||provider.isItalic))
-                                                                                ? ColorRef.yellowFFA500
-                                                                                : ColorRef.white,
+                                                                        child: Container(
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                                                                          decoration: BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(5),
+                                                                            color: provider.selectedTextStyle == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white,
                                                                           ),
-                                                                          child:
-                                                                              Center(
-                                                                            child:
-                                                                                Text(
-                                                                              provider.letters[index],
-                                                                              style: const TextStyle(
-                                                                                fontSize: 16,
-                                                                                fontWeight: FontWeight.bold,
+                                                                          child: Center(
+                                                                            child: Padding(
+                                                                              padding: const EdgeInsets.all(3.0),
+                                                                              child: Text(
+                                                                                provider.letters[index],
+                                                                                style: const TextStyle(
+                                                                                  fontSize: 16,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -255,9 +234,8 @@ class ImageEditView extends StatelessWidget {
                                                           child: Column(
                                                             children: [
                                                               Container(
-                                                                height: 35,
-                                                                width: 140,
-                                                                padding: const EdgeInsets.all(2),
+                                                                padding: const EdgeInsets.symmetric(vertical: 7),
+                                                                margin: const EdgeInsets.symmetric(horizontal: 20),
                                                                 decoration: BoxDecoration(
                                                                   borderRadius: BorderRadius.circular(5),
                                                                   color: ColorRef.white,
@@ -267,8 +245,9 @@ class ImageEditView extends StatelessWidget {
                                                                   children: [
                                                                     GestureDetector(
                                                                       onTap: () {
-                                                                        provider.increaseFontSize();
-                                                                        setState(() {});
+                                                                        setState(() {
+                                                                          provider.increaseFontSize();
+                                                                        });
                                                                       },
                                                                       child: SvgPicture.asset(SvgPath.plus),
                                                                     ),
@@ -278,8 +257,9 @@ class ImageEditView extends StatelessWidget {
                                                                     ),
                                                                     GestureDetector(
                                                                       onTap: () {
-                                                                        provider.decreaseFontSize();
-                                                                        setState(() {});
+                                                                        setState(() {
+                                                                          provider.decreaseFontSize();
+                                                                        });
                                                                       },
                                                                       child: SvgPicture.asset(SvgPath.minus),
                                                                     ),
@@ -290,33 +270,35 @@ class ImageEditView extends StatelessWidget {
                                                                 height: 15,
                                                               ),
                                                               Padding(
-                                                                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                                                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                                                                 child: SizedBox(
                                                                   height: 35,
                                                                   child: ListView.separated(
                                                                     scrollDirection: Axis.horizontal,
                                                                     itemCount: provider.cases.length,
-                                                                    separatorBuilder: (context, index) => const SizedBox(width: 15),
+                                                                    separatorBuilder: (context, index) => const SizedBox(width: 10),
                                                                     itemBuilder: (context, index) {
                                                                       return GestureDetector(
                                                                         onTap: () {
                                                                           setState(() {
                                                                             provider.toggleTextCase(provider.cases[index], index);
-                                                                          }); // Update the UI
+                                                                          });
                                                                         },
                                                                         child: Container(
-                                                                          height: 35,
-                                                                          width: 35,
+                                                                          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
                                                                           decoration: BoxDecoration(
                                                                             borderRadius: BorderRadius.circular(5),
-                                                                            color: provider.selectedCaseIndex == index ? ColorRef.yellowFFA500 : ColorRef.white,
+                                                                            color: provider.selectedCaseIndex == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white,
                                                                           ),
                                                                           child: Center(
-                                                                            child: Text(
-                                                                              provider.cases[index],
-                                                                              style: const TextStyle(
-                                                                                fontSize: 16,
-                                                                                fontWeight: FontWeight.bold,
+                                                                            child: Padding(
+                                                                              padding: const EdgeInsets.all(3.0),
+                                                                              child: Text(
+                                                                                provider.cases[index],
+                                                                                style: const TextStyle(
+                                                                                  fontSize: 16,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -335,94 +317,101 @@ class ImageEditView extends StatelessWidget {
                                                     Column(
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children: <Widget>[
-                                                        GestureDetector(
-                                                          onTap: () {
-                                                            showDialog(
-                                                              context: context,
-                                                              builder: (BuildContext context) {
-                                                                return Padding(
-                                                                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                                                                  child: Dialog(
-                                                                    insetPadding: const EdgeInsets.all(10),
-                                                                    backgroundColor: Color(0xffEDEDED),
-                                                                    shape: RoundedRectangleBorder(
-                                                                      borderRadius: BorderRadius.circular(5.0),
-                                                                    ),
-                                                                    child: Padding(
-                                                                      padding: const EdgeInsets.all(20.0),
-                                                                      child: GridView.builder(
-                                                                        shrinkWrap: true,
-                                                                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                                                          crossAxisCount: 6,
-                                                                          crossAxisSpacing: 10,
-                                                                          mainAxisSpacing: 10,
-                                                                        ),
-                                                                        itemCount: provider.colors.length,
-                                                                        itemBuilder: (BuildContext context, int index) {
-                                                                          Color color = provider.colors[index];
-                                                                          return GestureDetector(
-                                                                            onTap: () {
-                                                                              provider.onColorChange(color);
-                                                                              Navigator.pop(context);
-                                                                            },
-                                                                            child: Container(
-                                                                              height: 2,
-                                                                              width: 2,
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.circular(2),
-                                                                                color: color,
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                          children: [
+                                                            GestureDetector(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  showDialog(
+                                                                    context: context,
+                                                                    builder: (BuildContext context) {
+                                                                      return Padding(
+                                                                        padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                                                                        child: Dialog(
+                                                                          insetPadding: const EdgeInsets.all(10),
+                                                                          backgroundColor: ColorRef.greyEDEDED,
+                                                                          shape: RoundedRectangleBorder(
+                                                                            borderRadius: BorderRadius.circular(5.0),
+                                                                          ),
+                                                                          child: Padding(
+                                                                            padding: const EdgeInsets.all(25.0),
+                                                                            child: GridView.builder(
+                                                                              shrinkWrap: true,
+                                                                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                crossAxisCount: 6,
+                                                                                crossAxisSpacing: 12,
+                                                                                mainAxisSpacing: 10,
                                                                               ),
+                                                                              itemCount: provider.colors.length,
+                                                                              itemBuilder: (BuildContext context, int index) {
+                                                                                Color color = provider.colors[index];
+                                                                                return GestureDetector(
+                                                                                  onTap: () {
+                                                                                    setState(() {
+                                                                                      provider.onColorChange(color);
+                                                                                      Navigator.pop(context);
+                                                                                    });
+                                                                                  },
+                                                                                  child: Container(
+                                                                                    padding: const EdgeInsets.all(5),
+                                                                                    decoration: BoxDecoration(
+                                                                                      borderRadius: BorderRadius.circular(10),
+                                                                                      color: color,
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              },
                                                                             ),
-                                                                          );
-                                                                        },
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                );
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                });
                                                               },
-                                                            );
-                                                          },
-                                                          child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            children: [
-                                                              Container(
-                                                                height: 40,
-                                                                width: 40,
+                                                              child: Container(
+                                                                height: 30,
+                                                                width: 30,
                                                                 decoration: BoxDecoration(
                                                                   color: Colors.white,
                                                                   borderRadius: BorderRadius.circular(10),
                                                                 ),
-                                                                child: Image.asset(SvgPath.colorWheel),
+                                                                child: Image.asset(SvgPath.colorWheel), // Make sure SvgPath.colorWheel is defined
                                                               ),
-                                                              const SizedBox(width: 10),
-                                                              SizedBox(
-                                                                height: 40, // Adjust the height according to your needs
-                                                                width: 40 * 5,
-                                                                child: ListView.separated(
-                                                                  scrollDirection: Axis.horizontal,
-                                                                  itemCount: 5,
-                                                                  separatorBuilder: (BuildContext context, int index) {
-                                                                    return const SizedBox(width: 10); // Add a SizedBox with width 2 between each container
-                                                                  },
-                                                                  itemBuilder: (BuildContext context, int index) {
-                                                                    double opacity = 0;
-                                                                    setState(() {
-                                                                      opacity = index < provider.shadeOpacities.length ? provider.shadeOpacities[index] : 0.0;
-                                                                    });
-                                                                    return Container(
-                                                                      height: 40,
-                                                                      width: 40,
+                                                            ),
+                                                            const SizedBox(width: 10),
+                                                            SizedBox(
+                                                              height: 30,
+                                                              width: 200,
+                                                              child: ListView.separated(
+                                                                scrollDirection: Axis.horizontal,
+                                                                itemCount: provider.shadeOpacities.length, // Adjusted itemCount to the length of shadeOpacities
+                                                                separatorBuilder: (BuildContext context, int index) {
+                                                                  return const SizedBox(width: 10);
+                                                                },
+                                                                itemBuilder: (BuildContext context, int index) {
+                                                                  double opacity = provider.shadeOpacities[index];
+                                                                  return GestureDetector(
+                                                                    onTap: () {
+                                                                      setState(() {
+                                                                        provider.onColorOpacityChange(opacity);
+                                                                      });
+                                                                    },
+                                                                    child: Container(
+                                                                      height: 30,
+                                                                      width: 30,
                                                                       decoration: BoxDecoration(
                                                                         color: provider.selectedColor.withOpacity(opacity),
                                                                         borderRadius: BorderRadius.circular(10),
                                                                       ),
-                                                                    );
-                                                                  },
-                                                                ),
+                                                                    ),
+                                                                  );
+                                                                },
                                                               ),
-                                                            ],
-                                                          ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ],
                                                     ),
@@ -439,14 +428,18 @@ class ImageEditView extends StatelessWidget {
                                       height: 40,
                                       alignment: Alignment.center,
                                       child: Text(
-                                        provider.isUppercase ? (t.customText ?? '').toUpperCase() : t.customText ?? '',
+                                        provider.selectedTextCase == 'AA'
+                                            ? (t.customText ?? '').toUpperCase()
+                                            : provider.selectedTextCase == 'aa'
+                                                ? t.customText!.toLowerCase()
+                                                : "${t.customText!.substring(0, 1).toUpperCase()}${t.customText!.substring(1).toLowerCase()}",
                                         style: TextStyle(
                                           color: provider.selectedColor,
                                           fontSize: provider.fontSize,
                                           fontWeight: provider.isBold ? FontWeight.bold : FontWeight.normal,
                                           fontStyle: provider.isItalic ? FontStyle.italic : FontStyle.normal,
                                           decoration: provider.isUnderline ? TextDecoration.underline : TextDecoration.none,
-                                          fontFamily: 'Lato',
+                                          fontFamily: provider.selectedFontFamily,
                                         ),
                                       ),
                                     ),
@@ -455,9 +448,103 @@ class ImageEditView extends StatelessWidget {
                               }
                               return null;
                             },
-                            background: Container(
-                              alignment: Alignment.center,
-                              child: Image.asset(selectedImage ?? "", height: 350, width: 370, fit: BoxFit.cover),
+                            background: Stack(
+                              children: [
+                                Image.asset(selectedImage ?? "", height: 350, width: 370, fit: BoxFit.cover),
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            margin: const EdgeInsets.only(top: 17.0, right: 19.0),
+                                            child: Image.asset(SvgPath.logo),
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            const SizedBox(height: 5),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: ColorRef.blue007494,
+                                                borderRadius: const BorderRadius.only(
+                                                  topLeft: Radius.circular(30.0),
+                                                  bottomLeft: Radius.circular(30.0),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                "Loopbots@gmail.com",
+                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: ColorRef.red8C0016,
+                                                borderRadius: const BorderRadius.only(
+                                                  topLeft: Radius.circular(30.0),
+                                                  bottomLeft: Radius.circular(30.0),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                "+12 123 456 789",
+                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    const Spacer(),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                            decoration: BoxDecoration(
+                                              color: ColorRef.red8C0016,
+                                              borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(30.0),
+                                                bottomLeft: Radius.circular(30.0),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              "www.loopbotstechnology.com",
+                                              style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 3),
+                                            width: double.maxFinite,
+                                            decoration: BoxDecoration(
+                                              color: ColorRef.blue007494,
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                "401 - Green Elina, Anand mahal road, Adajan. Surat, Gujarat 395009",
+                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 6, color: ColorRef.white),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
                             ),
                           ),
                         ),
@@ -476,7 +563,7 @@ class ImageEditView extends StatelessWidget {
                                     child: Listener(
                                       onPointerDown: (details) => provider.onPointerDown(details, e),
                                       onPointerUp: (details) => provider.onPointerUp(),
-                                      child: Container(child: Image.asset(e['add'])),
+                                      child: Image.asset(e['add']),
                                     ),
                                   ),
                                 ),

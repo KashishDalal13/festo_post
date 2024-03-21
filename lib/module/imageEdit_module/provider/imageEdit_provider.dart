@@ -20,13 +20,43 @@ class ImageEditProvider extends ChangeNotifier {
   bool isItalic = false;
   bool isUnderline = false;
   double _fontSize = 25.0;
+
   double get fontSize => _fontSize;
   bool isUppercase = false;
   String selectedTextCase = '';
   String selectedCaseIndex = '';
   String selectedTextStyle = '';
+  String selectedFontFamily = '';
 
-  // Color selectedColor = const Color(0xff505050);
+  List<String> fontFamilies = [
+    'AltoneTrial',
+    'Archivo',
+    'avenir',
+    'BalooTamma2',
+    'Cardo',
+    'DenkOne',
+    'Fondamento',
+    'HelveticaNeue',
+    'Italianno',
+    'LondrinaSolid',
+    'Lato',
+    'MankSans',
+    'Market Fresh',
+    'Market Fresh ALL CAPS',
+    'Mostery',
+    'Play',
+    'Poppins',
+    'Roboto',
+    'Rodano',
+    'Sriracha',
+    'Trocchi'
+  ];
+
+  void setSelectedFontFamily(String fontFamily) {
+    selectedFontFamily = fontFamily;
+    notifyListeners();
+  }
+
   Color _selectedColor = const Color(0xff505050);
   List<Color> colors = [
     ColorRef.black202020,
@@ -61,6 +91,7 @@ class ImageEditProvider extends ChangeNotifier {
     ColorRef.blue005B87,
   ];
   List<double> shadeOpacities = [0.6, 0.5, 0.4, 0.3, 0.2];
+
   Color get selectedColor => _selectedColor;
 
   void onColorChange(Color color) {
@@ -72,7 +103,6 @@ class ImageEditProvider extends ChangeNotifier {
     _selectedColor = _selectedColor.withOpacity(opacity);
     notifyListeners();
   }
-
 
   List<String> letters = ['B', 'I', 'U'];
   List<String> cases = ['Aa', 'AA', 'aa'];
@@ -102,18 +132,19 @@ class ImageEditProvider extends ChangeNotifier {
   }
 
   String inputString = '';
+
   void toggleTextCase(String selectedCase, int index) {
     selectedCaseIndex = index.toString();
     if (selectedCase == 'AA') {
-      selectedTextCase='AA';
+      selectedTextCase = 'AA';
       isUppercase = true;
     }
     if (selectedCase == 'Aa') {
-      selectedTextCase='Aa';
+      selectedTextCase = 'Aa';
       isUppercase = false;
     }
     if (selectedCase == 'aa') {
-      selectedTextCase='aa';
+      selectedTextCase = 'aa';
       isUppercase = false;
     }
     notifyListeners();
@@ -122,7 +153,7 @@ class ImageEditProvider extends ChangeNotifier {
   List<Map<String, dynamic>> frameDetails = [
     {
       "imageList": SvgPath.frameLogo,
-      "add": SvgPath.logo,
+      "add": SvgPath.sticker1,
       "show": false,
       "position": const Offset(0.1, 0.1),
       "top": 0.0,
@@ -181,13 +212,7 @@ class ImageEditProvider extends ChangeNotifier {
   List<Map<String, dynamic>> stickerList = [
     {
       "label": "All",
-      "imageList": [
-        SvgPath.sticker4,
-        SvgPath.sticker1,
-        SvgPath.sticker10,
-        SvgPath.sticker1,
-        SvgPath.sticker2
-      ]
+      "imageList": [SvgPath.sticker4, SvgPath.sticker1, SvgPath.sticker10, SvgPath.sticker1, SvgPath.sticker2]
     },
     {
       "label": "Sale",
@@ -225,12 +250,10 @@ class ImageEditProvider extends ChangeNotifier {
 
   void edit({required int index, required BuildContext context}) async {
     currentIndex = index.toString();
-    debugPrint("${EditDetails[index]} $currentIndex");
     notifyListeners();
 
     if (index == 0) {
       String text = '';
-
       String? result = await showDialog(
         context: context,
         barrierColor: Colors.black.withOpacity(0.3),
@@ -257,8 +280,7 @@ class ImageEditProvider extends ChangeNotifier {
                   ),
                   const SizedBox(height: 10),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 50, horizontal: 110),
+                    padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 110),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5),
@@ -294,8 +316,7 @@ class ImageEditProvider extends ChangeNotifier {
                         color: ColorRef.yellowFFA500,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Text('Add',
-                          style: TextStyle(color: ColorRef.black202020)),
+                      child: Text('Add', style: TextStyle(color: ColorRef.black202020)),
                     ),
                   ),
                 ],
@@ -345,26 +366,21 @@ class ImageEditProvider extends ChangeNotifier {
                               onTap: () {
                                 setState(() {
                                   onSelectSticker(index: index);
+                                  Navigator.of(context).pop();
                                 });
                               },
                               child: Container(
                                 height: 30,
                                 width: 76,
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 8),
+                                margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: index == stickerIndex
-                                      ? ColorRef.yellowFFA500
-                                      : ColorRef.white,
+                                  color: index == stickerIndex ? ColorRef.yellowFFA500 : ColorRef.white,
                                 ),
                                 child: Center(
                                   child: Text(
                                     stickerList[index]['label'],
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: 'Lato',
-                                        fontWeight: FontWeight.w400),
+                                    style: const TextStyle(fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.w400),
                                   ),
                                 ),
                               ),
@@ -381,30 +397,26 @@ class ImageEditProvider extends ChangeNotifier {
                       GridView.builder(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
                           // Adjust the cross axis count as needed
                           crossAxisSpacing: 15,
                           // Adjust the spacing between grid items as needed
-                          mainAxisSpacing:
-                              15, // Adjust the spacing between rows as needed
+                          mainAxisSpacing: 15, // Adjust the spacing between rows as needed
                         ),
-                        itemCount:
-                            stickerList[stickerIndex]['imageList'].length,
+                        itemCount: stickerList[stickerIndex]['imageList'].length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
                               // Add the selected image to the StackBoard
                               boardController.add(
                                 StackBoardItem(
-                                  child: Image.asset(stickerList[stickerIndex]
-                                      ['imageList'][index]),
+                                  caseStyle: CaseStyle(boxAspectRatio: 350 / 370),
+                                  child: Image.asset(stickerList[stickerIndex]['imageList'][index]),
                                 ),
                               );
                             },
-                            child: Image.asset(
-                                stickerList[stickerIndex]['imageList'][index]),
+                            child: Image.asset(stickerList[stickerIndex]['imageList'][index]),
                           );
                         },
                       )
@@ -437,7 +449,6 @@ class ImageEditProvider extends ChangeNotifier {
     framecurrentIndex = index.toString();
     frameDetails[index]['show'] = !frameDetails[index]['show'];
     activeItem = frameDetails[index];
-    debugPrint("${frameDetails[index]}");
     notifyListeners();
   }
 
@@ -449,7 +460,7 @@ class ImageEditProvider extends ChangeNotifier {
       w = width / 3.2;
     } else if (height < 800 && width < 370) {
       debugPrint("Medium device");
-      h = height / 1.96;
+      h = height /1.3;
       w = width / 3.2;
     } else if (height > 800 && width > 370) {
       debugPrint("Large device");
@@ -459,8 +470,8 @@ class ImageEditProvider extends ChangeNotifier {
     activeItem['left'] += (details.delta.dx);
     activeItem['top'] += (details.delta.dy);
     debugPrint("$height $width ${height / 1.3} $details");
-    activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
-    activeItem['top'] = (activeItem['top'] as double).clamp(2, height - h);
+    activeItem['left'] = (activeItem['left'] as double).clamp(2, 50);
+    activeItem['top'] = (activeItem['top'] as double).clamp(2, 50);
     notifyListeners();
   }
 
@@ -473,7 +484,6 @@ class ImageEditProvider extends ChangeNotifier {
     if (inAction) return;
     inAction = true;
     activeItem = data;
-    debugPrint("$activeItem");
     currentScale = data['scale'];
     currentRotation = data['rotation'];
     notifyListeners();
@@ -486,6 +496,10 @@ class ImageEditProvider extends ChangeNotifier {
   }
 
   onScaleUpdate(ScaleUpdateDetails details, height, width) {
+    if (activeItem.isEmpty) {
+      return;
+    }
+    debugPrint("$activeItem");
     double h = 0, w = 0;
     if (height < 750 && width < 370) {
       debugPrint("Small device");
@@ -493,8 +507,8 @@ class ImageEditProvider extends ChangeNotifier {
       w = width / 3.2;
     } else if (height < 800 && width < 370) {
       debugPrint("Medium device");
-      h = height / 1.96;
-      w = width / 2.0;
+      h = height / 1.55;
+      w = width / 3.2;
     } else if (height > 800 && width > 370) {
       debugPrint("Large device");
       h = height / 1.56;
@@ -505,8 +519,7 @@ class ImageEditProvider extends ChangeNotifier {
     activeItem['top'] += (details.focalPointDelta.dy);
     activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
     activeItem['top'] = (activeItem['top'] as double).clamp(2, height - h);
-    activeItem['position'] =
-        Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
+    activeItem['position'] = Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
     activeItem['rotation'] = details.rotation + currentRotation!;
     debugPrint("$activeItem");
     double scale = max(min(details.scale * currentScale!, 2), 0.3);
@@ -520,10 +533,6 @@ class ImageEditProvider extends ChangeNotifier {
 
   void onSelectSticker({required int index}) {
     stickerIndex = index;
-    String selectedStickerLabel = stickerList[index]['label'];
-    if (selectedStickerLabel == 'Sports') {
-      debugPrint("Sports");
-    }
     notifyListeners();
   }
 }
