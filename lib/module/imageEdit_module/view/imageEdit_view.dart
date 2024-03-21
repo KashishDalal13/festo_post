@@ -457,7 +457,7 @@ class ImageEditView extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Container(
-                                            margin: const EdgeInsets.only(top: 17.0, right: 19.0),
+                                            margin: const EdgeInsets.only(top: 16.0, right: 19.0),
                                             child: Image.asset(SvgPath.logo),
                                           ),
                                         ),
