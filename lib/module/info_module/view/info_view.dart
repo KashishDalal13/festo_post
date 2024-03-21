@@ -177,62 +177,6 @@ class InfoView extends StatelessWidget {
                       ],
                     ),
                   )
-                  /* Expanded(
-                    flex: 1,
-                    child: Container(color: ColorRef.blue0250A4,
-                      child: Stack(
-                        children: [
-                          Image.asset(
-                            SvgPath.info,
-                          ),
-                          Positioned(
-                            top: 16,
-                            left: 10,
-                            child: IconButton(
-                              onPressed: () {
-                                provider.onBack();
-                              },
-                              icon: Icon(
-                                Icons.arrow_back_ios_new_rounded,
-                                size: 24,
-                                color: BoolRef.themeChange
-                                    ? ColorRef.white
-                                    : ColorRef.black202020,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(color: ColorRef.yellowFFEDCC,
-                      child: Stack(
-                        children: [
-                          Image.asset(
-                            SvgPath.info,
-                          ),
-                          Positioned(
-                            top: 16,
-                            left: 10,
-                            child: IconButton(
-                              onPressed: () {
-                                provider.onBack();
-                              },
-                              icon: Icon(
-                                Icons.arrow_back_ios_new_rounded,
-                                size: 24,
-                                color: BoolRef.themeChange
-                                    ? ColorRef.white
-                                    : ColorRef.black202020,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),*/
                 ],
               ),
             ),
