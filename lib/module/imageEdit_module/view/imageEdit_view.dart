@@ -118,106 +118,121 @@ class ImageEditView extends StatelessWidget {
                                                       children: [
                                                         Expanded(
                                                           child: Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                            mainAxisAlignment: MainAxisAlignment.center,
                                                             children: [
-                                                              SingleChildScrollView(
-                                                                scrollDirection: Axis.vertical,
-                                                                child: PopupMenuButton<String>(
-                                                                  shadowColor: ColorRef.black202020,
-                                                                  offset: Offset(0, 1),
-                                                                  color: ColorRef.white,
-                                                                  position: PopupMenuPosition.under,
-                                                                  shape: RoundedRectangleBorder(
-                                                                    borderRadius: BorderRadius.circular(10.0),
-                                                                  ),
-                                                                  itemBuilder: (BuildContext context) {
-                                                                    return provider.fontFamilies.map((String fontFamily) {
-                                                                      final bool isSelected = provider.selectedFontFamily == fontFamily;
-                                                                      return PopupMenuItem<String>(
-                                                                        height: 2,
-                                                                        value: fontFamily,
-                                                                        child: Container(
-                                                                          padding: const EdgeInsets.all(5),
-                                                                          decoration: isSelected
-                                                                              ? BoxDecoration(
-                                                                                  color: ColorRef.blue1950AA.withOpacity(0.1),
-                                                                                  borderRadius: BorderRadius.circular(4),
-                                                                                )
-                                                                              : null,
-                                                                          child: Center(
-                                                                            child: Text(
+                                                              PopupMenuButton(
+                                                                constraints: const BoxConstraints(maxWidth: 200,minWidth: 200, minHeight: 100, maxHeight: 150),
+                                                                shadowColor: ColorRef.black202020,
+                                                                offset: const Offset(0, 0),
+                                                                color: ColorRef.whiteFFFFFF,
+                                                                position: PopupMenuPosition.over,
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(10.0),
+                                                                ),
+                                                                itemBuilder: (BuildContext context) {
+                                                                  return provider.fontFamilies.map((String fontFamily) {
+                                                                    final bool isSelected = provider.selectedFontFamily == fontFamily;
+                                                                    return CheckedPopupMenuItem(
+                                                                      value: fontFamily,
+                                                                      child: Container(
+                                                                        decoration: BoxDecoration(
+                                                                         color: isSelected ? ColorRef.blueEFF6FF : Colors.transparent,
+                                                                          borderRadius: BorderRadius.circular(10),
+                                                                        ),
+                                                                        child: Row(
+                                                                          children: <Widget>[
+                                                                            Checkbox(
+                                                                              value: isSelected,
+                                                                              onChanged: (_) {},
+                                                                              activeColor: ColorRef.blue1E75E5,
+                                                                            ),
+                                                                            Text(
                                                                               fontFamily,
                                                                               style: TextStyle(
-                                                                                color: ColorRef.black202020,
+                                                                                color: ColorRef.grey406110A,
                                                                                 fontSize: 15,
                                                                                 fontFamily: fontFamily,
                                                                               ),
                                                                             ),
-                                                                          ),
+                                                                          ],
                                                                         ),
-                                                                      );
-                                                                    }).toList();
-                                                                  },
-                                                                  onSelected: (String selectedFontFamily) {
-                                                                    setState(() {
-                                                                      provider.setSelectedFontFamily(selectedFontFamily);
-                                                                    });
-                                                                  },
-                                                                  child: Container(
-                                                                    padding: const EdgeInsets.symmetric(vertical: 7),
-                                                                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                                                                    decoration: BoxDecoration(
-                                                                      borderRadius: BorderRadius.circular(5),
-                                                                      color: ColorRef.white,
-                                                                    ),
-                                                                    child: Center(
-                                                                      child: Text(
-                                                                        provider.selectedFontFamily == '' ? "Fonts" : provider.selectedFontFamily,
-                                                                        style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
+                                                                      ),
+                                                                    );
+                                                                  }).toList();
+                                                                },
+                                                                onSelected: (String selectedFontFamily) {
+                                                                  setState(() {
+                                                                    provider.setSelectedFontFamily(selectedFontFamily);
+                                                                  });
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                      padding: const EdgeInsets.symmetric(vertical: 9),
+                                                                      margin: const EdgeInsets.symmetric(horizontal: 25),
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(5),
+                                                                        color: ColorRef.white,
+                                                                      ),
+                                                                      child: Center(
+                                                                        child:
+                                                                            Text(
+                                                                              provider.selectedFontFamily == '' ? "Fonts" : provider.selectedFontFamily,
+                                                                              style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
+                                                                            ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ),
                                                               ),
                                                               const SizedBox(
                                                                 height: 15,
                                                               ),
                                                               Padding(
-                                                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
                                                                 child: SizedBox(
                                                                   height: 35,
-                                                                  child: ListView.separated(
+                                                                  width: 180,
+                                                                  child:ListView.separated(
                                                                     scrollDirection: Axis.horizontal,
                                                                     itemCount: provider.letters.length,
                                                                     separatorBuilder: (context, index) => const SizedBox(width: 10),
                                                                     itemBuilder: (context, index) {
+                                                                      bool isBold = provider.isBold;
+                                                                      bool isItalic = provider.isItalic;
+                                                                      bool isUnderline = provider.isUnderline;
+                                                                      bool isSelected = false;
+                                                                      if (index==0 && isBold) {
+                                                                        isSelected = true;
+                                                                      } else if (index==1 && isItalic) {
+                                                                        isSelected = true;
+                                                                      } else if (index==2 && isUnderline) {
+                                                                        isSelected = true;
+                                                                      } else if (isBold && isItalic && isUnderline) {
+                                                                        isSelected = true;
+                                                                      }
                                                                       return GestureDetector(
                                                                         onTap: () {
                                                                           setState(() {
-                                                                            provider.toggleTextStyle(provider.letters[index], index);
+                                                                            provider.toggleTextStyle(index);
                                                                           });
                                                                         },
                                                                         child: Container(
-                                                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                                                                          padding: const EdgeInsets.symmetric(horizontal:15),
                                                                           decoration: BoxDecoration(
                                                                             borderRadius: BorderRadius.circular(5),
-                                                                            color: provider.selectedTextStyle == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white,
+                                                                            color: isSelected ? ColorRef.yellowFFA500 : ColorRef.white,
                                                                           ),
                                                                           child: Center(
-                                                                            child: Padding(
-                                                                              padding: const EdgeInsets.all(3.0),
-                                                                              child: Text(
-                                                                                provider.letters[index],
-                                                                                style: const TextStyle(
-                                                                                  fontSize: 16,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                ),
-                                                                              ),
+                                                                            child: SvgPicture.asset(
+                                                                              provider.letters[index],
+                                                                              height: 15,
+                                                                              width: 15,
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       );
                                                                     },
                                                                   ),
+
                                                                 ),
                                                               ),
                                                             ],
@@ -233,46 +248,64 @@ class ImageEditView extends StatelessWidget {
                                                         Expanded(
                                                           child: Column(
                                                             children: [
-                                                              Container(
-                                                                padding: const EdgeInsets.symmetric(vertical: 7),
-                                                                margin: const EdgeInsets.symmetric(horizontal: 20),
-                                                                decoration: BoxDecoration(
-                                                                  borderRadius: BorderRadius.circular(5),
-                                                                  color: ColorRef.white,
+                                                              PopupMenuButton(
+                                                                shadowColor: ColorRef.black202020,
+                                                                color: ColorRef.whiteFFFFFF,
+                                                                offset: const Offset(-1,-1),
+                                                                padding: EdgeInsets.zero,
+                                                                constraints: const BoxConstraints(maxWidth: 120,minWidth: 120, minHeight: 180, maxHeight: 180),
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(10.0),
                                                                 ),
-                                                                child: Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                  children: [
-                                                                    GestureDetector(
-                                                                      onTap: () {
-                                                                        setState(() {
-                                                                          provider.increaseFontSize();
-                                                                        });
-                                                                      },
-                                                                      child: SvgPicture.asset(SvgPath.plus),
-                                                                    ),
-                                                                    Text(
-                                                                      '${provider.fontSize.toInt()}',
-                                                                      style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
-                                                                    ),
-                                                                    GestureDetector(
-                                                                      onTap: () {
-                                                                        setState(() {
-                                                                          provider.decreaseFontSize();
-                                                                        });
-                                                                      },
-                                                                      child: SvgPicture.asset(SvgPath.minus),
-                                                                    ),
-                                                                  ],
+                                                                itemBuilder: (BuildContext context) {
+                                                                  return provider.fontSize.map((int fontFontSize) {
+                                                                    return PopupMenuItem<int>(
+                                                                      value: fontFontSize,
+                                                                      child: Center(
+                                                                        child: Text(
+                                                                          fontFontSize.toString(),
+                                                                          style: TextStyle(
+                                                                            color: ColorRef.black202020,
+                                                                            fontSize: 12,
+                                                                            fontFamily: 'Lato',
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  }).toList();
+                                                                },
+                                                                onSelected: (int selectedFontSize) {
+                                                                  setState(() {
+                                                                    provider.setSelectedFontSize(selectedFontSize);
+                                                                  });
+                                                                },
+                                                                child: Container(
+                                                                  padding: const EdgeInsets.symmetric(vertical: 7),
+                                                                  margin: const EdgeInsets.symmetric(horizontal: 25),
+                                                                  decoration: BoxDecoration(
+                                                                    borderRadius: BorderRadius.circular(5),
+                                                                    color: ColorRef.white,
+                                                                  ),
+                                                                  child: Row(
+                                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                    children: [
+                                                                      Text(
+                                                                        provider.selectedFontSize.toString(),
+                                                                        style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
+                                                                      ),
+                                                                      const Icon(Icons.keyboard_arrow_down_outlined)
+                                                                    ],
+                                                                  ),
                                                                 ),
                                                               ),
                                                               const SizedBox(
                                                                 height: 15,
                                                               ),
                                                               Padding(
-                                                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
                                                                 child: SizedBox(
                                                                   height: 35,
+                                                                  width: 165,
                                                                   child: ListView.separated(
                                                                     scrollDirection: Axis.horizontal,
                                                                     itemCount: provider.cases.length,
@@ -285,7 +318,7 @@ class ImageEditView extends StatelessWidget {
                                                                           });
                                                                         },
                                                                         child: Container(
-                                                                          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 10),
                                                                           decoration: BoxDecoration(
                                                                             borderRadius: BorderRadius.circular(5),
                                                                             color: provider.selectedCaseIndex == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white,
@@ -298,6 +331,7 @@ class ImageEditView extends StatelessWidget {
                                                                                 style: const TextStyle(
                                                                                   fontSize: 16,
                                                                                   fontWeight: FontWeight.bold,
+                                                                                  fontFamily: 'Lato',
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -372,22 +406,23 @@ class ImageEditView extends StatelessWidget {
                                                                 });
                                                               },
                                                               child: Container(
-                                                                height: 30,
-                                                                width: 30,
+                                                                height: 40,
+                                                                width: 40,
                                                                 decoration: BoxDecoration(
                                                                   color: Colors.white,
-                                                                  borderRadius: BorderRadius.circular(10),
+                                                                  borderRadius: BorderRadius.circular(5),
                                                                 ),
-                                                                child: Image.asset(SvgPath.colorWheel), // Make sure SvgPath.colorWheel is defined
+                                                                alignment: Alignment.center,
+                                                                child: SvgPicture.asset(SvgPath.color_selection,height: 25,width: 25,)
                                                               ),
                                                             ),
                                                             const SizedBox(width: 10),
                                                             SizedBox(
-                                                              height: 30,
-                                                              width: 200,
+                                                              height: 40,
+                                                              width: 290,
                                                               child: ListView.separated(
                                                                 scrollDirection: Axis.horizontal,
-                                                                itemCount: provider.shadeOpacities.length, // Adjusted itemCount to the length of shadeOpacities
+                                                                itemCount: provider.shadeOpacities.length,
                                                                 separatorBuilder: (BuildContext context, int index) {
                                                                   return const SizedBox(width: 10);
                                                                 },
@@ -400,11 +435,11 @@ class ImageEditView extends StatelessWidget {
                                                                       });
                                                                     },
                                                                     child: Container(
-                                                                      height: 30,
-                                                                      width: 30,
+                                                                      height: 40,
+                                                                      width: 40,
                                                                       decoration: BoxDecoration(
                                                                         color: provider.selectedColor.withOpacity(opacity),
-                                                                        borderRadius: BorderRadius.circular(10),
+                                                                        borderRadius: BorderRadius.circular(5),
                                                                       ),
                                                                     ),
                                                                   );
@@ -435,7 +470,7 @@ class ImageEditView extends StatelessWidget {
                                                 : "${t.customText!.substring(0, 1).toUpperCase()}${t.customText!.substring(1).toLowerCase()}",
                                         style: TextStyle(
                                           color: provider.selectedColor,
-                                          fontSize: provider.fontSize,
+                                          fontSize: provider.selectedFontSize.toDouble(),
                                           fontWeight: provider.isBold ? FontWeight.bold : FontWeight.normal,
                                           fontStyle: provider.isItalic ? FontStyle.italic : FontStyle.normal,
                                           decoration: provider.isUnderline ? TextDecoration.underline : TextDecoration.none,

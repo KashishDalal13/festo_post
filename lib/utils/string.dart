@@ -109,9 +109,12 @@ class SvgPath {
       rightArrow = 'assets/svg/right-arrow.svg',
       plus = 'assets/svg/plus.svg',
       minus = 'assets/svg/minus.svg',
+      bold = 'assets/svg/bold.svg',
+      italic = 'assets/svg/italic.svg',
+      underline = 'assets/svg/underline.svg',
+      color_selection = 'assets/svg/color_selection.svg',
 
 
-      colorWheel = 'assets/png/colorWheel.png',
       carousel = 'assets/png/Carousel.png',
       carousel2 = 'assets/png/carousel2.png',
       carousel3 = 'assets/png/carousel3.png',
