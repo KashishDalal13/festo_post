@@ -64,10 +64,7 @@ class ImageEditView extends StatelessWidget {
                           child: StackBoard(
                             key: provider.boardKey,
                             controller: provider.boardController,
-                            caseStyle: const CaseStyle(
-                              borderColor: Colors.grey,
-                              iconColor: Colors.white,boxAspectRatio: 2
-                            ),
+                            caseStyle: const CaseStyle(borderColor: Colors.grey, iconColor: Colors.white, boxAspectRatio: 2),
                             customBuilder: (StackBoardItem t) {
                               if (t is CustomItem) {
                                 return ItemCase(
@@ -122,7 +119,7 @@ class ImageEditView extends StatelessWidget {
                                                             mainAxisAlignment: MainAxisAlignment.center,
                                                             children: [
                                                               PopupMenuButton(
-                                                                constraints: const BoxConstraints(maxWidth: 200,minWidth: 200, minHeight: 100, maxHeight: 150),
+                                                                constraints: const BoxConstraints(maxWidth: 200, minWidth: 200, minHeight: 100, maxHeight: 150),
                                                                 shadowColor: ColorRef.black202020,
                                                                 offset: const Offset(0, 0),
                                                                 color: ColorRef.whiteFFFFFF,
@@ -137,7 +134,7 @@ class ImageEditView extends StatelessWidget {
                                                                       value: fontFamily,
                                                                       child: Container(
                                                                         decoration: BoxDecoration(
-                                                                         color: isSelected ? ColorRef.blueEFF6FF : Colors.transparent,
+                                                                          color: isSelected ? ColorRef.blueEFF6FF : Colors.transparent,
                                                                           borderRadius: BorderRadius.circular(10),
                                                                         ),
                                                                         child: Row(
@@ -166,22 +163,20 @@ class ImageEditView extends StatelessWidget {
                                                                     provider.setSelectedFontFamily(selectedFontFamily);
                                                                   });
                                                                 },
-                                                                child:
-                                                                    Container(
-                                                                      padding: const EdgeInsets.symmetric(vertical: 9),
-                                                                      margin: const EdgeInsets.symmetric(horizontal: 25),
-                                                                      decoration: BoxDecoration(
-                                                                        borderRadius: BorderRadius.circular(5),
-                                                                        color: ColorRef.white,
-                                                                      ),
-                                                                      child: Center(
-                                                                        child:
-                                                                            Text(
-                                                                              provider.selectedFontFamily == '' ? "Fonts" : provider.selectedFontFamily,
-                                                                              style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
-                                                                            ),
-                                                                      ),
+                                                                child: Container(
+                                                                  padding: const EdgeInsets.symmetric(vertical: 9),
+                                                                  margin: const EdgeInsets.symmetric(horizontal: 25),
+                                                                  decoration: BoxDecoration(
+                                                                    borderRadius: BorderRadius.circular(5),
+                                                                    color: ColorRef.white,
+                                                                  ),
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                      provider.selectedFontFamily == '' ? "Fonts" : provider.selectedFontFamily,
+                                                                      style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
                                                                     ),
+                                                                  ),
+                                                                ),
                                                               ),
                                                               const SizedBox(
                                                                 height: 15,
@@ -191,7 +186,7 @@ class ImageEditView extends StatelessWidget {
                                                                 child: SizedBox(
                                                                   height: 35,
                                                                   width: 180,
-                                                                  child:ListView.separated(
+                                                                  child: ListView.separated(
                                                                     scrollDirection: Axis.horizontal,
                                                                     itemCount: provider.letters.length,
                                                                     separatorBuilder: (context, index) => const SizedBox(width: 10),
@@ -200,11 +195,11 @@ class ImageEditView extends StatelessWidget {
                                                                       bool isItalic = provider.isItalic;
                                                                       bool isUnderline = provider.isUnderline;
                                                                       bool isSelected = false;
-                                                                      if (index==0 && isBold) {
+                                                                      if (index == 0 && isBold) {
                                                                         isSelected = true;
-                                                                      } else if (index==1 && isItalic) {
+                                                                      } else if (index == 1 && isItalic) {
                                                                         isSelected = true;
-                                                                      } else if (index==2 && isUnderline) {
+                                                                      } else if (index == 2 && isUnderline) {
                                                                         isSelected = true;
                                                                       } else if (isBold && isItalic && isUnderline) {
                                                                         isSelected = true;
@@ -216,7 +211,7 @@ class ImageEditView extends StatelessWidget {
                                                                           });
                                                                         },
                                                                         child: Container(
-                                                                          padding: const EdgeInsets.symmetric(horizontal:15),
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 15),
                                                                           decoration: BoxDecoration(
                                                                             borderRadius: BorderRadius.circular(5),
                                                                             color: isSelected ? ColorRef.yellowFFA500 : ColorRef.white,
@@ -232,7 +227,6 @@ class ImageEditView extends StatelessWidget {
                                                                       );
                                                                     },
                                                                   ),
-
                                                                 ),
                                                               ),
                                                             ],
@@ -251,9 +245,9 @@ class ImageEditView extends StatelessWidget {
                                                               PopupMenuButton(
                                                                 shadowColor: ColorRef.black202020,
                                                                 color: ColorRef.whiteFFFFFF,
-                                                                offset: const Offset(-1,-1),
+                                                                offset: const Offset(-1, -1),
                                                                 padding: EdgeInsets.zero,
-                                                                constraints: const BoxConstraints(maxWidth: 120,minWidth: 120, minHeight: 180, maxHeight: 180),
+                                                                constraints: const BoxConstraints(maxWidth: 120, minWidth: 120, minHeight: 180, maxHeight: 180),
                                                                 shape: RoundedRectangleBorder(
                                                                   borderRadius: BorderRadius.circular(10.0),
                                                                 ),
@@ -406,15 +400,18 @@ class ImageEditView extends StatelessWidget {
                                                                 });
                                                               },
                                                               child: Container(
-                                                                height: 40,
-                                                                width: 40,
-                                                                decoration: BoxDecoration(
-                                                                  color: Colors.white,
-                                                                  borderRadius: BorderRadius.circular(5),
-                                                                ),
-                                                                alignment: Alignment.center,
-                                                                child: SvgPicture.asset(SvgPath.color_selection,height: 25,width: 25,)
-                                                              ),
+                                                                  height: 40,
+                                                                  width: 40,
+                                                                  decoration: BoxDecoration(
+                                                                    color: Colors.white,
+                                                                    borderRadius: BorderRadius.circular(5),
+                                                                  ),
+                                                                  alignment: Alignment.center,
+                                                                  child: SvgPicture.asset(
+                                                                    SvgPath.color_selection,
+                                                                    height: 25,
+                                                                    width: 25,
+                                                                  )),
                                                             ),
                                                             const SizedBox(width: 10),
                                                             SizedBox(

@@ -56,6 +56,7 @@ class ImageEditProvider extends ChangeNotifier {
     selectedFontFamily = fontFamily;
     notifyListeners();
   }
+
   void setSelectedFontSize(int fontsize) {
     selectedFontSize = fontsize;
     notifyListeners();
@@ -94,7 +95,7 @@ class ImageEditProvider extends ChangeNotifier {
     ColorRef.pinkFF8EDE,
     ColorRef.blue005B87,
   ];
-  List<double> shadeOpacities = [0.7,0.6, 0.5, 0.4, 0.3, 0.2];
+  List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];
 
   Color get selectedColor => _selectedColor;
 
@@ -108,17 +109,16 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> letters = [SvgPath.bold,SvgPath.italic,SvgPath.underline];
+  List<String> letters = [SvgPath.bold, SvgPath.italic, SvgPath.underline];
   List<String> cases = ['Aa', 'AA', 'aa'];
-
 
   void toggleTextStyle(int index) {
     selectedTextStyle = index.toString();
-    if (selectedTextStyle=='0') {
+    if (selectedTextStyle == '0') {
       isBold = !isBold;
-    } else if (selectedTextStyle=='1') {
+    } else if (selectedTextStyle == '1') {
       isItalic = !isItalic;
-    } else if (selectedTextStyle=='2') {
+    } else if (selectedTextStyle == '2') {
       isUnderline = !isUnderline;
     }
     notifyListeners();
@@ -284,7 +284,7 @@ class ImageEditProvider extends ChangeNotifier {
                       children: [
                         TextField(
                           style: TextStyle(color: ColorRef.white),
-                          decoration:  InputDecoration(
+                          decoration: InputDecoration(
                             hintText: 'Write Here',
                             hintStyle: TextStyle(color: ColorRef.white),
                             border: InputBorder.none,
@@ -446,7 +446,7 @@ class ImageEditProvider extends ChangeNotifier {
       w = width / 3.2;
     } else if (height < 800 && width < 370) {
       debugPrint("Medium device");
-      h = height /1.3;
+      h = height / 1.3;
       w = width / 3.2;
     } else if (height > 800 && width > 370) {
       debugPrint("Large device");
