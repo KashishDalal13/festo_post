@@ -130,7 +130,7 @@ class ImageEditView extends StatelessWidget {
                                                                 itemBuilder: (BuildContext context) {
                                                                   return provider.fontFamilies.map((String fontFamily) {
                                                                     final bool isSelected = provider.selectedFontFamily == fontFamily;
-                                                                    return CheckedPopupMenuItem(
+                                                                    return PopupMenuItem(
                                                                       value: fontFamily,
                                                                       child: Container(
                                                                         decoration: BoxDecoration(
@@ -141,7 +141,14 @@ class ImageEditView extends StatelessWidget {
                                                                           children: <Widget>[
                                                                             Checkbox(
                                                                               value: isSelected,
-                                                                              onChanged: (_) {},
+                                                                              onChanged: (bool? newValue) {
+                                                                                if (newValue != null && newValue) {
+                                                                                  setState(() {
+                                                                                    provider.setSelectedFontFamily(fontFamily);
+                                                                                    provider.onBack();
+                                                                                  });
+                                                                                }
+                                                                              },
                                                                               activeColor: ColorRef.blue1E75E5,
                                                                             ),
                                                                             Text(
@@ -253,16 +260,37 @@ class ImageEditView extends StatelessWidget {
                                                                 ),
                                                                 itemBuilder: (BuildContext context) {
                                                                   return provider.fontSize.map((int fontFontSize) {
-                                                                    return PopupMenuItem<int>(
+                                                                    final bool isSelected = provider.selectedFontSize == fontFontSize;
+                                                                    return PopupMenuItem(
                                                                       value: fontFontSize,
-                                                                      child: Center(
-                                                                        child: Text(
-                                                                          fontFontSize.toString(),
-                                                                          style: TextStyle(
-                                                                            color: ColorRef.black202020,
-                                                                            fontSize: 12,
-                                                                            fontFamily: 'Lato',
-                                                                          ),
+                                                                      child: Container(
+                                                                        decoration: BoxDecoration(
+                                                                          color: isSelected ? ColorRef.blueEFF6FF : Colors.transparent,
+                                                                          borderRadius: BorderRadius.circular(10),
+                                                                        ),
+                                                                        child: Row(
+                                                                          children: <Widget>[
+                                                                            Checkbox(
+                                                                              value: isSelected,
+                                                                              onChanged: (bool? newValue) {
+                                                                                if (newValue != null && newValue) {
+                                                                                  setState(() {
+                                                                                    provider.setSelectedFontSize(fontFontSize);
+                                                                                    provider.onBack();
+                                                                                  });
+                                                                                }
+                                                                              },
+                                                                              activeColor: ColorRef.blue1E75E5,
+                                                                            ),
+                                                                            Text(
+                                                                              fontFontSize.toString(),
+                                                                              style: TextStyle(
+                                                                                color: ColorRef.grey406110A,
+                                                                                fontSize: 15,
+                                                                                fontFamily: 'Lato',
+                                                                              ),
+                                                                            ),
+                                                                          ],
                                                                         ),
                                                                       ),
                                                                     );
