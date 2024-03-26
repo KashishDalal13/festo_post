@@ -5,7 +5,7 @@ import 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.d
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:stack_board/stack_board.dart';
-import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import '../../../utils/bool.dart';
 
@@ -23,6 +23,7 @@ class ImageEditView extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    Color _selectedColor = Colors.white;
     return ChangeNotifierProvider(
       create: (BuildContext context) => ImageEditProvider(),
       builder: (context, child) {
@@ -60,15 +61,12 @@ class ImageEditView extends StatelessWidget {
                     child: Stack(
                       children: [
                         SizedBox(
-                          width: 350, // or provide your desired width
-                          height: 370,
+                          width: 350,
+                          height: 350,
                           child: StackBoard(
                             key: provider.boardKey,
                             controller: provider.boardController,
-                            caseStyle: const CaseStyle(
-                              borderColor: Colors.grey,
-                              iconColor: Colors.white,
-                            ),
+                            caseStyle: const CaseStyle(borderColor: Colors.grey, iconColor: Colors.white, boxAspectRatio: 2),
                             customBuilder: (StackBoardItem t) {
                               if (t is CustomItem) {
                                 return ItemCase(
@@ -84,6 +82,7 @@ class ImageEditView extends StatelessWidget {
                                     onTap: () {
                                       showModalBottomSheet(
                                         context: context,
+                                        backgroundColor: ColorRef.transparent,
                                         builder: (BuildContext context) {
                                           return StatefulBuilder(
                                             builder: (context, setState) {
@@ -118,62 +117,112 @@ class ImageEditView extends StatelessWidget {
                                                       children: [
                                                         Expanded(
                                                           child: Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                            mainAxisAlignment: MainAxisAlignment.center,
                                                             children: [
-                                                              Container(
-                                                                height: 35,
-                                                                width: 140,
-                                                                padding: const EdgeInsets.all(2),
-                                                                decoration: BoxDecoration(
-                                                                  borderRadius: BorderRadius.circular(5),
-                                                                  color: ColorRef.white,
+                                                              PopupMenuButton(
+                                                                constraints: const BoxConstraints(maxWidth: 200, minWidth: 200, minHeight: 100, maxHeight: 150),
+                                                                shadowColor: ColorRef.black202020,
+                                                                offset: const Offset(0, 0),
+                                                                color: ColorRef.whiteFFFFFF,
+                                                                position: PopupMenuPosition.over,
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(10.0),
                                                                 ),
-                                                                child: Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                  children: [
-                                                                    SvgPicture.asset(SvgPath.leftArrow),
-                                                                    Text(
-                                                                      StrRef.Fonts,
+                                                                itemBuilder: (BuildContext context) {
+                                                                  return provider.fontFamilies.map((String fontFamily) {
+                                                                    final bool isSelected = provider.selectedFontFamily == fontFamily;
+                                                                    return CheckedPopupMenuItem(
+                                                                      value: fontFamily,
+                                                                      child: Container(
+                                                                        decoration: BoxDecoration(
+                                                                          color: isSelected ? ColorRef.blueEFF6FF : Colors.transparent,
+                                                                          borderRadius: BorderRadius.circular(10),
+                                                                        ),
+                                                                        child: Row(
+                                                                          children: <Widget>[
+                                                                            Checkbox(
+                                                                              value: isSelected,
+                                                                              onChanged: (_) {},
+                                                                              activeColor: ColorRef.blue1E75E5,
+                                                                            ),
+                                                                            Text(
+                                                                              fontFamily,
+                                                                              style: TextStyle(
+                                                                                color: ColorRef.grey406110A,
+                                                                                fontSize: 15,
+                                                                                fontFamily: fontFamily,
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  }).toList();
+                                                                },
+                                                                onSelected: (String selectedFontFamily) {
+                                                                  setState(() {
+                                                                    provider.setSelectedFontFamily(selectedFontFamily);
+                                                                  });
+                                                                },
+                                                                child: Container(
+                                                                  padding: const EdgeInsets.symmetric(vertical: 9),
+                                                                  margin: const EdgeInsets.symmetric(horizontal: 25),
+                                                                  decoration: BoxDecoration(
+                                                                    borderRadius: BorderRadius.circular(5),
+                                                                    color: ColorRef.white,
+                                                                  ),
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                      provider.selectedFontFamily == '' ? "Fonts" : provider.selectedFontFamily,
                                                                       style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
                                                                     ),
-                                                                    SvgPicture.asset(SvgPath.rightArrow),
-                                                                  ],
+                                                                  ),
                                                                 ),
                                                               ),
                                                               const SizedBox(
                                                                 height: 15,
                                                               ),
                                                               Padding(
-                                                                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                                                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
                                                                 child: SizedBox(
                                                                   height: 35,
+                                                                  width: 180,
                                                                   child: ListView.separated(
                                                                     scrollDirection: Axis.horizontal,
                                                                     itemCount: provider.letters.length,
-                                                                    separatorBuilder: (context, index) => const SizedBox(width: 15),
+                                                                    separatorBuilder: (context, index) => const SizedBox(width: 10),
                                                                     itemBuilder: (context, index) {
+                                                                      bool isBold = provider.isBold;
+                                                                      bool isItalic = provider.isItalic;
+                                                                      bool isUnderline = provider.isUnderline;
+                                                                      bool isSelected = false;
+                                                                      if (index == 0 && isBold) {
+                                                                        isSelected = true;
+                                                                      } else if (index == 1 && isItalic) {
+                                                                        isSelected = true;
+                                                                      } else if (index == 2 && isUnderline) {
+                                                                        isSelected = true;
+                                                                      } else if (isBold && isItalic && isUnderline) {
+                                                                        isSelected = true;
+                                                                      }
                                                                       return GestureDetector(
                                                                         onTap: () {
                                                                           setState(() {
-                                                                            provider.toggleTextStyle(provider.letters[index], index);
-                                                                          }); // Update the UI
+                                                                            provider.toggleTextStyle(index);
+                                                                          });
                                                                         },
                                                                         child: Container(
-                                                                          height: 35,
-                                                                          width: 35,
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 15),
                                                                           decoration: BoxDecoration(
                                                                             borderRadius: BorderRadius.circular(5),
-                                                                            color: (provider.selectedTextStyle == index.toString() &&
-                                                                                    (provider.isBold || provider.isUnderline || provider.isItalic))
-                                                                                ? ColorRef.yellowFFA500
-                                                                                : ColorRef.white,
+                                                                            color: isSelected ? ColorRef.yellowFFA500 : ColorRef.white,
                                                                           ),
                                                                           child: Center(
-                                                                            child: Text(
+                                                                            child: SvgPicture.asset(
                                                                               provider.letters[index],
-                                                                              style: const TextStyle(
-                                                                                fontSize: 16,
-                                                                                fontWeight: FontWeight.bold,
-                                                                              ),
+                                                                              height: 15,
+                                                                              width: 15,
                                                                             ),
                                                                           ),
                                                                         ),
@@ -195,69 +244,91 @@ class ImageEditView extends StatelessWidget {
                                                         Expanded(
                                                           child: Column(
                                                             children: [
-                                                              Container(
-                                                                height: 35,
-                                                                width: 140,
-                                                                padding: const EdgeInsets.all(2),
-                                                                decoration: BoxDecoration(
-                                                                  borderRadius: BorderRadius.circular(5),
-                                                                  color: ColorRef.white,
+                                                              PopupMenuButton(
+                                                                shadowColor: ColorRef.black202020,
+                                                                color: ColorRef.whiteFFFFFF,
+                                                                offset: const Offset(-1, -1),
+                                                                padding: EdgeInsets.zero,
+                                                                constraints: const BoxConstraints(maxWidth: 120, minWidth: 120, minHeight: 180, maxHeight: 180),
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(10.0),
                                                                 ),
-                                                                child: Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                  children: [
-                                                                    GestureDetector(
-                                                                      onTap: () {
-                                                                        provider.increaseFontSize();
-                                                                        setState(() {});
-                                                                      },
-                                                                      child: SvgPicture.asset(SvgPath.plus),
-                                                                    ),
-                                                                    Text(
-                                                                      '${provider.fontSize.toInt()}',
-                                                                      style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
-                                                                    ),
-                                                                    GestureDetector(
-                                                                      onTap: () {
-                                                                        provider.decreaseFontSize();
-                                                                        setState(() {});
-                                                                      },
-                                                                      child: SvgPicture.asset(SvgPath.minus),
-                                                                    ),
-                                                                  ],
+                                                                itemBuilder: (BuildContext context) {
+                                                                  return provider.fontSize.map((int fontFontSize) {
+                                                                    return PopupMenuItem<int>(
+                                                                      value: fontFontSize,
+                                                                      child: Center(
+                                                                        child: Text(
+                                                                          fontFontSize.toString(),
+                                                                          style: TextStyle(
+                                                                            color: ColorRef.black202020,
+                                                                            fontSize: 12,
+                                                                            fontFamily: 'Lato',
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  }).toList();
+                                                                },
+                                                                onSelected: (int selectedFontSize) {
+                                                                  setState(() {
+                                                                    provider.setSelectedFontSize(selectedFontSize);
+                                                                  });
+                                                                },
+                                                                child: Container(
+                                                                  padding: const EdgeInsets.symmetric(vertical: 7),
+                                                                  margin: const EdgeInsets.symmetric(horizontal: 25),
+                                                                  decoration: BoxDecoration(
+                                                                    borderRadius: BorderRadius.circular(5),
+                                                                    color: ColorRef.white,
+                                                                  ),
+                                                                  child: Row(
+                                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                    children: [
+                                                                      Text(
+                                                                        provider.selectedFontSize.toString(),
+                                                                        style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
+                                                                      ),
+                                                                      const Icon(Icons.keyboard_arrow_down_outlined)
+                                                                    ],
+                                                                  ),
                                                                 ),
                                                               ),
                                                               const SizedBox(
                                                                 height: 15,
                                                               ),
                                                               Padding(
-                                                                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                                                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
                                                                 child: SizedBox(
                                                                   height: 35,
+                                                                  width: 165,
                                                                   child: ListView.separated(
                                                                     scrollDirection: Axis.horizontal,
                                                                     itemCount: provider.cases.length,
-                                                                    separatorBuilder: (context, index) => const SizedBox(width: 15),
+                                                                    separatorBuilder: (context, index) => const SizedBox(width: 10),
                                                                     itemBuilder: (context, index) {
                                                                       return GestureDetector(
                                                                         onTap: () {
                                                                           setState(() {
                                                                             provider.toggleTextCase(provider.cases[index], index);
-                                                                          }); // Update the UI
+                                                                          });
                                                                         },
                                                                         child: Container(
-                                                                          height: 35,
-                                                                          width: 35,
+                                                                          padding: const EdgeInsets.symmetric(horizontal: 10),
                                                                           decoration: BoxDecoration(
                                                                             borderRadius: BorderRadius.circular(5),
                                                                             color: provider.selectedCaseIndex == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white,
                                                                           ),
                                                                           child: Center(
-                                                                            child: Text(
-                                                                              provider.cases[index],
-                                                                              style: const TextStyle(
-                                                                                fontSize: 16,
-                                                                                fontWeight: FontWeight.bold,
+                                                                            child: Padding(
+                                                                              padding: const EdgeInsets.all(3.0),
+                                                                              child: Text(
+                                                                                provider.cases[index],
+                                                                                style: const TextStyle(
+                                                                                  fontSize: 16,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  fontFamily: 'Lato',
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -276,93 +347,111 @@ class ImageEditView extends StatelessWidget {
                                                     Column(
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children: <Widget>[
-                                                        // Make sure to import necessary packages and classes
-
-                                                        GestureDetector(
-                                                          onTap: () {
-                                                            showDialog(
-                                                              context: context,
-                                                              builder: (BuildContext context) {
-                                                                return Padding(
-                                                                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                                                                  child: Dialog(
-                                                                    insetPadding: const EdgeInsets.all(10),
-                                                                    backgroundColor: Color(0xffEDEDED),
-                                                                    shape: RoundedRectangleBorder(
-                                                                      borderRadius: BorderRadius.circular(5.0),
-                                                                    ),
-                                                                    child: Padding(
-                                                                      padding: const EdgeInsets.all(20.0),
-                                                                      child: GridView.builder(
-                                                                        shrinkWrap: true,
-                                                                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                                                          crossAxisCount: 6,
-                                                                          crossAxisSpacing: 10,
-                                                                          mainAxisSpacing: 10,
-                                                                        ),
-                                                                        itemCount: provider.colors.length,
-                                                                        itemBuilder: (BuildContext context, int index) {
-                                                                          Color color = provider.colors[index];
-                                                                          return GestureDetector(
-                                                                            onTap: () {
-                                                                              provider.onColorChange(color);
-                                                                              Navigator.pop(context);
-                                                                            },
-                                                                            child: Container(
-                                                                              height: 40,
-                                                                              width: 40,
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.circular(2),
-                                                                                color: color,
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        },
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                          children: [
+                                                            GestureDetector(
+                                                              onTap: () {
+                                                                showDialog(
+                                                                  context: context,
+                                                                  builder: (BuildContext context) {
+                                                                    return AlertDialog(
+                                                                      shape: RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(10.0)
                                                                       ),
-                                                                    ),
-                                                                  ),
+                                                                      backgroundColor: ColorRef.whiteFFFFFF,
+                                                                      content: Column(
+                                                                        mainAxisSize: MainAxisSize.min, // Ensure the Column takes minimum vertical space
+                                                                        children: [
+                                                                          SingleChildScrollView(
+                                                                            child: ColorPicker(
+                                                                              pickerColor: _selectedColor,
+                                                                              pickerAreaBorderRadius: BorderRadius.circular(10.0),
+                                                                              onColorChanged: (Color color) {
+                                                                                setState(() {
+                                                                                  _selectedColor = color;
+                                                                                  provider.onColorChange(color);
+                                                                                });
+                                                                              },
+                                                                              colorPickerWidth: 232.0,
+                                                                              pickerAreaHeightPercent: 0.7,displayThumbColor: false,
+                                                                              enableAlpha: false,
+                                                                              showLabel: false,
+                                                                            ),
+                                                                          ),
+                                                                          Container(
+                                                                            height: 35,
+                                                                            width: 100,
+                                                                            decoration: BoxDecoration(
+                                                                              color: ColorRef.yellowFFA500,
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                            ),
+                                                                            child: TextButton(
+                                                                              child: Text(
+                                                                                'Apply',
+                                                                                style: TextStyle(fontFamily: 'Lato',fontSize: 15,fontWeight: FontWeight.w400,color: ColorRef.black202020),
+                                                                              ),
+                                                                              onPressed: () {
+                                                                                Navigator.of(context).pop();
+                                                                              },
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    );
+
+                                                                  },
                                                                 );
                                                               },
-                                                            );
-                                                          },
-                                                          child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            children: [
-                                                              Container(
+                                                              child: Container(
                                                                 height: 40,
                                                                 width: 40,
                                                                 decoration: BoxDecoration(
-                                                                  color: Colors.white,
-                                                                  borderRadius: BorderRadius.circular(10),
+                                                                  color: ColorRef.whiteFFFFFF,
+                                                                  borderRadius: BorderRadius.circular(5),
                                                                 ),
-                                                                child: Image.asset(SvgPath.colorWheel), // Make sure SvgPath.colorWheel is defined
+                                                                alignment: Alignment.center,
+                                                                child: SvgPicture.asset(
+                                                                  SvgPath.color_selection,
+                                                                  height: 25,
+                                                                  width: 25,
+                                                                ),
                                                               ),
-                                                              const SizedBox(width: 10),
-                                                              SizedBox(
-                                                                height: 40,
-                                                                width: 40 * 5,
-                                                                child: ListView.separated(
-                                                                  scrollDirection: Axis.horizontal,
-                                                                  itemCount: 5,
-                                                                  separatorBuilder: (BuildContext context, int index) {
-                                                                    return const SizedBox(width: 10);
-                                                                  },
-                                                                  itemBuilder: (BuildContext context, int index) {
-                                                                    double opacity = index < provider.shadeOpacities.length ? provider.shadeOpacities[index] : 0.0;
-                                                                    return Container(
+                                                            ),
+
+                                                            const SizedBox(width: 10),
+                                                            SizedBox(
+                                                              height: 40,
+                                                              width: 290,
+                                                              child: ListView.separated(
+                                                                scrollDirection: Axis.horizontal,
+                                                                itemCount: provider.shadeOpacities.length,
+                                                                separatorBuilder: (BuildContext context, int index) {
+                                                                  return const SizedBox(width: 10);
+                                                                },
+                                                                itemBuilder: (BuildContext context, int index) {
+                                                                  double opacity = provider.shadeOpacities[index];
+                                                                  return GestureDetector(
+                                                                    onTap: () {
+                                                                      setState(() {
+                                                                        provider.onColorOpacityChange(opacity);
+                                                                      });
+                                                                    },
+                                                                    child: Container(
                                                                       height: 40,
                                                                       width: 40,
                                                                       decoration: BoxDecoration(
-                                                                        color: provider.selectedColor.withOpacity(opacity),
-                                                                        borderRadius: BorderRadius.circular(10),
+                                                                        color: _selectedColor.withOpacity(opacity), // Apply opacity to the selected color
+                                                                        borderRadius: BorderRadius.circular(5),
                                                                       ),
-                                                                    );
-                                                                  },
-                                                                ),
+                                                                    ),
+                                                                  );
+                                                                },
                                                               ),
-                                                            ],
-                                                          ),
+                                                            ),
+
+                                                          ],
                                                         ),
                                                       ],
                                                     ),
@@ -386,11 +475,11 @@ class ImageEditView extends StatelessWidget {
                                                 : "${t.customText!.substring(0, 1).toUpperCase()}${t.customText!.substring(1).toLowerCase()}",
                                         style: TextStyle(
                                           color: provider.selectedColor,
-                                          fontSize: provider.fontSize,
+                                          fontSize: provider.selectedFontSize.toDouble(),
                                           fontWeight: provider.isBold ? FontWeight.bold : FontWeight.normal,
                                           fontStyle: provider.isItalic ? FontStyle.italic : FontStyle.normal,
                                           decoration: provider.isUnderline ? TextDecoration.underline : TextDecoration.none,
-                                          fontFamily: 'Lato',
+                                          fontFamily: provider.selectedFontFamily,
                                         ),
                                       ),
                                     ),
@@ -399,9 +488,103 @@ class ImageEditView extends StatelessWidget {
                               }
                               return null;
                             },
-                            background: Container(
-                              alignment: Alignment.center,
-                              child: Image.asset(selectedImage ?? "", height: 350, width: 370, fit: BoxFit.cover),
+                            background: Stack(
+                              children: [
+                                Image.asset(selectedImage ?? "", height: 350, width: 370, fit: BoxFit.cover),
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            margin: const EdgeInsets.only(top: 16.0, right: 19.0),
+                                            child: Image.asset(SvgPath.logo),
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            const SizedBox(height: 5),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: ColorRef.blue007494,
+                                                borderRadius: const BorderRadius.only(
+                                                  topLeft: Radius.circular(30.0),
+                                                  bottomLeft: Radius.circular(30.0),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                "Loopbots@gmail.com",
+                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: ColorRef.red8C0016,
+                                                borderRadius: const BorderRadius.only(
+                                                  topLeft: Radius.circular(30.0),
+                                                  bottomLeft: Radius.circular(30.0),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                "+12 123 456 789",
+                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    const Spacer(),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                            decoration: BoxDecoration(
+                                              color: ColorRef.red8C0016,
+                                              borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(30.0),
+                                                bottomLeft: Radius.circular(30.0),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              "www.loopbotstechnology.com",
+                                              style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 3),
+                                            width: double.maxFinite,
+                                            decoration: BoxDecoration(
+                                              color: ColorRef.blue007494,
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                "401 - Green Elina, Anand mahal road, Adajan. Surat, Gujarat 395009",
+                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 6, color: ColorRef.white),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
                             ),
                           ),
                         ),
@@ -420,7 +603,7 @@ class ImageEditView extends StatelessWidget {
                                     child: Listener(
                                       onPointerDown: (details) => provider.onPointerDown(details, e),
                                       onPointerUp: (details) => provider.onPointerUp(),
-                                      child: Container(child: Image.asset(e['add'])),
+                                      child: Image.asset(e['add']),
                                     ),
                                   ),
                                 ),

@@ -19,9 +19,8 @@ class ImageEditProvider extends ChangeNotifier {
   bool isBold = false;
   bool isItalic = false;
   bool isUnderline = false;
-  double _fontSize = 25.0;
+  int selectedFontSize = 22;
 
-  double get fontSize => _fontSize;
   bool isUppercase = false;
   String selectedTextCase = '';
   String selectedCaseIndex = '';
@@ -42,7 +41,6 @@ class ImageEditProvider extends ChangeNotifier {
     'Lato',
     'MankSans',
     'Market Fresh',
-    'Market Fresh ALL CAPS',
     'Mostery',
     'Play',
     'Poppins',
@@ -52,8 +50,15 @@ class ImageEditProvider extends ChangeNotifier {
     'Trocchi'
   ];
 
+  List<int> fontSize = [10, 12, 14, 16, 18, 20, 22, 24, 36, 48, 64, 72];
+
   void setSelectedFontFamily(String fontFamily) {
     selectedFontFamily = fontFamily;
+    notifyListeners();
+  }
+
+  void setSelectedFontSize(int fontsize) {
+    selectedFontSize = fontsize;
     notifyListeners();
   }
 
@@ -90,7 +95,7 @@ class ImageEditProvider extends ChangeNotifier {
     ColorRef.pinkFF8EDE,
     ColorRef.blue005B87,
   ];
-  List<double> shadeOpacities = [0.6, 0.5, 0.4, 0.3, 0.2];
+  List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];
 
   Color get selectedColor => _selectedColor;
 
@@ -104,28 +109,16 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> letters = ['B', 'I', 'U'];
+  List<String> letters = [SvgPath.bold, SvgPath.italic, SvgPath.underline];
   List<String> cases = ['Aa', 'AA', 'aa'];
 
-  void increaseFontSize() {
-    _fontSize += 1.0;
-    notifyListeners();
-  }
-
-  void decreaseFontSize() {
-    if (_fontSize > 1.0) {
-      _fontSize -= 1.0;
-      notifyListeners();
-    }
-  }
-
-  void toggleTextStyle(String letter, int index) {
+  void toggleTextStyle(int index) {
     selectedTextStyle = index.toString();
-    if (letter == 'B') {
+    if (selectedTextStyle == '0') {
       isBold = !isBold;
-    } else if (letter == 'I') {
+    } else if (selectedTextStyle == '1') {
       isItalic = !isItalic;
-    } else if (letter == 'U') {
+    } else if (selectedTextStyle == '2') {
       isUnderline = !isUnderline;
     }
     notifyListeners();
@@ -270,19 +263,13 @@ class ImageEditProvider extends ChangeNotifier {
                 children: [
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: SvgPicture.asset(SvgPath.cancel),
-                    ),
+                    child: SvgPicture.asset(SvgPath.cancel),
                   ),
                   const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 110),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: ColorRef.black000000.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(5),
                       boxShadow: [
                         BoxShadow(
@@ -296,8 +283,10 @@ class ImageEditProvider extends ChangeNotifier {
                     child: Column(
                       children: [
                         TextField(
-                          decoration: const InputDecoration(
+                          style: TextStyle(color: ColorRef.white),
+                          decoration: InputDecoration(
                             hintText: 'Write Here',
+                            hintStyle: TextStyle(color: ColorRef.white),
                             border: InputBorder.none,
                           ),
                           onChanged: (value) => text = value,
@@ -316,7 +305,7 @@ class ImageEditProvider extends ChangeNotifier {
                         color: ColorRef.yellowFFA500,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Text('Add', style: TextStyle(color: ColorRef.black202020)),
+                      child: Text('Done', style: TextStyle(color: ColorRef.black202020)),
                     ),
                   ),
                 ],
@@ -358,7 +347,6 @@ class ImageEditProvider extends ChangeNotifier {
                         width: 390,
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
-                          // padding: EdgeInsets.all(10.0),
                           shrinkWrap: true,
                           itemCount: stickerList.length,
                           itemBuilder: (BuildContext context, int index) {
@@ -399,10 +387,8 @@ class ImageEditProvider extends ChangeNotifier {
                         shrinkWrap: true,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
-                          // Adjust the cross axis count as needed
                           crossAxisSpacing: 15,
-                          // Adjust the spacing between grid items as needed
-                          mainAxisSpacing: 15, // Adjust the spacing between rows as needed
+                          mainAxisSpacing: 15,
                         ),
                         itemCount: stickerList[stickerIndex]['imageList'].length,
                         itemBuilder: (context, index) {
@@ -460,7 +446,7 @@ class ImageEditProvider extends ChangeNotifier {
       w = width / 3.2;
     } else if (height < 800 && width < 370) {
       debugPrint("Medium device");
-      h = height /1.3;
+      h = height / 1.3;
       w = width / 3.2;
     } else if (height > 800 && width > 370) {
       debugPrint("Large device");

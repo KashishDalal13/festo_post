@@ -46,6 +46,8 @@ dependencies:
   stack_board: ^0.1.2
   image_picker: ^1.0.7
   flutter_material_color_picker: ^1.2.0
+  web_color_picker: ^1.0.4
+  flutter_colorpicker: ^1.0.3
 
 dev_dependencies:
   flutter_test:
