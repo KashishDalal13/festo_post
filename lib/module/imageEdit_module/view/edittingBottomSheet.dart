@@ -1,4 +1,3 @@
-
 import 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.dart';
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/routes.dart';
@@ -17,10 +16,11 @@ class EditingBottomSheet extends StatefulWidget {
 }
 
 class _EditingBottomSheetState extends State<EditingBottomSheet> {
+  Color _selectedColor = Colors.white;
+
   @override
   Widget build(BuildContext context) {
     ImageEditProvider provider = widget.provider!;
-    Color _selectedColor = Colors.white;
     return Container(
       height: 230,
       decoration: BoxDecoration(
@@ -184,7 +184,8 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             margin: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: provider.selectedCaseIndex == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5), color: provider.selectedCaseIndex == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white),
                             child: Text(provider.cases[index], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Lato')),
                           ),
                         );
