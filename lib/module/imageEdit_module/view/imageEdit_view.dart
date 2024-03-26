@@ -5,23 +5,21 @@ import 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.d
 import 'package:festo_post/utils/colors.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:stack_board/stack_board.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import '../../../utils/bool.dart';
 
 class ImageEditView extends StatelessWidget {
-  ImageEditView({
-    Key? key,
-    this.label,
-    this.selectedImage,
-  }) : super(key: key);
+  final String? label;
+  final String? selectedImage;
 
-  String? label;
-  String? selectedImage;
+  const ImageEditView({Key? key, this.label, this.selectedImage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    Color _selectedColor = Colors.white;
     return ChangeNotifierProvider(
       create: (BuildContext context) => ImageEditProvider(),
       builder: (context, child) {
@@ -379,68 +377,73 @@ class ImageEditView extends StatelessWidget {
                                                           children: [
                                                             GestureDetector(
                                                               onTap: () {
-                                                                setState(() {
-                                                                  showDialog(
-                                                                    context: context,
-                                                                    builder: (BuildContext context) {
-                                                                      return Padding(
-                                                                        padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                                                                        child: Dialog(
-                                                                          insetPadding: const EdgeInsets.all(10),
-                                                                          backgroundColor: ColorRef.greyEDEDED,
-                                                                          shape: RoundedRectangleBorder(
-                                                                            borderRadius: BorderRadius.circular(5.0),
+                                                                showDialog(
+                                                                  context: context,
+                                                                  builder: (BuildContext context) {
+                                                                    return AlertDialog(
+                                                                      shape: RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(10.0)
+                                                                      ),
+                                                                      backgroundColor: ColorRef.whiteFFFFFF,
+                                                                      content: Column(
+                                                                        mainAxisSize: MainAxisSize.min, // Ensure the Column takes minimum vertical space
+                                                                        children: [
+                                                                          SingleChildScrollView(
+                                                                            child: ColorPicker(
+                                                                              pickerColor: _selectedColor,
+                                                                              pickerAreaBorderRadius: BorderRadius.circular(10.0),
+                                                                              onColorChanged: (Color color) {
+                                                                                setState(() {
+                                                                                  _selectedColor = color;
+                                                                                  provider.onColorChange(color);
+                                                                                });
+                                                                              },
+                                                                              colorPickerWidth: 232.0,
+                                                                              pickerAreaHeightPercent: 0.7,displayThumbColor: false,
+                                                                              enableAlpha: false,
+                                                                              showLabel: false,
+                                                                            ),
                                                                           ),
-                                                                          child: Padding(
-                                                                            padding: const EdgeInsets.all(25.0),
-                                                                            child: GridView.builder(
-                                                                              shrinkWrap: true,
-                                                                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                                                                crossAxisCount: 6,
-                                                                                crossAxisSpacing: 12,
-                                                                                mainAxisSpacing: 10,
+                                                                          Container(
+                                                                            height: 35,
+                                                                            width: 100,
+                                                                            decoration: BoxDecoration(
+                                                                              color: ColorRef.yellowFFA500,
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                            ),
+                                                                            child: TextButton(
+                                                                              child: Text(
+                                                                                'Apply',
+                                                                                style: TextStyle(fontFamily: 'Lato',fontSize: 15,fontWeight: FontWeight.w400,color: ColorRef.black202020),
                                                                               ),
-                                                                              itemCount: provider.colors.length,
-                                                                              itemBuilder: (BuildContext context, int index) {
-                                                                                Color color = provider.colors[index];
-                                                                                return GestureDetector(
-                                                                                  onTap: () {
-                                                                                    setState(() {
-                                                                                      provider.onColorChange(color);
-                                                                                      Navigator.pop(context);
-                                                                                    });
-                                                                                  },
-                                                                                  child: Container(
-                                                                                    padding: const EdgeInsets.all(5),
-                                                                                    decoration: BoxDecoration(
-                                                                                      borderRadius: BorderRadius.circular(10),
-                                                                                      color: color,
-                                                                                    ),
-                                                                                  ),
-                                                                                );
+                                                                              onPressed: () {
+                                                                                Navigator.of(context).pop();
                                                                               },
                                                                             ),
                                                                           ),
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  );
-                                                                });
+                                                                        ],
+                                                                      ),
+                                                                    );
+
+                                                                  },
+                                                                );
                                                               },
                                                               child: Container(
-                                                                  height: 40,
-                                                                  width: 40,
-                                                                  decoration: BoxDecoration(
-                                                                    color: Colors.white,
-                                                                    borderRadius: BorderRadius.circular(5),
-                                                                  ),
-                                                                  alignment: Alignment.center,
-                                                                  child: SvgPicture.asset(
-                                                                    SvgPath.color_selection,
-                                                                    height: 25,
-                                                                    width: 25,
-                                                                  )),
+                                                                height: 40,
+                                                                width: 40,
+                                                                decoration: BoxDecoration(
+                                                                  color: ColorRef.whiteFFFFFF,
+                                                                  borderRadius: BorderRadius.circular(5),
+                                                                ),
+                                                                alignment: Alignment.center,
+                                                                child: SvgPicture.asset(
+                                                                  SvgPath.color_selection,
+                                                                  height: 25,
+                                                                  width: 25,
+                                                                ),
+                                                              ),
                                                             ),
+
                                                             const SizedBox(width: 10),
                                                             SizedBox(
                                                               height: 40,
@@ -463,7 +466,7 @@ class ImageEditView extends StatelessWidget {
                                                                       height: 40,
                                                                       width: 40,
                                                                       decoration: BoxDecoration(
-                                                                        color: provider.selectedColor.withOpacity(opacity),
+                                                                        color: _selectedColor.withOpacity(opacity), // Apply opacity to the selected color
                                                                         borderRadius: BorderRadius.circular(5),
                                                                       ),
                                                                     ),
@@ -471,6 +474,7 @@ class ImageEditView extends StatelessWidget {
                                                                 },
                                                               ),
                                                             ),
+
                                                           ],
                                                         ),
                                                       ],
@@ -711,8 +715,7 @@ class ImageEditView extends StatelessWidget {
                                       provider.EditDetails[index]['image'],
                                     ),
                                   ),
-                                  Text(provider.EditDetails[index]['label'] ?? '',
-                                      style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12)) // Add null check here
+                                  Text(provider.EditDetails[index]['label'] ?? '', style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12)) // Add null check here
                                 ],
                               ),
                             );
