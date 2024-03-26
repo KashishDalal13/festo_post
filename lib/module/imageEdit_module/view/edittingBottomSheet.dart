@@ -54,7 +54,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                       itemBuilder: (BuildContext context) {
                         return provider.fontFamilies.map((String fontFamily) {
                           final bool isSelected = provider.selectedFontFamily == fontFamily;
-                          return CheckedPopupMenuItem(
+                          return PopupMenuItem(
                             value: fontFamily,
                             child: Container(
                               decoration: BoxDecoration(
@@ -63,10 +63,25 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                               ),
                               child: Row(
                                 children: <Widget>[
-                                  Checkbox(value: isSelected, onChanged: (_) {}, activeColor: ColorRef.blue1E75E5),
+                                  Checkbox(
+                                    value: isSelected,
+                                    onChanged: (bool? newValue) {
+                                      if (newValue != null && newValue) {
+                                        setState(() {
+                                          provider.setSelectedFontFamily(fontFamily);
+                                          provider.onBack();
+                                        });
+                                      }
+                                    },
+                                    activeColor: ColorRef.blue1E75E5,
+                                  ),
                                   Text(
                                     fontFamily,
-                                    style: TextStyle(color: ColorRef.grey406110A, fontSize: 15, fontFamily: fontFamily),
+                                    style: TextStyle(
+                                      color: ColorRef.grey406110A,
+                                      fontSize: 15,
+                                      fontFamily: fontFamily,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -74,11 +89,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                           );
                         }).toList();
                       },
-                      onSelected: (String selectedFontFamily) {
-                        setState(() {
-                          provider.setSelectedFontFamily(selectedFontFamily);
-                        });
-                      },
+
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 9),
                         margin: const EdgeInsets.symmetric(horizontal: 25),
@@ -129,23 +140,44 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      itemBuilder: (BuildContext context) {
-                        return provider.fontSize.map((int fontFontSize) {
-                          return PopupMenuItem<int>(
-                            value: fontFontSize,
-                            child: Center(
-                              child: Text(
-                                fontFontSize.toString(),
-                                style: TextStyle(
-                                  color: ColorRef.black202020,
-                                  fontSize: 12,
-                                  fontFamily: 'Lato',
-                                ),
-                              ),
+                    itemBuilder: (BuildContext context) {
+                      return provider.fontSize.map((int fontFontSize) {
+                        final bool isSelected = provider.selectedFontSize == fontFontSize;
+                        return PopupMenuItem(
+                          value: fontFontSize,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: isSelected ? ColorRef.blueEFF6FF : Colors.transparent,
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                          );
-                        }).toList();
-                      },
+                            child: Row(
+                              children: <Widget>[
+                                Checkbox(
+                                  value: isSelected,
+                                  onChanged: (bool? newValue) {
+                                    if (newValue != null && newValue) {
+                                      setState(() {
+                                        provider.setSelectedFontSize(fontFontSize);
+                                        provider.onBack();
+                                      });
+                                    }
+                                  },
+                                  activeColor: ColorRef.blue1E75E5,
+                                ),
+                                Text(
+                                  fontFontSize.toString(),
+                                  style: TextStyle(
+                                    color: ColorRef.grey406110A,
+                                    fontSize: 15,
+                                    fontFamily: 'Lato',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList();
+                    },
                       onSelected: (int selectedFontSize) {
                         setState(() {
                           provider.setSelectedFontSize(selectedFontSize);
