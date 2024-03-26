@@ -1,5 +1,6 @@
 import 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.dart';
 import 'package:festo_post/utils/colors.dart';
+import 'package:festo_post/utils/routes.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -232,13 +233,8 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextButton(
-                                child: Text(
-                                  'Apply',
-                                  style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
+                                child: Text('Apply', style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
+                                onPressed: () => NavigationService.goBack(),
                               ),
                             ),
                           ],
