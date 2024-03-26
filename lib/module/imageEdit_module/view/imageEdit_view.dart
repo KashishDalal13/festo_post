@@ -10,14 +10,10 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import '../../../utils/bool.dart';
 
 class ImageEditView extends StatelessWidget {
-  ImageEditView({
-    Key? key,
-    this.label,
-    this.selectedImage,
-  }) : super(key: key);
+  final String? label;
+  final String? selectedImage;
 
-  String? label;
-  String? selectedImage;
+  const ImageEditView({Key? key, this.label, this.selectedImage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -691,8 +687,7 @@ class ImageEditView extends StatelessWidget {
                                       provider.EditDetails[index]['image'],
                                     ),
                                   ),
-                                  Text(provider.EditDetails[index]['label'] ?? '',
-                                      style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12)) // Add null check here
+                                  Text(provider.EditDetails[index]['label'] ?? '', style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12)) // Add null check here
                                 ],
                               ),
                             );
