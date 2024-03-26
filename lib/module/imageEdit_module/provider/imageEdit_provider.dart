@@ -109,11 +109,17 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> letters = [SvgPath.bold, SvgPath.italic, SvgPath.underline];
+  List<Map<String, dynamic>> letters = [
+    {'type': SvgPath.bold, 'apply': false},
+    {'type': SvgPath.italic, 'apply': false},
+    {'type': SvgPath.underline, 'apply': false}
+  ];
   List<String> cases = ['Aa', 'AA', 'aa'];
 
   void toggleTextStyle(int index) {
     selectedTextStyle = index.toString();
+    letters[index]['apply'] = !letters[index]['apply'];
+    debugPrint("${letters[index]['apply']}");
     if (selectedTextStyle == '0') {
       isBold = !isBold;
     } else if (selectedTextStyle == '1') {
@@ -397,7 +403,7 @@ class ImageEditProvider extends ChangeNotifier {
                               // Add the selected image to the StackBoard
                               boardController.add(
                                 StackBoardItem(
-                                  caseStyle: CaseStyle(boxAspectRatio: 350 / 370),
+                                  caseStyle: const CaseStyle(boxAspectRatio: 350 / 370),
                                   child: Image.asset(stickerList[stickerIndex]['imageList'][index]),
                                 ),
                               );
@@ -417,7 +423,7 @@ class ImageEditProvider extends ChangeNotifier {
     } else if (index == 2) {
       // Add image from gallery
       ImagePicker().pickImage(source: ImageSource.gallery).then(
-        (value) {
+            (value) {
           if (value != null) {
             final imageFile = File(value.path);
             boardController.add(
@@ -529,10 +535,10 @@ class CustomItem extends StackBoardItem {
     Future<bool> Function()? onDel,
     int? id,
   }) : super(
-          child: const Text(''),
-          onDel: onDel,
-          id: id,
-        );
+    child: const Text(''),
+    onDel: onDel,
+    id: id,
+  );
 
   final String? customText;
 
@@ -549,6 +555,6 @@ class CustomItem extends StackBoardItem {
       CustomItem(
         onDel: onDel,
         id: id,
-        customText: customText ?? this.customText,
+        customText: customText ?? customText,
       );
 }
