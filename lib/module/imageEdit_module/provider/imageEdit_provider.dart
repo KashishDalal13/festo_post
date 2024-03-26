@@ -9,11 +9,12 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../utils/routes.dart';
 import '../../../utils/string.dart';
+import '../view/stickerBottomSheet.dart';
 
 class ImageEditProvider extends ChangeNotifier {
   String framecurrentIndex = "";
   String currentIndex = "";
-  int stickerIndex = 0;
+  int stickerIndex = 0, stickerViewIndex = 0;
   StackBoardController boardController = StackBoardController();
   final GlobalKey boardKey = GlobalKey();
   bool isBold = false;
@@ -335,95 +336,16 @@ class ImageEditProvider extends ChangeNotifier {
         builder: (BuildContext context) {
           return StatefulBuilder(
             builder: (context, setState) {
-              return Container(
-                height: 420,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    topRight: Radius.circular(10.0),
-                  ),
-                  color: ColorRef.greyEDEDED,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 50,
-                        width: 390,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemCount: stickerList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  onSelectSticker(index: index);
-                                  Navigator.of(context).pop();
-                                });
-                              },
-                              child: Container(
-                                height: 30,
-                                width: 76,
-                                margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: index == stickerIndex ? ColorRef.yellowFFA500 : ColorRef.white,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    stickerList[index]['label'],
-                                    style: const TextStyle(fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.w400),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                          separatorBuilder: (BuildContext context, int index) {
-                            return const SizedBox(width: 5);
-                          },
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      GridView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          crossAxisSpacing: 15,
-                          mainAxisSpacing: 15,
-                        ),
-                        itemCount: stickerList[stickerIndex]['imageList'].length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              // Add the selected image to the StackBoard
-                              boardController.add(
-                                StackBoardItem(
-                                  caseStyle: const CaseStyle(boxAspectRatio: 350 / 370),
-                                  child: Image.asset(stickerList[stickerIndex]['imageList'][index]),
-                                ),
-                              );
-                            },
-                            child: Image.asset(stickerList[stickerIndex]['imageList'][index]),
-                          );
-                        },
-                      )
-                    ],
-                  ),
-                ),
+              return StickerBottomSheet(
+                provider: ImageEditProvider(),
               );
             },
           );
         },
       );
     } else if (index == 2) {
-      // Add image from gallery
       ImagePicker().pickImage(source: ImageSource.gallery).then(
-            (value) {
+        (value) {
           if (value != null) {
             final imageFile = File(value.path);
             boardController.add(
@@ -525,6 +447,12 @@ class ImageEditProvider extends ChangeNotifier {
 
   void onSelectSticker({required int index}) {
     stickerIndex = index;
+    stickerViewIndex = 0;
+    notifyListeners();
+  }
+
+  onChangeStickerView(){
+    stickerViewIndex = 1;
     notifyListeners();
   }
 }
@@ -535,10 +463,10 @@ class CustomItem extends StackBoardItem {
     Future<bool> Function()? onDel,
     int? id,
   }) : super(
-    child: const Text(''),
-    onDel: onDel,
-    id: id,
-  );
+          child: const Text(''),
+          onDel: onDel,
+          id: id,
+        );
 
   final String? customText;
 

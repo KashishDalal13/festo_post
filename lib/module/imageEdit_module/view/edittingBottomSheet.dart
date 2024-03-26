@@ -89,6 +89,12 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                           );
                         }).toList();
                       },
+                      onSelected: (String selectedFontFamily) {
+                        setState(() {
+                          provider.setSelectedFontFamily(selectedFontFamily);
+                        });
+                      },
+
 
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 9),

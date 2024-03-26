@@ -63,7 +63,9 @@ class StrRef {
       tag="Tags For post",
       hashtag="#NineNightsOfCelebration #CulturalHeritage #Devotion #NavratriNights #SpiritualJourney #GoodOverEvil #DurgaPuja #FestivalVibes #DanceToTheRhythm #ColorfulCelebration #CulturalDiversity #DivineBlessings #HarvestFestival #RitualsAndTraditions #NavratriFever#FolkMusic #DanceCelebration #SpiritualJourney",
       editText = "Edit Text",
-      Fonts = "Fonts";
+      Fonts = "Fonts",
+      downloadText = "Enhance Your Festive Posts with Vibrant Stickers!",
+      download = "Download";
 }
 
 class SvgPath {
@@ -166,7 +168,10 @@ class SvgPath {
       sticker7 = 'assets/png/sticker7.png',
       sticker8 = 'assets/png/sticker8.png',
       sticker9 = 'assets/png/sticker9.png',
-      sticker10 = 'assets/png/sticker10.png'
+      sticker10 = 'assets/png/sticker10.png',
+
+
+      download = 'assets/lottie/download.json'
 ;}
 
 class StringRef {
