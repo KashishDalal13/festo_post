@@ -423,7 +423,7 @@ class ImageEditProvider extends ChangeNotifier {
     } else if (index == 2) {
       // Add image from gallery
       ImagePicker().pickImage(source: ImageSource.gallery).then(
-        (value) {
+            (value) {
           if (value != null) {
             final imageFile = File(value.path);
             boardController.add(
@@ -535,10 +535,10 @@ class CustomItem extends StackBoardItem {
     Future<bool> Function()? onDel,
     int? id,
   }) : super(
-          child: const Text(''),
-          onDel: onDel,
-          id: id,
-        );
+    child: const Text(''),
+    onDel: onDel,
+    id: id,
+  );
 
   final String? customText;
 
