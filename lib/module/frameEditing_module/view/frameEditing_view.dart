@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-
-import '../../../utils/bool.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/string.dart';
-import '../provider/frameEditing_provider.dart';
+import 'package:festo_post/app_export.dart';
 
 class FrameEditorView extends StatelessWidget {
   final List<String>? imageList;

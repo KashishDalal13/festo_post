@@ -1,11 +1,4 @@
-import 'package:festo_post/module/login_module/provider/register_provider.dart';
-import 'package:festo_post/utils/bool.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:pinput/pinput.dart';
-
-import '../../../utils/colors.dart';
-import '../../../utils/string.dart';
+import 'package:festo_post/app_export.dart';
 
 class OtpView extends StatelessWidget {
   final RegisterProvider provider;

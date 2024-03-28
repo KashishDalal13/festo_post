@@ -1,10 +1,4 @@
-import 'package:festo_post/module/login_module/view/add_details_view.dart';
-import 'package:festo_post/module/login_module/provider/register_provider.dart';
-import 'package:festo_post/module/login_module/view/referral_view.dart';
-import 'package:festo_post/module/login_module/view/register_view.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'otp_view.dart';
+import 'package:festo_post/app_export.dart';
 
 class UserAuthView extends StatelessWidget {
   const UserAuthView({super.key});

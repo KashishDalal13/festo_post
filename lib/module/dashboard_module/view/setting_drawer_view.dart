@@ -1,11 +1,12 @@
-import 'package:flutter_svg/svg.dart';
-import '../../../app_export.dart';
-
-class SettingDrawer extends StatelessWidget {
-  final DashboardProvider? dashboardProvider;
+import 'package:festo_post/app_export.dart';
 
   const SettingDrawer({super.key, this.dashboardProvider});
 
+  @override
+  State<SettingDrawer> createState() => _SettingDrawerState();
+}
+
+class _SettingDrawerState extends State<SettingDrawer> {
   @override
   Widget build(BuildContext context) {
     DashboardProvider? provider = dashboardProvider!;

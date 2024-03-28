@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:festo_post/app_export.dart';
 
 class CustomTextTheme {
   static TextStyle fontFamily = const TextStyle(fontFamily: "Lato");

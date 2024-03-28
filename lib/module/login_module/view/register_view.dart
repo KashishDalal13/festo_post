@@ -1,10 +1,4 @@
-import 'package:festo_post/module/login_module/provider/register_provider.dart';
-import 'package:festo_post/utils/bool.dart';
-import 'package:festo_post/utils/colors.dart';
-import 'package:festo_post/utils/string.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:festo_post/app_export.dart';
 
 class RegisterView extends StatelessWidget {
   final RegisterProvider provider;

@@ -1,12 +1,4 @@
-import 'package:festo_post/utils/bool.dart';
-import 'package:festo_post/utils/colors.dart';
-import 'package:festo_post/utils/string.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'on_boarding_info.dart';
-import 'onboarding_provider.dart';
+import 'package:festo_post/app_export.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});

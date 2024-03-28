@@ -1,10 +1,4 @@
 import 'package:festo_post/app_export.dart';
-import 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dart';
-import 'package:festo_post/utils/string.dart';
-import 'package:flutter/material.dart';
-
-import '../../../shared/injector.dart';
-import '../../../utils/routes.dart';
 
 class DashboardProvider extends ChangeNotifier {
   DashboardProvider() {

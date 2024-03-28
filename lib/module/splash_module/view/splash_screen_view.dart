@@ -1,6 +1,4 @@
-import 'package:provider/provider.dart';
-
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class SplashScreenView extends StatelessWidget {
   const SplashScreenView({super.key});

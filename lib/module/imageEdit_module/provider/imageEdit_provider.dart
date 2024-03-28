@@ -1,15 +1,4 @@
-import 'dart:async';
-import 'dart:math';
-import 'dart:io';
-import 'package:festo_post/utils/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:stack_board/stack_board.dart';
-import 'package:image_picker/image_picker.dart';
-
-import '../../../utils/routes.dart';
-import '../../../utils/string.dart';
-import '../view/stickerBottomSheet.dart';
+import 'package:festo_post/app_export.dart';
 
 class ImageEditProvider extends ChangeNotifier {
   String framecurrentIndex = "";

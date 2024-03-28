@@ -1,7 +1,4 @@
-import 'package:festo_post/module/info_module/view/info_view.dart';
-import 'package:flutter/material.dart';
-import '../../../utils/routes.dart';
-import '../../imageEdit_module/view/imageEdit_view.dart';
+import 'package:festo_post/app_export.dart';
 
 class FrameEditorProvider extends ChangeNotifier {
   bool isImageSelected = true;

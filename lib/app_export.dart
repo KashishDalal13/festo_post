@@ -8,6 +8,19 @@ export 'dart:io';
 // Widget
 export 'package:festo_post/widget/toast.dart';
 
+// Package
+export 'package:provider/provider.dart';
+export 'package:shared_preferences/shared_preferences.dart';
+export 'package:flutter_svg/svg.dart';
+export 'package:smooth_page_indicator/smooth_page_indicator.dart';
+export 'package:pinput/pinput.dart';
+export 'package:stack_board/stack_board.dart';
+export 'package:image_picker/image_picker.dart';
+export 'package:flutter_colorpicker/flutter_colorpicker.dart';
+export 'package:lottie/lottie.dart';
+export 'package:carousel_slider/carousel_slider.dart';
+
+
 //utils
 export 'package:festo_post/utils/bool.dart';
 export 'package:festo_post/utils/colors.dart';

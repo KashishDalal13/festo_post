@@ -1,13 +1,4 @@
-import 'package:festo_post/module/imageEdit_module/view/edittingBottomSheet.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-import 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.dart';
-import 'package:festo_post/utils/colors.dart';
-import 'package:festo_post/utils/string.dart';
-import 'package:stack_board/stack_board.dart';
-
-import '../../../utils/bool.dart';
+import 'package:festo_post/app_export.dart';
 
 class ImageEditView extends StatelessWidget {
   final String? label;
