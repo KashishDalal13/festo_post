@@ -43,6 +43,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                       shadowColor: ColorRef.black202020,
                       offset: const Offset(0, 0),
                       color: ColorRef.whiteFFFFFF,
+                      surfaceTintColor: ColorRef.whiteFFFFFF,
                       position: PopupMenuPosition.over,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                       itemBuilder: (BuildContext context) {
@@ -88,8 +89,6 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                           provider.setSelectedFontFamily(selectedFontFamily);
                         });
                       },
-
-
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 9),
                         margin: const EdgeInsets.symmetric(horizontal: 25),
@@ -134,50 +133,51 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                     PopupMenuButton(
                       shadowColor: ColorRef.black202020,
                       color: ColorRef.whiteFFFFFF,
+                      surfaceTintColor: ColorRef.whiteFFFFFF,
                       offset: const Offset(-1, -1),
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(maxWidth: 120, minWidth: 120, minHeight: 180, maxHeight: 180),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                    itemBuilder: (BuildContext context) {
-                      return provider.fontSize.map((int fontFontSize) {
-                        final bool isSelected = provider.selectedFontSize == fontFontSize;
-                        return PopupMenuItem(
-                          value: fontFontSize,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: isSelected ? ColorRef.blueEFF6FF : Colors.transparent,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              children: <Widget>[
-                                Checkbox(
-                                  value: isSelected,
-                                  onChanged: (bool? newValue) {
-                                    if (newValue != null && newValue) {
-                                      setState(() {
-                                        provider.setSelectedFontSize(fontFontSize);
-                                        provider.onBack();
-                                      });
-                                    }
-                                  },
-                                  activeColor: ColorRef.blue1E75E5,
-                                ),
-                                Text(
-                                  fontFontSize.toString(),
-                                  style: TextStyle(
-                                    color: ColorRef.grey406110A,
-                                    fontSize: 15,
-                                    fontFamily: 'Lato',
+                      itemBuilder: (BuildContext context) {
+                        return provider.fontSize.map((int fontFontSize) {
+                          final bool isSelected = provider.selectedFontSize == fontFontSize;
+                          return PopupMenuItem(
+                            value: fontFontSize,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: isSelected ? ColorRef.blueEFF6FF : Colors.transparent,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                children: <Widget>[
+                                  Checkbox(
+                                    value: isSelected,
+                                    onChanged: (bool? newValue) {
+                                      if (newValue != null && newValue) {
+                                        setState(() {
+                                          provider.setSelectedFontSize(fontFontSize);
+                                          provider.onBack();
+                                        });
+                                      }
+                                    },
+                                    activeColor: ColorRef.blue1E75E5,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    fontFontSize.toString(),
+                                    style: TextStyle(
+                                      color: ColorRef.grey406110A,
+                                      fontSize: 15,
+                                      fontFamily: 'Lato',
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      }).toList();
-                    },
+                          );
+                        }).toList();
+                      },
                       onSelected: (int selectedFontSize) {
                         setState(() {
                           provider.setSelectedFontSize(selectedFontSize);
@@ -216,8 +216,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             margin: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5), color: provider.selectedCaseIndex == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: provider.selectedCaseIndex == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white),
                             child: Text(provider.cases[index], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Lato')),
                           ),
                         );
