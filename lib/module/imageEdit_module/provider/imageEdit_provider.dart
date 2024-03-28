@@ -13,13 +13,14 @@ import '../view/stickerBottomSheet.dart';
 
 class ImageEditProvider extends ChangeNotifier {
   String framecurrentIndex = "";
-  String currentIndex = "";
+  String currentItemId = "", currentIndex = "";
   int stickerIndex = 0, stickerViewIndex = 0;
   StackBoardController boardController = StackBoardController();
   final GlobalKey boardKey = GlobalKey();
   bool isBold = false;
   bool isItalic = false;
   bool isUnderline = false;
+
   int selectedFontSize = 22;
   Color _selectedColor = const Color(0xff505050);
   List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];

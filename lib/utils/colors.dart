@@ -35,4 +35,5 @@ class ColorRef {
 
 ;
   static Color? commonBgColor;
+  static Color? backgroundColor, buttonColor, buttonTextColor, textPrimaryColor, containerBackgroundColor;
 }

@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
             routes: {
               '/': (context) => const OnBoardingScreen(),
               'register': (context) => const UserAuthView(),
-              'dashboard': (context) => const dashboardView(),
+              'dashboard': (context) => const DashBoardView(),
               'profile': (context) => const ProfileView(),
               'frame': (context) => const FrameEditorView(),
               'info': (context) => const InfoView(),
