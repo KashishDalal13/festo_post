@@ -1,22 +1,5 @@
-import 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
-import 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dart';
-import 'package:festo_post/module/imageEdit_module/view/imageEdit_view.dart';
-import 'package:festo_post/module/splash_module/view/splash_screen_view.dart';
-import 'package:festo_post/shared/injector.dart';
-import 'package:festo_post/utils/bool.dart';
-import 'package:festo_post/utils/colors.dart';
-import 'package:festo_post/utils/routes.dart';
-import 'package:festo_post/theme_change/theme_settings.dart';
-import 'package:festo_post/utils/string.dart';
-import 'package:festo_post/utils/theme.dart';
-import 'package:festo_post/widget/toast.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:festo_post/app_export.dart';
 import 'package:provider/provider.dart';
-import 'module/info_module/view/info_view.dart';
-import 'module/login_module/view/user_auth_view.dart';
-import 'module/on_boarding/on_boarding_view.dart';
-import 'module/profile_module/view/profile_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +24,6 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => ThemeSettings(),
         builder: (context, child) {
-          debugPrint(" BoolRef themeChange ${BoolRef.themeChange}");
           return MaterialApp(
             initialRoute: '/',
             navigatorKey: NavigationService.navigatorKey,

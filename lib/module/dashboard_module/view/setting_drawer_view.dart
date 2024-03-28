@@ -1,3 +1,4 @@
+import 'package:festo_post/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -7,7 +8,8 @@ import '../provider/dashboard_provider.dart';
 
 class SettingDrawer extends StatefulWidget {
   final DashboardProvider? provider;
-  const SettingDrawer({super.key,this.provider});
+
+  const SettingDrawer({super.key, this.provider});
 
   @override
   State<SettingDrawer> createState() => _SettingDrawerState();
@@ -26,18 +28,12 @@ class _SettingDrawerState extends State<SettingDrawer> {
             padding: const EdgeInsets.all(15),
             child: Row(
               children: [
-                IconButton(
-                  onPressed: () => provider.onBack(),
-                  icon: const Icon(Icons.arrow_back_ios_rounded, size: 20),
-                ),
+                IconButton(onPressed: () => NavigationService.goBack(), icon: const Icon(Icons.arrow_back_ios_rounded, size: 20)),
                 Expanded(
                   child: Center(
                     child: Text(
                       StrRef.registerTitle2,
-                      style: const TextStyle(
-                        fontFamily: 'Lato',
-                        fontSize: 20,
-                      ),
+                      style: const TextStyle(fontFamily: 'Lato', fontSize: 20),
                     ),
                   ),
                 ),
@@ -58,12 +54,13 @@ class _SettingDrawerState extends State<SettingDrawer> {
                   ),
                   child: ListTile(
                     leading: SvgPicture.asset(item['icon']),
-                    trailing: Switch(
+                    trailing: Switch.adaptive(
+                      inactiveThumbColor: ColorRef.blue0250A4,
                       thumbColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                         if (states.contains(MaterialState.disabled)) {
                           return ColorRef.blue0250A4;
                         }
-                        return ColorRef.blue0250A4;
+                        return ColorRef.blue3498DB;
                       }),
                       trackOutlineColor:MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                         if (states.contains(MaterialState.disabled)) {
@@ -76,7 +73,7 @@ class _SettingDrawerState extends State<SettingDrawer> {
                       inactiveTrackColor: ColorRef.greyE0E0E0,
                       value: provider.switchValue,
                       onChanged: (newValue) {
-                        provider.toggleTheme(switchVal: newValue);
+                        provider.toggleTheme(switchVal: newValue, context: context);
                       },
                     ),
                     title: Text(item['label']),
@@ -92,7 +89,10 @@ class _SettingDrawerState extends State<SettingDrawer> {
                   ),
                   child: ListTile(
                     leading: SvgPicture.asset(item['icon']),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 20,),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 20,
+                    ),
                     title: Text(item['label']),
                     onTap: () {},
                   ),
@@ -102,8 +102,6 @@ class _SettingDrawerState extends State<SettingDrawer> {
           ),
         ],
       ),
-
     );
   }
 }
-

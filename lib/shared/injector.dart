@@ -31,12 +31,13 @@ class Injector {
   }
 
   static void setTheme({required bool themeVal}) {
-    debugPrint("theme changed");
+    debugPrint("theme changed $themeVal");
     prefs.setBool(PrefsKey.theme, themeVal);
   }
 
   static getTheme() async {
     prefs = await SharedPreferences.getInstance();
+    debugPrint("getTheme${prefs.getBool(PrefsKey.theme)}");
     return prefs.getBool(PrefsKey.theme) ?? false;
   }
 
