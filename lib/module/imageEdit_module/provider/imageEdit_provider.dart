@@ -12,7 +12,7 @@ import '../../../utils/string.dart';
 
 class ImageEditProvider extends ChangeNotifier {
   String framecurrentIndex = "";
-  String currentIndex = "";
+  String currentItemId = "", currentIndex = "";
   int stickerIndex = 0;
   StackBoardController boardController = StackBoardController();
   final GlobalKey boardKey = GlobalKey();
@@ -20,12 +20,106 @@ class ImageEditProvider extends ChangeNotifier {
   bool isItalic = false;
   bool isUnderline = false;
   int selectedFontSize = 22;
-
   bool isUppercase = false;
   String selectedTextCase = '';
   String selectedCaseIndex = '';
   String selectedTextStyle = '';
   String selectedFontFamily = '';
+  List<Map<String, dynamic>> frameDetails = [
+    {
+      "imageList": SvgPath.frameLogo,
+      "add": SvgPath.sticker1,
+      "show": false,
+      "position": const Offset(0.1, 0.1),
+      "top": 0.0,
+      "left": 0.0,
+      "scale": 1.0,
+      "rotation": 0.0,
+    },
+    {
+      "imageList": SvgPath.framePhone,
+      "add": SvgPath.contactDetail,
+      "show": false,
+      "position": const Offset(0.1, 0.1),
+      "top": 0.0,
+      "left": 0.0,
+      "scale": 1.0,
+      "rotation": 0.0,
+    },
+    {
+      "imageList": SvgPath.frameEmail,
+      "add": SvgPath.mailDetail,
+      "show": false,
+      "position": const Offset(0.1, 0.1),
+      "top": 0.0,
+      "left": 0.0,
+      "scale": 1.0,
+      "rotation": 0.0,
+    },
+    {
+      "imageList": SvgPath.frameWeb,
+      "add": SvgPath.webDetail,
+      "show": false,
+      "position": const Offset(0.1, 0.1),
+      "top": 0.0,
+      "left": 0.0,
+      "scale": 1.0,
+      "rotation": 0.0,
+    },
+    {
+      "imageList": SvgPath.frameLocation,
+      "add": SvgPath.locationDetail,
+      "show": false,
+      "position": const Offset(0.1, 0.1),
+      "top": 0.0,
+      "left": 0.0,
+      "scale": 1.0,
+      "rotation": 0.0,
+    },
+  ];
+  List<Map<String, dynamic>> editDetails = [
+    {"image": SvgPath.text, "label": "Text"},
+    {"image": SvgPath.sticker, "label": "Sticker"},
+    {"image": SvgPath.image_gallery, "label": "Image"},
+    {"image": SvgPath.volume, "label": "Audio"},
+  ];
+  List<Map<String, dynamic>> stickerList = [
+    {
+      "label": "All",
+      "imageList": [SvgPath.sticker4, SvgPath.sticker1, SvgPath.sticker10, SvgPath.sticker1, SvgPath.sticker2]
+    },
+    {
+      "label": "Sale",
+      "imageList": [SvgPath.sticker3, SvgPath.sticker5, SvgPath.sticker7]
+    },
+    {
+      "label": "Food",
+      "imageList": [SvgPath.sticker8, SvgPath.sticker6, SvgPath.sticker10]
+    },
+    {
+      "label": "Birthday",
+      "imageList": [SvgPath.sticker9, SvgPath.sticker5, SvgPath.sticker1]
+    },
+    {
+      "label": "Thankyou",
+      "imageList": [SvgPath.sticker10, SvgPath.sticker4, SvgPath.sticker8]
+    },
+    {
+      "label": "Welcome",
+      "imageList": [SvgPath.sticker6, SvgPath.sticker7, SvgPath.sticker9]
+    },
+    {
+      "label": "Summer",
+      "imageList": [SvgPath.sticker2, SvgPath.sticker3, SvgPath.sticker5]
+    },
+    {
+      "label": "Fashion",
+      "imageList": [SvgPath.sticker7, SvgPath.sticker4, SvgPath.sticker3]
+    },
+  ];
+  Map<String, dynamic> activeItem = {};
+  bool inAction = false;
+  double? currentScale, currentRotation;
 
   List<String> fontFamilies = [
     'AltoneTrial',
@@ -63,38 +157,6 @@ class ImageEditProvider extends ChangeNotifier {
   }
 
   Color _selectedColor = const Color(0xff505050);
-  List<Color> colors = [
-    ColorRef.black202020,
-    ColorRef.black3F3E3E,
-    ColorRef.black616161,
-    ColorRef.grey848484,
-    ColorRef.greyB3B3B3,
-    ColorRef.whiteFFFFFF,
-    ColorRef.blue1950AA,
-    ColorRef.blue0566CF,
-    ColorRef.blue670F7F,
-    ColorRef.blue5239A1,
-    ColorRef.red9A0058,
-    ColorRef.green017374,
-    ColorRef.green0A6609,
-    ColorRef.green1F9C1E,
-    ColorRef.green86BB09,
-    ColorRef.green20CE1C,
-    ColorRef.orangeD2622D,
-    ColorRef.brown4E2E2F,
-    ColorRef.pinkC12194,
-    ColorRef.redEE103F,
-    ColorRef.pinkF28F8F,
-    ColorRef.pinkBA68C8,
-    ColorRef.redE60406,
-    ColorRef.orangeF25206,
-    ColorRef.orangeFA7C03,
-    ColorRef.orangeFFA500,
-    ColorRef.yellowFFE309,
-    ColorRef.blue00D4FC,
-    ColorRef.pinkFF8EDE,
-    ColorRef.blue005B87,
-  ];
   List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];
 
   Color get selectedColor => _selectedColor;
@@ -149,104 +211,6 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Map<String, dynamic>> frameDetails = [
-    {
-      "imageList": SvgPath.frameLogo,
-      "add": SvgPath.sticker1,
-      "show": false,
-      "position": const Offset(0.1, 0.1),
-      "top": 0.0,
-      "left": 0.0,
-      "scale": 1.0,
-      "rotation": 0.0,
-    },
-    {
-      "imageList": SvgPath.framePhone,
-      "add": SvgPath.contactDetail,
-      "show": false,
-      "position": const Offset(0.1, 0.1),
-      "top": 0.0,
-      "left": 0.0,
-      "scale": 1.0,
-      "rotation": 0.0,
-    },
-    {
-      "imageList": SvgPath.frameEmail,
-      "add": SvgPath.mailDetail,
-      "show": false,
-      "position": const Offset(0.1, 0.1),
-      "top": 0.0,
-      "left": 0.0,
-      "scale": 1.0,
-      "rotation": 0.0,
-    },
-    {
-      "imageList": SvgPath.frameWeb,
-      "add": SvgPath.webDetail,
-      "show": false,
-      "position": const Offset(0.1, 0.1),
-      "top": 0.0,
-      "left": 0.0,
-      "scale": 1.0,
-      "rotation": 0.0,
-    },
-    {
-      "imageList": SvgPath.frameLocation,
-      "add": SvgPath.locationDetail,
-      "show": false,
-      "position": const Offset(0.1, 0.1),
-      "top": 0.0,
-      "left": 0.0,
-      "scale": 1.0,
-      "rotation": 0.0,
-    },
-  ];
-  List<Map<String, dynamic>> EditDetails = [
-    {"image": SvgPath.text, "label": "Text"},
-    {"image": SvgPath.sticker, "label": "Sticker"},
-    {"image": SvgPath.image_gallery, "label": "Image"},
-    {"image": SvgPath.volume, "label": "Audio"},
-  ];
-
-  List<Map<String, dynamic>> stickerList = [
-    {
-      "label": "All",
-      "imageList": [SvgPath.sticker4, SvgPath.sticker1, SvgPath.sticker10, SvgPath.sticker1, SvgPath.sticker2]
-    },
-    {
-      "label": "Sale",
-      "imageList": [SvgPath.sticker3, SvgPath.sticker5, SvgPath.sticker7]
-    },
-    {
-      "label": "Food",
-      "imageList": [SvgPath.sticker8, SvgPath.sticker6, SvgPath.sticker10]
-    },
-    {
-      "label": "Birthday",
-      "imageList": [SvgPath.sticker9, SvgPath.sticker5, SvgPath.sticker1]
-    },
-    {
-      "label": "Thankyou",
-      "imageList": [SvgPath.sticker10, SvgPath.sticker4, SvgPath.sticker8]
-    },
-    {
-      "label": "Welcome",
-      "imageList": [SvgPath.sticker6, SvgPath.sticker7, SvgPath.sticker9]
-    },
-    {
-      "label": "Summer",
-      "imageList": [SvgPath.sticker2, SvgPath.sticker3, SvgPath.sticker5]
-    },
-    {
-      "label": "Fashion",
-      "imageList": [SvgPath.sticker7, SvgPath.sticker4, SvgPath.sticker3]
-    },
-  ];
-
-  Map<String, dynamic> activeItem = {};
-  bool inAction = false;
-  double? currentScale, currentRotation;
-
   void edit({required int index, required BuildContext context}) async {
     currentIndex = index.toString();
     notifyListeners();
@@ -273,31 +237,26 @@ class ImageEditProvider extends ChangeNotifier {
                   ),
                   const SizedBox(height: 10),
                   Container(
-                    padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 110),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: ColorRef.black000000.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(5),
                       boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: const Offset(0, 3),
-                        ),
+                        BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 2, blurRadius: 5, offset: const Offset(0, 3)),
                       ],
                     ),
-                    child: Column(
-                      children: [
-                        TextField(
-                          style: TextStyle(color: ColorRef.white),
-                          decoration: InputDecoration(
-                            hintText: 'Write Here',
-                            hintStyle: TextStyle(color: ColorRef.white),
-                            border: InputBorder.none,
-                          ),
-                          onChanged: (value) => text = value,
-                        ),
-                      ],
+                    child: TextFormField(
+                      style: TextStyle(color: ColorRef.white),
+                      textAlign: TextAlign.center,
+                      textAlignVertical: TextAlignVertical.center,
+                      maxLines: 2,
+                      decoration: InputDecoration(
+                        constraints: const BoxConstraints(minHeight: 100, minWidth: 200),
+                        hintText: 'Write Here',
+                        hintStyle: TextStyle(color: ColorRef.white),
+                        border: InputBorder.none,
+                      ),
+                      onChanged: (value) => text = value,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -423,7 +382,7 @@ class ImageEditProvider extends ChangeNotifier {
     } else if (index == 2) {
       // Add image from gallery
       ImagePicker().pickImage(source: ImageSource.gallery).then(
-            (value) {
+        (value) {
           if (value != null) {
             final imageFile = File(value.path);
             boardController.add(
@@ -437,7 +396,7 @@ class ImageEditProvider extends ChangeNotifier {
     }
   }
 
-  void frameDetailsdisplay({required int index}) {
+  void frameDetailsDisplay({required int index}) {
     framecurrentIndex = index.toString();
     frameDetails[index]['show'] = !frameDetails[index]['show'];
     activeItem = frameDetails[index];
@@ -535,10 +494,10 @@ class CustomItem extends StackBoardItem {
     Future<bool> Function()? onDel,
     int? id,
   }) : super(
-    child: const Text(''),
-    onDel: onDel,
-    id: id,
-  );
+          child: const Text(''),
+          onDel: onDel,
+          id: id,
+        );
 
   final String? customText;
 

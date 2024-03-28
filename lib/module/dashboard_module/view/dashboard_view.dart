@@ -7,8 +7,8 @@ import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
 import '../provider/dashboard_provider.dart';
 
-class dashboardView extends StatelessWidget {
-  const dashboardView({super.key});
+class DashBoardView extends StatelessWidget {
+  const DashBoardView({super.key});
 
   @override
   Widget build(BuildContext context) {
