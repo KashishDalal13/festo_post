@@ -22,18 +22,26 @@ class _SettingDrawerState extends State<SettingDrawer> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          AppBar(
-            leading: IconButton(
-              onPressed: () => provider.onBack(),
-              icon: const Icon(Icons.arrow_back_ios_rounded, size: 20),
-            ),
-            centerTitle: true,
-            title: Text(
-              StrRef.registerTitle2,
-              style: const TextStyle(
-                fontFamily: 'Lato',
-                fontSize: 20,
-              ),
+          Container(
+            padding: const EdgeInsets.all(15),
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () => provider.onBack(),
+                  icon: const Icon(Icons.arrow_back_ios_rounded, size: 20),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      StrRef.registerTitle2,
+                      style: const TextStyle(
+                        fontFamily: 'Lato',
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           ListView.builder(
@@ -69,7 +77,7 @@ class _SettingDrawerState extends State<SettingDrawer> {
                   ),
                   child: ListTile(
                     leading: SvgPicture.asset(item['icon']),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded,size: 20,),
+                    trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 20,),
                     title: Text(item['label']),
                     onTap: () {},
                   ),
@@ -79,6 +87,7 @@ class _SettingDrawerState extends State<SettingDrawer> {
           ),
         ],
       ),
+
     );
   }
 }
