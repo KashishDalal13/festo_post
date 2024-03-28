@@ -1,4 +1,5 @@
 import 'package:festo_post/app_export.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
