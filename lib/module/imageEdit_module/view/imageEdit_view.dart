@@ -254,7 +254,7 @@ class ImageEditView extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                provider.frameDetailsDisplay(index: index);
+                                provider.frameDetailsdisplay(index: index);
                               },
                               child: Container(
                                 margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
@@ -299,7 +299,7 @@ class ImageEditView extends StatelessWidget {
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
-                          itemCount: provider.editDetails.length,
+                          itemCount: provider.EditDetails.length,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: () {
@@ -314,10 +314,10 @@ class ImageEditView extends StatelessWidget {
                                     padding: const EdgeInsets.all(10.0),
                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: ColorRef.white),
                                     child: SvgPicture.asset(
-                                      provider.editDetails[index]['image'],
+                                      provider.EditDetails[index]['image'],
                                     ),
                                   ),
-                                  Text(provider.editDetails[index]['label'] ?? '', style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12)) // Add null check here
+                                  Text(provider.EditDetails[index]['label'] ?? '', style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12)) // Add null check here
                                 ],
                               ),
                             );

@@ -13,19 +13,56 @@ import '../view/stickerBottomSheet.dart';
 
 class ImageEditProvider extends ChangeNotifier {
   String framecurrentIndex = "";
-  String currentIndex = "",currentItemId="";
+  String currentItemId = "", currentIndex = "";
   int stickerIndex = 0, stickerViewIndex = 0;
   StackBoardController boardController = StackBoardController();
   final GlobalKey boardKey = GlobalKey();
   bool isBold = false;
   bool isItalic = false;
   bool isUnderline = false;
+
   int selectedFontSize = 22;
+  Color _selectedColor = const Color(0xff505050);
+  List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];
+  Color get selectedColor => _selectedColor;
   bool isUppercase = false;
   String selectedTextCase = '';
   String selectedCaseIndex = '';
   String selectedTextStyle = '';
   String selectedFontFamily = '';
+  Map<String, dynamic> activeItem = {};
+  bool inAction = false;
+  double? currentScale, currentRotation;
+
+  List<String> fontFamilies = [
+    'AltoneTrial',
+    'Archivo',
+    'avenir',
+    'BalooTamma2',
+    'Cardo',
+    'DenkOne',
+    'Fondamento',
+    'HelveticaNeue',
+    'Italianno',
+    'LondrinaSolid',
+    'Lato',
+    'MankSans',
+    'Market Fresh',
+    'Mostery',
+    'Play',
+    'Poppins',
+    'Roboto',
+    'Rodano',
+    'Sriracha',
+    'Trocchi'
+  ];
+  List<Map<String, dynamic>> letters = [
+    {'type': SvgPath.bold, 'apply': false},
+    {'type': SvgPath.italic, 'apply': false},
+    {'type': SvgPath.underline, 'apply': false}
+  ];
+  List<String> cases = ['Aa', 'AA', 'aa'];
+  List<int> fontSize = [10, 12, 14, 16, 18, 20, 22, 24, 36, 48, 64, 72];
   List<Map<String, dynamic>> frameDetails = [
     {
       "imageList": SvgPath.frameLogo,
@@ -78,12 +115,13 @@ class ImageEditProvider extends ChangeNotifier {
       "rotation": 0.0,
     },
   ];
-  List<Map<String, dynamic>> editDetails = [
+  List<Map<String, dynamic>> EditDetails = [
     {"image": SvgPath.text, "label": "Text"},
     {"image": SvgPath.sticker, "label": "Sticker"},
     {"image": SvgPath.image_gallery, "label": "Image"},
     {"image": SvgPath.volume, "label": "Audio"},
   ];
+
   List<Map<String, dynamic>> stickerList = [
     {
       "label": "All",
@@ -118,34 +156,6 @@ class ImageEditProvider extends ChangeNotifier {
       "imageList": [SvgPath.sticker7, SvgPath.sticker4, SvgPath.sticker3]
     },
   ];
-  Map<String, dynamic> activeItem = {};
-  bool inAction = false;
-  double? currentScale, currentRotation;
-
-  List<String> fontFamilies = [
-    'AltoneTrial',
-    'Archivo',
-    'avenir',
-    'BalooTamma2',
-    'Cardo',
-    'DenkOne',
-    'Fondamento',
-    'HelveticaNeue',
-    'Italianno',
-    'LondrinaSolid',
-    'Lato',
-    'MankSans',
-    'Market Fresh',
-    'Mostery',
-    'Play',
-    'Poppins',
-    'Roboto',
-    'Rodano',
-    'Sriracha',
-    'Trocchi'
-  ];
-
-  List<int> fontSize = [10, 12, 14, 16, 18, 20, 22, 24, 36, 48, 64, 72];
 
   void setSelectedFontFamily(String fontFamily) {
     selectedFontFamily = fontFamily;
@@ -157,11 +167,6 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Color _selectedColor = const Color(0xff505050);
-  List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];
-
-  Color get selectedColor => _selectedColor;
-
   void onColorChange(Color color) {
     _selectedColor = color;
     notifyListeners();
@@ -171,13 +176,6 @@ class ImageEditProvider extends ChangeNotifier {
     _selectedColor = _selectedColor.withOpacity(opacity);
     notifyListeners();
   }
-
-  List<Map<String, dynamic>> letters = [
-    {'type': SvgPath.bold, 'apply': false},
-    {'type': SvgPath.italic, 'apply': false},
-    {'type': SvgPath.underline, 'apply': false}
-  ];
-  List<String> cases = ['Aa', 'AA', 'aa'];
 
   void toggleTextStyle(int index) {
     selectedTextStyle = index.toString();
@@ -192,8 +190,6 @@ class ImageEditProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
-
-  String inputString = '';
 
   void toggleTextCase(String selectedCase, int index) {
     selectedCaseIndex = index.toString();
@@ -238,26 +234,31 @@ class ImageEditProvider extends ChangeNotifier {
                   ),
                   const SizedBox(height: 10),
                   Container(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 110),
                     decoration: BoxDecoration(
                       color: ColorRef.black000000.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(5),
                       boxShadow: [
-                        BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 2, blurRadius: 5, offset: const Offset(0, 3)),
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
                       ],
                     ),
-                    child: TextFormField(
-                      style: TextStyle(color: ColorRef.white),
-                      textAlign: TextAlign.center,
-                      textAlignVertical: TextAlignVertical.center,
-                      maxLines: 2,
-                      decoration: InputDecoration(
-                        constraints: const BoxConstraints(minHeight: 100, minWidth: 200),
-                        hintText: 'Write Here',
-                        hintStyle: TextStyle(color: ColorRef.white),
-                        border: InputBorder.none,
-                      ),
-                      onChanged: (value) => text = value,
+                    child: Column(
+                      children: [
+                        TextField(
+                          style: TextStyle(color: ColorRef.white),
+                          decoration: InputDecoration(
+                            hintText: 'Write Here',
+                            hintStyle: TextStyle(color: ColorRef.white),
+                            border: InputBorder.none,
+                          ),
+                          onChanged: (value) => text = value,
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -295,9 +296,7 @@ class ImageEditProvider extends ChangeNotifier {
         builder: (BuildContext context) {
           return StatefulBuilder(
             builder: (context, setState) {
-              return StickerBottomSheet(
-                provider: ImageEditProvider(),
-              );
+              return StickerBottomSheet(provider: ImageEditProvider(),);
             },
           );
         },
@@ -318,7 +317,7 @@ class ImageEditProvider extends ChangeNotifier {
     }
   }
 
-  void frameDetailsDisplay({required int index}) {
+  void frameDetailsdisplay({required int index}) {
     framecurrentIndex = index.toString();
     frameDetails[index]['show'] = !frameDetails[index]['show'];
     activeItem = frameDetails[index];
@@ -410,7 +409,7 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  onChangeStickerView(){
+  onChangeStickerView() {
     stickerViewIndex = 1;
     notifyListeners();
   }

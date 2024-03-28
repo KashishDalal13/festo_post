@@ -173,7 +173,3 @@ class SvgPath {
 
       download = 'assets/lottie/download.json'
 ;}
-
-class StringRef {
-  static String initialRoute = '/';
-}
