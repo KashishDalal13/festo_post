@@ -1,3 +1,4 @@
+import 'package:festo_post/app_export.dart';
 import 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dart';
 import 'package:festo_post/utils/string.dart';
 import 'package:flutter/material.dart';
@@ -168,10 +169,11 @@ class DashboardProvider extends ChangeNotifier {
     {"icon": SvgPath.logout, "label": StrRef.logout, "route": ''},
   ];
 
-  void toggleTheme({required bool switchVal, required BuildContext context}) async {
+  void toggleTheme({required bool switchVal}) async {
     switchValue = switchVal;
     Injector.setTheme(themeVal: switchValue);
-    NavigationService.replaceAllToNamed('/');
     notifyListeners();
+    NavigationService.replaceAllToNamed("/");
+    ThemeSettings();
   }
 }

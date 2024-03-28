@@ -49,4 +49,4 @@ export 'package:festo_post/module/imageEdit_module/view/edittingBottomSheet.dart
 export 'package:festo_post/module/imageEdit_module/view/stickerBottomSheet.dart';
 export 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dart';
 export 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
-export 'package:festo_post/module/dashboard_module/view/SeetingDrawer.dart';
+export 'package:festo_post/module/dashboard_module/view/setting_drawer_view.dart';
