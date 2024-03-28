@@ -9,25 +9,6 @@ class IntroProvider extends ChangeNotifier {
   double process = 0.33;
   Duration? timer;
   final pageController = PageController();
-  bool switchValue = false;
-
-  IntroProvider() {
-    loadTheme();
-  }
-
-  loadTheme() async {
-    switchValue = await Injector.getTheme();
-    Injector.getRoute();
-    notifyListeners();
-  }
-
-  void toggleTheme({required bool switchVal}) async {
-    switchValue = switchVal;
-    Injector.setTheme(themeVal: switchValue);
-    debugPrint("$switchValue");
-    // Injector.getTheme();
-    notifyListeners();
-  }
 
   void getStarted() {
     Injector.setOnBoarding();

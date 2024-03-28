@@ -6,17 +6,21 @@ import '../../../shared/injector.dart';
 import '../../../utils/routes.dart';
 
 class DashboardProvider extends ChangeNotifier {
+  DashboardProvider() {
+    loadData();
+  }
+
+  loadData() async {
+    switchValue = await Injector.getTheme();
+  }
+
   int _current = 0, eventIndex = 0, trendingIndex = 0;
   late final List<String> selectedImageList;
   late final String selectedLabel;
 
   int get current => _current;
 
-  final List<String> imgList = [
-    SvgPath.carousel,
-    SvgPath.carousel2,
-    SvgPath.carousel3
-  ];
+  final List<String> imgList = [SvgPath.carousel, SvgPath.carousel2, SvgPath.carousel3];
 
   List<Map<String, dynamic>> addDate = [
     {
@@ -141,21 +145,19 @@ class DashboardProvider extends ChangeNotifier {
     } else if (index == 1) {
       selectedLabel = addTodayEvent[index]["label"];
       selectedImageList = addTodayEvent[index]["imageList"].cast<String>();
-    }
-    else if (index == 2) {
+    } else if (index == 2) {
       selectedLabel = addTodayEvent[index]["label"];
       selectedImageList = addTodayEvent[index]["imageList"].cast<String>();
     }
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => FrameEditorView(imageList: selectedImageList,label: selectedLabel),
+        builder: (context) => FrameEditorView(imageList: selectedImageList, label: selectedLabel),
       ),
     );
   }
 
   // settingDrawer
-
   bool switchValue = false;
   List<Map<String, dynamic>> settingDetails = [
     {"icon": SvgPath.profile, "label": StrRef.myAccount, "route": ''},
@@ -166,28 +168,10 @@ class DashboardProvider extends ChangeNotifier {
     {"icon": SvgPath.logout, "label": StrRef.logout, "route": ''},
   ];
 
-  loadTheme() async {
-    switchValue = await Injector.getTheme();
-    if (Injector.getOnBoarding() == true) {
-      if (Injector.getSignIn() == false) {
-        NavigationService.replaceToNamed('register');
-      } else {
-        NavigationService.replaceToNamed('dashboard');
-      }
-    }
-    notifyListeners();
-  }
-
-  void toggleTheme({required bool switchVal}) async {
+  void toggleTheme({required bool switchVal, required BuildContext context}) async {
     switchValue = switchVal;
     Injector.setTheme(themeVal: switchValue);
-    // debugPrint("$switchValue");
-    Injector.getTheme();
+    NavigationService.replaceAllToNamed('/');
     notifyListeners();
   }
-  void onBack() {
-    NavigationService.goBack();
-    notifyListeners();
-  }
-
 }

@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
 import '../provider/dashboard_provider.dart';
-import 'SeetingDrawer.dart';
+import 'setting_drawer_view.dart';
 
 class DashBoardView extends StatelessWidget {
   const DashBoardView({super.key});
@@ -23,8 +23,6 @@ class DashBoardView extends StatelessWidget {
           child: Scaffold(
             key: scaffoldKey,
             appBar: AppBar(
-              backgroundColor: ColorRef.white,
-              surfaceTintColor: ColorRef.white,
               leading: IconButton(
                 onPressed: () {
                   scaffoldKey.currentState?.openDrawer();

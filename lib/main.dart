@@ -41,7 +41,6 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => ThemeSettings(),
         builder: (context, child) {
-          debugPrint(" BoolRef themeChange ${BoolRef.themeChange}");
           return MaterialApp(
             initialRoute: '/',
             navigatorKey: NavigationService.navigatorKey,
