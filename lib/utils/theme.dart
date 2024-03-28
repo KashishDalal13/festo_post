@@ -11,7 +11,8 @@ class ThemeRef {
           splashColor: ColorRef.transparent,
           highlightColor: ColorRef.transparent,
           hoverColor: ColorRef.transparent,
-          drawerTheme: DrawerThemeData(backgroundColor: ColorRef.white),
+          listTileTheme: ListTileThemeData(tileColor: ColorRef.white),
+          drawerTheme: DrawerThemeData(backgroundColor: ColorRef.white,surfaceTintColor: ColorRef.white),
           buttonTheme: ButtonThemeData(splashColor: ColorRef.transparent, highlightColor: ColorRef.transparent, hoverColor: ColorRef.transparent),
           pageTransitionsTheme: const PageTransitionsTheme(builders: {
             TargetPlatform.android: CupertinoPageTransitionsBuilder(),
@@ -25,6 +26,7 @@ class ThemeRef {
           splashColor: ColorRef.transparent,
           highlightColor: ColorRef.transparent,
           hoverColor: ColorRef.transparent,
+          listTileTheme: ListTileThemeData(tileColor: ColorRef.grey304359 ),
           drawerTheme: DrawerThemeData(backgroundColor: ColorRef.blue1E2A38),
           buttonTheme: ButtonThemeData(splashColor: ColorRef.transparent, highlightColor: ColorRef.transparent, hoverColor: ColorRef.transparent),
           pageTransitionsTheme: const PageTransitionsTheme(builders: {

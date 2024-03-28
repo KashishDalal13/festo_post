@@ -11,7 +11,6 @@ class SettingDrawer extends StatelessWidget {
     return Theme(
       data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
       child: Drawer(
-        //backgroundColor: ColorRef.backgroundColor,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -19,70 +18,55 @@ class SettingDrawer extends StatelessWidget {
               padding: const EdgeInsets.all(15),
               child: Row(
                 children: [
-                  IconButton(onPressed: () => NavigationService.goBack(), icon: const Icon(Icons.arrow_back_ios_rounded, size: 20)),
+                  IconButton(onPressed: () => NavigationService.goBack(), icon: Icon(Icons.arrow_back_ios_rounded, size: 20, color: ColorRef.textPrimaryColor)),
                   Expanded(
                     child: Center(child: Text(StrRef.registerTitle2, style: TextStyle(fontFamily: 'Lato', fontSize: 20, color: ColorRef.textPrimaryColor))),
                   ),
                 ],
               ),
             ),
-            ListView.builder(
+            ListView.separated(
               shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               itemCount: provider.settingDetails.length,
               itemBuilder: (BuildContext context, int index) {
                 final item = provider.settingDetails[index];
-                if (item['label'] == StrRef.darkTheme) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: ColorRef.greyD6D6D6),
-                    ),
-                    child: ListTile(
-                      leading: SvgPicture.asset(item['icon']),
-                      trailing: Switch.adaptive(
-                        inactiveThumbColor: ColorRef.blue0250A4,
-                        thumbColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                          if (states.contains(MaterialState.disabled)) {
-                            return ColorRef.blue0250A4;
-                          }
-                          return ColorRef.blue3498DB;
-                        }),
-                        trackOutlineColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                          if (states.contains(MaterialState.disabled)) {
-                            return ColorRef.transparent;
-                          }
-                          return ColorRef.transparent;
-                        }),
-                        activeTrackColor: ColorRef.black1E2A38,
-                        focusColor: ColorRef.transparent,
-                        inactiveTrackColor: ColorRef.greyE0E0E0,
-                        value: provider.switchValue,
-                        onChanged: (newValue) => provider.toggleTheme(switchVal: newValue),
-                      ),
-                      title: Text(item['label'], style: TextStyle(color: ColorRef.textPrimaryColor)),
-                      onTap: () {},
-                    ),
-                  );
-                } else {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: ColorRef.greyD6D6D6),
-                    ),
-                    child: ListTile(
-                      leading: SvgPicture.asset(item['icon']),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 20,
-                      ),
-                      title: Text(item['label'], style: TextStyle(color: ColorRef.textPrimaryColor)),
-                      onTap: () {},
-                    ),
-                  );
-                }
+                return Container(
+                  decoration: BoxDecoration(border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6), borderRadius: BorderRadius.circular(15)),
+                  child: ListTile(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    leading: SvgPicture.asset(item['icon'], colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn)),
+                    trailing: item['label'] != StrRef.darkTheme
+                        ? Icon(Icons.arrow_forward_ios_rounded, size: 20, color: ColorRef.textPrimaryColor)
+                        : GestureDetector(
+                            onTap: () => provider.toggleTheme(),
+                            child: Container(
+                              width: 40.0,
+                              height: 20,
+                              padding: const EdgeInsets.symmetric(horizontal: 3),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: provider.switchValue ? ColorRef.blue1E2A38 : ColorRef.greyE0E0E0,
+                              ),
+                              child: AnimatedAlign(
+                                alignment: provider.switchValue ? Alignment.centerRight : Alignment.centerLeft,
+                                duration: const Duration(milliseconds: 200),
+                                curve: Curves.easeInOut,
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 200),
+                                  width: 14.0,
+                                  height: 14.0,
+                                  decoration: BoxDecoration(shape: BoxShape.circle, color: provider.switchValue ? ColorRef.blue3498DB : ColorRef.blue0250A4),
+                                ),
+                              ),
+                            ),
+                          ),
+                    title: Text(item['label'], style: TextStyle(color: ColorRef.textPrimaryColor)),
+                    onTap: () {},
+                  ),
+                );
               },
+              separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 10),
             ),
           ],
         ),
