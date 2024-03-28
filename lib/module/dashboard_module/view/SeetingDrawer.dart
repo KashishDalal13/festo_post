@@ -58,12 +58,13 @@ class _SettingDrawerState extends State<SettingDrawer> {
                   ),
                   child: ListTile(
                     leading: SvgPicture.asset(item['icon']),
-                    trailing: Switch(
+                    trailing: Switch.adaptive(
+                      inactiveThumbColor: ColorRef.blue0250A4,
                       thumbColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                         if (states.contains(MaterialState.disabled)) {
                           return ColorRef.blue0250A4;
                         }
-                        return ColorRef.blue0250A4;
+                        return ColorRef.blue3498DB;
                       }),
                       trackOutlineColor:MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                         if (states.contains(MaterialState.disabled)) {
