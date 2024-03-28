@@ -6,14 +6,14 @@ import 'package:provider/provider.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
 import '../provider/dashboard_provider.dart';
+import 'SeetingDrawer.dart';
 
 class dashboardView extends StatelessWidget {
   const dashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return ChangeNotifierProvider(
       create: (BuildContext context) => DashboardProvider(),
@@ -21,12 +21,13 @@ class dashboardView extends StatelessWidget {
         DashboardProvider provider = context.watch<DashboardProvider>();
         return SafeArea(
           child: Scaffold(
+            key: scaffoldKey,
             appBar: AppBar(
               backgroundColor: ColorRef.white,
               surfaceTintColor: ColorRef.white,
               leading: IconButton(
                 onPressed: () {
-                  provider.onSetting();
+                  scaffoldKey.currentState?.openDrawer();
                 },
                 icon: Icon(Icons.menu,
                     size: 24,
@@ -477,6 +478,7 @@ class dashboardView extends StatelessWidget {
                 ),
               ],
             ),
+            drawer: SettingDrawer(provider: provider),
           ),
         );
       },

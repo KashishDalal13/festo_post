@@ -18,7 +18,7 @@ class StickerBottomSheet extends StatefulWidget {
 class _StickerBottomSheetState extends State<StickerBottomSheet> {
   @override
   Widget build(BuildContext context) {
-    ImageEditProvider provider = widget.provider!;
+    ImageEditProvider? provider = widget.provider!;
     return Container(
       height: 420,
       decoration: BoxDecoration(
@@ -138,14 +138,6 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                                 child: Image.asset(provider.stickerList[provider.stickerIndex]['imageList'][index]),
                               ),
                             );
-                            /*setState(() {
-                              provider.boardController.add(
-                                StackBoardItem(
-                                  caseStyle: const CaseStyle(boxAspectRatio: 350 / 370),
-                                  child: Image.asset(provider.stickerList[provider.stickerIndex]['imageList'][index]),
-                                ),
-                              );
-                            });*/
                           },
                           child: Image.asset(provider.stickerList[provider.stickerIndex]['imageList'][index]),
                         );

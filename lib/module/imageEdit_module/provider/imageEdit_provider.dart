@@ -21,12 +21,17 @@ class ImageEditProvider extends ChangeNotifier {
   bool isItalic = false;
   bool isUnderline = false;
   int selectedFontSize = 22;
-
+  Color _selectedColor = const Color(0xff505050);
+  List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];
+  Color get selectedColor => _selectedColor;
   bool isUppercase = false;
   String selectedTextCase = '';
   String selectedCaseIndex = '';
   String selectedTextStyle = '';
   String selectedFontFamily = '';
+  Map<String, dynamic> activeItem = {};
+  bool inAction = false;
+  double? currentScale, currentRotation;
 
   List<String> fontFamilies = [
     'AltoneTrial',
@@ -50,106 +55,13 @@ class ImageEditProvider extends ChangeNotifier {
     'Sriracha',
     'Trocchi'
   ];
-
-  List<int> fontSize = [10, 12, 14, 16, 18, 20, 22, 24, 36, 48, 64, 72];
-
-  void setSelectedFontFamily(String fontFamily) {
-    selectedFontFamily = fontFamily;
-    notifyListeners();
-  }
-
-  void setSelectedFontSize(int fontsize) {
-    selectedFontSize = fontsize;
-    notifyListeners();
-  }
-
-  Color _selectedColor = const Color(0xff505050);
-  List<Color> colors = [
-    ColorRef.black202020,
-    ColorRef.black3F3E3E,
-    ColorRef.black616161,
-    ColorRef.grey848484,
-    ColorRef.greyB3B3B3,
-    ColorRef.whiteFFFFFF,
-    ColorRef.blue1950AA,
-    ColorRef.blue0566CF,
-    ColorRef.blue670F7F,
-    ColorRef.blue5239A1,
-    ColorRef.red9A0058,
-    ColorRef.green017374,
-    ColorRef.green0A6609,
-    ColorRef.green1F9C1E,
-    ColorRef.green86BB09,
-    ColorRef.green20CE1C,
-    ColorRef.orangeD2622D,
-    ColorRef.brown4E2E2F,
-    ColorRef.pinkC12194,
-    ColorRef.redEE103F,
-    ColorRef.pinkF28F8F,
-    ColorRef.pinkBA68C8,
-    ColorRef.redE60406,
-    ColorRef.orangeF25206,
-    ColorRef.orangeFA7C03,
-    ColorRef.orangeFFA500,
-    ColorRef.yellowFFE309,
-    ColorRef.blue00D4FC,
-    ColorRef.pinkFF8EDE,
-    ColorRef.blue005B87,
-  ];
-  List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];
-
-  Color get selectedColor => _selectedColor;
-
-  void onColorChange(Color color) {
-    _selectedColor = color;
-    notifyListeners();
-  }
-
-  void onColorOpacityChange(double opacity) {
-    _selectedColor = _selectedColor.withOpacity(opacity);
-    notifyListeners();
-  }
-
   List<Map<String, dynamic>> letters = [
     {'type': SvgPath.bold, 'apply': false},
     {'type': SvgPath.italic, 'apply': false},
     {'type': SvgPath.underline, 'apply': false}
   ];
   List<String> cases = ['Aa', 'AA', 'aa'];
-
-  void toggleTextStyle(int index) {
-    selectedTextStyle = index.toString();
-    letters[index]['apply'] = !letters[index]['apply'];
-    debugPrint("${letters[index]['apply']}");
-    if (selectedTextStyle == '0') {
-      isBold = !isBold;
-    } else if (selectedTextStyle == '1') {
-      isItalic = !isItalic;
-    } else if (selectedTextStyle == '2') {
-      isUnderline = !isUnderline;
-    }
-    notifyListeners();
-  }
-
-  String inputString = '';
-
-  void toggleTextCase(String selectedCase, int index) {
-    selectedCaseIndex = index.toString();
-    if (selectedCase == 'AA') {
-      selectedTextCase = 'AA';
-      isUppercase = true;
-    }
-    if (selectedCase == 'Aa') {
-      selectedTextCase = 'Aa';
-      isUppercase = false;
-    }
-    if (selectedCase == 'aa') {
-      selectedTextCase = 'aa';
-      isUppercase = false;
-    }
-    notifyListeners();
-  }
-
+  List<int> fontSize = [10, 12, 14, 16, 18, 20, 22, 24, 36, 48, 64, 72];
   List<Map<String, dynamic>> frameDetails = [
     {
       "imageList": SvgPath.frameLogo,
@@ -244,9 +156,56 @@ class ImageEditProvider extends ChangeNotifier {
     },
   ];
 
-  Map<String, dynamic> activeItem = {};
-  bool inAction = false;
-  double? currentScale, currentRotation;
+  void setSelectedFontFamily(String fontFamily) {
+    selectedFontFamily = fontFamily;
+    notifyListeners();
+  }
+
+  void setSelectedFontSize(int fontsize) {
+    selectedFontSize = fontsize;
+    notifyListeners();
+  }
+
+  void onColorChange(Color color) {
+    _selectedColor = color;
+    notifyListeners();
+  }
+
+  void onColorOpacityChange(double opacity) {
+    _selectedColor = _selectedColor.withOpacity(opacity);
+    notifyListeners();
+  }
+
+  void toggleTextStyle(int index) {
+    selectedTextStyle = index.toString();
+    letters[index]['apply'] = !letters[index]['apply'];
+    debugPrint("${letters[index]['apply']}");
+    if (selectedTextStyle == '0') {
+      isBold = !isBold;
+    } else if (selectedTextStyle == '1') {
+      isItalic = !isItalic;
+    } else if (selectedTextStyle == '2') {
+      isUnderline = !isUnderline;
+    }
+    notifyListeners();
+  }
+
+  void toggleTextCase(String selectedCase, int index) {
+    selectedCaseIndex = index.toString();
+    if (selectedCase == 'AA') {
+      selectedTextCase = 'AA';
+      isUppercase = true;
+    }
+    if (selectedCase == 'Aa') {
+      selectedTextCase = 'Aa';
+      isUppercase = false;
+    }
+    if (selectedCase == 'aa') {
+      selectedTextCase = 'aa';
+      isUppercase = false;
+    }
+    notifyListeners();
+  }
 
   void edit({required int index, required BuildContext context}) async {
     currentIndex = index.toString();
@@ -336,9 +295,7 @@ class ImageEditProvider extends ChangeNotifier {
         builder: (BuildContext context) {
           return StatefulBuilder(
             builder: (context, setState) {
-              return StickerBottomSheet(
-                provider: ImageEditProvider(),
-              );
+              return StickerBottomSheet(provider: ImageEditProvider(),);
             },
           );
         },
@@ -451,7 +408,7 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  onChangeStickerView(){
+  onChangeStickerView() {
     stickerViewIndex = 1;
     notifyListeners();
   }
