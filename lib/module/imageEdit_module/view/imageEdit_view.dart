@@ -294,7 +294,7 @@ class ImageEditView extends StatelessWidget {
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: () {
-                                provider.edit(index: index, context: context);
+                                provider.edit(index: index, context: context,provider: provider);
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,

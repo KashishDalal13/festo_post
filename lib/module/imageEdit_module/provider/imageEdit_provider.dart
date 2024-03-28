@@ -13,6 +13,7 @@ class ImageEditProvider extends ChangeNotifier {
   int selectedFontSize = 22;
   Color _selectedColor = const Color(0xff505050);
   List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];
+
   Color get selectedColor => _selectedColor;
   bool isUppercase = false;
   String selectedTextCase = '';
@@ -197,7 +198,7 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void edit({required int index, required BuildContext context}) async {
+  void edit({required int index, required BuildContext context, required ImageEditProvider provider}) async {
     currentIndex = index.toString();
     notifyListeners();
 
@@ -285,7 +286,7 @@ class ImageEditProvider extends ChangeNotifier {
         builder: (BuildContext context) {
           return StatefulBuilder(
             builder: (context, setState) {
-              return StickerBottomSheet(provider: ImageEditProvider(),);
+              return StickerBottomSheet(provider: provider);
             },
           );
         },
