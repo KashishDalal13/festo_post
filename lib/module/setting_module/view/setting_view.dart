@@ -22,16 +22,10 @@ class SettingView extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back_ios_rounded, size: 20),
               ),
               centerTitle: true,
-              title: Text(
-                StrRef.registerTitle2,
-                style: const TextStyle(
-                  fontFamily: 'Lato',
-                  fontSize: 20,
-                ),
-              ),
+              title: Text(StrRef.registerTitle2, style: const TextStyle(fontFamily: 'Lato', fontSize: 20)),
             ),
             resizeToAvoidBottomInset: false,
-            body:  Drawer(
+            body: Drawer(
               child: ListView.builder(
                 itemCount: provider.settingDetails.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -64,7 +58,10 @@ class SettingView extends StatelessWidget {
                       ),
                       child: ListTile(
                         leading: SvgPicture.asset(item['icon']),
-                        trailing: const Icon(Icons.arrow_forward_ios_rounded,size: 20,),
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 20,
+                        ),
                         title: Text(item['label']),
                         onTap: () {},
                       ),

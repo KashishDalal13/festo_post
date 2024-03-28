@@ -4,7 +4,7 @@ import '../../../shared/injector.dart';
 import '../../../utils/routes.dart';
 import '../../../utils/string.dart';
 
-class SettingProvider extends ChangeNotifier{
+class SettingProvider extends ChangeNotifier {
   bool switchValue = false;
   List<Map<String, dynamic>> settingDetails = [
     {"icon": SvgPath.profile, "label": StrRef.myAccount, "route": ''},
@@ -17,26 +17,20 @@ class SettingProvider extends ChangeNotifier{
 
   loadTheme() async {
     switchValue = await Injector.getTheme();
-    if (Injector.getOnBoarding() == true) {
-      if (Injector.getSignIn() == false) {
-        NavigationService.replaceToNamed('register');
-      } else {
-        NavigationService.replaceToNamed('dashboard');
-      }
-    }
+    NavigationService.replaceToNamed('/');
     notifyListeners();
   }
 
   void toggleTheme({required bool switchVal}) async {
     switchValue = switchVal;
-    Injector.setTheme(themeVal: switchValue);
-    // debugPrint("$switchValue");
-    Injector.getTheme();
+    debugPrint("$switchValue");
     notifyListeners();
+    Injector.setTheme(themeVal: switchValue);
+    NavigationService.replaceAllToNamed('/');
   }
+
   void onBack() {
     NavigationService.goBack();
     notifyListeners();
   }
-
 }

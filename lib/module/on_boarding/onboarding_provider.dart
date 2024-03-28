@@ -17,13 +17,7 @@ class IntroProvider extends ChangeNotifier {
 
   loadTheme() async {
     switchValue = await Injector.getTheme();
-    if (Injector.getOnBoarding() == true) {
-      if (Injector.getSignIn() == false) {
-        NavigationService.replaceToNamed('register');
-      } else {
-        NavigationService.replaceToNamed('dashboard');
-      }
-    }
+    Injector.getRoute();
     notifyListeners();
   }
 
