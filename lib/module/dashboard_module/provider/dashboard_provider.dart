@@ -167,7 +167,7 @@ class DashboardProvider extends ChangeNotifier {
     switchValue = switchVal;
     Injector.setTheme(themeVal: switchValue);
     notifyListeners();
-    NavigationService.replaceAllToNamed("/");
+    // NavigationService.replaceAllToNamed("/");
     ThemeSettings();
   }
 }

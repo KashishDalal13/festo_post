@@ -15,6 +15,7 @@ class ThemeSettings extends ChangeNotifier {
       ColorRef.backgroundColor = ColorRef.greyEDEDED;
       ColorRef.textPrimaryColor = Colors.black;
     }
+
     notifyListeners();
   }
 }

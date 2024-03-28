@@ -21,12 +21,7 @@ class SettingDrawer extends StatelessWidget {
                 children: [
                   IconButton(onPressed: () => NavigationService.goBack(), icon: const Icon(Icons.arrow_back_ios_rounded, size: 20)),
                   Expanded(
-                    child: Center(
-                      child: Text(
-                        StrRef.registerTitle2,
-                        style: const TextStyle(fontFamily: 'Lato', fontSize: 20),
-                      ),
-                    ),
+                    child: Center(child: Text(StrRef.registerTitle2, style: TextStyle(fontFamily: 'Lato', fontSize: 20, color: ColorRef.textPrimaryColor))),
                   ),
                 ],
               ),
@@ -65,7 +60,7 @@ class SettingDrawer extends StatelessWidget {
                         value: provider.switchValue,
                         onChanged: (newValue) => provider.toggleTheme(switchVal: newValue),
                       ),
-                      title: Text(item['label']),
+                      title: Text(item['label'], style: TextStyle(color: ColorRef.textPrimaryColor)),
                       onTap: () {},
                     ),
                   );
@@ -82,7 +77,7 @@ class SettingDrawer extends StatelessWidget {
                         Icons.arrow_forward_ios_rounded,
                         size: 20,
                       ),
-                      title: Text(item['label']),
+                      title: Text(item['label'], style: TextStyle(color: ColorRef.textPrimaryColor)),
                       onTap: () {},
                     ),
                   );
