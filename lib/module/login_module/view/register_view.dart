@@ -36,7 +36,7 @@ class RegisterView extends StatelessWidget {
         ),
         Text(provider.toggleLoginOrRegister ? StrRef.login : StrRef.register,style: TextStyle(fontSize: 20,color: ColorRef.black202020),),
         Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.commonBgColor),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.backgroundColor),
           margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
           child: TextFormField(
             keyboardType: TextInputType.phone,

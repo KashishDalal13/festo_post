@@ -1,4 +1,3 @@
-
 import 'package:festo_post/module/imageEdit_module/view/edittingBottomSheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,7 +19,6 @@ class ImageEditView extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    Color _selectedColor = Colors.white;
     return ChangeNotifierProvider(
       create: (BuildContext context) => ImageEditProvider(),
       builder: (context, child) {
@@ -66,6 +64,7 @@ class ImageEditView extends StatelessWidget {
                             caseStyle: const CaseStyle(borderColor: Colors.grey, iconColor: Colors.white, boxAspectRatio: 2),
                             customBuilder: (StackBoardItem t) {
                               if (t is CustomItem) {
+                                debugPrint("StackBoardItem${t.id}");
                                 return ItemCase(
                                   key: Key('StackBoardItem${t.id}'),
                                   isCenter: false,
@@ -77,6 +76,7 @@ class ImageEditView extends StatelessWidget {
                                   ),
                                   child: GestureDetector(
                                     onTap: () {
+                                      provider.currentItemId = t.id.toString();
                                       showModalBottomSheet(
                                         context: context,
                                         backgroundColor: ColorRef.transparent,
@@ -254,7 +254,7 @@ class ImageEditView extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                provider.frameDetailsdisplay(index: index);
+                                provider.frameDetailsDisplay(index: index);
                               },
                               child: Container(
                                 margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
@@ -299,7 +299,7 @@ class ImageEditView extends StatelessWidget {
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
-                          itemCount: provider.EditDetails.length,
+                          itemCount: provider.editDetails.length,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: () {
@@ -314,10 +314,10 @@ class ImageEditView extends StatelessWidget {
                                     padding: const EdgeInsets.all(10.0),
                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: ColorRef.white),
                                     child: SvgPicture.asset(
-                                      provider.EditDetails[index]['image'],
+                                      provider.editDetails[index]['image'],
                                     ),
                                   ),
-                                  Text(provider.EditDetails[index]['label'] ?? '', style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12)) // Add null check here
+                                  Text(provider.editDetails[index]['label'] ?? '', style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12)) // Add null check here
                                 ],
                               ),
                             );

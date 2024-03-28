@@ -60,7 +60,7 @@ class ReferralView extends StatelessWidget {
           const SizedBox(height: 15),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.commonBgColor),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: ColorRef.backgroundColor),
             child: TextFormField(
               controller: provider.referralCodeController,
               decoration: InputDecoration(

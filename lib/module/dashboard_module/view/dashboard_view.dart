@@ -8,8 +8,8 @@ import '../../../utils/string.dart';
 import '../provider/dashboard_provider.dart';
 import 'SeetingDrawer.dart';
 
-class dashboardView extends StatelessWidget {
-  const dashboardView({super.key});
+class DashBoardView extends StatelessWidget {
+  const DashBoardView({super.key});
 
   @override
   Widget build(BuildContext context) {
