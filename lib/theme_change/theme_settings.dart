@@ -10,8 +10,10 @@ class ThemeSettings extends ChangeNotifier {
     BoolRef.themeChange = await Injector.getTheme();
     if (BoolRef.themeChange == true) {
       ColorRef.backgroundColor = ColorRef.grey4E6B86;
+      ColorRef.textPrimaryColor = ColorRef.white;
     } else {
       ColorRef.backgroundColor = ColorRef.greyEDEDED;
+      ColorRef.textPrimaryColor = Colors.black;
     }
     notifyListeners();
   }

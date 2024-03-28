@@ -1,7 +1,7 @@
 import 'package:festo_post/app_export.dart';
 
 class CustomTextTheme {
-  static TextStyle fontFamily = const TextStyle(fontFamily: "Lato");
+  static TextStyle fontFamily = TextStyle(fontFamily: "Lato",color: ColorRef.textPrimaryColor);
 
   static TextTheme textTheme = TextTheme(
     bodyMedium: fontFamily,

@@ -74,24 +74,16 @@ class DashBoardView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 15),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(StrRef.upcomingEvents, style: const TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 16)),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                StrRef.viewAll,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Lato',
-                                  fontSize: 13,
-                                  color: ColorRef.blue0250A4,
-                                ),
-                              ),
-                            )
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 8)),
+                              Text(StrRef.upcomingEvents, style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 16, color: ColorRef.textPrimaryColor)),
+                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 8)),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 50,
@@ -104,30 +96,23 @@ class DashBoardView extends StatelessWidget {
                               return Column(
                                 children: [
                                   GestureDetector(
-                                    onTap: () {
-                                      provider.onSelectDate(index: index);
-                                    },
+                                    onTap: () => provider.onSelectDate(index: index),
                                     child: Container(
                                       height: 30,
                                       width: 60,
+                                      alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15),
                                         color: index == provider.eventIndex ? ColorRef.yellowFFA500 : ColorRef.yellowFFEDCC,
                                       ),
-                                      child: Center(
-                                        child: Text(
-                                          provider.addDate[index]['label'],
-                                        ),
-                                      ),
+                                      child: Text(provider.addDate[index]['label']),
                                     ),
                                   ),
                                   // SizedBox(height: 15),
                                 ],
                               );
                             },
-                            separatorBuilder: (BuildContext context, int index) {
-                              return const SizedBox(width: 5);
-                            },
+                            separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 5),
                           ),
                         ),
                         SizedBox(
@@ -136,40 +121,17 @@ class DashBoardView extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemCount: provider.addDate[provider.eventIndex]['imageList'].length,
-                              itemBuilder: (context, index) {
-                                return Image.asset(provider.addDate[provider.eventIndex]['imageList'][index]);
-                              },
-                              separatorBuilder: (context, index) {
-                                return const SizedBox(width: 5);
-                              }),
+                              itemBuilder: (context, index) => Image.asset(provider.addDate[provider.eventIndex]['imageList'][index]),
+                              separatorBuilder: (context, index) => const SizedBox(width: 5)),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Expanded(
-                                child: Divider(
-                                  thickness: 1, // Adjust thickness as needed
-                                  color: ColorRef.grey717171, // Adjust color as needed
-                                ),
-                              ),
-                              Text(
-                                StrRef.todayEvent,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: 'Lato',
-                                  fontSize: 16,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              // Adjust the width as needed
-                              Expanded(
-                                child: Divider(
-                                  thickness: 1, // Adjust thickness as needed
-                                  color: ColorRef.grey717171, // Adjust color as needed
-                                ),
-                              ),
+                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 8)),
+                              Text(StrRef.todayEvent, style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 16, color: ColorRef.textPrimaryColor)),
+                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 8)),
                             ],
                           ),
                         ),
@@ -189,6 +151,7 @@ class DashBoardView extends StatelessWidget {
                                       style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.brownBE7B00, fontSize: 15),
                                     ),
                                     TextButton(
+                                      style: const ButtonStyle(visualDensity: VisualDensity(vertical: -4, horizontal: -4)),
                                       onPressed: () {
                                         provider.onViewAll(context, index: index);
                                       },
