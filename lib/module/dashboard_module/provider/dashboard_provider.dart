@@ -163,10 +163,11 @@ class DashboardProvider extends ChangeNotifier {
     {"icon": SvgPath.logout, "label": StrRef.logout, "route": ''},
   ];
 
-  void toggleTheme({required bool switchVal, required BuildContext context}) async {
+  void toggleTheme({required bool switchVal}) async {
     switchValue = switchVal;
     Injector.setTheme(themeVal: switchValue);
-    NavigationService.replaceAllToNamed('/');
     notifyListeners();
+    NavigationService.replaceAllToNamed("/");
+    ThemeSettings();
   }
 }

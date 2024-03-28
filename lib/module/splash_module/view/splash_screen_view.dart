@@ -8,10 +8,12 @@ class SplashScreenView extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => SplashViewProvider(),
         builder: (context, child) {
-          ThemeSettings themeSettings = context.watch<ThemeSettings>();
           SplashViewProvider provider = context.watch<SplashViewProvider>();
-          return const Scaffold(
-            body: Center(child: FlutterLogo(size: 100)),
+          return Theme(
+            data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
+            child: const Scaffold(
+              body: Center(child: FlutterLogo(size: 100)),
+            ),
           );
         });
   }

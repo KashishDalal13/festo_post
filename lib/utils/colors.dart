@@ -28,9 +28,6 @@ class ColorRef {
       red8C0016 = const Color(0xff8C0016),
       black202020 = const Color(0xff202020),
       whiteFFFFFF = const Color(0xffFFFFFF),
-      green2A9442 = const Color(0xff2A9442),
-      redD94242 = const Color(0xffD94242),
-      redE00303 = const Color(0xffE00303),
 
 
   //dark them
