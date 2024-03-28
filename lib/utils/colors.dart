@@ -13,7 +13,6 @@ class ColorRef {
       blue0250A4 = const Color(0xff0250A4),
       blueEFF6FF = const Color(0xffEFF6FF),
       blue1E75E5 = const Color(0xff1E75E5),
-      blue3498DB = const Color(0xff3498DB),
       greyD6D6D6 = const Color(0xffD6D6D6),
       greyEDEDED = const Color(0xffEDEDED),
       greyE0E0E0 = const Color(0xffE0E0E0),
@@ -25,14 +24,29 @@ class ColorRef {
       grey717171 = const Color(0xff717171),
       brownBE7B00 = const Color(0xffBE7B00),
       black505050 = const Color(0xff505050),
-      black1E2A38 = const Color(0xff1E2A38),
       blue007494 = const Color(0xff007494),
       red8C0016 = const Color(0xff8C0016),
       black202020 = const Color(0xff202020),
-      whiteFFFFFF = const Color(0xffFFFFFF)
+      whiteFFFFFF = const Color(0xffFFFFFF),
+      green2A9442 = const Color(0xff2A9442),
+      redD94242 = const Color(0xffD94242),
+      redE00303 = const Color(0xffE00303),
 
 
   //dark them
+      grey304359 = const Color(0xff304359),
+      greyDDDCDC = const Color(0xffDDDCDC),
+      black1E2A38 = const Color(0xff1E2A38),
+      greyCDCDCD = const Color(0xffCDCDCD),
+      greyF9F9F9 = const Color(0xffF9F9F9),
+      blue3498DB = const Color(0xff3498DB),
+      yellowE29200 = const Color(0xffE29200),
+      grey9B9B9B = const Color(0xff9B9B9B),
+      grey747B84 = const Color(0xff747B84),
+      blue273444 = const Color(0xff273444),
+      greyB0B0B0 = const Color(0xffB0B0B0),
+      grey5D6F84 = const Color(0xff5D6F84),
+      grey5385B6C = const Color(0xff385B6C)
 
 
 ;
