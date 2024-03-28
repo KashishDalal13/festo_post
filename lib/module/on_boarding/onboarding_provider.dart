@@ -1,8 +1,4 @@
-import 'package:festo_post/utils/routes.dart';
-import 'package:flutter/material.dart';
-import '../../shared/injector.dart';
-import 'on_boarding_info.dart';
-import 'package:festo_post/utils/string.dart';
+import 'package:festo_post/app_export.dart';
 
 class IntroProvider extends ChangeNotifier {
   int introIndex = 0;

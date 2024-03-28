@@ -1,5 +1,4 @@
-import 'package:festo_post/utils/text_style.dart';
-import 'package:flutter/material.dart';
+import 'package:festo_post/app_export.dart';
 
 import 'colors.dart';
 

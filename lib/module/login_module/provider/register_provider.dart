@@ -1,11 +1,4 @@
-import 'dart:async';
-import 'dart:math';
-import 'package:festo_post/shared/injector.dart';
-import 'package:festo_post/utils/string.dart';
-import 'package:festo_post/widget/toast.dart';
-import 'package:flutter/material.dart';
-
-import '../../../utils/routes.dart';
+import 'package:festo_post/app_export.dart';
 
 class RegisterProvider extends ChangeNotifier {
   int introIndex = 0;

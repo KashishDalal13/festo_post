@@ -1,10 +1,4 @@
-import 'package:festo_post/module/info_module/provider/info_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../utils/bool.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/string.dart';
+import 'package:festo_post/app_export.dart';
 
 class InfoView extends StatelessWidget {
   final String? label;

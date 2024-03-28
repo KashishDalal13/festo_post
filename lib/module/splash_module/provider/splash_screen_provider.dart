@@ -1,7 +1,4 @@
-import 'dart:async';
-
-import 'package:festo_post/shared/injector.dart';
-import 'package:flutter/material.dart';
+import 'package:festo_post/app_export.dart';
 
 class SplashViewProvider extends ChangeNotifier {
   SplashViewProvider() {

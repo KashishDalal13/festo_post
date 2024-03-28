@@ -1,10 +1,4 @@
-import 'package:festo_post/utils/routes.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../../../utils/colors.dart';
-import '../../../utils/string.dart';
-import '../provider/dashboard_provider.dart';
+import 'package:festo_post/app_export.dart';
 
 class SettingDrawer extends StatefulWidget {
   final DashboardProvider? provider;

@@ -1,10 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
+import 'package:festo_post/app_export.dart';
 
-import '../../../utils/colors.dart';
-import '../../../utils/string.dart';
-import '../provider/profile_provider.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});

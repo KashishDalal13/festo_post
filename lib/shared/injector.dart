@@ -1,8 +1,4 @@
-import 'package:festo_post/shared/prefs_key.dart';
-import 'package:festo_post/utils/routes.dart';
-import 'package:festo_post/utils/string.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:festo_post/app_export.dart';
 
 class Injector {
   static late SharedPreferences prefs;

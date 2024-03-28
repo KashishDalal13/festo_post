@@ -1,12 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:festo_post/utils/bool.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/string.dart';
-import '../provider/dashboard_provider.dart';
-import 'setting_drawer_view.dart';
+import 'package:festo_post/app_export.dart';
 
 class DashBoardView extends StatelessWidget {
   const DashBoardView({super.key});

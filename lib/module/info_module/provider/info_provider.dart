@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import '../../../utils/routes.dart';
+import 'package:festo_post/app_export.dart';
 
 class InfoProvider extends ChangeNotifier{
   void onBack() {

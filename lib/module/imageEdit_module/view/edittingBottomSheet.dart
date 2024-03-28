@@ -1,10 +1,4 @@
-import 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.dart';
-import 'package:festo_post/utils/colors.dart';
-import 'package:festo_post/utils/routes.dart';
-import 'package:festo_post/utils/string.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:festo_post/app_export.dart';
 
 class EditingBottomSheet extends StatefulWidget {
   final ImageEditProvider? provider;

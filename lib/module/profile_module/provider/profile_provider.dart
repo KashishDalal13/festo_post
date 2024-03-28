@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../utils/routes.dart';
-import '../../../utils/string.dart';
+import 'package:festo_post/app_export.dart';
 
 class ProfileProvider extends ChangeNotifier{
 
