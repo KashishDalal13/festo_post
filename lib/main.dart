@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => ThemeSettings(),
         builder: (context, child) {
+          ThemeSettings themeSettings = context.watch<ThemeSettings>();
           return MaterialApp(
             initialRoute: '/',
             navigatorKey: NavigationService.navigatorKey,

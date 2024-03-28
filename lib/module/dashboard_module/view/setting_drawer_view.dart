@@ -1,19 +1,17 @@
 import 'package:festo_post/app_export.dart';
 
+class SettingDrawer extends StatelessWidget {
+  final DashboardProvider? dashboardProvider;
+
   const SettingDrawer({super.key, this.dashboardProvider});
 
-  @override
-  State<SettingDrawer> createState() => _SettingDrawerState();
-}
-
-class _SettingDrawerState extends State<SettingDrawer> {
   @override
   Widget build(BuildContext context) {
     DashboardProvider? provider = dashboardProvider!;
     return Theme(
       data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
       child: Drawer(
-        backgroundColor: ColorRef.commonBgColor,
+        //backgroundColor: ColorRef.backgroundColor,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
