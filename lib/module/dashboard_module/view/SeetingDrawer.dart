@@ -22,18 +22,26 @@ class _SettingDrawerState extends State<SettingDrawer> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          AppBar(
-            leading: IconButton(
-              onPressed: () => provider.onBack(),
-              icon: const Icon(Icons.arrow_back_ios_rounded, size: 20),
-            ),
-            centerTitle: true,
-            title: Text(
-              StrRef.registerTitle2,
-              style: const TextStyle(
-                fontFamily: 'Lato',
-                fontSize: 20,
-              ),
+          Container(
+            padding: const EdgeInsets.all(15),
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () => provider.onBack(),
+                  icon: const Icon(Icons.arrow_back_ios_rounded, size: 20),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      StrRef.registerTitle2,
+                      style: const TextStyle(
+                        fontFamily: 'Lato',
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           ListView.builder(
@@ -51,6 +59,21 @@ class _SettingDrawerState extends State<SettingDrawer> {
                   child: ListTile(
                     leading: SvgPicture.asset(item['icon']),
                     trailing: Switch(
+                      thumbColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return ColorRef.blue0250A4;
+                        }
+                        return ColorRef.blue0250A4;
+                      }),
+                      trackOutlineColor:MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return ColorRef.transparent;
+                        }
+                        return ColorRef.transparent;
+                      }),
+                      activeTrackColor: ColorRef.black1E2A38,
+                      focusColor: ColorRef.transparent,
+                      inactiveTrackColor: ColorRef.greyE0E0E0,
                       value: provider.switchValue,
                       onChanged: (newValue) {
                         provider.toggleTheme(switchVal: newValue);
@@ -69,7 +92,7 @@ class _SettingDrawerState extends State<SettingDrawer> {
                   ),
                   child: ListTile(
                     leading: SvgPicture.asset(item['icon']),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded,size: 20,),
+                    trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 20,),
                     title: Text(item['label']),
                     onTap: () {},
                   ),
@@ -79,6 +102,7 @@ class _SettingDrawerState extends State<SettingDrawer> {
           ),
         ],
       ),
+
     );
   }
 }
