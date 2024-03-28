@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 
 class SplashViewProvider extends ChangeNotifier {
   SplashViewProvider() {
-    Timer(const Duration(seconds: 3), () {
-      Injector.getRoute();
-    });
+    Timer(const Duration(seconds: 3), () => Injector.getRoute());
   }
 }
