@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         create: (BuildContext context) => ThemeSettings(),
         builder: (context, child) {
           debugPrint(StringRef.initialRoute);
-          debugPrint(" BoolRef themeChange ${BoolRef.themeChange}");
+          debugPrint("BoolRef themeChange ${BoolRef.themeChange}");
           return MaterialApp(
             initialRoute: StringRef.initialRoute,
             navigatorKey: NavigationService.navigatorKey,
