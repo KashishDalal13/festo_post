@@ -5,6 +5,7 @@ export 'dart:async';
 export 'dart:math';
 export 'dart:io';
 
+
 // Widget
 export 'package:festo_post/widget/toast.dart';
 
@@ -19,6 +20,8 @@ export 'package:image_picker/image_picker.dart';
 export 'package:flutter_colorpicker/flutter_colorpicker.dart';
 export 'package:lottie/lottie.dart';
 export 'package:carousel_slider/carousel_slider.dart';
+export 'package:flutter/rendering.dart';
+export 'package:path_provider/path_provider.dart';
 
 
 //utils
