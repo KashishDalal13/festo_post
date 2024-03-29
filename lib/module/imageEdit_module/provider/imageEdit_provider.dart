@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'dart:ui' as ui;
 
 import 'package:festo_post/app_export.dart';
 
@@ -146,6 +146,7 @@ class ImageEditProvider extends ChangeNotifier {
       "imageList": [SvgPath.sticker7, SvgPath.sticker4, SvgPath.sticker3]
     },
   ];
+  final GlobalKey repaintBoundaryKey = GlobalKey();
 
   void setSelectedFontFamily(String fontFamily) {
     selectedFontFamily = fontFamily;
@@ -209,7 +210,7 @@ class ImageEditProvider extends ChangeNotifier {
         barrierColor: Colors.black.withOpacity(0.3),
         builder: (BuildContext context) {
           return BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 0.3,sigmaY: 0.3,tileMode: TileMode.decal),
+            filter: ui.ImageFilter.blur(sigmaX: 0.3, sigmaY: 0.3, tileMode: TileMode.decal),
             child: Dialog(
               backgroundColor: Colors.transparent,
               elevation: 0,
@@ -227,14 +228,14 @@ class ImageEditProvider extends ChangeNotifier {
                     const SizedBox(height: 10),
                     Container(
                       alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(vertical: 50,horizontal: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
                       decoration: BoxDecoration(
                         color: ColorRef.white.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: TextField(
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: ColorRef.black000000,fontWeight: FontWeight.w400,fontFamily: 'Lato',fontSize: 20),
+                        style: TextStyle(color: ColorRef.black000000, fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 20),
                         decoration: InputDecoration(
                           hintText: 'Write Here',
                           contentPadding: EdgeInsets.zero,
@@ -359,7 +360,7 @@ class ImageEditProvider extends ChangeNotifier {
     double h = 0, w = 0;
     if (height < 750 && width < 370) {
       debugPrint("Small device");
-      h = height / 1.85;
+      h = height / 2.60;
       w = width / 3.2;
     } else if (height < 800 && width < 370) {
       debugPrint("Medium device");
@@ -374,12 +375,12 @@ class ImageEditProvider extends ChangeNotifier {
     activeItem['left'] += (details.focalPointDelta.dx);
     activeItem['top'] += (details.focalPointDelta.dy);
     activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
-    activeItem['top'] = (activeItem['top'] as double).clamp(2, height - h);
+    activeItem['top'] = (activeItem['top'] as double).clamp(2, 280);
     activeItem['position'] = Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
     activeItem['rotation'] = details.rotation + currentRotation!;
-    debugPrint("$activeItem");
     double scale = max(min(details.scale * currentScale!, 2), 0.3);
     activeItem['scale'] = scale;
+    debugPrint("$activeItem");
     notifyListeners();
   }
 
@@ -405,10 +406,12 @@ class ImageEditProvider extends ChangeNotifier {
 
   File? capturedImageData;
 
-  void captureEditedImage(File imageData) {
-    capturedImageData = imageData;
-    NavigationService.routeTo(MaterialPageRoute(builder: (context) => DownloadPostView(imageData: imageData)));
-    notifyListeners();
+  Future<Uint8List?> captureEditedImage() async {
+    RenderRepaintBoundary boundary = repaintBoundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+    ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    NavigationService.routeTo(MaterialPageRoute(builder: (context) => DownloadPostView(imageData: byteData?.buffer.asUint8List())));
+    return byteData?.buffer.asUint8List();
   }
 }
 
