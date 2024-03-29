@@ -1,4 +1,7 @@
 import 'package:festo_post/app_export.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ImageEditView extends StatelessWidget {
   const ImageEditView({Key? key}) : super(key: key);
@@ -33,230 +36,49 @@ class ImageEditView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Column(
                 children: [
-                  GestureDetector(
-                    onScaleStart: (details) => provider.onScaleStart(details),
-                    onScaleUpdate: (details) => provider.onScaleUpdate(details, height, width),
-                    child: RepaintBoundary(
-                      key: provider.repaintBoundaryKey,
-                      child: Stack(
-                        children: [
-                          SizedBox(
-                            width: 350,
-                            height: 350,
-                            child: Stack(
-                              children: [
-                                Image.asset(argument[1], height: 350, width: 370, fit: BoxFit.cover),
-                                Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            margin: const EdgeInsets.only(top: 16.0, right: 19.0),
-                                            child: Image.asset(SvgPath.logo),
-                                          ),
-                                        ),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [
-                                            const SizedBox(height: 5),
-                                            Container(
-                                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
-                                              decoration: BoxDecoration(
-                                                color: ColorRef.blue007494,
-                                                borderRadius: const BorderRadius.only(
-                                                  topLeft: Radius.circular(30.0),
-                                                  bottomLeft: Radius.circular(30.0),
-                                                ),
-                                              ),
-                                              child: Text(
-                                                "Loopbots@gmail.com",
-                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Container(
-                                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
-                                              decoration: BoxDecoration(
-                                                color: ColorRef.red8C0016,
-                                                borderRadius: const BorderRadius.only(
-                                                  topLeft: Radius.circular(30.0),
-                                                  bottomLeft: Radius.circular(30.0),
-                                                ),
-                                              ),
-                                              child: Text(
-                                                "+12 123 456 789",
-                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                  ClipRRect(
+                    child: GestureDetector(
+                      onTap: () => provider.onScreenTap(),
+                      onScaleStart: (details) => provider.onScaleStart(details),
+                      onScaleUpdate: (details) => provider.onScaleUpdate(details, height, width),
+                      child: RepaintBoundary(
+                        key: provider.repaintBoundaryKey,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: 350,
+                              height: 350,
+                              child: Stack(
+                                children: [
+                                  Image.asset(argument[1], height: 350, width: 370, fit: BoxFit.cover),
+                                  Column(
+                                    children: [
+                                      Row(
                                         children: [
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                          Container(
-                                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
-                                            decoration: BoxDecoration(
-                                              color: ColorRef.red8C0016,
-                                              borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(30.0),
-                                                bottomLeft: Radius.circular(30.0),
-                                              ),
-                                            ),
-                                            child: Text(
-                                              "www.loopbotstechnology.com",
-                                              style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                          Expanded(
+                                            child: Container(
+                                              margin: const EdgeInsets.only(top: 16.0, right: 19.0),
+                                              child: Image.asset(SvgPath.logo),
                                             ),
                                           ),
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                          Container(
-                                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 3),
-                                            width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                              color: ColorRef.blue007494,
-                                            ),
-                                            child: Center(
-                                              child: Text(
-                                                "401 - Green Elina, Anand mahal road, Adajan. Surat, Gujarat 395009",
-                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 6, color: ColorRef.white),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                            /*child: StackBoard(
-                              key: provider.boardKey,
-                              controller: provider.boardController,
-                              caseStyle: const CaseStyle(borderColor: Colors.grey, iconColor: Colors.white, boxAspectRatio: 2),
-                              customBuilder: (StackBoardItem t) {
-                                if (t is CustomItem) {
-                                  debugPrint("StackBoardItem${t.id}");
-                                  return ItemCase(
-                                    key: Key('StackBoardItem${t.id}'),
-                                    isCenter: false,
-                                    onDel: () async => provider.boardController.remove(t.id),
-                                    onTap: () => provider.boardController.moveItemToTop(t.id),
-                                    caseStyle: const CaseStyle(
-                                      borderColor: Colors.grey,
-                                      iconColor: Colors.white,
-                                    ),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        provider.currentItemId = t.id.toString();
-                                        showModalBottomSheet(
-                                          context: context,
-                                          backgroundColor: ColorRef.transparent,
-                                          builder: (BuildContext context) {
-                                            return StatefulBuilder(
-                                              builder: (context, setState) {
-                                                return EditingBottomSheet(provider: provider);
-                                              },
-                                            );
-                                          },
-                                        );
-                                      },
-                                      child: Container(
-                                        width: 100,
-                                        height: 40,
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          provider.selectedTextCase == 'AA'
-                                              ? (t.customText ?? '').toUpperCase()
-                                              : provider.selectedTextCase == 'aa'
-                                                  ? t.customText!.toLowerCase()
-                                                  : "${t.customText!.substring(0, 1).toUpperCase()}${t.customText!.substring(1).toLowerCase()}",
-                                          style: TextStyle(
-                                            color: provider.selectedColor,
-                                            fontSize: provider.selectedFontSize.toDouble(),
-                                            fontWeight: provider.isBold ? FontWeight.bold : FontWeight.normal,
-                                            fontStyle: provider.isItalic ? FontStyle.italic : FontStyle.normal,
-                                            decoration: provider.isUnderline ? TextDecoration.underline : TextDecoration.none,
-                                            fontFamily: provider.selectedFontFamily,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }
-                                return null;
-                              },
-                              background: RepaintBoundary(
-                                key: repaintBoundaryKey,
-                                child: Stack(
-                                  children: [
-                                    Image.asset(argument[1], height: 350, width: 370, fit: BoxFit.cover),
-                                    Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Container(
-                                                margin: const EdgeInsets.only(top: 16.0, right: 19.0),
-                                                child: Image.asset(SvgPath.logo),
-                                              ),
-                                            ),
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                              children: [
-                                                const SizedBox(height: 5),
-                                                Container(
-                                                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
-                                                  decoration: BoxDecoration(
-                                                    color: ColorRef.blue007494,
-                                                    borderRadius: const BorderRadius.only(
-                                                      topLeft: Radius.circular(30.0),
-                                                      bottomLeft: Radius.circular(30.0),
-                                                    ),
-                                                  ),
-                                                  child: Text(
-                                                    "Loopbots@gmail.com",
-                                                    style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Container(
-                                                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
-                                                  decoration: BoxDecoration(
-                                                    color: ColorRef.red8C0016,
-                                                    borderRadius: const BorderRadius.only(
-                                                      topLeft: Radius.circular(30.0),
-                                                      bottomLeft: Radius.circular(30.0),
-                                                    ),
-                                                  ),
-                                                  child: Text(
-                                                    "+12 123 456 789",
-                                                    style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        const Spacer(),
-                                        Align(
-                                          alignment: Alignment.bottomRight,
-                                          child: Column(
+                                          Column(
                                             crossAxisAlignment: CrossAxisAlignment.end,
                                             children: [
+                                              const SizedBox(height: 5),
+                                              Container(
+                                                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                                decoration: BoxDecoration(
+                                                  color: ColorRef.blue007494,
+                                                  borderRadius: const BorderRadius.only(
+                                                    topLeft: Radius.circular(30.0),
+                                                    bottomLeft: Radius.circular(30.0),
+                                                  ),
+                                                ),
+                                                child: Text(
+                                                  "Loopbots@gmail.com",
+                                                  style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                                ),
+                                              ),
                                               const SizedBox(
                                                 height: 5,
                                               ),
@@ -270,77 +92,287 @@ class ImageEditView extends StatelessWidget {
                                                   ),
                                                 ),
                                                 child: Text(
-                                                  "www.loopbotstechnology.com",
+                                                  "+12 123 456 789",
                                                   style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Container(
-                                                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 3),
-                                                width: double.maxFinite,
-                                                decoration: BoxDecoration(
-                                                  color: ColorRef.blue007494,
-                                                ),
-                                                child: Center(
-                                                  child: Text(
-                                                    "401 - Green Elina, Anand mahal road, Adajan. Surat, Gujarat 395009",
-                                                    style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 6, color: ColorRef.white),
-                                                  ),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: ColorRef.red8C0016,
+                                                borderRadius: const BorderRadius.only(
+                                                  topLeft: Radius.circular(30.0),
+                                                  bottomLeft: Radius.circular(30.0),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                "www.loopbotstechnology.com",
+                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 3),
+                                              width: double.maxFinite,
+                                              decoration: BoxDecoration(
+                                                color: ColorRef.blue007494,
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  "401 - Green Elina, Anand mahal road, Adajan. Surat, Gujarat 395009",
+                                                  style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 6, color: ColorRef.white),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
                               ),
+                              /*child: StackBoard(
+                                key: provider.boardKey,
+                                controller: provider.boardController,
+                                caseStyle: const CaseStyle(borderColor: Colors.grey, iconColor: Colors.white, boxAspectRatio: 2),
+                                customBuilder: (StackBoardItem t) {
+                                  if (t is CustomItem) {
+                                    debugPrint("StackBoardItem${t.id}");
+                                    return ItemCase(
+                                      key: Key('StackBoardItem${t.id}'),
+                                      isCenter: false,
+                                      onDel: () async => provider.boardController.remove(t.id),
+                                      onTap: () => provider.boardController.moveItemToTop(t.id),
+                                      caseStyle: const CaseStyle(
+                                        borderColor: Colors.grey,
+                                        iconColor: Colors.white,
+                                      ),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          provider.currentItemId = t.id.toString();
+                                          showModalBottomSheet(
+                                            context: context,
+                                            backgroundColor: ColorRef.transparent,
+                                            builder: (BuildContext context) {
+                                              return StatefulBuilder(
+                                                builder: (context, setState) {
+                                                  return EditingBottomSheet(provider: provider);
+                                                },
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          width: 100,
+                                          height: 40,
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            provider.selectedTextCase == 'AA'
+                                                ? (t.customText ?? '').toUpperCase()
+                                                : provider.selectedTextCase == 'aa'
+                                                    ? t.customText!.toLowerCase()
+                                                    : "${t.customText!.substring(0, 1).toUpperCase()}${t.customText!.substring(1).toLowerCase()}",
+                                            style: TextStyle(
+                                              color: provider.selectedColor,
+                                              fontSize: provider.selectedFontSize.toDouble(),
+                                              fontWeight: provider.isBold ? FontWeight.bold : FontWeight.normal,
+                                              fontStyle: provider.isItalic ? FontStyle.italic : FontStyle.normal,
+                                              decoration: provider.isUnderline ? TextDecoration.underline : TextDecoration.none,
+                                              fontFamily: provider.selectedFontFamily,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return null;
+                                },
+                                background: RepaintBoundary(
+                                  key: repaintBoundaryKey,
+                                  child: Stack(
+                                    children: [
+                                      Image.asset(argument[1], height: 350, width: 370, fit: BoxFit.cover),
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: Container(
+                                                  margin: const EdgeInsets.only(top: 16.0, right: 19.0),
+                                                  child: Image.asset(SvgPath.logo),
+                                                ),
+                                              ),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                children: [
+                                                  const SizedBox(height: 5),
+                                                  Container(
+                                                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                                    decoration: BoxDecoration(
+                                                      color: ColorRef.blue007494,
+                                                      borderRadius: const BorderRadius.only(
+                                                        topLeft: Radius.circular(30.0),
+                                                        bottomLeft: Radius.circular(30.0),
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                      "Loopbots@gmail.com",
+                                                      style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Container(
+                                                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                                    decoration: BoxDecoration(
+                                                      color: ColorRef.red8C0016,
+                                                      borderRadius: const BorderRadius.only(
+                                                        topLeft: Radius.circular(30.0),
+                                                        bottomLeft: Radius.circular(30.0),
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                      "+12 123 456 789",
+                                                      style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          const Spacer(),
+                                          Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: [
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Container(
+                                                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                                  decoration: BoxDecoration(
+                                                    color: ColorRef.red8C0016,
+                                                    borderRadius: const BorderRadius.only(
+                                                      topLeft: Radius.circular(30.0),
+                                                      bottomLeft: Radius.circular(30.0),
+                                                    ),
+                                                  ),
+                                                  child: Text(
+                                                    "www.loopbotstechnology.com",
+                                                    style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Container(
+                                                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 3),
+                                                  width: double.maxFinite,
+                                                  decoration: BoxDecoration(
+                                                    color: ColorRef.blue007494,
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      "401 - Green Elina, Anand mahal road, Adajan. Surat, Gujarat 395009",
+                                                      style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 6, color: ColorRef.white),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),*/
+                            ),
+                            /*...provider.frameDetails.map(
+                              (e) {
+                                if (e["show"] == true) {
+                                  return Positioned(
+                                    top: e['top'].toDouble(),
+                                    left: e['left'].toDouble(),
+                                    child: Transform.scale(
+                                      scale: e['scale'],
+                                      child: Transform.rotate(
+                                        angle: e['rotation'],
+                                        child: Listener(
+                                          onPointerDown: (details) => provider.onPointerDown(details, e),
+                                          onPointerUp: (details) => provider.onPointerUp(),
+                                          child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)), child: Image.asset(e['add'])),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  return const SizedBox();
+                                }
+                              },
                             ),*/
-                          ),
-                          ...provider.frameDetails.map(
-                            (e) {
-                              if (e["show"] == true) {
-                                return Positioned(
-                                  top: e['top'].toDouble(),
-                                  left: e['left'].toDouble(),
-                                  child: Transform.scale(
-                                    scale: e['scale'],
-                                    child: Transform.rotate(
-                                      angle: e['rotation'],
-                                      child: Listener(
-                                        onPointerDown: (details) => provider.onPointerDown(details, e),
-                                        onPointerUp: (details) => provider.onPointerUp(),
-                                        child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)), child: Image.asset(e['add'])),
+                            ...provider.editableItem.map((e) {
+                              return Positioned(
+                                top: e.top!.toDouble(),
+                                left: e.left!.toDouble(),
+                                child: Transform.scale(
+                                  scale: e.scale,
+                                  child: Transform.rotate(
+                                    angle: e.rotation!,
+                                    child: Listener(
+                                      onPointerDown: (details) => provider.onPointerDown(details: details, data: e),
+                                      onPointerUp: (details) => provider.onPointerUp(),
+                                      child: GestureDetector(
+                                        onTap: () => provider.onWidgetTap(provider: provider, context: context),
+                                        child: Stack(
+                                          alignment: const Alignment(1.5, 4.1),
+                                          children: [
+                                            Stack(
+                                              alignment: const Alignment(1.5, -4.1),
+                                              children: [
+                                                Stack(
+                                                  alignment: const Alignment(-1.5, -4.1),
+                                                  children: [
+                                                    Container(
+                                                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                                        decoration: e.editWidget == provider.activeEditableItem.editWidget
+                                                            ? BoxDecoration(color: ColorRef.black.withOpacity(0.3), border: Border.all(color: Colors.black, width: 0.5))
+                                                            : null,
+                                                        child: e.editWidget!),
+                                                    const Icon(Icons.cancel_outlined),
+                                                  ],
+                                                ),
+                                                const Icon(Icons.cancel_outlined),
+                                              ],
+                                            ),
+                                            const Icon(Icons.cancel_outlined),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                );
-                              } else {
-                                return const SizedBox();
-                              }
-                            },
-                          ),
-                          ...provider.editableItem.map((e) {
-                            return Positioned(
-                              top: e.top!.toDouble(),
-                              left: e.left!.toDouble(),
-                              child: Transform.scale(
-                                scale: e.scale,
-                                child: Transform.rotate(
-                                  angle: e.rotation!,
-                                  child: Listener(
-                                    onPointerDown: (details) => provider.onPointerDown(details, e),
-                                    onPointerUp: (details) => provider.onPointerUp(),
-                                    child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)), child: e.editWidget),
-                                  ),
                                 ),
-                              ),
-                            );
-                          })
-                        ],
+                              );
+                            })
+                          ],
+                        ),
                       ),
                     ),
                   ),

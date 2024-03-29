@@ -249,7 +249,12 @@ class ImageEditProvider extends ChangeNotifier {
                     ),
                     const SizedBox(height: 20),
                     GestureDetector(
-                      onTap: () => Navigator.pop(context, text),
+                      onTap: () {
+                        Navigator.pop(context);
+                        if (text.isNotEmpty) {
+                          editableItem.add(EditableItem(editWidget: Text(text)));
+                        }
+                      },
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 90),
                         alignment: Alignment.center,
@@ -268,15 +273,6 @@ class ImageEditProvider extends ChangeNotifier {
           );
         },
       );
-
-      if (result != null) {
-        boardController.add<CustomItem>(
-          CustomItem(
-            customText: result,
-            onDel: () async => true,
-          ),
-        );
-      }
     } else if (index == 1) {
       showModalBottomSheet(
         context: context,
@@ -334,28 +330,53 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  onScreenTap() {
+    inAction = false;
+    activeEditableItem = EditableItem();
+    notifyListeners();
+  }
+
+  onWidgetTap({required BuildContext context, required ImageEditProvider provider}) {
+    inAction = true;
+    if (activeEditableItem.editWidget.runtimeType == Text) {
+      showModalBottomSheet(
+        context: context,
+        backgroundColor: ColorRef.transparent,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return EditingBottomSheet(provider: provider);
+            },
+          );
+        },
+      );
+    }
+    notifyListeners();
+  }
+
   onPointerUp() {
     inAction = false;
     notifyListeners();
   }
 
-  onPointerDown(details, data) {
+  onPointerDown({required PointerDownEvent details, required EditableItem data}) {
     if (inAction) return;
     inAction = true;
-    activeItem = data;
+    activeEditableItem = data;
+    /*activeItem = data;
     currentScale = data['scale'];
-    currentRotation = data['rotation'];
+    currentRotation = data['rotation'];*/
     notifyListeners();
   }
 
   onScaleStart(details) {
-    currentScale = activeItem['scale'];
-    currentRotation = activeItem['rotation'];
+    currentScale = activeEditableItem.scale;
+    currentRotation = activeEditableItem.rotation;
     notifyListeners();
   }
 
   onScaleUpdate(ScaleUpdateDetails details, height, width) {
-    if (activeItem.isEmpty) {
+    if (activeEditableItem.editWidget == null) {
       return;
     }
     debugPrint("$activeItem");
@@ -363,26 +384,34 @@ class ImageEditProvider extends ChangeNotifier {
     if (height < 750 && width < 370) {
       debugPrint("Small device");
       h = height / 2.60;
-      w = width / 3.2;
+      w = width / 1.45;
     } else if (height < 800 && width < 370) {
       debugPrint("Medium device");
-      h = height / 1.55;
-      w = width / 3.2;
+      h = height / 3.05;
+      w = width / 3.30;
     } else if (height > 800 && width > 370) {
       debugPrint("Large device");
       h = height / 1.56;
       w = width / 2.0;
     }
-    debugPrint("$height $width");
-    activeItem['left'] += (details.focalPointDelta.dx);
+    debugPrint("$height $width $w");
+    /*activeItem['left'] += (details.focalPointDelta.dx);
     activeItem['top'] += (details.focalPointDelta.dy);
     activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
     activeItem['top'] = (activeItem['top'] as double).clamp(2, 280);
     activeItem['position'] = Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
     activeItem['rotation'] = details.rotation + currentRotation!;
     double scale = max(min(details.scale * currentScale!, 2), 0.3);
-    activeItem['scale'] = scale;
-    debugPrint("$activeItem");
+    activeItem['scale'] = scale;*/
+    activeEditableItem.left = (details.focalPointDelta.dx) + activeEditableItem.left!.toDouble();
+    activeEditableItem.top = (details.focalPointDelta.dy) + activeEditableItem.top!.toDouble();
+    activeEditableItem.left = activeEditableItem.left!.clamp(2, w).toDouble(); //112
+    activeEditableItem.top = activeEditableItem.top!.clamp(2, h).toDouble(); //260
+    activeEditableItem.position = Offset(activeEditableItem.left!.toDouble(), activeEditableItem.top!.toDouble());
+    activeEditableItem.rotation = details.rotation + currentRotation!;
+    double scale = max(min(details.scale * currentScale!, 20), 0.3);
+    activeEditableItem.scale = scale;
+    debugPrint("${activeEditableItem.scale}");
     notifyListeners();
   }
 
