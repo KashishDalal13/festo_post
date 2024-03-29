@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:festo_post/app_export.dart';
 
 class ImageEditProvider extends ChangeNotifier {
@@ -9,12 +11,10 @@ class ImageEditProvider extends ChangeNotifier {
   bool isBold = false;
   bool isItalic = false;
   bool isUnderline = false;
-
   int selectedFontSize = 22;
-  Color _selectedColor = const Color(0xff505050);
+  Color selectedColor = const Color(0xff505050);
   List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];
 
-  Color get selectedColor => _selectedColor;
   bool isUppercase = false;
   String selectedTextCase = '';
   String selectedCaseIndex = '';
@@ -158,12 +158,12 @@ class ImageEditProvider extends ChangeNotifier {
   }
 
   void onColorChange(Color color) {
-    _selectedColor = color;
+    selectedColor = color;
     notifyListeners();
   }
 
   void onColorOpacityChange(double opacity) {
-    _selectedColor = _selectedColor.withOpacity(opacity);
+    selectedColor = selectedColor.withOpacity(opacity);
     notifyListeners();
   }
 
@@ -208,64 +208,58 @@ class ImageEditProvider extends ChangeNotifier {
         context: context,
         barrierColor: Colors.black.withOpacity(0.3),
         builder: (BuildContext context) {
-          return Dialog(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            alignment: Alignment.center,
-            child: SizedBox(
-              height: 260,
-              width: 300,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: SvgPicture.asset(SvgPath.cancel),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 110),
-                    decoration: BoxDecoration(
-                      color: ColorRef.black000000.withOpacity(0.6),
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 0.3,sigmaY: 0.3,tileMode: TileMode.decal),
+            child: Dialog(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              alignment: Alignment.center,
+              child: SizedBox(
+                height: 260,
+                width: 300,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context),
+                      child: SvgPicture.asset(SvgPath.cancel),
                     ),
-                    child: Column(
-                      children: [
-                        TextField(
-                          style: TextStyle(color: ColorRef.white),
-                          decoration: InputDecoration(
-                            hintText: 'Write Here',
-                            hintStyle: TextStyle(color: ColorRef.white),
-                            border: InputBorder.none,
-                          ),
-                          onChanged: (value) => text = value,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context, text),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 90),
+                    const SizedBox(height: 10),
+                    Container(
                       alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 50,horizontal: 10),
                       decoration: BoxDecoration(
-                        color: ColorRef.yellowFFA500,
-                        borderRadius: BorderRadius.circular(10),
+                        color: ColorRef.white.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                      child: Text('Done', style: TextStyle(color: ColorRef.black202020)),
+                      child: TextField(
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: ColorRef.black000000,fontWeight: FontWeight.w400,fontFamily: 'Lato',fontSize: 20),
+                        decoration: InputDecoration(
+                          hintText: 'Write Here',
+                          contentPadding: EdgeInsets.zero,
+                          hintStyle: TextStyle(color: ColorRef.black000000),
+                          border: InputBorder.none,
+                        ),
+                        onChanged: (value) => text = value,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context, text),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 90),
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                          color: ColorRef.yellowFFA500,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text('Done', style: TextStyle(color: ColorRef.black202020)),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -401,6 +395,19 @@ class ImageEditProvider extends ChangeNotifier {
 
   onChangeStickerView() {
     stickerViewIndex = 1;
+    notifyListeners();
+  }
+
+  void onCheck() {
+    NavigationService.replaceToNamed('downloadPost');
+    notifyListeners();
+  }
+
+  File? capturedImageData;
+
+  void captureEditedImage(File imageData) {
+    capturedImageData = imageData;
+    NavigationService.routeTo(MaterialPageRoute(builder: (context) => DownloadPostView(imageData: imageData)));
     notifyListeners();
   }
 }
