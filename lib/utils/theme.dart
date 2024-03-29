@@ -1,6 +1,5 @@
 import 'package:festo_post/app_export.dart';
 
-import 'colors.dart';
 
 class ThemeRef {
   static ThemeData lightTheme = ThemeData(

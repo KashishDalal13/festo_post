@@ -45,7 +45,7 @@ class Injector {
     return prefs.getBool(PrefsKey.onBoarding) ?? false;
   }
 
-  static setSignIn() {
+  static setSignIn({required bool signIn}) {
     prefs.setBool(PrefsKey.signIn, true);
   }
 

@@ -39,30 +39,30 @@ class SettingDrawer extends StatelessWidget {
                     trailing: item['label'] != StrRef.darkTheme
                         ? Icon(Icons.arrow_forward_ios_rounded, size: 20, color: ColorRef.textPrimaryColor)
                         : GestureDetector(
-                            onTap: () => provider.toggleTheme(),
-                            child: Container(
-                              width: 40.0,
-                              height: 20,
-                              padding: const EdgeInsets.symmetric(horizontal: 3),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: provider.switchValue ? ColorRef.blue1E2A38 : ColorRef.greyE0E0E0,
-                              ),
-                              child: AnimatedAlign(
-                                alignment: provider.switchValue ? Alignment.centerRight : Alignment.centerLeft,
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.easeInOut,
-                                child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
-                                  width: 14.0,
-                                  height: 14.0,
-                                  decoration: BoxDecoration(shape: BoxShape.circle, color: provider.switchValue ? ColorRef.blue3498DB : ColorRef.blue0250A4),
-                                ),
-                              ),
-                            ),
+                      onTap: () => provider.toggleTheme(),
+                      child: Container(
+                        width: 40.0,
+                        height: 20,
+                        padding: const EdgeInsets.symmetric(horizontal: 3),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          color: provider.switchValue ? ColorRef.blue1E2A38 : ColorRef.greyE0E0E0,
+                        ),
+                        child: AnimatedAlign(
+                          alignment: provider.switchValue ? Alignment.centerRight : Alignment.centerLeft,
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.easeInOut,
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            width: 14.0,
+                            height: 14.0,
+                            decoration: BoxDecoration(shape: BoxShape.circle, color: provider.switchValue ? ColorRef.blue3498DB : ColorRef.blue0250A4),
                           ),
+                        ),
+                      ),
+                    ),
                     title: Text(item['label'], style: TextStyle(color: ColorRef.textPrimaryColor)),
-                    onTap: () {},
+                    onTap: () => provider.onDrawerTileTap(type: item['label']),
                   ),
                 );
               },

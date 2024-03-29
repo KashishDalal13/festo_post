@@ -170,4 +170,11 @@ class DashboardProvider extends ChangeNotifier {
     // NavigationService.replaceAllToNamed("/");
     ThemeSettings();
   }
+
+  onDrawerTileTap({required String type}) {
+    if (type == StrRef.logout) {
+      Injector.setSignIn(signIn: false);
+      NavigationService.replaceAllToNamed("register");
+    }
+  }
 }
