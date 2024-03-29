@@ -111,6 +111,8 @@ class ImageEditProvider extends ChangeNotifier {
     {"image": SvgPath.image_gallery, "label": "Image"},
     {"image": SvgPath.volume, "label": "Audio"},
   ];
+  List<EditableItem> editableItem = [];
+  EditableItem activeEditableItem = EditableItem();
 
   List<Map<String, dynamic>> stickerList = [
     {

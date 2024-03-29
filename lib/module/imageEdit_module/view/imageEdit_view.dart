@@ -316,7 +316,7 @@ class ImageEditView extends StatelessWidget {
                                       child: Listener(
                                         onPointerDown: (details) => provider.onPointerDown(details, e),
                                         onPointerUp: (details) => provider.onPointerUp(),
-                                        child: Image.asset(e['add']),
+                                        child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)), child: Image.asset(e['add'])),
                                       ),
                                     ),
                                   ),
@@ -326,6 +326,23 @@ class ImageEditView extends StatelessWidget {
                               }
                             },
                           ),
+                          ...provider.editableItem.map((e) {
+                            return Positioned(
+                              top: e.top!.toDouble(),
+                              left: e.left!.toDouble(),
+                              child: Transform.scale(
+                                scale: e.scale,
+                                child: Transform.rotate(
+                                  angle: e.rotation!,
+                                  child: Listener(
+                                    onPointerDown: (details) => provider.onPointerDown(details, e),
+                                    onPointerUp: (details) => provider.onPointerUp(),
+                                    child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 2)), child: e.editWidget),
+                                  ),
+                                ),
+                              ),
+                            );
+                          })
                         ],
                       ),
                     ),

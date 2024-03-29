@@ -5,7 +5,6 @@ export 'dart:async';
 export 'dart:math';
 export 'dart:io';
 
-
 // Widget
 export 'package:festo_post/widget/toast.dart';
 
@@ -22,7 +21,6 @@ export 'package:lottie/lottie.dart';
 export 'package:carousel_slider/carousel_slider.dart';
 export 'package:flutter/rendering.dart';
 export 'package:path_provider/path_provider.dart';
-
 
 //utils
 export 'package:festo_post/utils/bool.dart';
@@ -67,3 +65,6 @@ export 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dar
 export 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
 export 'package:festo_post/module/dashboard_module/view/setting_drawer_view.dart';
 export 'package:festo_post/module/downloadPost_module/view/downloadPost_view.dart';
+
+//data model
+export 'package:festo_post/module/imageEdit_module/editable_item_data_model.dart';
