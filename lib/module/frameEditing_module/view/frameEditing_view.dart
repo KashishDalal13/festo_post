@@ -32,7 +32,7 @@ class FrameEditorView extends StatelessWidget {
                     onTap: () => provider.onNext(context, label ?? '', provider.selectedImage != null ? provider.selectedImage! : imageList![0]),
                     child: Container(
                       margin: const EdgeInsets.all(10.0),
-                      child: Text(StrRef.next, style: TextStyle(color: ColorRef.blue0250A4, fontFamily: 'Lato', fontWeight: FontWeight.w400, fontSize: 15)),
+                      child: Text(StrRef.next, style: TextStyle(color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4, fontFamily: 'Lato', fontWeight: FontWeight.w400, fontSize: 15)),
                     ),
                   ),
                 ],
@@ -54,9 +54,7 @@ class FrameEditorView extends StatelessWidget {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          provider.toggleSelection(true);
-                        },
+                        onTap: () => provider.toggleSelection(true),
                         child: Container(
                           height: 25,
                           width: 80,
@@ -92,45 +90,30 @@ class FrameEditorView extends StatelessWidget {
                       ),
                       const Spacer(),
                       PopupMenuButton<String>(
-                        color: ColorRef.white,
                         position: PopupMenuPosition.under,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                         itemBuilder: (BuildContext context) {
+                          Color selectedColor = BoolRef.themeChange ? ColorRef.yellowE29200 : Colors.blue;
                           return provider.languages.map((String language) {
                             return PopupMenuItem<String>(
                               height: 40,
                               value: language,
-                              child: Text(
-                                language,
-                                style: TextStyle(
-                                  color: language == 'All Languages' ? Colors.blue : null,
-                                  fontSize: 15,
-                                  fontFamily: 'Lato',
-                                ),
-                              ),
+                              child: Text(language, style: TextStyle(color: language == 'All Languages' ? selectedColor : ColorRef.textPrimaryColor, fontSize: 15, fontFamily: 'Lato')),
                             );
                           }).toList();
                         },
                         child: Container(
                           margin: const EdgeInsets.all(10.0),
-                          child: SvgPicture.asset(
-                            SvgPath.translation,
-                            height: 24,
-                            width: 24,
-                          ),
+                          child: SvgPicture.asset(SvgPath.translation, height: 24, width: 24, colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn)),
                         ),
                       ),
                       const SizedBox(width: 10),
                       GestureDetector(
-                        onTap: () {
-                          provider.onInfo(context, label ?? '');
-                        },
+                        onTap: () => provider.onInfo(context, label ?? ''),
                         child: SizedBox(
                           height: 20,
                           width: 20,
-                          child: SvgPicture.asset(SvgPath.information),
+                          child: SvgPicture.asset(SvgPath.information, colorFilter: ColorFilter.mode(BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4, BlendMode.srcIn)),
                         ),
                       ),
                     ],

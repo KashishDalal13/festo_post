@@ -77,7 +77,7 @@ class DashBoardView extends StatelessWidget {
                             children: [
                               Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 8)),
                               Text(StrRef.upcomingEvents, style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 16, color: ColorRef.textPrimaryColor)),
-                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 8)),
+                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, indent: 8)),
                             ],
                           ),
                         ),
@@ -128,7 +128,7 @@ class DashBoardView extends StatelessWidget {
                             children: [
                               Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 8)),
                               Text(StrRef.todayEvent, style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 16, color: ColorRef.textPrimaryColor)),
-                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 8)),
+                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, indent: 8)),
                             ],
                           ),
                         ),
@@ -245,7 +245,7 @@ class DashBoardView extends StatelessWidget {
                             children: [
                               Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 8)),
                               Text(StrRef.seasonalOffers, style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 16, color: ColorRef.textPrimaryColor)),
-                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 10)),
+                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, indent: 10)),
                             ],
                           ),
                         ),
