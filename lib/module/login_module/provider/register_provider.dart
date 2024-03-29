@@ -98,7 +98,7 @@ class RegisterProvider extends ChangeNotifier {
     } else {
       introIndex = 2;
       _timer.cancel();
-      Injector.setSignIn();
+      Injector.setSignIn(signIn: true);
     }
     notifyListeners();
   }

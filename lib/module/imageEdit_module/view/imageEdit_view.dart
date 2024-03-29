@@ -1,23 +1,13 @@
-import 'dart:ui';
-
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-import 'package:flutter/rendering.dart';
-import 'package:path_provider/path_provider.dart';
-
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class ImageEditView extends StatelessWidget {
-  final String? label;
-  final String? selectedImage;
-
-  const ImageEditView({Key? key, this.label, this.selectedImage}) : super(key: key);
+  const ImageEditView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey repaintBoundaryKey = GlobalKey();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    List argument = ModalRoute.of(context)!.settings.arguments as List;
     return ChangeNotifierProvider(
       create: (BuildContext context) => ImageEditProvider(),
       builder: (context, child) {
@@ -36,7 +26,7 @@ class ImageEditView extends StatelessWidget {
                 ),
               ),
               centerTitle: true,
-              title: Text(label ?? '', style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
+              title: Text(argument![0], style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
               actions: [
                 TextButton(
                   onPressed: () async {
@@ -125,66 +115,37 @@ class ImageEditView extends StatelessWidget {
                               }
                               return null;
                             },
-                            background: RepaintBoundary(
-                              key: repaintBoundaryKey,
-                              child: Stack(
-                                children: [
-                                  Image.asset(selectedImage ?? "", height: 350, width: 370, fit: BoxFit.cover),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: Container(
-                                              margin: const EdgeInsets.only(top: 16.0, right: 19.0),
-                                              child: Image.asset(SvgPath.logo),
-                                            ),
+                            background: Stack(
+                              children: [
+                                Image.asset(argument![1], height: 350, width: 370, fit: BoxFit.cover),
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            margin: const EdgeInsets.only(top: 16.0, right: 19.0),
+                                            child: Image.asset(SvgPath.logo),
                                           ),
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.end,
-                                            children: [
-                                              const SizedBox(height: 5),
-                                              Container(
-                                                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
-                                                decoration: BoxDecoration(
-                                                  color: ColorRef.blue007494,
-                                                  borderRadius: const BorderRadius.only(
-                                                    topLeft: Radius.circular(30.0),
-                                                    bottomLeft: Radius.circular(30.0),
-                                                  ),
-                                                ),
-                                                child: Text(
-                                                  "Loopbots@gmail.com",
-                                                  style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Container(
-                                                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
-                                                decoration: BoxDecoration(
-                                                  color: ColorRef.red8C0016,
-                                                  borderRadius: const BorderRadius.only(
-                                                    topLeft: Radius.circular(30.0),
-                                                    bottomLeft: Radius.circular(30.0),
-                                                  ),
-                                                ),
-                                                child: Text(
-                                                  "+12 123 456 789",
-                                                  style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Column(
+                                        ),
+                                        Column(
                                           crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
+                                            const SizedBox(height: 5),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: ColorRef.blue007494,
+                                                borderRadius: const BorderRadius.only(
+                                                  topLeft: Radius.circular(30.0),
+                                                  bottomLeft: Radius.circular(30.0),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                "Loopbots@gmail.com",
+                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                              ),
+                                            ),
                                             const SizedBox(
                                               height: 5,
                                             ),
@@ -198,33 +159,59 @@ class ImageEditView extends StatelessWidget {
                                                 ),
                                               ),
                                               child: Text(
-                                                "www.loopbotstechnology.com",
+                                                "+12 123 456 789",
                                                 style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Container(
-                                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 3),
-                                              width: double.maxFinite,
-                                              decoration: BoxDecoration(
-                                                color: ColorRef.blue007494,
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  "401 - Green Elina, Anand mahal road, Adajan. Surat, Gujarat 395009",
-                                                  style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 6, color: ColorRef.white),
-                                                ),
                                               ),
                                             ),
                                           ],
                                         ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
+                                      ],
+                                    ),
+                                    const Spacer(),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                            decoration: BoxDecoration(
+                                              color: ColorRef.red8C0016,
+                                              borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(30.0),
+                                                bottomLeft: Radius.circular(30.0),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              "www.loopbotstechnology.com",
+                                              style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 3),
+                                            width: double.maxFinite,
+                                            decoration: BoxDecoration(
+                                              color: ColorRef.blue007494,
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                "401 - Green Elina, Anand mahal road, Adajan. Surat, Gujarat 395009",
+                                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 6, color: ColorRef.white),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
                             ),
                           ),
                         ),
@@ -317,7 +304,7 @@ class ImageEditView extends StatelessWidget {
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: () {
-                                provider.edit(index: index, context: context, provider: provider);
+                                provider.edit(index: index, context: context,provider: provider);
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -331,8 +318,7 @@ class ImageEditView extends StatelessWidget {
                                       provider.EditDetails[index]['image'],
                                     ),
                                   ),
-                                  Text(provider.EditDetails[index]['label'] ?? '',
-                                      style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12)) // Add null check here
+                                  Text(provider.EditDetails[index]['label'] ?? '', style: const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12)) // Add null check here
                                 ],
                               ),
                             );

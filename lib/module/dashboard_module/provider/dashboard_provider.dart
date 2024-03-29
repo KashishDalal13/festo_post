@@ -163,11 +163,18 @@ class DashboardProvider extends ChangeNotifier {
     {"icon": SvgPath.logout, "label": StrRef.logout, "route": ''},
   ];
 
-  void toggleTheme({required bool switchVal}) async {
-    switchValue = switchVal;
+  void toggleTheme() async {
+    switchValue = !switchValue;
     Injector.setTheme(themeVal: switchValue);
     notifyListeners();
-    NavigationService.replaceAllToNamed("/");
+    // NavigationService.replaceAllToNamed("/");
     ThemeSettings();
+  }
+
+  onDrawerTileTap({required String type}) {
+    if (type == StrRef.logout) {
+      Injector.setSignIn(signIn: false);
+      NavigationService.replaceAllToNamed("register");
+    }
   }
 }
