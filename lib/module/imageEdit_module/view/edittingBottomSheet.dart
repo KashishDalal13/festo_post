@@ -10,7 +10,7 @@ class EditingBottomSheet extends StatefulWidget {
 }
 
 class _EditingBottomSheetState extends State<EditingBottomSheet> {
-  Color _selectedColor = Colors.white;
+
 
   @override
   Widget build(BuildContext context) {
@@ -241,14 +241,14 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                         backgroundColor: ColorRef.whiteFFFFFF,
                         content: Column(
-                          mainAxisSize: MainAxisSize.min, // Ensure the Column takes minimum vertical space
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             ColorPicker(
-                              pickerColor: _selectedColor,
+                              pickerColor: provider.selectedColor,
                               pickerAreaBorderRadius: BorderRadius.circular(10.0),
                               onColorChanged: (Color color) {
                                 setState(() {
-                                  _selectedColor = color;
+                                  provider.selectedColor = color;
                                   provider.onColorChange(color);
                                 });
                               },
@@ -313,7 +313,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
-                          color: _selectedColor.withOpacity(opacity), // Apply opacity to the selected color
+                          color: provider.selectedColor.withOpacity(opacity), // Apply opacity to the selected color
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),

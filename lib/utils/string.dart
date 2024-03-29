@@ -65,7 +65,8 @@ class StrRef {
       editText = "Edit Text",
       Fonts = "Fonts",
       downloadText = "Enhance Your Festive Posts with Vibrant Stickers!",
-      download = "Download";
+      download = "Download",
+      downloadShare = "Download & Share";
 }
 
 class SvgPath {

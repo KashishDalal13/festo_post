@@ -5,6 +5,7 @@ export 'dart:async';
 export 'dart:math';
 export 'dart:io';
 
+
 // Widget
 export 'package:festo_post/widget/toast.dart';
 
@@ -19,6 +20,8 @@ export 'package:image_picker/image_picker.dart';
 export 'package:flutter_colorpicker/flutter_colorpicker.dart';
 export 'package:lottie/lottie.dart';
 export 'package:carousel_slider/carousel_slider.dart';
+export 'package:flutter/rendering.dart';
+export 'package:path_provider/path_provider.dart';
 
 
 //utils
@@ -45,6 +48,7 @@ export 'package:festo_post/module/info_module/provider/info_provider.dart';
 export 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.dart';
 export 'package:festo_post/module/frameEditing_module/provider/frameEditing_provider.dart';
 export 'package:festo_post/module/dashboard_module/provider/dashboard_provider.dart';
+export 'package:festo_post/module/downloadPost_module/provider/downloadPost_provider.dart';
 
 //view
 export 'package:festo_post/module/splash_module/view/splash_screen_view.dart';
@@ -63,3 +67,4 @@ export 'package:festo_post/module/imageEdit_module/view/stickerBottomSheet.dart'
 export 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dart';
 export 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
 export 'package:festo_post/module/dashboard_module/view/setting_drawer_view.dart';
+export 'package:festo_post/module/downloadPost_module/view/downloadPost_view.dart';

@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
               'frame': (context) => const FrameEditorView(),
               'info': (context) => const InfoView(),
               'imageEdit': (context) => const ImageEditView(),
+              'downloadPost': (context) => const DownloadPostView(),
             },
           );
         });
