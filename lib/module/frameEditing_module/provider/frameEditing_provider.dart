@@ -36,9 +36,7 @@ class FrameEditorProvider extends ChangeNotifier {
   void onInfo(BuildContext context, final String label) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => InfoView(label: label),
-      ),
+      MaterialPageRoute(builder: (context) => InfoView(label: label)),
     );
   }
 

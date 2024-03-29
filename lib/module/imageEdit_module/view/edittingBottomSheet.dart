@@ -42,8 +42,6 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                       constraints: const BoxConstraints(maxWidth: 200, minWidth: 200, minHeight: 100, maxHeight: 150),
                       shadowColor: ColorRef.black202020,
                       offset: const Offset(0, 0),
-                      color: ColorRef.whiteFFFFFF,
-                      surfaceTintColor: ColorRef.whiteFFFFFF,
                       position: PopupMenuPosition.over,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                       itemBuilder: (BuildContext context) {
