@@ -44,7 +44,6 @@ export 'package:festo_post/module/splash_module/provider/splash_screen_provider.
 export 'package:festo_post/module/profile_module/provider/profile_provider.dart';
 export 'package:festo_post/module/on_boarding/onboarding_provider.dart';
 export 'package:festo_post/module/login_module/provider/register_provider.dart';
-export 'package:festo_post/module/info_module/provider/info_provider.dart';
 export 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.dart';
 export 'package:festo_post/module/frameEditing_module/provider/frameEditing_provider.dart';
 export 'package:festo_post/module/dashboard_module/provider/dashboard_provider.dart';
