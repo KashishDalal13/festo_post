@@ -6,7 +6,7 @@ class DashBoardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
+    double width = MediaQuery.of(context).size.width;
     return ChangeNotifierProvider(
       create: (BuildContext context) => DashboardProvider(),
       builder: (context, child) {
@@ -18,19 +18,15 @@ class DashBoardView extends StatelessWidget {
               key: scaffoldKey,
               appBar: AppBar(
                 leading: IconButton(
-                  onPressed: () {
-                    scaffoldKey.currentState?.openDrawer();
-                  },
-                  icon: Icon(Icons.menu, size: 24, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020),
+                  onPressed: () => scaffoldKey.currentState?.openDrawer(),
+                  icon: Icon(Icons.menu, size: 24, color: ColorRef.textPrimaryColor),
                 ),
                 centerTitle: true,
                 title: Text(StrRef.registerTitle2, style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
                 actions: [
                   IconButton(
-                    onPressed: () {
-                      provider.onProfile();
-                    },
-                    icon: SvgPicture.asset(SvgPath.profile, width: 24, height: 24),
+                    onPressed: () => provider.onProfile(),
+                    icon: SvgPicture.asset(SvgPath.profile, colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn), width: 24, height: 24),
                   ),
                 ],
               ),
@@ -93,6 +89,7 @@ class DashBoardView extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             itemCount: provider.addDate.length,
                             itemBuilder: (BuildContext context, int index) {
+                              Color unselectedColor = BoolRef.themeChange ? ColorRef.greyF9F9F9 : ColorRef.yellowFFEDCC;
                               return Column(
                                 children: [
                                   GestureDetector(
@@ -103,7 +100,7 @@ class DashBoardView extends StatelessWidget {
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15),
-                                        color: index == provider.eventIndex ? ColorRef.yellowFFA500 : ColorRef.yellowFFEDCC,
+                                        color: index == provider.eventIndex ? ColorRef.yellowFFA500 : unselectedColor,
                                       ),
                                       child: Text(provider.addDate[index]['label']),
                                     ),
@@ -148,18 +145,13 @@ class DashBoardView extends StatelessWidget {
                                   children: [
                                     Text(
                                       provider.addTodayEvent[index]['label'],
-                                      style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.brownBE7B00, fontSize: 15),
+                                      style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.yellowFFA500, fontSize: 15),
                                     ),
                                     TextButton(
-                                      style: const ButtonStyle(visualDensity: VisualDensity(vertical: -4, horizontal: -4)),
-                                      onPressed: () {
-                                        provider.onViewAll(context, index: index);
-                                      },
-                                      child: Text(
-                                        StrRef.viewAll,
-                                        style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: ColorRef.blue0250A4),
-                                      ),
-                                    ),
+                                        style: const ButtonStyle(visualDensity: VisualDensity(vertical: -4, horizontal: -4)),
+                                        onPressed: () => provider.onViewAll(context, index: index),
+                                        child: Text(StrRef.viewAll,
+                                            style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4))),
                                   ],
                                 ),
                                 Container(
@@ -186,20 +178,12 @@ class DashBoardView extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              StrRef.trending,
-                              style: const TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 15),
-                            ),
+                            Text(StrRef.trending, style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 15, color: ColorRef.textPrimaryColor)),
                             TextButton(
                               onPressed: () {},
                               child: Text(
                                 StrRef.viewAll,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Lato',
-                                  fontSize: 13,
-                                  color: ColorRef.blue0250A4,
-                                ),
+                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 14, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
                               ),
                             )
                           ],
@@ -211,6 +195,7 @@ class DashBoardView extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: provider.addTrendingEvent.length,
                             itemBuilder: (BuildContext context, int index) {
+                              Color unselectedColor = BoolRef.themeChange ? ColorRef.greyF9F9F9 : ColorRef.yellowFFEDCC;
                               return Column(
                                 children: [
                                   GestureDetector(
@@ -223,7 +208,7 @@ class DashBoardView extends StatelessWidget {
                                       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15),
-                                        color: index == provider.trendingIndex ? ColorRef.yellowFFA500 : ColorRef.yellowFFEDCC,
+                                        color: index == provider.trendingIndex ? ColorRef.yellowFFA500 : unselectedColor,
                                       ),
                                       child: Center(
                                         child: Text(
@@ -241,9 +226,7 @@ class DashBoardView extends StatelessWidget {
                             },
                           ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 5),
                         SizedBox(
                           height: 100,
                           child: ListView.separated(
@@ -253,70 +236,44 @@ class DashBoardView extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return Image.asset(provider.addTrendingEvent[provider.trendingIndex]['imageList'][index]);
                               },
-                              separatorBuilder: (context, index) {
-                                return const SizedBox(width: 15);
-                              }),
+                              separatorBuilder: (context, index) => const SizedBox(width: 15)),
                         ),
-                        const SizedBox(height: 25),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Divider(
-                                endIndent: 15.0,
-                                thickness: 1, // Adjust thickness as needed
-                                color: ColorRef.grey717171, // Adjust color as needed
-                              ),
-                            ),
-                            Center(
-                              child: Text(
-                                StrRef.seasonalOffers,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: 'Lato',
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                indent: 8.0,
-                                thickness: 1, // Adjust thickness as needed
-                                color: ColorRef.grey717171, // Adjust color as needed
-                              ),
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 8)),
+                              Text(StrRef.seasonalOffers, style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 16, color: ColorRef.textPrimaryColor)),
+                              Expanded(child: Divider(thickness: 1, color: ColorRef.grey717171, endIndent: 10)),
+                            ],
+                          ),
                         ),
-                        const SizedBox(height: 15),
                         SizedBox(
-                          height: 100,
+                          height: 120,
                           child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
                             itemCount: provider.addSeasonOffers.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return Column(
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
-                                    child: Image.asset(
-                                      provider.addSeasonOffers[index]["imageList"],
-                                      height: 70,
-                                      width: 70,
+                              return SizedBox(
+                                width: width / 4.2,
+                                child: Column(
+                                  children: [
+                                    Image.asset(provider.addSeasonOffers[index]["imageList"], height: 70, width: 70),
+                                    Text(
+                                      provider.addSeasonOffers[index]["label"],
+                                      style: TextStyle(fontFamily: 'Lato', fontSize: 14, color: ColorRef.textPrimaryColor),
+                                      textAlign: TextAlign.center,
                                     ),
-                                  ),
-                                  Text(provider.addSeasonOffers[index]["label"]),
-                                ],
+                                  ],
+                                ),
                               );
                             },
-                            separatorBuilder: (BuildContext context, int index) {
-                              return const SizedBox(width: 5);
-                            },
+                            separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 5),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         ListView.separated(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
@@ -330,18 +287,13 @@ class DashBoardView extends StatelessWidget {
                                   children: [
                                     Text(
                                       provider.addCategoryOffer[index]['label'],
-                                      style: const TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 15),
+                                      style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.textPrimaryColor, fontSize: 15),
                                     ),
                                     TextButton(
                                       onPressed: () {},
                                       child: Text(
                                         StrRef.viewAll,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: 'Lato',
-                                          fontSize: 13,
-                                          color: ColorRef.blue0250A4,
-                                        ),
+                                        style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
                                       ),
                                     )
                                   ],
