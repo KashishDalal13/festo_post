@@ -43,11 +43,6 @@ class FrameEditorProvider extends ChangeNotifier {
   }
 
   void onNext(BuildContext context, final String label, String? selectedImage) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ImageEditView(label: label, selectedImage: selectedImage),
-      ),
-    );
+    NavigationService.routeToNamed("imageEdit", arguments: [label, selectedImage]);
   }
 }

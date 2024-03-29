@@ -17,8 +17,6 @@ class FrameEditorView extends StatelessWidget {
           child: SafeArea(
             child: Scaffold(
               appBar: AppBar(
-                backgroundColor: ColorRef.white,
-                surfaceTintColor: ColorRef.white,
                 leading: IconButton(
                   onPressed: () => provider.onBack(),
                   icon: Icon(

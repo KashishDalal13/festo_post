@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:festo_post/app_export.dart';
 
 class ImageEditProvider extends ChangeNotifier {
@@ -208,64 +210,67 @@ class ImageEditProvider extends ChangeNotifier {
         context: context,
         barrierColor: Colors.black.withOpacity(0.3),
         builder: (BuildContext context) {
-          return Dialog(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            alignment: Alignment.center,
-            child: SizedBox(
-              height: 260,
-              width: 300,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: SvgPicture.asset(SvgPath.cancel),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 110),
-                    decoration: BoxDecoration(
-                      color: ColorRef.black000000.withOpacity(0.6),
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: Dialog(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              alignment: Alignment.center,
+              child: SizedBox(
+                height: 260,
+                width: 300,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context),
+                      child: SvgPicture.asset(SvgPath.cancel),
                     ),
-                    child: Column(
-                      children: [
-                        TextField(
-                          style: TextStyle(color: ColorRef.white),
-                          decoration: InputDecoration(
-                            hintText: 'Write Here',
-                            hintStyle: TextStyle(color: ColorRef.white),
-                            border: InputBorder.none,
-                          ),
-                          onChanged: (value) => text = value,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context, text),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 90),
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                    const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 110),
                       decoration: BoxDecoration(
-                        color: ColorRef.yellowFFA500,
-                        borderRadius: BorderRadius.circular(10),
+                        color: ColorRef.black000000.withOpacity(0.6),
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
                       ),
-                      child: Text('Done', style: TextStyle(color: ColorRef.black202020)),
+                      child: Column(
+                        children: [
+                          TextField(
+                            style: TextStyle(color: ColorRef.white),
+                            decoration: InputDecoration(
+                              hintText: 'Write Here',
+                              hintStyle: TextStyle(color: ColorRef.white),
+                              border: InputBorder.none,
+                            ),
+                            onChanged: (value) => text = value,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context, text),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 90),
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                          color: ColorRef.yellowFFA500,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text('Done', style: TextStyle(color: ColorRef.black202020)),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

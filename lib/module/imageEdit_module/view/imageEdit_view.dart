@@ -1,15 +1,13 @@
 import 'package:festo_post/app_export.dart';
 
 class ImageEditView extends StatelessWidget {
-  final String? label;
-  final String? selectedImage;
-
-  const ImageEditView({Key? key, this.label, this.selectedImage}) : super(key: key);
+  const ImageEditView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    List argument = ModalRoute.of(context)!.settings.arguments as List;
     return ChangeNotifierProvider(
       create: (BuildContext context) => ImageEditProvider(),
       builder: (context, child) {
@@ -17,8 +15,6 @@ class ImageEditView extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             appBar: AppBar(
-              backgroundColor: ColorRef.white,
-              surfaceTintColor: ColorRef.white,
               leading: IconButton(
                 onPressed: () => provider.onBack(),
                 icon: Icon(
@@ -28,7 +24,7 @@ class ImageEditView extends StatelessWidget {
                 ),
               ),
               centerTitle: true,
-              title: Text(label ?? '', style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
+              title: Text(argument![0], style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
               actions: [
                 TextButton(
                   onPressed: () {},
@@ -107,7 +103,7 @@ class ImageEditView extends StatelessWidget {
                             },
                             background: Stack(
                               children: [
-                                Image.asset(selectedImage ?? "", height: 350, width: 370, fit: BoxFit.cover),
+                                Image.asset(argument![1], height: 350, width: 370, fit: BoxFit.cover),
                                 Column(
                                   children: [
                                     Row(
@@ -294,7 +290,7 @@ class ImageEditView extends StatelessWidget {
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: () {
-                                provider.edit(index: index, context: context,provider: provider);
+                                provider.edit(index: index, context: context, provider: provider);
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
