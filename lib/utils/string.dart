@@ -77,7 +77,8 @@ class StrRef {
       delete = "Delete Brand?",
       deleteSure = "You are trying to delete active brand. You won’t be able to retrieve this brand and it’s subscription. Are you sure you want to delete this brand?",
       no="No",
-      yes="Yes";
+      yes="Yes",
+      selectPlan="Select Subscription Plan";
 }
 
 class SvgPath {
