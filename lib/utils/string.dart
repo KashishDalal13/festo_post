@@ -66,7 +66,16 @@ class StrRef {
       Fonts = "Fonts",
       downloadText = "Enhance Your Festive Posts with Vibrant Stickers!",
       download = "Download",
-      downloadShare = "Download & Share";
+      downloadShare = "Download & Share",
+      schedule = "Schedule This Post",
+      shareFacebook = "Share To Facebook",
+      shareInstagram = "Share To Instagram",
+      sharePost = "Share Post On",
+      myBrand = "My Brands and Subscription",
+      technology = "Technology and Software",
+      subscribe = "Subscribe",
+      delete = "Delete Brand?",
+      deleteSure = "You are trying to delete active brand. You won’t be able to retrieve this brand and it’s subscription. Are you sure you want to delete this brand?";
 }
 
 class SvgPath {
@@ -116,6 +125,12 @@ class SvgPath {
       italic = 'assets/svg/italic.svg',
       underline = 'assets/svg/underline.svg',
       color_selection = 'assets/svg/color_selection.svg',
+      schedule = 'assets/svg/schedule.svg',
+      downArrow = 'assets/svg/down_arrow.svg',
+      iconFrame = 'assets/svg/iconFrame.svg',
+      trash = 'assets/svg/trash.svg',
+      brandadd = 'assets/svg/brandadd.svg',
+
 
 
       carousel = 'assets/png/Carousel.png',

@@ -94,6 +94,7 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                             });
                           },
                           child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             height: 50,
                             width: 170,
                             decoration: BoxDecoration(

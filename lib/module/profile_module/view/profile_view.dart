@@ -56,7 +56,7 @@ class ProfileView extends StatelessWidget {
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, fontFamily: "Lato", color: ColorRef.textPrimaryColor),
                             ),
                             Text(StrRef.phnNo,
-                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, fontFamily: "Lato", color: BoolRef.themeChange ? ColorRef.yellowFFA500 : ColorRef.blue0250A4)),
+                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, fontFamily: "Lato", color: BoolRef.themeChange ? ColorRef.whiteFFFFFF : ColorRef.blue0250A4)),
                           ],
                         ),
                       )
@@ -81,7 +81,7 @@ class ProfileView extends StatelessWidget {
                             provider.profileDetails[index]['label'],
                             style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.textPrimaryColor, fontSize: 15),
                           ),
-                          onTap: () {},
+                          onTap: () => NavigationService.routeToNamed(provider.profileDetails[index]['route']),
                         ),
                       );
                     },

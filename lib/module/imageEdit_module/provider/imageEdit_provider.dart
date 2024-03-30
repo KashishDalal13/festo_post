@@ -163,26 +163,43 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onColorOpacityChange(double opacity) {
+  void onColorOpacityChange(double opacity, CustomItem item) {
     selectedColor = selectedColor.withOpacity(opacity);
+    item.textStyle = TextStyle(color: selectedColor.withOpacity(opacity));
     notifyListeners();
   }
 
-  void toggleTextStyle(int index) {
+  void toggleTextStyle(int index, CustomItem item) {
     selectedTextStyle = index.toString();
     letters[index]['apply'] = !letters[index]['apply'];
     debugPrint("${letters[index]['apply']}");
     if (selectedTextStyle == '0') {
       isBold = !isBold;
+      if (isBold) {
+        item.textStyle = const TextStyle(fontWeight: FontWeight.w900);
+      } else {
+        item.textStyle = const TextStyle(fontWeight: FontWeight.w400);
+      }
     } else if (selectedTextStyle == '1') {
       isItalic = !isItalic;
+      if (isItalic) {
+        item.textStyle = const TextStyle(fontStyle: FontStyle.italic);
+      } else {
+        item.textStyle = const TextStyle(fontStyle: FontStyle.normal);
+      }
     } else if (selectedTextStyle == '2') {
       isUnderline = !isUnderline;
+      if (isUnderline) {
+        item.textStyle = const TextStyle(decoration:TextDecoration.underline);
+      } else {
+        item.textStyle = const TextStyle(decoration: TextDecoration.none);
+      }
+
     }
     notifyListeners();
   }
 
-  void toggleTextCase(String selectedCase, int index) {
+  void toggleTextCase(String selectedCase, int index,CustomItem item) {
     selectedCaseIndex = index.toString();
     if (selectedCase == 'AA') {
       selectedTextCase = 'AA';
@@ -191,6 +208,7 @@ class ImageEditProvider extends ChangeNotifier {
     if (selectedCase == 'Aa') {
       selectedTextCase = 'Aa';
       isUppercase = false;
+
     }
     if (selectedCase == 'aa') {
       selectedTextCase = 'aa';
@@ -399,11 +417,6 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onCheck() {
-    NavigationService.replaceToNamed('downloadPost');
-    notifyListeners();
-  }
-
   File? capturedImageData;
 
   Future<Uint8List?> captureEditedImage() async {
@@ -413,20 +426,36 @@ class ImageEditProvider extends ChangeNotifier {
     NavigationService.routeTo(MaterialPageRoute(builder: (context) => DownloadPostView(imageData: byteData?.buffer.asUint8List())));
     return byteData?.buffer.asUint8List();
   }
+
+  List<CustomItem> items = [];
+
+  void updateItemTextStyle(String id, TextStyle newTextStyle) {
+    debugPrint("$items");
+    final index = items.indexWhere((item) => item.id == id);
+    if (index != -1) {
+      items[index] = items[index].copyWith(textStyle: newTextStyle);
+      notifyListeners();
+    }
+  }
 }
 
 class CustomItem extends StackBoardItem {
-  const CustomItem({
+  CustomItem({
     this.customText,
+    TextStyle? textStyle, // Include TextStyle property
     Future<bool> Function()? onDel,
     int? id,
   }) : super(
           child: const Text(''),
           onDel: onDel,
           id: id,
-        );
+        ) {
+    // Ensure that each CustomItem has its own instance of TextStyle
+    this.textStyle = textStyle?.copyWith();
+  }
 
   final String? customText;
+  TextStyle? textStyle; // TextStyle property
 
   @override
   CustomItem copyWith({
@@ -437,10 +466,12 @@ class CustomItem extends StackBoardItem {
     dynamic Function(bool)? onEdit,
     bool? tapToEdit,
     Color? color,
+    TextStyle? textStyle, // Include textStyle in copyWith
   }) =>
       CustomItem(
         onDel: onDel,
         id: id,
         customText: customText ?? customText,
-      );
+        textStyle: textStyle ?? this.textStyle,
+      )..textStyle = textStyle?.copyWith();
 }

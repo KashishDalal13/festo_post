@@ -28,9 +28,12 @@ class ColorRef {
       red8C0016 = const Color(0xff8C0016),
       black202020 = const Color(0xff202020),
       whiteFFFFFF = const Color(0xffFFFFFF),
+      greyBCBCBC = const Color(0xffBCBCBC),
+      greyAFAFAF = const Color(0xffAFAFAF),
+      grey494949 = const Color(0xff494949),
+      grey757575 = const Color(0xff757575),
 
-
-  //dark them
+       //dark them
       grey304359 = const Color(0xff304359),
       greyDDDCDC = const Color(0xffDDDCDC),
       black1E2A38 = const Color(0xff1E2A38),
@@ -44,8 +47,6 @@ class ColorRef {
       greyB0B0B0 = const Color(0xffB0B0B0),
       grey5D6F84 = const Color(0xff5D6F84),
       grey5385B6C = const Color(0xff385B6C)
-
-
 ;
   static Color? commonBgColor;
   static Color? backgroundColor, buttonColor, buttonTextColor, textPrimaryColor, containerBackgroundColor;
