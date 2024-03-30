@@ -350,6 +350,31 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  onScreenTap() {
+    inAction = false;
+    activeEditableItem = EditableItem();
+    notifyListeners();
+  }
+
+  onWidgetTap({required BuildContext context, required ImageEditProvider provider, required EditableItem data}) {
+    inAction = true;
+    activeEditableItem = data;
+    if (activeEditableItem.editWidget.runtimeType == Text) {
+      showModalBottomSheet(
+        context: context,
+        backgroundColor: ColorRef.transparent,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return EditingBottomSheet(provider: provider, editableItem: data);
+            },
+          );
+        },
+      );
+    }
+    notifyListeners();
+  }
+
   onPointerUp() {
     inAction = false;
     notifyListeners();
@@ -379,11 +404,11 @@ class ImageEditProvider extends ChangeNotifier {
     if (height < 750 && width < 370) {
       debugPrint("Small device");
       h = height / 2.60;
-      w = width / 3.2;
+      w = width / 1.45;
     } else if (height < 800 && width < 370) {
       debugPrint("Medium device");
-      h = height / 1.55;
-      w = width / 3.2;
+      h = height / 3.05;
+      w = width / 3.30;
     } else if (height > 800 && width > 370) {
       debugPrint("Large device");
       h = height / 1.56;

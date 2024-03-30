@@ -84,14 +84,10 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 16, fontFamily: 'Lato', fontWeight: FontWeight.w400, color: ColorRef.black202020),
                         ),
-                        const SizedBox(
-                          height: 25,
-                        ),
+                        const SizedBox(height: 25),
                         GestureDetector(
                           onTap: () {
-                            setState(() {
-                              provider.onChangeStickerView();
-                            });
+                            setState(() => provider.onChangeStickerView());
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
