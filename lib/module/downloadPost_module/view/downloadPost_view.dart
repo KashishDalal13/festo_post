@@ -19,7 +19,7 @@ class DownloadPostView extends StatelessWidget {
             child: Scaffold(
               appBar: AppBar(
                 leading: IconButton(
-                  onPressed: () => provider.onBack(),
+                  onPressed: () => NavigationService.goBack(),
                   icon: Icon(Icons.arrow_back_ios_new_rounded, size: 24, color: ColorRef.textPrimaryColor),
                 ),
                 centerTitle: true,

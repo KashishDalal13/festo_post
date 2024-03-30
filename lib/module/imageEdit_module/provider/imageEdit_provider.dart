@@ -352,11 +352,11 @@ class ImageEditProvider extends ChangeNotifier {
 
   onScreenTap() {
     inAction = false;
-    activeEditableItem = EditableItem();
+    // activeEditableItem = EditableItem();
     notifyListeners();
   }
 
-  onWidgetTap({required BuildContext context, required ImageEditProvider provider, required EditableItem data}) {
+ /* onWidgetTap({required BuildContext context, required ImageEditProvider provider, required EditableItem data}) {
     inAction = true;
     activeEditableItem = data;
     if (activeEditableItem.editWidget.runtimeType == Text) {
@@ -373,7 +373,7 @@ class ImageEditProvider extends ChangeNotifier {
       );
     }
     notifyListeners();
-  }
+  }*/
 
   onPointerUp() {
     inAction = false;

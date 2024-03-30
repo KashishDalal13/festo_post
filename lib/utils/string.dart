@@ -75,7 +75,9 @@ class StrRef {
       technology = "Technology and Software",
       subscribe = "Subscribe",
       delete = "Delete Brand?",
-      deleteSure = "You are trying to delete active brand. You won’t be able to retrieve this brand and it’s subscription. Are you sure you want to delete this brand?";
+      deleteSure = "You are trying to delete active brand. You won’t be able to retrieve this brand and it’s subscription. Are you sure you want to delete this brand?",
+      no="No",
+      yes="Yes";
 }
 
 class SvgPath {

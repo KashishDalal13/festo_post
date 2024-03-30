@@ -91,30 +91,37 @@ class MyBrandView extends StatelessWidget {
                                             const SizedBox(
                                               height: 10,
                                             ),
-                                            Text(StrRef.deleteSure, style: TextStyle(fontFamily: 'Lato', fontSize: 16, fontWeight: FontWeight.w400,color: ColorRef.grey757575)),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                                              child: Text(StrRef.deleteSure,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontFamily: 'Lato', fontSize: 16, fontWeight: FontWeight.w400, color: ColorRef.grey757575)),
+                                            ),
                                             Row(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
+                                                GestureDetector(
+                                                  onTap: () => NavigationService.goBack(),
+                                                  child: Container(
+                                                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                                                    margin: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+                                                    decoration: BoxDecoration(
+                                                      color: ColorRef.greyE7E7E7,
+                                                      borderRadius: BorderRadius.circular(10),
+                                                    ),
+                                                    child:
+                                                        Text(StrRef.no, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
+                                                  ),
+                                                ),
                                                 Container(
-                                                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                                                  margin:  const EdgeInsets.symmetric(vertical: 5),
+                                                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                                                  margin: const EdgeInsets.symmetric(horizontal: 5),
                                                   decoration: BoxDecoration(
                                                     color: ColorRef.yellowFFA500,
                                                     borderRadius: BorderRadius.circular(10),
                                                   ),
-                                                  child: TextButton(
-                                                    child: Text('Apply', style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
-                                                    onPressed: () => NavigationService.goBack(),
-                                                  ),
-                                                ), Container(
-                                                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                                                  decoration: BoxDecoration(
-                                                    color: ColorRef.yellowFFA500,
-                                                    borderRadius: BorderRadius.circular(10),
-                                                  ),
-                                                  child: TextButton(
-                                                    child: Text('Apply', style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
-                                                    onPressed: () => NavigationService.goBack(),
-                                                  ),
+                                                  child: Text(StrRef.yes, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
                                                 ),
                                               ],
                                             ),

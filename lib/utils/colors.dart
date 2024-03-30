@@ -32,6 +32,7 @@ class ColorRef {
       greyAFAFAF = const Color(0xffAFAFAF),
       grey494949 = const Color(0xff494949),
       grey757575 = const Color(0xff757575),
+      greyE7E7E7 = const Color(0xffE7E7E7),
 
        //dark them
       grey304359 = const Color(0xff304359),
