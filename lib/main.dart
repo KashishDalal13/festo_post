@@ -1,4 +1,5 @@
 import 'package:festo_post/app_export.dart';
+import 'package:festo_post/module/profile_module/view/brand_details_view.dart';
 
 
 
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
               'downloadPost': (context) => const DownloadPostView(),
               'myBrand': (context) => const MyBrandView(),
               'SubscriptionPlan': (context) => const SubscriptionPlanView(),
+              'brandDetails': (context) => const BrandDetailsView(),
             },
           );
         });

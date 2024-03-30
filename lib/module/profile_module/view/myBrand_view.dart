@@ -8,9 +8,9 @@ class MyBrandView extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return ChangeNotifierProvider(
-      create: (BuildContext context) => MyBrandProvider(),
+      create: (BuildContext context) => ProfileProvider(),
       builder: (context, child) {
-        MyBrandProvider provider = context.watch<MyBrandProvider>();
+        ProfileProvider provider = context.watch<ProfileProvider>();
         return Theme(
           data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
           child: Scaffold(
@@ -67,10 +67,13 @@ class MyBrandView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Column(
                           children: [
-                            SvgPicture.asset(
-                              SvgPath.iconFrame,
-                              height: 25,
-                              width: 25,
+                            GestureDetector(
+                              onTap:() => NavigationService.routeToNamed('brandDetails'),
+                              child: SvgPicture.asset(
+                                SvgPath.iconFrame,
+                                height: 25,
+                                width: 25,
+                              ),
                             ),
                             const SizedBox(
                               height: 10,
@@ -143,11 +146,11 @@ class MyBrandView extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: SvgPicture.asset(SvgPath.brandadd, height: 50, width: 50),
+                  child: GestureDetector(onTap:()=>NavigationService.routeToNamed('brandDetails'),child: SvgPicture.asset(SvgPath.brandadd, height: 50, width: 50)),
                 ),
                 const Spacer(),
                 GestureDetector(
-                  onTap: () => provider.onSubscribe(),
+                  onTap: () => NavigationService.replaceToNamed('SubscriptionPlan'),
                   child: Container(
                     height: 40,
                     margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 50),

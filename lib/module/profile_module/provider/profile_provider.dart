@@ -12,8 +12,16 @@ class ProfileProvider extends ChangeNotifier{
 
   ];
 
+  List<Map<String, dynamic>> addDetail = [
+    {"svg": SvgPath.tag, "label": StrRef.brandName, "controller": TextEditingController()},
+    {"svg": SvgPath.suitcase, "label": StrRef.brandCat, "controller": TextEditingController()},
+    {"svg": SvgPath.phone, "label": StrRef.contact, "controller" "": TextEditingController()},
+    {"svg": SvgPath.email, "label": StrRef.email, "controller": TextEditingController()},
+    {"svg": SvgPath.web, "label": StrRef.website, "controller": TextEditingController()},
+    {"svg": SvgPath.location, "label": StrRef.businessAddress, "controller": TextEditingController()},
+  ];
+
   onBack() {
     NavigationService.goBack();
   }
-
 }

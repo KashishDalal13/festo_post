@@ -46,8 +46,6 @@ export 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.d
 export 'package:festo_post/module/frameEditing_module/provider/frameEditing_provider.dart';
 export 'package:festo_post/module/dashboard_module/provider/dashboard_provider.dart';
 export 'package:festo_post/module/downloadPost_module/provider/downloadPost_provider.dart';
-export 'package:festo_post/module/myBrand_module/provider/myBrand_provider.dart';
-export 'package:festo_post/module/subscriptionPlan_module/provider/subscriptionPlan_provider.dart';
 
 //view
 export 'package:festo_post/module/splash_module/view/splash_screen_view.dart';
@@ -67,8 +65,8 @@ export 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dar
 export 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
 export 'package:festo_post/module/dashboard_module/view/setting_drawer_view.dart';
 export 'package:festo_post/module/downloadPost_module/view/downloadPost_view.dart';
-export 'package:festo_post/module/myBrand_module/view/myBrand_view.dart';
-export 'package:festo_post/module/subscriptionPlan_module/view/subscription_view.dart';
+export 'package:festo_post/module/profile_module/view/myBrand_view.dart';
+export 'package:festo_post/module/profile_module/view/subscription_view.dart';
 
 
 //data model

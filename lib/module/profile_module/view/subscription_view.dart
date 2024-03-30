@@ -8,14 +8,11 @@ class SubscriptionPlanView extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return ChangeNotifierProvider(
-      create: (BuildContext context) => SubscriptionPlanProvider(),
+      create: (BuildContext context) => ProfileProvider(),
       builder: (context, child) {
-        SubscriptionPlanProvider provider = context.watch<SubscriptionPlanProvider>();
-        return Theme(
-          data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
-          child: Scaffold(
-            body: Text("plan"),
-          ),
+        ProfileProvider provider = context.watch<ProfileProvider>();
+        return const Scaffold(
+          body: Text("plan"),
         );
       },
     );
