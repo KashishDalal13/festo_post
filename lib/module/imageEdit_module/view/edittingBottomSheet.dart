@@ -2,19 +2,19 @@ import 'package:festo_post/app_export.dart';
 
 class EditingBottomSheet extends StatefulWidget {
   final ImageEditProvider? provider;
+  final EditableItem? editableItem;
 
-  const EditingBottomSheet({super.key, this.provider});
+  const EditingBottomSheet({super.key, this.provider, this.editableItem});
 
   @override
   State<EditingBottomSheet> createState() => _EditingBottomSheetState();
 }
 
 class _EditingBottomSheetState extends State<EditingBottomSheet> {
-
-
   @override
   Widget build(BuildContext context) {
     ImageEditProvider provider = widget.provider!;
+    EditableItem data = widget.editableItem!;
     return Container(
       height: 230,
       decoration: BoxDecoration(
@@ -108,7 +108,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                       children: provider.letters.map((e) {
                         int index = provider.letters.indexOf(e);
                         return GestureDetector(
-                          onTap: () => setState(() => provider.toggleTextStyle(index)),
+                          onTap: () => setState(() => provider.toggleTextStyle(index: index, data: data)),
                           child: Container(
                             padding: const EdgeInsets.all(12),
                             margin: const EdgeInsets.all(5),

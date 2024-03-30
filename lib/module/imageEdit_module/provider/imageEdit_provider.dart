@@ -1,6 +1,8 @@
 import 'dart:ui' as ui;
 
 import 'package:festo_post/app_export.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ImageEditProvider extends ChangeNotifier {
   String framecurrentIndex = "";
@@ -170,12 +172,14 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleTextStyle(int index) {
+  void toggleTextStyle({required int index, required EditableItem data}) {
     selectedTextStyle = index.toString();
     letters[index]['apply'] = !letters[index]['apply'];
-    debugPrint("${letters[index]['apply']}");
+    debugPrint("${letters[index]['apply']} ${data.textStyle}");
     if (selectedTextStyle == '0') {
       isBold = !isBold;
+      activeEditableItem.textStyle = const TextStyle(fontWeight: FontWeight.w600);
+      notifyListeners();
     } else if (selectedTextStyle == '1') {
       isItalic = !isItalic;
     } else if (selectedTextStyle == '2') {
@@ -252,7 +256,11 @@ class ImageEditProvider extends ChangeNotifier {
                       onTap: () {
                         Navigator.pop(context);
                         if (text.isNotEmpty) {
-                          editableItem.add(EditableItem(editWidget: Text(text)));
+                          editableItem.add(EditableItem(
+                              editWidget: Text(
+                            text,
+                            style: const TextStyle(fontWeight: FontWeight.w400),
+                          )));
                         }
                       },
                       child: Container(
@@ -336,8 +344,9 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  onWidgetTap({required BuildContext context, required ImageEditProvider provider}) {
+  onWidgetTap({required BuildContext context, required ImageEditProvider provider, required EditableItem data}) {
     inAction = true;
+    activeEditableItem = data;
     if (activeEditableItem.editWidget.runtimeType == Text) {
       showModalBottomSheet(
         context: context,
@@ -345,7 +354,7 @@ class ImageEditProvider extends ChangeNotifier {
         builder: (BuildContext context) {
           return StatefulBuilder(
             builder: (context, setState) {
-              return EditingBottomSheet(provider: provider);
+              return EditingBottomSheet(provider: provider, editableItem: data);
             },
           );
         },

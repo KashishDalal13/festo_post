@@ -328,49 +328,51 @@ class ImageEditView extends StatelessWidget {
                                 }
                               },
                             ),*/
-                            ...provider.editableItem.map((e) {
+
+                            //custom stack items
+                            /*...provider.editableItem.map((e) {
                               return Positioned(
                                 top: e.top!.toDouble(),
                                 left: e.left!.toDouble(),
-                                child: Transform.scale(
-                                  scale: e.scale,
-                                  child: Transform.rotate(
-                                    angle: e.rotation!,
-                                    child: Listener(
-                                      onPointerDown: (details) => provider.onPointerDown(details: details, data: e),
-                                      onPointerUp: (details) => provider.onPointerUp(),
-                                      child: GestureDetector(
-                                        onTap: () => provider.onWidgetTap(provider: provider, context: context),
-                                        child: Stack(
-                                          alignment: const Alignment(1.5, 4.1),
-                                          children: [
-                                            Stack(
-                                              alignment: const Alignment(1.5, -4.1),
-                                              children: [
-                                                Stack(
-                                                  alignment: const Alignment(-1.5, -4.1),
-                                                  children: [
-                                                    Container(
+                                child: Transform.rotate(
+                                  angle: e.rotation!,
+                                  child: Listener(
+                                    onPointerDown: (details) => provider.onPointerDown(details: details, data: e),
+                                    onPointerUp: (details) => provider.onPointerUp(),
+                                    child: GestureDetector(
+                                      onTap: () => provider.onWidgetTap(provider: provider, context: context, data: e),
+                                      child: Stack(
+                                        alignment: const Alignment(1.5, 4.1),
+                                        children: [
+                                          Stack(
+                                            alignment: const Alignment(1.5, -4.1),
+                                            children: [
+                                              Stack(
+                                                alignment: const Alignment(-1.5, -4.1),
+                                                children: [
+                                                  Transform.scale(
+                                                    scale: e.scale,
+                                                    child: Container(
                                                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                                                         decoration: e.editWidget == provider.activeEditableItem.editWidget
                                                             ? BoxDecoration(color: ColorRef.black.withOpacity(0.3), border: Border.all(color: Colors.black, width: 0.5))
                                                             : null,
                                                         child: e.editWidget!),
-                                                    const Icon(Icons.cancel_outlined),
-                                                  ],
-                                                ),
-                                                const Icon(Icons.cancel_outlined),
-                                              ],
-                                            ),
-                                            const Icon(Icons.cancel_outlined),
-                                          ],
-                                        ),
+                                                  ),
+                                                  const Icon(Icons.cancel_outlined),
+                                                ],
+                                              ),
+                                              const Icon(Icons.cancel_outlined),
+                                            ],
+                                          ),
+                                          const Icon(Icons.cancel_outlined),
+                                        ],
                                       ),
                                     ),
                                   ),
                                 ),
                               );
-                            })
+                            })*/
                           ],
                         ),
                       ),
