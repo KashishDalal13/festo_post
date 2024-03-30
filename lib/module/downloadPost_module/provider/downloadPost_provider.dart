@@ -1,9 +1,11 @@
 import 'package:festo_post/app_export.dart';
-class DownloadPostProvider extends ChangeNotifier {
 
-  Future<void> saveImage(Uint8List bytes) async {
-    final directory = await getExternalStorageDirectory();
-    final image = File('${directory!.path}/captured_image.png');
-    await image.writeAsBytes(bytes);
+class DownloadPostProvider extends ChangeNotifier {
+  Uint8List? downloadImage;
+
+  onDownload(Uint8List imageData) async {
+    downloadImage = imageData;
+    await ImageGallerySaver.saveImage(downloadImage!,quality: 100);
+    debugPrint("Image saved to gallery");
   }
 }

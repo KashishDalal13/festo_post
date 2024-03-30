@@ -107,7 +107,7 @@ class MyBrandView extends StatelessWidget {
                                                 GestureDetector(
                                                   onTap: () => NavigationService.goBack(),
                                                   child: Container(
-                                                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                                                    padding:const EdgeInsets.symmetric(horizontal:40,vertical: 8),
                                                     margin: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
                                                     decoration: BoxDecoration(
                                                       color: ColorRef.greyE7E7E7,
@@ -118,7 +118,7 @@ class MyBrandView extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Container(
-                                                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                                                  padding:const EdgeInsets.symmetric(horizontal:40,vertical: 8),
                                                   margin: const EdgeInsets.symmetric(horizontal: 5),
                                                   decoration: BoxDecoration(
                                                     color: ColorRef.yellowFFA500,
@@ -150,7 +150,7 @@ class MyBrandView extends StatelessWidget {
                 ),
                 const Spacer(),
                 GestureDetector(
-                  onTap: () => NavigationService.replaceToNamed('SubscriptionPlan'),
+                  onTap: () => NavigationService.routeToNamed('SubscriptionPlan'),
                   child: Container(
                     height: 40,
                     margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 50),

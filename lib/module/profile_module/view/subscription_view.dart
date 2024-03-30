@@ -11,7 +11,11 @@ class SubscriptionPlanView extends StatelessWidget {
       create: (BuildContext context) => ProfileProvider(),
       builder: (context, child) {
         ProfileProvider provider = context.watch<ProfileProvider>();
-        return const Scaffold(
+        return Scaffold(
+          appBar: AppBar(
+              leading: IconButton(onPressed: () => provider.onBack(), icon: Icon(Icons.arrow_back_ios_rounded, size: 20, color: ColorRef.textPrimaryColor)),
+              centerTitle: true,
+              title: Text(StrRef.selectPlan, style: const TextStyle(fontFamily: 'Lato', fontSize: 18))),
           body: Text("plan"),
         );
       },

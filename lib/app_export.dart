@@ -21,6 +21,7 @@ export 'package:lottie/lottie.dart';
 export 'package:carousel_slider/carousel_slider.dart';
 export 'package:flutter/rendering.dart';
 export 'package:path_provider/path_provider.dart';
+export 'package:image_gallery_saver/image_gallery_saver.dart';
 
 //utils
 export 'package:festo_post/utils/bool.dart';
@@ -66,7 +67,9 @@ export 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
 export 'package:festo_post/module/dashboard_module/view/setting_drawer_view.dart';
 export 'package:festo_post/module/downloadPost_module/view/downloadPost_view.dart';
 export 'package:festo_post/module/profile_module/view/myBrand_view.dart';
+export 'package:festo_post/module/profile_module/view/brand_details_view.dart';
 export 'package:festo_post/module/profile_module/view/subscription_view.dart';
+export 'package:festo_post/module/profile_module/view/myPost_view.dart';
 
 
 //data model

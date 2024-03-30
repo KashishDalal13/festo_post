@@ -35,23 +35,26 @@ class DownloadPostView extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    height: 50,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      color: ColorRef.yellowFFA500,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          StrRef.download,
-                          style: TextStyle(fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.bold, color: ColorRef.black202020),
-                        ),
-                        Lottie.asset(SvgPath.download),
-                      ],
+                  GestureDetector(
+                    onTap: ()=>provider.onDownload(imageData!),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      height: 50,
+                      width: 170,
+                      decoration: BoxDecoration(
+                        color: ColorRef.yellowFFA500,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            StrRef.download,
+                            style: TextStyle(fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.bold, color: ColorRef.black202020),
+                          ),
+                          Lottie.asset(SvgPath.download),
+                        ],
+                      ),
                     ),
                   ),
                   // const Spacer(),

@@ -49,6 +49,7 @@ dependencies:
   web_color_picker: ^1.0.4
   flutter_colorpicker: ^1.0.3
   path_provider: ^2.1.2
+  image_gallery_saver: ^2.0.3
 
 dev_dependencies:
   flutter_test:

@@ -77,7 +77,15 @@ class StrRef {
       delete = "Delete Brand?",
       deleteSure = "You are trying to delete active brand. You won’t be able to retrieve this brand and it’s subscription. Are you sure you want to delete this brand?",
       no="No",
-      yes="Yes";
+      yes="Yes",
+      selectPlan="Select Subscription Plan",
+      logoutSure="Are You Sure You Want to Logout ?",
+      logoutBtn="Log Out",
+      AddName="Add Your Name",
+      AddPhone="Add Your Mobile",
+      update="Update",
+      myPost="Your Created Post";
+
 }
 
 class SvgPath {
@@ -132,6 +140,7 @@ class SvgPath {
       iconFrame = 'assets/svg/iconFrame.svg',
       trash = 'assets/svg/trash.svg',
       brandadd = 'assets/svg/brandadd.svg',
+      cancelEdit = 'assets/svg/cancelEdit.svg',
 
 
 

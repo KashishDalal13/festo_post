@@ -35,7 +35,7 @@ class SettingDrawer extends StatelessWidget {
                   decoration: BoxDecoration(border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6), borderRadius: BorderRadius.circular(15)),
                   child: ListTile(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                    leading: SvgPicture.asset(item['icon'], colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn)),
+                    leading: SvgPicture.asset(item['icon'],height: 20,width: 20, colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn)),
                     trailing: item['label'] != StrRef.darkTheme
                         ? Icon(Icons.arrow_forward_ios_rounded, size: 20, color: ColorRef.textPrimaryColor)
                         : GestureDetector(
