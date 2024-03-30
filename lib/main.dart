@@ -1,6 +1,7 @@
 import 'package:festo_post/app_export.dart';
 
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Injector.getTheme();
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
               'imageEdit': (context) => const ImageEditView(),
               'downloadPost': (context) => const DownloadPostView(),
               'myBrand': (context) => const MyBrandView(),
+              'SubscriptionPlan': (context) => const SubscriptionPlanView(),
             },
           );
         });

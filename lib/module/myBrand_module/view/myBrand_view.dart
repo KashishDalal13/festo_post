@@ -147,7 +147,7 @@ class MyBrandView extends StatelessWidget {
                 ),
                 const Spacer(),
                 GestureDetector(
-                  onTap: () => provider.onBack(),
+                  onTap: () => provider.onSubscribe(),
                   child: Container(
                     height: 40,
                     margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 50),

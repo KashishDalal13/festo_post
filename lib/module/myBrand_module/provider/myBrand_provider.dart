@@ -6,4 +6,8 @@ class MyBrandProvider extends ChangeNotifier {
     NavigationService.goBack();
   }
 
+  onSubscribe() {
+    NavigationService.replaceToNamed('SubscriptionPlan');
+  }
+
 }
