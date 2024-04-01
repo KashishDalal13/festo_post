@@ -70,6 +70,12 @@ class ProfileProvider extends ChangeNotifier {
     {"svg": SvgPath.location, "label": StrRef.businessAddress, "controller": TextEditingController()},
   ];
 
+  List<Map<String, dynamic>> subscription = [
+    {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
+    {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
+    {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
+  ];
+
   List<String> category = ['Agriculture', 'Advertising', 'Technology & Software', 'Beauty', 'Education', 'Construction', 'Alternative Medicine'];
 
   bool isExpand = false;

@@ -69,6 +69,8 @@ export 'package:festo_post/module/downloadPost_module/view/downloadPost_view.dar
 export 'package:festo_post/module/profile_module/view/myBrand_view.dart';
 export 'package:festo_post/module/profile_module/view/brand_details_view.dart';
 export 'package:festo_post/module/profile_module/view/subscription_view.dart';
+export 'package:festo_post/module/profile_module/view/payment_view.dart';
+export 'package:festo_post/module/profile_module/view/applyCouponDialogue_view.dart';
 export 'package:festo_post/module/profile_module/view/myPost_view.dart';
 
 

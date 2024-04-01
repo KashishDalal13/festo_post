@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
               'myBrand': (context) => const MyBrandView(),
               'SubscriptionPlan': (context) => const SubscriptionPlanView(),
               'brandDetails': (context) => const BrandDetailsView(),
+              'payment': (context) => const PaymentView(),
               'myPost': (context) => const MyPostView(),
             },
           );
