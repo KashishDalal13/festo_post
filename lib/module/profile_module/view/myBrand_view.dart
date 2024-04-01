@@ -47,7 +47,7 @@ class MyBrandView extends StatelessWidget {
                         child: Image.asset(SvgPath.logo),
                       ),
                       Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 00, vertical: 10.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -64,7 +64,7 @@ class MyBrandView extends StatelessWidget {
                       ),
                       const Spacer(),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
                         child: Column(
                           children: [
                             GestureDetector(
@@ -148,7 +148,7 @@ class MyBrandView extends StatelessWidget {
                 ),
                 const Spacer(),
                 GestureDetector(
-                  onTap: () => NavigationService.replaceToNamed('SubscriptionPlan'),
+                  onTap: () => NavigationService.routeToNamed('SubscriptionPlan'),
                   child: Container(
                     height: 40,
                     margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 50),

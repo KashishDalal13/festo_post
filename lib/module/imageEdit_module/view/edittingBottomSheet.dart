@@ -249,22 +249,22 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              ColorPicker(
-                                pickerColor: provider.selectedColor,
-                                pickerAreaBorderRadius: BorderRadius.circular(10.0),
-                                onColorChanged: (Color color) {
-                                  setState(() {
-                                    provider.selectedColor = color;
-                                    provider.onColorChange(color);
-                                    stackBoardItem.textStyle=TextStyle(color: color);
-                                  });
-                                },
-                                colorPickerWidth: 232.0,
-                                pickerAreaHeightPercent: 0.7,
-                                displayThumbColor: false,
-                                enableAlpha: false,
-                                showLabel: false,
-                              ),
+                              // ColorPicker(
+                              //   pickerColor: provider.selectedColor,
+                              //   pickerAreaBorderRadius: BorderRadius.circular(10.0),
+                              //   onColorChanged: (Color color) {
+                              //     setState(() {
+                              //       provider.selectedColor = color;
+                              //       provider.onColorChange(color);
+                              //       stackBoardItem.textStyle=TextStyle(color: color);
+                              //     });
+                              //   },
+                              //   colorPickerWidth: 232.0,
+                              //   pickerAreaHeightPercent: 0.7,
+                              //   displayThumbColor: false,
+                              //   enableAlpha: false,
+                              //   showLabel: false,
+                              // ),
                               Container(
                                 height: 35,
                                 width: 100,

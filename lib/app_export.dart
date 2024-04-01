@@ -16,7 +16,7 @@ export 'package:smooth_page_indicator/smooth_page_indicator.dart';
 export 'package:pinput/pinput.dart';
 export 'package:stack_board/stack_board.dart';
 export 'package:image_picker/image_picker.dart';
-export 'package:flutter_colorpicker/flutter_colorpicker.dart';
+// export 'package:flutter_colorpicker/flutter_colorpicker.dart';
 export 'package:lottie/lottie.dart';
 export 'package:carousel_slider/carousel_slider.dart';
 export 'package:flutter/rendering.dart';
@@ -67,6 +67,8 @@ export 'package:festo_post/module/dashboard_module/view/setting_drawer_view.dart
 export 'package:festo_post/module/downloadPost_module/view/downloadPost_view.dart';
 export 'package:festo_post/module/profile_module/view/myBrand_view.dart';
 export 'package:festo_post/module/profile_module/view/subscription_view.dart';
+export 'package:festo_post/module/profile_module/view/payment_view.dart';
+export 'package:festo_post/module/profile_module/view/applyCouponDialogue_view.dart';
 
 
 //data model

@@ -78,8 +78,31 @@ class StrRef {
       deleteSure = "You are trying to delete active brand. You won’t be able to retrieve this brand and it’s subscription. Are you sure you want to delete this brand?",
       no="No",
       yes="Yes",
-      selectPlan="Select Subscription Plan";
-}
+      selectPlan="Select Subscription Plan",
+      subscriptionTitle = "1 Year Subcription",
+      subscriptOfferRupees = "₹999",
+      subscriptionRupees = "₹1499",
+      offerDetails1 = "Get 380+ Digital Posts ",
+      offerDetails2 = "500+ Quotes of your Branding ",
+      offerDetails3 = "2 Video per main festival ",
+      offerDetails4 = "2 Customized Brand Template",
+      Continue = "Continue",
+      payment = "Payment",
+      subscript = "Subscription",
+      applyCoupon = "Apply Coupon",
+      userReferral = "Use Referral Points",
+      availablePoints = "Available Points : 0 (₹0.00)",
+      priceDetails = "Price Details",
+      subscriptAmt = "Subscription Amount",
+      gst = "GST(18.00%)",
+      payableAmt = "Payable Amount",
+      payNow = "Pay Now",
+      discountAmt = "Discount Amount",
+      availableCoupon = "Available Coupons",
+      welcomeCoupon = "Welcome Coupon 5% OFF",
+      discountCoupon = "Discount Coupon 15% OFF",
+      festiveCoupon = "Festive Coupon 2% OFF"
+;}
 
 class SvgPath {
   static String onBoardImg1 = 'assets/svg/onboard1.svg',
@@ -133,6 +156,8 @@ class SvgPath {
       iconFrame = 'assets/svg/iconFrame.svg',
       trash = 'assets/svg/trash.svg',
       brandadd = 'assets/svg/brandadd.svg',
+      ribbon = 'assets/svg/foldedRibbon.svg',
+      coupon = 'assets/svg/coupon.svg',
 
 
 
@@ -188,6 +213,9 @@ class SvgPath {
       sticker8 = 'assets/png/sticker8.png',
       sticker9 = 'assets/png/sticker9.png',
       sticker10 = 'assets/png/sticker10.png',
+      subscription = 'assets/png/subscriptionBackground.png',
+      subscriptionDark = 'assets/png/subscriptBackgroundDark.png',
+      availableCoupon = 'assets/png/availableCoupon.png',
 
 
       download = 'assets/lottie/download.json'
