@@ -69,6 +69,7 @@ class ProfileProvider extends ChangeNotifier {
     {"svg": SvgPath.web, "label": StrRef.website, "controller": TextEditingController()},
     {"svg": SvgPath.location, "label": StrRef.businessAddress, "controller": TextEditingController()},
   ];
+  //bnb
 
   List<Map<String, dynamic>> subscription = [
     {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
