@@ -1,6 +1,7 @@
 import 'package:festo_post/app_export.dart';
 
 import 'module/profile_module/view/finalPayment_view.dart';
+import 'module/profile_module/view/referralPoints_view.dart';
 
 
 
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
               'payment': (context) => const PaymentView(),
               'myPost': (context) => const MyPostView(),
               'finalPayment': (context) => const FinalPayment(),
+              'referralPoints': (context) => const ReferralPoints(),
             },
           );
         });

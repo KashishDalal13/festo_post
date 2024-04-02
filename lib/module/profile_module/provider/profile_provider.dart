@@ -7,7 +7,7 @@ class ProfileProvider extends ChangeNotifier {
     {"icon": SvgPath.profile, "label": StrRef.accountDetails, "route": ''},
     {"icon": SvgPath.savePost, "label": StrRef.savePost, "route": 'myPost'},
     {"icon": SvgPath.tag, "label": StrRef.brandSubscript, "route": 'myBrand'},
-    {"icon": SvgPath.rewardPoints, "label": StrRef.rewardPoints, "route": ''},
+    {"icon": SvgPath.rewardPoints, "label": StrRef.rewardPoints, "route": 'referralPoints'},
     {"icon": SvgPath.transaction, "label": StrRef.transaction, "route": ''},
     {"icon": SvgPath.logout, "label": StrRef.logout, "route": null},
   ];

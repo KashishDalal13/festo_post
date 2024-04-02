@@ -114,7 +114,9 @@ class StrRef {
       debitCard = "Debit Card",
       creditCard = "Credit Card",
       upi = "UPI",
-      wallet = "Wallet"
+      wallet = "Wallet",
+      referralPoints = "Referral Points",
+      refferalText = "When Your Friend uses your referral code you both get reward points that can be used for next subscription."
 ;}
 
 class SvgPath {
@@ -178,6 +180,9 @@ class SvgPath {
       paytm = 'assets/svg/paytm.svg',
       phonePe = 'assets/svg/phonePe.svg',
       upi = 'assets/svg/upi.svg',
+      medal = 'assets/svg/medal.svg',
+      rewardGift = 'assets/svg/rewardGift.svg',
+      share = 'assets/svg/share.svg',
 
 
 
@@ -236,6 +241,7 @@ class SvgPath {
       subscription = 'assets/png/subscriptionBackground.png',
       subscriptionDark = 'assets/png/subscriptBackgroundDark.png',
       availableCoupon = 'assets/png/availableCoupon.png',
+      rewardBackground = 'assets/png/rewardBackground.png',
 
 
       download = 'assets/lottie/download.json'
