@@ -176,31 +176,31 @@ class ReferralPoints extends StatelessWidget {
                 Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: const Row(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Debited for subscribing brand “ABC Company”."),
-                              SizedBox(height: 5),
+                              Text("Debited for subscribing brand “ABC Company”.",style: TextStyle(color: ColorRef.textPrimaryColor,fontWeight: FontWeight.w500,fontSize: 15,fontFamily: 'Lato'),),
+                              const SizedBox(height: 5),
                               Row(
                                 children: [
-                                  Text("30 Mar,2024"),
-                                  SizedBox(width: 15,),
-                                  Text("12:25 PM")
+                                  Text("30 Mar,2024",style: TextStyle(color: ColorRef.greyB0B0B0,fontWeight: FontWeight.w500,fontSize: 15,fontFamily: 'Lato'),),
+                                  const SizedBox(width: 15,),
+                                  Text("12:25 PM",style: TextStyle(color: ColorRef.greyB0B0B0,fontWeight: FontWeight.w500,fontSize: 15,fontFamily: 'Lato'),),
                                 ],
                               ),
                             ],
                           ),
                           Spacer(),
-                          Text("-1 pts"),
+                          Text("-1 pts",style: TextStyle(color: ColorRef.redD94242,fontWeight: FontWeight.w500,fontSize: 15,fontFamily: 'Lato'),),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Divider(
                           thickness: 1,
                           color: ColorRef.grey717171,

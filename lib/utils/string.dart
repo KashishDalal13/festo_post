@@ -116,7 +116,10 @@ class StrRef {
       upi = "UPI",
       wallet = "Wallet",
       referralPoints = "Referral Points",
-      refferalText = "When Your Friend uses your referral code you both get reward points that can be used for next subscription."
+      refferalText = "When Your Friend uses your referral code you both get reward points that can be used for next subscription.",
+      referralLabel1 = "Debited for subscribing brand “ABC Company”.",
+      referralLabel2 = "Credited for Sharing Referral with “Christina Doe”.",
+      referralLabel3 = "Debited for subscribing brand “ABC Company”."
 ;}
 
 class SvgPath {

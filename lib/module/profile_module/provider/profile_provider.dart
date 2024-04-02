@@ -95,6 +95,15 @@ class ProfileProvider extends ChangeNotifier {
     {"icon": SvgPath.wallet, "type": StrRef.wallet},
 
   ];
+  List<Map<String, dynamic>> referralDetail = [
+    {"label": StrRef.referralLabel1, "date": "24th March", "time": "12:45", "points": "+1 pts"},
+    {"label": StrRef.referralLabel2, "date": "30th Feb", "time": "2:00", "points": "-100 pts"},
+    {"label": StrRef.referralLabel3, "date": "2th April", "time": "9:40", "points": "+500 pts"},
+    {"label": StrRef.referralLabel2, "date": "5th Jan", "time": "10:02", "points": "-10 pts"},
+    {"label": StrRef.referralLabel3, "date": "6th April", "time": "7:05", "points": "-800 pts"},
+
+
+  ];
 
   List<String> category = ['Agriculture', 'Advertising', 'Technology & Software', 'Beauty', 'Education', 'Construction', 'Alternative Medicine'];
 
