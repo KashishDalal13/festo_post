@@ -131,8 +131,8 @@ class FinalPayment extends StatelessWidget {
                                             BorderRadius.circular(15)),
                                     leading: SvgPicture.asset(
                                       provider.paymentMethod[index]['icon'],
-                                      height: 20,
-                                      width: 20,
+                                      height: 25,
+                                      width: 25,
                                       colorFilter: ColorFilter.mode(
                                           ColorRef.textPrimaryColor!,
                                           BlendMode.srcIn),
