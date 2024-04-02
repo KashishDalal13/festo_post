@@ -72,6 +72,7 @@ export 'package:festo_post/module/profile_module/view/subscription_view.dart';
 export 'package:festo_post/module/profile_module/view/payment_view.dart';
 export 'package:festo_post/module/profile_module/view/applyCouponDialogue_view.dart';
 export 'package:festo_post/module/profile_module/view/myPost_view.dart';
+export 'package:festo_post/module/profile_module/view/finalPayment_view.dart';
 
 
 //data model

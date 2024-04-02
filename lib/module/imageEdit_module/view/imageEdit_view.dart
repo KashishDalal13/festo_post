@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:festo_post/app_export.dart';
 
 class ImageEditView extends StatelessWidget {
@@ -70,7 +72,9 @@ class ImageEditView extends StatelessWidget {
                                             builder: (BuildContext context) {
                                               return StatefulBuilder(
                                                 builder: (context, setState) {
-                                                  return EditingBottomSheet(provider: provider,item: t,);
+                                                  return BackdropFilter(
+                                                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                                                      child: EditingBottomSheet(provider: provider,item: t,));
                                                 },
                                               );
                                             },

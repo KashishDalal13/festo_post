@@ -241,23 +241,48 @@ class ImageEditProvider extends ChangeNotifier {
                   children: [
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
-                      child: SvgPicture.asset(SvgPath.cancel),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          // margin: const EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: BoolRef.themeChange
+                                ? ColorRef.black202020
+                                : ColorRef.whiteFFFFFF,
+                          ),
+                          child: IconButton(
+                            padding: EdgeInsets.zero,
+                            visualDensity:
+                            const VisualDensity(horizontal: -4, vertical: -4),
+                            alignment: Alignment.center,
+                            onPressed: () => provider.onBack(),
+                            icon: Icon(
+                              Icons.close,
+                              size: 18,
+                              color: BoolRef.themeChange
+                                  ? ColorRef.whiteFFFFFF
+                                  : ColorRef.black202020,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
                       decoration: BoxDecoration(
-                        color: ColorRef.white.withOpacity(0.8),
+                        color: BoolRef.themeChange?ColorRef.black202020.withOpacity(0.7):ColorRef.white.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: TextField(
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: ColorRef.black000000, fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 20),
+                        style: TextStyle(color: ColorRef.textPrimaryColor, fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 20),
                         decoration: InputDecoration(
                           hintText: 'Write Here',
                           contentPadding: EdgeInsets.zero,
-                          hintStyle: TextStyle(color: ColorRef.black000000),
+                          hintStyle: TextStyle(color: ColorRef.textPrimaryColor),
                           border: InputBorder.none,
                         ),
                         onChanged: (value) => text = value,

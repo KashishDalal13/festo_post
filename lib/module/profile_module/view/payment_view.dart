@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../app_export.dart';
 
@@ -43,7 +44,8 @@ class PaymentView extends StatelessWidget {
                         color: BoolRef.themeChange
                             ? ColorRef.transparent
                             : ColorRef.greyCACACA),
-                    color: ColorRef.backgroundColor,
+                    color: BoolRef.themeChange
+                        ?ColorRef.backgroundColor:ColorRef.whiteFFFFFF,
                   ),
                   alignment: Alignment.center,
                   child: Column(
@@ -90,7 +92,8 @@ class PaymentView extends StatelessWidget {
                           color: BoolRef.themeChange
                               ? ColorRef.transparent
                               : ColorRef.greyCACACA),
-                      color: ColorRef.backgroundColor,
+                      color: BoolRef.themeChange
+                          ?ColorRef.backgroundColor:ColorRef.whiteFFFFFF,
                     ),
                     alignment: Alignment.center,
                     child: Row(
@@ -132,7 +135,8 @@ class PaymentView extends StatelessWidget {
                           color: BoolRef.themeChange
                               ? ColorRef.transparent
                               : ColorRef.greyCACACA),
-                      color: ColorRef.backgroundColor,
+                      color: BoolRef.themeChange
+                          ?ColorRef.backgroundColor:ColorRef.whiteFFFFFF,
                     ),
                     alignment: Alignment.center,
                     child: Row(
@@ -190,7 +194,7 @@ class PaymentView extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Divider(
-                          thickness: 0.2,
+                          thickness: 1,
                           color: ColorRef.grey717171,
                           indent: 20,
                           endIndent: 10),
@@ -205,7 +209,7 @@ class PaymentView extends StatelessWidget {
                     ),
                     Expanded(
                       child: Divider(
-                          thickness: 0.2,
+                          thickness: 1,
                           color: ColorRef.grey717171,
                           indent: 10,
                           endIndent: 15),
@@ -303,7 +307,7 @@ class PaymentView extends StatelessWidget {
                         height: 10,
                       ),
                       Divider(
-                          thickness: 0.3,
+                          thickness: 1,
                           color: ColorRef.grey717171,
                           indent: 0.5,
                           endIndent: 0.5),
@@ -336,21 +340,24 @@ class PaymentView extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 35),
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: ColorRef.yellowFFA500,
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    StrRef.payNow,
-                    style: TextStyle(
-                        color: ColorRef.black202020,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                        fontFamily: 'Lato'),
+                GestureDetector(
+                  onTap: () => NavigationService.routeToNamed('finalPayment'),
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 35),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: ColorRef.yellowFFA500,
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      StrRef.payNow,
+                      style: TextStyle(
+                          color: ColorRef.black202020,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15,
+                          fontFamily: 'Lato'),
+                    ),
                   ),
                 ),
                 const Spacer(),
