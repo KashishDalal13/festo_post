@@ -48,7 +48,7 @@ class SubscriptionPlanView extends StatelessWidget {
                       const Spacer(),
                     ],
                   ),
-                  const SizedBox(height: 114  ),
+                  const Spacer(),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -227,6 +227,7 @@ class SubscriptionPlanView extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const Spacer(),
                 ],
               ),
               ]

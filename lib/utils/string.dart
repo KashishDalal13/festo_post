@@ -107,9 +107,15 @@ class StrRef {
       AddName="Add Your Name",
       AddPhone="Add Your Mobile",
       update="Update",
-      myPost="Your Created Post";
-
-}
+      myPost="Your Created Post",
+      couponCode1 = "2X678JKL",
+      apply = "Apply",
+      paymentMethod = "Select Payment Method",
+      debitCard = "Debit Card",
+      creditCard = "Credit Card",
+      upi = "UPI",
+      wallet = "Wallet"
+;}
 
 class SvgPath {
   static String onBoardImg1 = 'assets/svg/onboard1.svg',
@@ -166,6 +172,12 @@ class SvgPath {
       ribbon = 'assets/svg/foldedRibbon.svg',
       coupon = 'assets/svg/coupon.svg',
       cancelEdit = 'assets/svg/cancelEdit.svg',
+      creditCard = 'assets/svg/creditCard.svg',
+      wallet = 'assets/svg/wallet.svg',
+      gPay = 'assets/svg/gPay.svg',
+      paytm = 'assets/svg/paytm.svg',
+      phonePe = 'assets/svg/phonePe.svg',
+      upi = 'assets/svg/upi.svg',
 
 
 

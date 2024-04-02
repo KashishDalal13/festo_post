@@ -12,16 +12,19 @@ class UserAuthView extends StatelessWidget {
       builder: (context, child) {
         RegisterProvider provider = context.watch<RegisterProvider>();
         return SafeArea(
-          child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            body: IndexedStack(
-              index: provider.introIndex,
-              children: [
-                RegisterView(provider: provider),
-                OtpView(provider: provider),
-                ReferralView(provider: provider),
-                AddDetails(provider: provider),
-              ],
+          child: Theme(
+            data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
+            child: Scaffold(
+              resizeToAvoidBottomInset: false,
+              body: IndexedStack(
+                index: provider.introIndex,
+                children: [
+                  RegisterView(provider: provider),
+                  OtpView(provider: provider),
+                  ReferralView(provider: provider),
+                  AddDetails(provider: provider),
+                ],
+              ),
             ),
           ),
         );

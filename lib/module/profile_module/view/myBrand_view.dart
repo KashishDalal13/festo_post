@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import '../../../app_export.dart';
 
 class MyBrandView extends StatelessWidget {
@@ -83,51 +85,58 @@ class MyBrandView extends StatelessWidget {
                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-                                        backgroundColor: ColorRef.whiteFFFFFF,
-                                        surfaceTintColor: ColorRef.whiteFFFFFF,
-                                        content: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(StrRef.delete, style: const TextStyle(fontFamily: 'Lato', fontSize: 20, fontWeight: FontWeight.w400)),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                                              child: Text(StrRef.deleteSure,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(fontFamily: 'Lato', fontSize: 16, fontWeight: FontWeight.w400, color: ColorRef.grey757575)),
-                                            ),
-                                            Row(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () => NavigationService.goBack(),
-                                                  child: Container(
-                                                    margin: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+                                      return BackdropFilter(
+                                        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                                        child: AlertDialog(
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+                                          backgroundColor: BoolRef.themeChange?ColorRef.black1E2A38:ColorRef.whiteFFFFFF,
+                                          surfaceTintColor: ColorRef.whiteFFFFFF,
+                                          content: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(StrRef.delete, style: TextStyle(color: ColorRef.textPrimaryColor,fontFamily: 'Lato', fontSize: 20, fontWeight: FontWeight.bold)),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.symmetric(horizontal: 22),
+                                                child: Text(StrRef.deleteSure,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(fontFamily: 'Lato', fontSize: 16, fontWeight: FontWeight.w400, color: BoolRef.themeChange?ColorRef.greyDFDFDF:ColorRef.grey757575)),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () => NavigationService.goBack(),
+                                                    child: Container(
+                                                      padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 10),
+                                                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                                                      decoration: BoxDecoration(
+                                                        color: BoolRef.themeChange?ColorRef.backgroundColor:ColorRef.greyE7E7E7,
+                                                        borderRadius: BorderRadius.circular(10),
+                                                      ),
+                                                      child:
+                                                          Text(StrRef.no, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.textPrimaryColor)),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                                                    margin: const EdgeInsets.symmetric(horizontal: 5),
                                                     decoration: BoxDecoration(
-                                                      color: ColorRef.greyE7E7E7,
+                                                      color: ColorRef.yellowFFA500,
                                                       borderRadius: BorderRadius.circular(10),
                                                     ),
-                                                    child:
-                                                        Text(StrRef.no, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
+                                                    child: Text(StrRef.yes, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
                                                   ),
-                                                ),
-                                                Container(
-                                                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                                                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                                                  decoration: BoxDecoration(
-                                                    color: ColorRef.yellowFFA500,
-                                                    borderRadius: BorderRadius.circular(10),
-                                                  ),
-                                                  child: Text(StrRef.yes, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       );
                                     },

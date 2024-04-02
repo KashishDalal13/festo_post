@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:festo_post/app_export.dart';
 
 class EditingBottomSheet extends StatefulWidget {
@@ -23,7 +25,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
         height: 230,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
-          color: ColorRef.greyEDEDED,
+          color: BoolRef.themeChange?ColorRef.blue304359:ColorRef.greyEDEDED,
         ),
         child: Column(
           children: [
@@ -32,7 +34,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(StrRef.editText, style: const TextStyle(fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
+                Text(StrRef.editText, style: TextStyle(color: ColorRef.textPrimaryColor,fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
               ],
             ),
             const SizedBox(height: 15),
@@ -243,41 +245,45 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return AlertDialog(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                          backgroundColor: ColorRef.whiteFFFFFF,
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              // ColorPicker(
-                              //   pickerColor: provider.selectedColor,
-                              //   pickerAreaBorderRadius: BorderRadius.circular(10.0),
-                              //   onColorChanged: (Color color) {
-                              //     setState(() {
-                              //       provider.selectedColor = color;
-                              //       provider.onColorChange(color);
-                              //       stackBoardItem.textStyle=TextStyle(color: color);
-                              //     });
-                              //   },
-                              //   colorPickerWidth: 232.0,
-                              //   pickerAreaHeightPercent: 0.7,
-                              //   displayThumbColor: false,
-                              //   enableAlpha: false,
-                              //   showLabel: false,
-                              // ),
-                              Container(
-                                height: 35,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: ColorRef.yellowFFA500,
-                                  borderRadius: BorderRadius.circular(10),
+                        return BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: AlertDialog(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                            backgroundColor: BoolRef.themeChange?ColorRef.blue1E2A38:ColorRef.whiteFFFFFF,
+                            surfaceTintColor: BoolRef.themeChange?ColorRef.blue1E2A38:ColorRef.whiteFFFFFF,
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ColorPicker(
+                                  pickerColor: provider.selectedColor,
+                                  pickerAreaBorderRadius: BorderRadius.circular(10.0),
+                                  onColorChanged: (Color color) {
+                                    setState(() {
+                                      provider.selectedColor = color;
+                                      provider.onColorChange(color);
+                                      stackBoardItem.textStyle=TextStyle(color: color);
+                                    });
+                                  },
+                                  colorPickerWidth: 232.0,
+                                  pickerAreaHeightPercent: 0.7,
+                                  displayThumbColor: false,
+                                  enableAlpha: false,
+                                  showLabel: false,
                                 ),
-                                child: TextButton(
-                                  child: Text('Apply', style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
-                                  onPressed: () => NavigationService.goBack(),
+                                Container(
+                                  height: 35,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    color: ColorRef.yellowFFA500,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: TextButton(
+                                    child: Text('Apply', style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
+                                    onPressed: () => NavigationService.goBack(),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       },
