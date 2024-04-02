@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:festo_post/app_export.dart';
 
 class ProfileProvider extends ChangeNotifier {
@@ -17,40 +19,43 @@ class ProfileProvider extends ChangeNotifier {
         builder: (BuildContext context) {
           return Theme(
             data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
-            child: AlertDialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-              backgroundColor: BoolRef.themeChange ? ColorRef.blue1E2A38: ColorRef.whiteFFFFFF,
-              surfaceTintColor: BoolRef.themeChange ? ColorRef.blue1E2A38: ColorRef.whiteFFFFFF,
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SvgPicture.asset(SvgPath.logout, height: 35, width: 35, color:BoolRef.themeChange ? ColorRef.textPrimaryColor: ColorRef.grey5c5c5c),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Text(StrRef.logoutSure,
-                      textAlign: TextAlign.center, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.textPrimaryColor)),
-                  const SizedBox(
-                    height: 22,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Injector.setSignIn(signIn: false);
-                      NavigationService.replaceAllToNamed("register");
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                      decoration: BoxDecoration(
-                        color: ColorRef.yellowFFA500,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(StrRef.logoutBtn, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w600, color: ColorRef.textPrimaryColor)),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              child: AlertDialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+                backgroundColor: BoolRef.themeChange ? ColorRef.blue1E2A38: ColorRef.whiteFFFFFF,
+                surfaceTintColor: BoolRef.themeChange ? ColorRef.blue1E2A38: ColorRef.whiteFFFFFF,
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                ],
+                    SvgPicture.asset(SvgPath.logout, height: 35, width: 35, color:BoolRef.themeChange ? ColorRef.textPrimaryColor: ColorRef.grey5c5c5c),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text(StrRef.logoutSure,
+                        textAlign: TextAlign.center, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.textPrimaryColor)),
+                    const SizedBox(
+                      height: 22,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Injector.setSignIn(signIn: false);
+                        NavigationService.replaceAllToNamed("register");
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                        decoration: BoxDecoration(
+                          color: ColorRef.yellowFFA500,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(StrRef.logoutBtn, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w600, color: ColorRef.textPrimaryColor)),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -77,9 +82,24 @@ class ProfileProvider extends ChangeNotifier {
     {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
   ];
 
+  List<Map<String, dynamic>> availableCoupons = [
+    {"offer": StrRef.applyCoupon, "offerCode": StrRef.couponCode1},
+    {"offer": StrRef.discountCoupon, "offerCode": StrRef.couponCode1},
+    {"offer": StrRef.festiveCoupon, "offerCode": StrRef.couponCode1},
+  ];
+
+  List<Map<String, dynamic>> paymentMethod = [
+    {"icon": SvgPath.transaction, "type": StrRef.debitCard},
+    {"icon": SvgPath.creditCard, "type": StrRef.creditCard},
+    {"icon": SvgPath.upi, "type": StrRef.upi},
+    {"icon": SvgPath.wallet, "type": StrRef.wallet},
+
+  ];
+
   List<String> category = ['Agriculture', 'Advertising', 'Technology & Software', 'Beauty', 'Education', 'Construction', 'Alternative Medicine'];
 
   bool isExpand = false;
+  bool isUPI = false;
   String selectedBrandIndex = '';
 
   onBack() {
@@ -104,5 +124,12 @@ class ProfileProvider extends ChangeNotifier {
   onTapEdit(){
     isEdit = !isEdit;
     notifyListeners();
+  }
+
+  onUPI(int index) {
+    if (index == 2) {
+      isUPI = !isUPI;
+      notifyListeners();
+    }
   }
 }

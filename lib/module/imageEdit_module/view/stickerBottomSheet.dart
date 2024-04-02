@@ -20,7 +20,7 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
           topLeft: Radius.circular(10.0),
           topRight: Radius.circular(10.0),
         ),
-        color: ColorRef.greyEDEDED,
+        color: BoolRef.themeChange?ColorRef.blue304359:ColorRef.greyEDEDED,
       ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -69,7 +69,7 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                   topLeft: Radius.circular(10.0),
                   topRight: Radius.circular(10.0),
                 ),
-                color: ColorRef.greyEDEDED,
+                color: BoolRef.themeChange?ColorRef.blue304359:ColorRef.greyEDEDED,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -82,7 +82,7 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                         Text(
                           StrRef.downloadText,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, fontFamily: 'Lato', fontWeight: FontWeight.w400, color: ColorRef.black202020),
+                          style: TextStyle(fontSize: 16, fontFamily: 'Lato', fontWeight: FontWeight.w400, color: ColorRef.textPrimaryColor),
                         ),
                         const SizedBox(height: 25),
                         GestureDetector(

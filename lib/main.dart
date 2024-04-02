@@ -1,5 +1,7 @@
 import 'package:festo_post/app_export.dart';
 
+import 'module/profile_module/view/finalPayment_view.dart';
+
 
 
 Future<void> main() async {
@@ -48,6 +50,7 @@ class MyApp extends StatelessWidget {
               'brandDetails': (context) => const BrandDetailsView(),
               'payment': (context) => const PaymentView(),
               'myPost': (context) => const MyPostView(),
+              'finalPayment': (context) => const FinalPayment(),
             },
           );
         });

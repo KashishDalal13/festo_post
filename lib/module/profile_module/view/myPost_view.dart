@@ -25,6 +25,7 @@ class MyPostView extends StatelessWidget {
             resizeToAvoidBottomInset: false,
             body: Column(
               children: [
+
               ],
             ),
           ),
