@@ -119,7 +119,9 @@ class StrRef {
       refferalText = "When Your Friend uses your referral code you both get reward points that can be used for next subscription.",
       referralLabel1 = "Debited for subscribing brand “ABC Company”.",
       referralLabel2 = "Credited for Sharing Referral with “Christina Doe”.",
-      referralLabel3 = "Debited for subscribing brand “ABC Company”."
+      referralLabel3 = "Debited for subscribing brand “ABC Company”.",
+      selectAudio = "Select Audio",
+      selectAudioText = "Select Audio From Your Device"
 ;}
 
 class SvgPath {
@@ -186,6 +188,19 @@ class SvgPath {
       medal = 'assets/svg/medal.svg',
       rewardGift = 'assets/svg/rewardGift.svg',
       share = 'assets/svg/share.svg',
+      whatsapp = 'assets/svg/whatsapp.svg',
+      facebook = 'assets/svg/facebook.svg',
+      instagram = 'assets/svg/instagram.svg',
+      linkedIn = 'assets/svg/linkedIn.svg',
+      menu = 'assets/svg/menu.svg',
+      messenger = 'assets/svg/messenger.svg',
+      pinterest = 'assets/svg/pinterest.svg',
+      reddit = 'assets/svg/reddit.svg',
+      twitter = 'assets/svg/twitter.svg',
+      transactionID = 'assets/svg/transactionID.svg',
+      transactionDate = 'assets/svg/transactionDate.svg',
+      transactionAmt = 'assets/svg/transactionAmt.svg',
+      audio = 'assets/svg/audio.svg',
 
 
 
