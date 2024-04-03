@@ -22,7 +22,7 @@ export 'package:carousel_slider/carousel_slider.dart';
 export 'package:flutter/rendering.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:image_gallery_saver/image_gallery_saver.dart';
-export 'package:audioplayers/audioplayers.dart';
+export 'package:just_audio/just_audio.dart';
 
 
 //utils

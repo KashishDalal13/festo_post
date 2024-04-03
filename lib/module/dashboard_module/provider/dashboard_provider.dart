@@ -155,7 +155,7 @@ class DashboardProvider extends ChangeNotifier {
   // settingDrawer
   bool switchValue = false;
   List<Map<String, dynamic>> settingDetails = [
-    {"icon": SvgPath.profile, "label": StrRef.myAccount, "route": ''},
+    {"icon": SvgPath.profile, "label": StrRef.myAccount, "route": 'profile'},
     {"icon": SvgPath.contactUs, "label": StrRef.contactUs, "route": ''},
     {"icon": SvgPath.aboutUs, "label": StrRef.aboutUs, "route": ''},
     {"icon": SvgPath.faq, "label": StrRef.faq, "route": ''},

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../app_export.dart';
 
@@ -111,32 +112,34 @@ class _ApplyCouponViewState extends State<ApplyCouponView> {
                                   const SizedBox(
                                     width: 15,
                                   ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                       item["offer"],
-                                        style: TextStyle(
-                                            color: ColorRef.textPrimaryColor,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 15,
-                                            fontFamily: 'Lato'),
-                                      ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      Text(
-                                        item["offerCode"],
-                                        style: TextStyle(
-                                            color: BoolRef.themeChange
-                                                ? ColorRef.greyEAEAEA
-                                                : ColorRef.grey838383,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 12,
-                                            fontFamily: 'Lato'),
-                                      ),
-                                    ],
+                                  Flexible(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                         item["offer"],
+                                          style: TextStyle(
+                                              color: ColorRef.textPrimaryColor,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 15,
+                                              fontFamily: 'Lato'),
+                                        ),
+                                        const SizedBox(
+                                          height: 2,
+                                        ),
+                                        Text(
+                                          item["offerCode"],
+                                          style: TextStyle(
+                                              color: BoolRef.themeChange
+                                                  ? ColorRef.greyEAEAEA
+                                                  : ColorRef.grey838383,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
+                                              fontFamily: 'Lato'),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   const Spacer(),
                                   Padding(

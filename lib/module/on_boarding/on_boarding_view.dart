@@ -25,10 +25,9 @@ class OnBoardingScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                Spacer(),
                 Container(
-                  // color: Colors.yellow,
-                  margin: const EdgeInsets.only(top: 150), // flex: 6,
-                  height: height / 2.4,
+                  height: height / 2,
                   child: PageView(
                     controller: provider.pageController,
                     onPageChanged: (index) => provider.onIndexChange(index: index),
@@ -36,12 +35,13 @@ class OnBoardingScreen extends StatelessWidget {
                       OnBoardingInfo data = e;
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset(data.image, height: width - 225),
                           const SizedBox(height: 15),
                           Text(data.title,
                               style: TextStyle(fontSize: 25, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020, fontWeight: FontWeight.bold, fontFamily: 'Lato')),
-                          const SizedBox(height: 15),
+                          const SizedBox(height: 10),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 45),
                             child: Text(data.descriptions,
@@ -60,6 +60,7 @@ class OnBoardingScreen extends StatelessWidget {
                     effect: ExpandingDotsEffect(activeDotColor: ColorRef.yellowFFA500, dotColor: ColorRef.white898989, spacing: 3, dotHeight: 5, dotWidth: 10, expansionFactor: 2),
                   ),
                 ),
+                Spacer(),
               ],
             ),
             floatingActionButton: provider.introIndex == 2
