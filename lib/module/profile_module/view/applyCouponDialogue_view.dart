@@ -89,6 +89,7 @@ class _ApplyCouponViewState extends State<ApplyCouponView> {
                       itemBuilder: (context, index) {
                         final item = provider.availableCoupons[index];
                         return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 1),
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),

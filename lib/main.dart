@@ -1,6 +1,6 @@
 import 'package:festo_post/app_export.dart';
 
-import 'module/profile_module/view/finalPayment_view.dart';
+import 'module/imageEdit_module/view/audio_view.dart';
 
 
 
@@ -51,6 +51,9 @@ class MyApp extends StatelessWidget {
               'payment': (context) => const PaymentView(),
               'myPost': (context) => const MyPostView(),
               'finalPayment': (context) => const FinalPayment(),
+              'referralPoints': (context) => const ReferralPoints(),
+              'transaction': (context) => const TransactionView(),
+              'audio': (context) => const AudioView(),
             },
           );
         });

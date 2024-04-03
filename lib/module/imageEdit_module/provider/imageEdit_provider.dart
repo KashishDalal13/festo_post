@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:festo_post/app_export.dart';
 
 class ImageEditProvider extends ChangeNotifier {
+  int audioIndex = 0;
   String framecurrentIndex = "";
   String currentItemId = "", currentIndex = "";
   int stickerIndex = 0, stickerViewIndex = 0;
@@ -14,6 +15,16 @@ class ImageEditProvider extends ChangeNotifier {
   int selectedFontSize = 22;
   Color selectedColor = const Color(0xff505050);
   List<double> shadeOpacities = [0.7, 0.6, 0.5, 0.4, 0.3, 0.2];
+
+  double itemLeft = 0;
+  double itemTop = 0;
+  double itemWidth = 100;
+  double itemHeight = 100;
+
+  double boundaryLeft = 0;
+  double boundaryTop = 0;
+  double boundaryRight = 300;
+  double boundaryBottom = 300;
 
   bool isUppercase = false;
   String selectedTextCase = '';
@@ -115,7 +126,13 @@ class ImageEditProvider extends ChangeNotifier {
   List<Map<String, dynamic>> stickerList = [
     {
       "label": "All",
-      "imageList": [SvgPath.sticker4, SvgPath.sticker1, SvgPath.sticker10, SvgPath.sticker1, SvgPath.sticker2]
+      "imageList": [
+        SvgPath.sticker4,
+        SvgPath.sticker1,
+        SvgPath.sticker10,
+        SvgPath.sticker1,
+        SvgPath.sticker2
+      ]
     },
     {
       "label": "Sale",
@@ -146,6 +163,60 @@ class ImageEditProvider extends ChangeNotifier {
       "imageList": [SvgPath.sticker7, SvgPath.sticker4, SvgPath.sticker3]
     },
   ];
+
+  List<Map<String, dynamic>> audioList = [
+    {
+      "label": "All",
+      "audios": [
+        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
+      ]
+    },
+    {
+      "label": "BirthDay",
+      "audios": [
+        {"image": SvgPath.trend1, "audio": "BirthDay", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "BirthDay", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "BirthDay", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
+      ]
+    },
+    {
+      "label": "Celebration",
+      "audios": [
+        {"image": SvgPath.trend1, "audio": "Celebration", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "Celebration", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "Celebration", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "Celebration", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "Celebration", "duration": "10.0"},
+      ]
+    },
+    {
+      "label": "Offer",
+      "audios":[
+        {"image": SvgPath.trend1, "audio": "Offer", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "Offer", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "Offer", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "Offer", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
+      ]
+    },
+    {
+      "label": "Religious",
+      "audios": [
+        {"image": SvgPath.trend1, "audio": "Religious", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "Religious", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "Religious", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "Religious", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
+      ]
+    },
+  ];
+
   final GlobalKey repaintBoundaryKey = GlobalKey();
 
   void setSelectedFontFamily(String fontFamily) {
@@ -190,16 +261,15 @@ class ImageEditProvider extends ChangeNotifier {
     } else if (selectedTextStyle == '2') {
       isUnderline = !isUnderline;
       if (isUnderline) {
-        item.textStyle = const TextStyle(decoration:TextDecoration.underline);
+        item.textStyle = const TextStyle(decoration: TextDecoration.underline);
       } else {
         item.textStyle = const TextStyle(decoration: TextDecoration.none);
       }
-
     }
     notifyListeners();
   }
 
-  void toggleTextCase(String selectedCase, int index,CustomItem item) {
+  void toggleTextCase(String selectedCase, int index, CustomItem item) {
     selectedCaseIndex = index.toString();
     if (selectedCase == 'AA') {
       selectedTextCase = 'AA';
@@ -208,7 +278,6 @@ class ImageEditProvider extends ChangeNotifier {
     if (selectedCase == 'Aa') {
       selectedTextCase = 'Aa';
       isUppercase = false;
-
     }
     if (selectedCase == 'aa') {
       selectedTextCase = 'aa';
@@ -217,7 +286,10 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void edit({required int index, required BuildContext context, required ImageEditProvider provider}) async {
+  void edit(
+      {required int index,
+      required BuildContext context,
+      required ImageEditProvider provider}) async {
     currentIndex = index.toString();
     notifyListeners();
 
@@ -228,7 +300,8 @@ class ImageEditProvider extends ChangeNotifier {
         barrierColor: Colors.black.withOpacity(0.3),
         builder: (BuildContext context) {
           return BackdropFilter(
-            filter: ui.ImageFilter.blur(sigmaX: 0.3, sigmaY: 0.3, tileMode: TileMode.decal),
+            filter: ui.ImageFilter.blur(
+                sigmaX: 0.3, sigmaY: 0.3, tileMode: TileMode.decal),
             child: Dialog(
               backgroundColor: Colors.transparent,
               elevation: 0,
@@ -253,8 +326,8 @@ class ImageEditProvider extends ChangeNotifier {
                           ),
                           child: IconButton(
                             padding: EdgeInsets.zero,
-                            visualDensity:
-                            const VisualDensity(horizontal: -4, vertical: -4),
+                            visualDensity: const VisualDensity(
+                                horizontal: -4, vertical: -4),
                             alignment: Alignment.center,
                             onPressed: () => provider.onBack(),
                             icon: Icon(
@@ -271,18 +344,26 @@ class ImageEditProvider extends ChangeNotifier {
                     const SizedBox(height: 10),
                     Container(
                       alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 50, horizontal: 10),
                       decoration: BoxDecoration(
-                        color: BoolRef.themeChange?ColorRef.black202020.withOpacity(0.7):ColorRef.white.withOpacity(0.8),
+                        color: BoolRef.themeChange
+                            ? ColorRef.black202020.withOpacity(0.7)
+                            : ColorRef.white.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: TextField(
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: ColorRef.textPrimaryColor, fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 20),
+                        style: TextStyle(
+                            color: ColorRef.textPrimaryColor,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Lato',
+                            fontSize: 20),
                         decoration: InputDecoration(
                           hintText: 'Write Here',
                           contentPadding: EdgeInsets.zero,
-                          hintStyle: TextStyle(color: ColorRef.textPrimaryColor),
+                          hintStyle:
+                              TextStyle(color: ColorRef.textPrimaryColor),
                           border: InputBorder.none,
                         ),
                         onChanged: (value) => text = value,
@@ -299,7 +380,8 @@ class ImageEditProvider extends ChangeNotifier {
                           color: ColorRef.yellowFFA500,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Text('Done', style: TextStyle(color: ColorRef.black202020)),
+                        child: Text('Done',
+                            style: TextStyle(color: ColorRef.black202020)),
                       ),
                     ),
                   ],
@@ -342,7 +424,15 @@ class ImageEditProvider extends ChangeNotifier {
           }
         },
       );
+    } else if (index == 3) {
+      NavigationService.routeToNamed('audio');
     }
+  }
+
+  onSelectTrending({required int index}) {
+    audioIndex = index;
+    debugPrint("$index ${audioList[index]['audio']}");
+    notifyListeners();
   }
 
   void frameDetailsdisplay({required int index}) {
@@ -352,26 +442,33 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  onPanUpdate(details, double width, double height, BuildContext context) {
-    double h = 0, w = 0;
-    if (height < 750 && width < 370) {
-      debugPrint("Small device");
-      h = height / 1.85;
-      w = width / 3.2;
-    } else if (height < 800 && width < 370) {
-      debugPrint("Medium device");
-      h = height / 1.3;
-      w = width / 3.2;
-    } else if (height > 800 && width > 370) {
-      debugPrint("Large device");
-      h = height / 2.26;
-      w = width / 3.66;
-    }
-    activeItem['left'] += (details.delta.dx);
-    activeItem['top'] += (details.delta.dy);
-    debugPrint("$height $width ${height / 1.3} $details");
-    activeItem['left'] = (activeItem['left'] as double).clamp(2, 50);
-    activeItem['top'] = (activeItem['top'] as double).clamp(2, 50);
+  void setBoundary(double left, double top, double right, double bottom) {
+    boundaryLeft = left;
+    boundaryTop = top;
+    boundaryRight = right;
+    boundaryBottom = bottom;
+  }
+
+  void onPanUpdate(DragUpdateDetails details, double width, double height) {
+    // Calculate the boundaries for the text movement
+    double minX = 0;
+    double maxX = width - itemWidth; // Adjust as per your requirement
+    double minY = 0;
+    double maxY = height - itemHeight; // Adjust as per your requirement
+
+    // Calculate the new position of the text after dragging
+    double newX = itemLeft + details.delta.dx;
+    double newY = itemTop + details.delta.dy;
+
+    // Ensure the new position is within the boundaries
+    newX = newX.clamp(minX, maxX);
+    newY = newY.clamp(minY, maxY);
+
+    // Update the position of the text
+    itemLeft = newX;
+    itemTop = newY;
+
+    // Notify listeners about the changes
     notifyListeners();
   }
 
@@ -381,24 +478,24 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
- /* onWidgetTap({required BuildContext context, required ImageEditProvider provider, required EditableItem data}) {
-    inAction = true;
-    activeEditableItem = data;
-    if (activeEditableItem.editWidget.runtimeType == Text) {
-      showModalBottomSheet(
-        context: context,
-        backgroundColor: ColorRef.transparent,
-        builder: (BuildContext context) {
-          return StatefulBuilder(
-            builder: (context, setState) {
-              return EditingBottomSheet(provider: provider, editableItem: data);
-            },
-          );
-        },
-      );
-    }
-    notifyListeners();
-  }*/
+  /* onWidgetTap({required BuildContext context, required ImageEditProvider provider, required EditableItem data}) {
+      inAction = true;
+      activeEditableItem = data;
+      if (activeEditableItem.editWidget.runtimeType == Text) {
+        showModalBottomSheet(
+          context: context,
+          backgroundColor: ColorRef.transparent,
+          builder: (BuildContext context) {
+            return StatefulBuilder(
+              builder: (context, setState) {
+                return EditingBottomSheet(provider: provider, editableItem: data);
+              },
+            );
+          },
+        );
+      }
+      notifyListeners();
+    }*/
 
   onPointerUp() {
     inAction = false;
@@ -444,7 +541,8 @@ class ImageEditProvider extends ChangeNotifier {
     activeItem['top'] += (details.focalPointDelta.dy);
     activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
     activeItem['top'] = (activeItem['top'] as double).clamp(2, 280);
-    activeItem['position'] = Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
+    activeItem['position'] =
+        Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
     activeItem['rotation'] = details.rotation + currentRotation!;
     double scale = max(min(details.scale * currentScale!, 2), 0.3);
     activeItem['scale'] = scale;
@@ -470,10 +568,13 @@ class ImageEditProvider extends ChangeNotifier {
   File? capturedImageData;
 
   Future<Uint8List?> captureEditedImage() async {
-    RenderRepaintBoundary boundary = repaintBoundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    RenderRepaintBoundary boundary = repaintBoundaryKey.currentContext!
+        .findRenderObject() as RenderRepaintBoundary;
     ui.Image image = await boundary.toImage(pixelRatio: 3.0);
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    NavigationService.routeTo(MaterialPageRoute(builder: (context) => DownloadPostView(imageData: byteData?.buffer.asUint8List())));
+    NavigationService.routeTo(MaterialPageRoute(
+        builder: (context) =>
+            DownloadPostView(imageData: byteData?.buffer.asUint8List())));
     return byteData?.buffer.asUint8List();
   }
 
@@ -492,7 +593,16 @@ class ImageEditProvider extends ChangeNotifier {
 class CustomItem extends StackBoardItem {
   CustomItem({
     this.customText,
-    TextStyle? textStyle, // Include TextStyle property
+    this.imageList,
+    this.add,
+    this.show,
+    this.position,
+    this.top,
+    this.left,
+    this.scale,
+    this.rotation,
+    this.editWidget,
+    this.textStyle,
     Future<bool> Function()? onDel,
     int? id,
   }) : super(
@@ -505,6 +615,15 @@ class CustomItem extends StackBoardItem {
   }
 
   final String? customText;
+  String? imageList;
+  String? add;
+  bool? show;
+  Offset? position;
+  double? top;
+  double? left;
+  double? scale;
+  double? rotation;
+  Widget? editWidget;
   TextStyle? textStyle; // TextStyle property
 
   @override
@@ -512,16 +631,34 @@ class CustomItem extends StackBoardItem {
     CaseStyle? caseStyle,
     Widget? child,
     int? id,
+    String? imageList,
+    String? add,
+    bool? show,
+    Offset? position,
+    double? top,
+    double? left,
+    double? scale,
+    double? rotation,
+    Widget? editWidget,
+    TextStyle? textStyle, // Include textStyle in copyWith
     Future<bool> Function()? onDel,
     dynamic Function(bool)? onEdit,
     bool? tapToEdit,
     Color? color,
-    TextStyle? textStyle, // Include textStyle in copyWith
   }) =>
       CustomItem(
-        onDel: onDel,
-        id: id,
-        customText: customText ?? customText,
+        onDel: onDel ?? this.onDel,
+        id: id ?? this.id,
+        customText: customText ?? this.customText,
+        imageList: imageList ?? this.imageList,
+        add: add ?? this.add,
+        show: show ?? this.show,
+        position: position ?? this.position,
+        top: top ?? this.top,
+        left: left ?? this.left,
+        scale: scale ?? this.scale,
+        rotation: rotation ?? this.rotation,
+        editWidget: editWidget ?? this.editWidget,
         textStyle: textStyle ?? this.textStyle,
       )..textStyle = textStyle?.copyWith();
 }
