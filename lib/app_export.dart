@@ -4,6 +4,7 @@ export 'package:festo_post/main.dart';
 export 'dart:async';
 export 'dart:math';
 export 'dart:io';
+import 'dart:typed_data';
 
 // Widget
 export 'package:festo_post/widget/toast.dart';
@@ -23,6 +24,7 @@ export 'package:flutter/rendering.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:image_gallery_saver/image_gallery_saver.dart';
 export 'package:just_audio/just_audio.dart';
+export 'package:download_assets/download_assets.dart';
 
 
 //utils

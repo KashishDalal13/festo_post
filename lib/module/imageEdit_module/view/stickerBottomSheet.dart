@@ -1,4 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:festo_post/app_export.dart';
+import 'dart:io';
 
 class StickerBottomSheet extends StatefulWidget {
   final ImageEditProvider? provider;
@@ -10,6 +14,30 @@ class StickerBottomSheet extends StatefulWidget {
 }
 
 class _StickerBottomSheetState extends State<StickerBottomSheet> {
+  late String _localImagePath;
+
+  @override
+  void initState() {
+    super.initState();
+    _localImagePath = '';
+    _checkIfImageDownloaded();
+  }
+
+  // Function to check if the image is already downloaded
+  Future<void> _checkIfImageDownloaded() async {
+    // Check if the image is already downloaded
+    final Directory appDocDir = await getApplicationDocumentsDirectory();
+    final String appDocPath = appDocDir.path;
+    final String fileName = 'image.png'; // Update filename if needed
+    final File imageFile = File('$appDocPath/$fileName');
+    if (await imageFile.exists()) {
+      // Image is already downloaded, set the local image path
+      setState(() {
+        _localImagePath = imageFile.path;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     ImageEditProvider? provider = widget.provider!;
@@ -38,9 +66,7 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      setState(() {
-                        provider.onSelectSticker(index: index);
-                      });
+                      downloadAndSaveImage(provider.stickerList[index]['imageUrl']);
                     },
                     child: Container(
                       height: 30,
@@ -113,29 +139,10 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                           ),
                         ],
                       ),
-                      GridView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          crossAxisSpacing: 15,
-                          mainAxisSpacing: 15,
-                        ),
-                        itemCount: provider.stickerList[provider.stickerIndex]['imageList'].length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              provider.boardController.add(
-                                StackBoardItem(
-                                  caseStyle: const CaseStyle(boxAspectRatio: 350 / 370),
-                                  child: Image.asset(provider.stickerList[provider.stickerIndex]['imageList'][index]),
-                                ),
-                              );
-                            },
-                            child: Image.asset(provider.stickerList[provider.stickerIndex]['imageList'][index]),
-                          );
-                        },
-                      ),
+                      // Display the downloaded image if available
+                      _localImagePath.isNotEmpty
+                          ? Image.file(File(_localImagePath))
+                          : const SizedBox(), // Show nothing if image path is empty
                     ],
                   ),
                 ),
@@ -145,5 +152,37 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
         ),
       ),
     );
+  }
+
+  // Function to download and save the image
+  Future<void> downloadAndSaveImage(String imageUrl) async {
+    try {
+      if (_localImagePath.isNotEmpty) {
+        // Image is already downloaded, do nothing
+        return;
+      }
+
+      // Get the local storage directory
+      final Directory appDocDir = await getApplicationDocumentsDirectory();
+      final String appDocPath = appDocDir.path;
+
+      // Download and cache the image using flutter_cache_manager
+      final DefaultCacheManager cacheManager = DefaultCacheManager();
+      final File file = await cacheManager.getSingleFile(imageUrl);
+
+      // Copy the cached image file to the local storage directory
+      final String fileName = 'image.png'; // Change the filename as needed
+      final String localFilePath = '$appDocPath/$fileName';
+      final File localFile = await file.copy(localFilePath);
+
+      print('Image downloaded and saved to: $localFilePath');
+
+      // Set the local image path and update the UI
+      setState(() {
+        _localImagePath = localFile.path;
+      });
+    } catch (e) {
+      print('Error downloading and saving image: $e');
+    }
   }
 }

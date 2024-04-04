@@ -178,16 +178,34 @@ class DashBoardView extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(StrRef.trending, style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', fontSize: 15, color: ColorRef.textPrimaryColor)),
+                            Text(
+                              StrRef.trending,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Lato',
+                                fontSize: 15,
+                                color: ColorRef.textPrimaryColor,
+                              ),
+                            ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                int selectedIndex = provider.trendingIndex; // Get the current index
+                                provider.onViewAllTrending(context, index: selectedIndex); // Pass the current index
+                              },
                               child: Text(
                                 StrRef.viewAll,
-                                style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 14, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Lato',
+                                  fontSize: 14,
+                                  color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4,
+                                ),
                               ),
-                            )
+                            ),
                           ],
                         ),
+
+
                         SizedBox(
                           height: 50,
                           child: ListView.separated(
@@ -290,7 +308,7 @@ class DashBoardView extends StatelessWidget {
                                       style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.textPrimaryColor, fontSize: 15),
                                     ),
                                     TextButton(
-                                      onPressed: () {},
+                                      onPressed: ()=> provider.onViewAllOffer(context, index: index),
                                       child: Text(
                                         StrRef.viewAll,
                                         style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),

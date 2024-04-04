@@ -137,11 +137,13 @@ class ImageEditProvider extends ChangeNotifier {
         SvgPath.sticker10,
         SvgPath.sticker1,
         SvgPath.sticker2
-      ]
+      ],
+      "imageUrl":"https://i.pinimg.com/originals/cb/96/46/cb9646aec074be5acb1ea77ddc71c0e3.jpg"
     },
     {
       "label": "Sale",
-      "imageList": [SvgPath.sticker3, SvgPath.sticker5, SvgPath.sticker7]
+      "imageList": [SvgPath.sticker3, SvgPath.sticker5, SvgPath.sticker7],
+      "imageUrl":"https://i.pinimg.com/originals/cb/96/46/cb9646aec074be5acb1ea77ddc71c0e3.jpg"
     },
     {
       "label": "Food",

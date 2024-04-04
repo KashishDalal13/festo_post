@@ -106,7 +106,7 @@ class DashboardProvider extends ChangeNotifier {
     },
     {
       "label": "Rest In Peace",
-      "imageList": [SvgPath.RestPeace1, SvgPath.RestPeace2, SvgPath.RestPeace3, SvgPath.RestPeace2, SvgPath.RestPeace1]
+      "imageList": [SvgPath.RestPeace1, SvgPath.RestPeace2, SvgPath.RestPeace3, SvgPath.RestPeace2, SvgPath.RestPeace1, SvgPath.RestPeace3, SvgPath.RestPeace2, SvgPath.RestPeace1]
     },
   ];
 
@@ -151,6 +151,45 @@ class DashboardProvider extends ChangeNotifier {
       ),
     );
   }
+  void onViewAllOffer(BuildContext context, {required int index}) {
+    if (index == 0) {
+      selectedLabel = addCategoryOffer[index]["label"];
+      selectedImageList = addCategoryOffer[index]["imageList"].cast<String>();
+    } else if (index == 1) {
+      selectedLabel = addCategoryOffer[index]["label"];
+      selectedImageList = addCategoryOffer[index]["imageList"].cast<String>();
+    } else if (index == 2) {
+      selectedLabel = addCategoryOffer[index]["label"];
+      selectedImageList = addCategoryOffer[index]["imageList"].cast<String>();
+    }else if (index == 3) {
+      selectedLabel = addCategoryOffer[index]["label"];
+      selectedImageList = addCategoryOffer[index]["imageList"].cast<String>();
+    }else if (index == 4) {
+      selectedLabel = addCategoryOffer[index]["label"];
+      selectedImageList = addCategoryOffer[index]["imageList"].cast<String>();
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FrameEditorView(imageList: selectedImageList, label: selectedLabel),
+      ),
+    );
+  }
+  void onViewAllTrending(BuildContext context, {required int index}) {
+    if (index >= 0 && index < addTrendingEvent.length) {
+      selectedLabel = addTrendingEvent[index]["label"];
+      selectedImageList = addTrendingEvent[index]["imageList"].cast<String>();
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FrameEditorView(imageList: selectedImageList, label: selectedLabel),
+        ),
+      );
+    }
+  }
+
+
 
   // settingDrawer
   bool switchValue = false;
