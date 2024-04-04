@@ -16,7 +16,7 @@ class ProfileView extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               leading: IconButton(
-                onPressed: () => provider.onBack(),
+                onPressed: () => NavigationService.routeToNamed('dashboard'),
                 icon: Icon(Icons.arrow_back_ios_rounded, size: 20, color: ColorRef.textPrimaryColor),
               ),
               centerTitle: true,

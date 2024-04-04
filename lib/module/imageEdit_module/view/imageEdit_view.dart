@@ -72,12 +72,10 @@ class ImageEditView extends StatelessWidget {
                                             builder: (BuildContext context) {
                                               return StatefulBuilder(
                                                 builder: (context, setState) {
-                                                  return BackdropFilter(
-                                                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                                                      child: EditingBottomSheet(
-                                                        provider: provider,
-                                                        item: t,
-                                                      ));
+                                                  return EditingBottomSheet(
+                                                    provider: provider,
+                                                    item: t,
+                                                  );
                                                 },
                                               );
                                             },
@@ -88,13 +86,18 @@ class ImageEditView extends StatelessWidget {
                                           height: 40,
                                           alignment: Alignment.center,
                                           child: Text(
-                                            provider.selectedTextCase == 'AA'
+                                            t.styleCase == 'AA'
                                                 ? (t.customText ?? '').toUpperCase()
-                                                : provider.selectedTextCase == 'aa'
+                                                : t.styleCase == 'aa'
                                                     ? t.customText!.toLowerCase()
                                                     : "${t.customText!.substring(0, 1).toUpperCase()}${t.customText!.substring(1).toLowerCase()}",
-                                            // style: t.textStyle,
-                                            style: TextStyle(color: t.fontColor, fontSize: t.fontSize, fontFamily: t.fontFamily, fontStyle: t.fontStyle),
+                                            style: TextStyle(
+                                                fontFamily: t.fontFamily,
+                                                fontSize: t.fontSize,
+                                                color: t.color,
+                                                fontStyle: t.fontStyle,
+                                                fontWeight: t.fontWeight,
+                                                decoration: t.decoration),
                                           ),
                                         ),
                                       ),
@@ -230,7 +233,7 @@ class ImageEditView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 106,
+                      height: 110,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
@@ -245,14 +248,27 @@ class ImageEditView extends StatelessWidget {
                                 },
                                 child: Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: ColorRef.backgroundColor),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: ColorRef.backgroundColor,
+                                    border: Border.all(
+                                      color: provider.frameDetails[index]['show'] ? ColorRef.blue3498DB : ColorRef.transparent,
+                                    ),
+                                  ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: SvgPicture.asset(
                                       provider.frameDetails[index]['imageList'],
                                       height: 20,
                                       width: 20,
-                                      colorFilter: ColorFilter.mode(BoolRef.themeChange ? ColorRef.white : ColorRef.blue0250A4, BlendMode.srcIn),
+                                      colorFilter: ColorFilter.mode(
+                                        provider.frameDetails[index]['show']
+                                            ? ColorRef.blue3498DB
+                                            : BoolRef.themeChange
+                                                ? ColorRef.whiteFFFFFF
+                                                : ColorRef.grey757575,
+                                        BlendMode.srcIn,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -286,7 +302,8 @@ class ImageEditView extends StatelessWidget {
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: BoolRef.themeChange ? ColorRef.grey304359 : ColorRef.white),
                                       child: SvgPicture.asset(provider.EditDetails[index]['image']),
                                     ),
-                                    Text(provider.EditDetails[index]['label'] ?? '', style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12, color: ColorRef.textPrimaryColor))
+                                    Text(provider.EditDetails[index]['label'] ?? '',
+                                        style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12, color: ColorRef.textPrimaryColor))
                                   ],
                                 ),
                               );
