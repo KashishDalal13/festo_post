@@ -202,7 +202,7 @@ class ReferralPoints extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final item = provider.referralDetail[index];
                           return Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: Column(
                               children: [
                                 Row(
@@ -237,7 +237,7 @@ class ReferralPoints extends StatelessWidget {
                                                     fontFamily: 'Lato'),
                                               ),
                                               const SizedBox(
-                                                width: 15,
+                                                width: 10,
                                               ),
                                               Text(
                                                 item["time"],

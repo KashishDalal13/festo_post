@@ -85,5 +85,5 @@ export 'package:festo_post/module/profile_module/view/referralPoints_view.dart';
 export 'package:festo_post/module/profile_module/view/transaction_view.dart';
 
 
-//data model
+//data models
 export 'package:festo_post/module/imageEdit_module/editable_item_data_model.dart';
