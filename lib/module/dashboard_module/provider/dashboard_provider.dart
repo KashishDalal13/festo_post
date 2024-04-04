@@ -155,12 +155,14 @@ class DashboardProvider extends ChangeNotifier {
   // settingDrawer
   bool switchValue = false;
   List<Map<String, dynamic>> settingDetails = [
-    {"icon": SvgPath.profile, "label": StrRef.myAccount, "route": ''},
-    {"icon": SvgPath.contactUs, "label": StrRef.contactUs, "route": ''},
-    {"icon": SvgPath.aboutUs, "label": StrRef.aboutUs, "route": ''},
-    {"icon": SvgPath.faq, "label": StrRef.faq, "route": ''},
-    {"icon": SvgPath.theme, "label": StrRef.darkTheme, "route": ''},
-    {"icon": SvgPath.logout, "label": StrRef.logout, "route": ''},
+    {"icon": SvgPath.profile, "label": StrRef.myAccount, "route": 'profile'},
+    {"icon": SvgPath.contactUs, "label": StrRef.contactUs, "route": 'contactUs'},
+    {"icon": SvgPath.aboutUs, "label": StrRef.aboutUs, "route": 'aboutUs'},
+    {"icon": SvgPath.privacy, "label": StrRef.privacy, "route": 'privacy'},
+    {"icon": SvgPath.refund, "label": StrRef.refund, "route": 'refund'},
+    {"icon": SvgPath.terms, "label": StrRef.terms, "route": 'terms'},
+    {"icon": SvgPath.theme, "label": StrRef.darkTheme, "route": null},
+    {"icon": SvgPath.logout, "label": StrRef.logout, "route": null},
   ];
 
   void toggleTheme() async {
@@ -171,10 +173,13 @@ class DashboardProvider extends ChangeNotifier {
     ThemeSettings();
   }
 
-  onDrawerTileTap({required String type}) {
+  onDrawerTileTap({required int index,required String type}) {
     if (type == StrRef.logout) {
       Injector.setSignIn(signIn: false);
       NavigationService.replaceAllToNamed("register");
+    }
+    else{
+      NavigationService.replaceAllToNamed(settingDetails[index]['route']);
     }
   }
 }

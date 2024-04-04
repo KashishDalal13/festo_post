@@ -22,6 +22,8 @@ export 'package:carousel_slider/carousel_slider.dart';
 export 'package:flutter/rendering.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:image_gallery_saver/image_gallery_saver.dart';
+export 'package:just_audio/just_audio.dart';
+
 
 //utils
 export 'package:festo_post/utils/bool.dart';
@@ -62,9 +64,15 @@ export 'package:festo_post/module/info_module/view/info_view.dart';
 export 'package:festo_post/module/imageEdit_module/view/imageEdit_view.dart';
 export 'package:festo_post/module/imageEdit_module/view/edittingBottomSheet.dart';
 export 'package:festo_post/module/imageEdit_module/view/stickerBottomSheet.dart';
+export 'package:festo_post/module/imageEdit_module/view/audio_view.dart';
 export 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dart';
 export 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
 export 'package:festo_post/module/dashboard_module/view/setting_drawer_view.dart';
+export 'package:festo_post/module/dashboard_module/view/contactUs_view.dart';
+export 'package:festo_post/module/dashboard_module/view/aboutUs_view.dart';
+export 'package:festo_post/module/dashboard_module/view/privacy_view.dart';
+export 'package:festo_post/module/dashboard_module/view/refund_view.dart';
+export 'package:festo_post/module/dashboard_module/view/terms_view.dart';
 export 'package:festo_post/module/downloadPost_module/view/downloadPost_view.dart';
 export 'package:festo_post/module/profile_module/view/myBrand_view.dart';
 export 'package:festo_post/module/profile_module/view/brand_details_view.dart';
@@ -74,6 +82,7 @@ export 'package:festo_post/module/profile_module/view/applyCouponDialogue_view.d
 export 'package:festo_post/module/profile_module/view/myPost_view.dart';
 export 'package:festo_post/module/profile_module/view/finalPayment_view.dart';
 export 'package:festo_post/module/profile_module/view/referralPoints_view.dart';
+export 'package:festo_post/module/profile_module/view/transaction_view.dart';
 
 
 //data model

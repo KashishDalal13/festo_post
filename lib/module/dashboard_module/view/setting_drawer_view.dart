@@ -62,7 +62,7 @@ class SettingDrawer extends StatelessWidget {
                       ),
                     ),
                     title: Text(item['label'], style: TextStyle(color: ColorRef.textPrimaryColor)),
-                    onTap: () => provider.onDrawerTileTap(type: item['label']),
+                    onTap: () => provider.onDrawerTileTap(index: index,type: item['label']),
                   ),
                 );
               },

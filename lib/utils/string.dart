@@ -119,7 +119,26 @@ class StrRef {
       refferalText = "When Your Friend uses your referral code you both get reward points that can be used for next subscription.",
       referralLabel1 = "Debited for subscribing brand “ABC Company”.",
       referralLabel2 = "Credited for Sharing Referral with “Christina Doe”.",
-      referralLabel3 = "Debited for subscribing brand “ABC Company”."
+      referralLabel3 = "Debited for subscribing brand “ABC Company”.",
+      selectAudio = "Select Audio",
+      selectAudioText = "Select Audio From Your Device",
+      privacy = "Privacy Policy",
+      refund = "Refund Policy",
+      terms = "Terms and Conditions",
+      contactTitle = "Please get in touch, and our expert support team will answer all questions.",
+      contactLabel = "We are available everywhere.",
+      emailId = "Email id",
+      phone = "Phone",
+      socialMedia = "Social Media",
+      aboutTitle1 = "What is FestoPost app?",
+      aboutTitle2 = "Who are we??",
+      aboutQuery = "For any enquiry contact us on",
+      aboutText = "FestoPost application is powered by Loopbots Technology.",
+      intro = "Introduction",
+      personalData = "Personal data",
+      dataSecurity = "Use of personal datasecurity precaution",
+      termsServices = "Terms of Services"
+
 ;}
 
 class SvgPath {
@@ -186,6 +205,30 @@ class SvgPath {
       medal = 'assets/svg/medal.svg',
       rewardGift = 'assets/svg/rewardGift.svg',
       share = 'assets/svg/share.svg',
+      whatsapp = 'assets/svg/whatsapp.svg',
+      facebook = 'assets/svg/facebook.svg',
+      instagram = 'assets/svg/instagram.svg',
+      linkedIn = 'assets/svg/linkedIn.svg',
+      menu = 'assets/svg/menu.svg',
+      messenger = 'assets/svg/messenger.svg',
+      pinterest = 'assets/svg/pinterest.svg',
+      reddit = 'assets/svg/reddit.svg',
+      twitter = 'assets/svg/twitter.svg',
+      transactionID = 'assets/svg/transactionID.svg',
+      transactionDate = 'assets/svg/transactionDate.svg',
+      transactionAmt = 'assets/svg/transactionAmt.svg',
+      audio = 'assets/svg/audio.svg',
+      play = 'assets/svg/play.svg',
+      pause = 'assets/svg/pause.svg',
+      privacy = 'assets/svg/privacy.svg',
+      refund = 'assets/svg/refund.svg',
+      terms = 'assets/svg/terms.svg',
+
+
+      audio1 = 'assets/audio/yoyo.mp3',
+      audio2 = 'assets/audio/songs.mp3',
+      audio3 = 'assets/audio/zindagi.mp3',
+      audio4 = 'assets/audio/onandon.mp3',
 
 
 
@@ -245,6 +288,10 @@ class SvgPath {
       subscriptionDark = 'assets/png/subscriptBackgroundDark.png',
       availableCoupon = 'assets/png/availableCoupon.png',
       rewardBackground = 'assets/png/rewardBackground.png',
+      festoPost = 'assets/png/festoPost.png',
+      loopBotsLight = 'assets/png/loopBotsLight.png',
+      loopBotsDark = 'assets/png/loopBotsDark.png',
+
 
 
       download = 'assets/lottie/download.json'

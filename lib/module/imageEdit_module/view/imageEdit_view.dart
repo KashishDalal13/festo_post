@@ -21,25 +21,36 @@ class ImageEditView extends StatelessWidget {
               appBar: AppBar(
                 leading: IconButton(
                   onPressed: () => provider.onBack(),
-                  icon: Icon(Icons.arrow_back_ios_new_rounded, size: 24, color: ColorRef.textPrimaryColor),
+                  icon: Icon(Icons.arrow_back_ios_new_rounded,
+                      size: 24, color: ColorRef.textPrimaryColor),
                 ),
                 centerTitle: true,
-                title: Text(argument[0], style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
+                title: Text(argument[0],
+                    style: const TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.w400)),
                 actions: [
                   TextButton(
                     onPressed: () async => provider.captureEditedImage(),
-                    child: Icon(Icons.check, size: 24, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
+                    child: Icon(Icons.check,
+                        size: 24,
+                        color: BoolRef.themeChange
+                            ? ColorRef.blue3498DB
+                            : ColorRef.blue0250A4),
                   ),
                 ],
               ),
               resizeToAvoidBottomInset: false,
               body: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Column(
                   children: [
                     GestureDetector(
                       onScaleStart: (details) => provider.onScaleStart(details),
-                      onScaleUpdate: (details) => provider.onScaleUpdate(details, height, width),
+                      onScaleUpdate: (details) =>
+                          provider.onScaleUpdate(details, height, width),
                       child: RepaintBoundary(
                         key: provider.repaintBoundaryKey,
                         child: Stack(
@@ -50,31 +61,45 @@ class ImageEditView extends StatelessWidget {
                               child: StackBoard(
                                 key: provider.boardKey,
                                 controller: provider.boardController,
-                                caseStyle: const CaseStyle(borderColor: Colors.grey, iconColor: Colors.white, boxAspectRatio: 2),
+                                caseStyle: const CaseStyle(
+                                    borderColor: Colors.grey,
+                                    iconColor: Colors.white,
+                                    boxAspectRatio: 2),
                                 customBuilder: (StackBoardItem t) {
                                   if (t is CustomItem) {
                                     return ItemCase(
                                       key: Key('StackBoardItem${t.id}'),
                                       isCenter: false,
-                                      onDel: () async => provider.boardController.remove(t.id),
-                                      onTap: () => provider.boardController.moveItemToTop(t.id),
+                                      onDel: () async =>
+                                          provider.boardController.remove(t.id),
+                                      onTap: () => provider.boardController
+                                          .moveItemToTop(t.id),
                                       caseStyle: const CaseStyle(
                                         borderColor: Colors.grey,
                                         iconColor: Colors.white,
                                       ),
                                       child: GestureDetector(
+                                        onPanUpdate: (details){
+                                          provider.handlePanUpdate(details,t,height,width);
+                                        },
                                         onTap: () {
                                           debugPrint(t.id.toString());
-                                          provider.currentItemId = t.id.toString();
+                                          provider.currentItemId =
+                                              t.id.toString();
                                           showModalBottomSheet(
                                             context: context,
-                                            backgroundColor: ColorRef.transparent,
+                                            backgroundColor:
+                                                ColorRef.transparent,
                                             builder: (BuildContext context) {
                                               return StatefulBuilder(
                                                 builder: (context, setState) {
                                                   return BackdropFilter(
-                                                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                                                      child: EditingBottomSheet(provider: provider,item: t,));
+                                                      filter: ImageFilter.blur(
+                                                          sigmaX: 5, sigmaY: 5),
+                                                      child: EditingBottomSheet(
+                                                        provider: provider,
+                                                        item: t,
+                                                      ));
                                                 },
                                               );
                                             },
@@ -86,9 +111,12 @@ class ImageEditView extends StatelessWidget {
                                           alignment: Alignment.center,
                                           child: Text(
                                             provider.selectedTextCase == 'AA'
-                                                ? (t.customText ?? '').toUpperCase()
-                                                : provider.selectedTextCase == 'aa'
-                                                    ? t.customText!.toLowerCase()
+                                                ? (t.customText ?? '')
+                                                    .toUpperCase()
+                                                : provider.selectedTextCase ==
+                                                        'aa'
+                                                    ? t.customText!
+                                                        .toLowerCase()
                                                     : "${t.customText!.substring(0, 1).toUpperCase()}${t.customText!.substring(1).toLowerCase()}",
                                             style: t.textStyle,
                                           ),
@@ -100,50 +128,78 @@ class ImageEditView extends StatelessWidget {
                                 },
                                 background: Stack(
                                   children: [
-                                    Image.asset(argument[1], height: 350, width: 370, fit: BoxFit.cover),
+                                    Image.asset(argument[1],
+                                        height: 350,
+                                        width: 370,
+                                        fit: BoxFit.cover),
                                     Column(
                                       children: [
                                         Row(
                                           children: [
                                             Expanded(
                                               child: Container(
-                                                margin: const EdgeInsets.only(top: 16.0, right: 19.0),
-                                                child: Image.asset(SvgPath.logo),
+                                                margin: const EdgeInsets.only(
+                                                    top: 16.0, right: 19.0),
+                                                child:
+                                                    Image.asset(SvgPath.logo),
                                               ),
                                             ),
                                             Column(
-                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
                                               children: [
                                                 const SizedBox(height: 5),
                                                 Container(
-                                                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 50,
+                                                      vertical: 2),
                                                   decoration: BoxDecoration(
                                                     color: ColorRef.blue007494,
-                                                    borderRadius: const BorderRadius.only(
-                                                      topLeft: Radius.circular(30.0),
-                                                      bottomLeft: Radius.circular(30.0),
+                                                    borderRadius:
+                                                        const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(30.0),
+                                                      bottomLeft:
+                                                          Radius.circular(30.0),
                                                     ),
                                                   ),
                                                   child: Text(
                                                     "Loopbots@gmail.com",
-                                                    style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontFamily: 'Lato',
+                                                        fontSize: 8,
+                                                        color: ColorRef.white),
                                                   ),
                                                 ),
                                                 const SizedBox(
                                                   height: 5,
                                                 ),
                                                 Container(
-                                                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 50,
+                                                      vertical: 2),
                                                   decoration: BoxDecoration(
                                                     color: ColorRef.red8C0016,
-                                                    borderRadius: const BorderRadius.only(
-                                                      topLeft: Radius.circular(30.0),
-                                                      bottomLeft: Radius.circular(30.0),
+                                                    borderRadius:
+                                                        const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(30.0),
+                                                      bottomLeft:
+                                                          Radius.circular(30.0),
                                                     ),
                                                   ),
                                                   child: Text(
                                                     "+12 123 456 789",
-                                                    style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontFamily: 'Lato',
+                                                        fontSize: 8,
+                                                        color: ColorRef.white),
                                                   ),
                                                 ),
                                               ],
@@ -154,30 +210,45 @@ class ImageEditView extends StatelessWidget {
                                         Align(
                                           alignment: Alignment.bottomRight,
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.end,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
                                             children: [
                                               const SizedBox(
                                                 height: 5,
                                               ),
                                               Container(
-                                                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 2),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 50,
+                                                        vertical: 2),
                                                 decoration: BoxDecoration(
                                                   color: ColorRef.red8C0016,
-                                                  borderRadius: const BorderRadius.only(
-                                                    topLeft: Radius.circular(30.0),
-                                                    bottomLeft: Radius.circular(30.0),
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(30.0),
+                                                    bottomLeft:
+                                                        Radius.circular(30.0),
                                                   ),
                                                 ),
                                                 child: Text(
                                                   "www.loopbotstechnology.com",
-                                                  style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 8, color: ColorRef.white),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontFamily: 'Lato',
+                                                      fontSize: 8,
+                                                      color: ColorRef.white),
                                                 ),
                                               ),
                                               const SizedBox(
                                                 height: 5,
                                               ),
                                               Container(
-                                                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 3),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 50,
+                                                        vertical: 3),
                                                 width: double.maxFinite,
                                                 decoration: BoxDecoration(
                                                   color: ColorRef.blue007494,
@@ -185,7 +256,12 @@ class ImageEditView extends StatelessWidget {
                                                 child: Center(
                                                   child: Text(
                                                     "401 - Green Elina, Anand mahal road, Adajan. Surat, Gujarat 395009",
-                                                    style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 6, color: ColorRef.white),
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontFamily: 'Lato',
+                                                        fontSize: 6,
+                                                        color: ColorRef.white),
                                                   ),
                                                 ),
                                               ),
@@ -209,8 +285,10 @@ class ImageEditView extends StatelessWidget {
                                       child: Transform.rotate(
                                         angle: e['rotation'],
                                         child: Listener(
-                                          onPointerDown: (details) => provider.onPointerDown(details, e),
-                                          onPointerUp: (details) => provider.onPointerUp(),
+                                          onPointerDown: (details) => provider
+                                              .onPointerDown(details, e),
+                                          onPointerUp: (details) =>
+                                              provider.onPointerUp(),
                                           child: Image.asset(e['add']),
                                         ),
                                       ),
@@ -226,7 +304,7 @@ class ImageEditView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 106,
+                      height: 110,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
@@ -241,22 +319,33 @@ class ImageEditView extends StatelessWidget {
                                 },
                                 child: Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: ColorRef.backgroundColor),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: ColorRef.backgroundColor,
+                                    border: Border.all(
+                                      color: provider.frameDetails[index]['show'] ? ColorRef.blue3498DB : ColorRef.transparent,
+                                    ),
+                                  ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: SvgPicture.asset(
                                       provider.frameDetails[index]['imageList'],
                                       height: 20,
                                       width: 20,
-                                      colorFilter: ColorFilter.mode(BoolRef.themeChange ? ColorRef.white : ColorRef.blue0250A4, BlendMode.srcIn),
+                                      colorFilter: ColorFilter.mode(
+                                        provider.frameDetails[index]['show'] ? ColorRef.blue3498DB : BoolRef.themeChange ? ColorRef.whiteFFFFFF : ColorRef.grey757575,
+                                        BlendMode.srcIn,
+                                      ),
                                     ),
                                   ),
                                 ),
+
                               ),
                             ],
                           );
                         },
-                        separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 5),
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const SizedBox(width: 5),
                       ),
                     ),
                     SizedBox(
@@ -264,7 +353,9 @@ class ImageEditView extends StatelessWidget {
                       child: Container(
                         width: 370,
                         height: 81,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: ColorRef.backgroundColor),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: ColorRef.backgroundColor),
                         child: Center(
                           child: ListView.separated(
                             scrollDirection: Axis.horizontal,
@@ -272,23 +363,40 @@ class ImageEditView extends StatelessWidget {
                             itemCount: provider.EditDetails.length,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
-                                onTap: () => provider.edit(index: index, context: context, provider: provider),
+                                onTap: () => provider.edit(
+                                    index: index,
+                                    context: context,
+                                    provider: provider),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
                                       margin: const EdgeInsets.only(bottom: 8),
                                       padding: const EdgeInsets.all(10.0),
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: BoolRef.themeChange ? ColorRef.grey304359 : ColorRef.white),
-                                      child: SvgPicture.asset(provider.EditDetails[index]['image']),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          color: BoolRef.themeChange
+                                              ? ColorRef.grey304359
+                                              : ColorRef.white),
+                                      child: SvgPicture.asset(
+                                          provider.EditDetails[index]['image']),
                                     ),
-                                    Text(provider.EditDetails[index]['label'] ?? '',
-                                        style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12, color: ColorRef.textPrimaryColor))
+                                    Text(
+                                        provider.EditDetails[index]['label'] ??
+                                            '',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: 'Lato',
+                                            fontSize: 12,
+                                            color: ColorRef.textPrimaryColor))
                                   ],
                                 ),
                               );
                             },
-                            separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 20),
+                            separatorBuilder:
+                                (BuildContext context, int index) =>
+                                    const SizedBox(width: 20),
                           ),
                         ),
                       ),
@@ -302,4 +410,6 @@ class ImageEditView extends StatelessWidget {
       },
     );
   }
+
+
 }
