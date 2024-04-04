@@ -79,9 +79,6 @@ class ImageEditView extends StatelessWidget {
                                         iconColor: Colors.white,
                                       ),
                                       child: GestureDetector(
-                                        onPanUpdate: (details){
-                                          provider.handlePanUpdate(details,t,height,width);
-                                        },
                                         onTap: () {
                                           debugPrint(t.id.toString());
                                           provider.currentItemId =
