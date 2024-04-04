@@ -4,7 +4,6 @@ import 'package:festo_post/app_export.dart';
 
 class ProfileProvider extends ChangeNotifier {
   List<Map<String, dynamic>> profileDetails = [
-    {"icon": SvgPath.profile, "label": StrRef.accountDetails, "route": ''},
     {"icon": SvgPath.savePost, "label": StrRef.savePost, "route": 'myPost'},
     {"icon": SvgPath.tag, "label": StrRef.brandSubscript, "route": 'myBrand'},
     {"icon": SvgPath.rewardPoints, "label": StrRef.rewardPoints, "route": 'referralPoints'},

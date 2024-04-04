@@ -121,7 +121,24 @@ class StrRef {
       referralLabel2 = "Credited for Sharing Referral with “Christina Doe”.",
       referralLabel3 = "Debited for subscribing brand “ABC Company”.",
       selectAudio = "Select Audio",
-      selectAudioText = "Select Audio From Your Device"
+      selectAudioText = "Select Audio From Your Device",
+      privacy = "Privacy Policy",
+      refund = "Refund Policy",
+      terms = "Terms and Conditions",
+      contactTitle = "Please get in touch, and our expert support team will answer all questions.",
+      contactLabel = "We are available everywhere.",
+      emailId = "Email id",
+      phone = "Phone",
+      socialMedia = "Social Media",
+      aboutTitle1 = "What is FestoPost app?",
+      aboutTitle2 = "Who are we??",
+      aboutQuery = "For any enquiry contact us on",
+      aboutText = "FestoPost application is powered by Loopbots Technology.",
+      intro = "Introduction",
+      personalData = "Personal data",
+      dataSecurity = "Use of personal datasecurity precaution",
+      termsServices = "Terms of Services"
+
 ;}
 
 class SvgPath {
@@ -203,6 +220,9 @@ class SvgPath {
       audio = 'assets/svg/audio.svg',
       play = 'assets/svg/play.svg',
       pause = 'assets/svg/pause.svg',
+      privacy = 'assets/svg/privacy.svg',
+      refund = 'assets/svg/refund.svg',
+      terms = 'assets/svg/terms.svg',
 
 
       audio1 = 'assets/audio/yoyo.mp3',
@@ -268,6 +288,10 @@ class SvgPath {
       subscriptionDark = 'assets/png/subscriptBackgroundDark.png',
       availableCoupon = 'assets/png/availableCoupon.png',
       rewardBackground = 'assets/png/rewardBackground.png',
+      festoPost = 'assets/png/festoPost.png',
+      loopBotsLight = 'assets/png/loopBotsLight.png',
+      loopBotsDark = 'assets/png/loopBotsDark.png',
+
 
 
       download = 'assets/lottie/download.json'

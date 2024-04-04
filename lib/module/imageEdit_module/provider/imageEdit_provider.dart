@@ -74,6 +74,7 @@ class ImageEditProvider extends ChangeNotifier {
       "left": 0.0,
       "scale": 1.0,
       "rotation": 0.0,
+      "apply":false,
     },
     {
       "imageList": SvgPath.framePhone,
@@ -84,6 +85,7 @@ class ImageEditProvider extends ChangeNotifier {
       "left": 0.0,
       "scale": 1.0,
       "rotation": 0.0,
+      "apply":false,
     },
     {
       "imageList": SvgPath.frameEmail,
@@ -94,6 +96,7 @@ class ImageEditProvider extends ChangeNotifier {
       "left": 0.0,
       "scale": 1.0,
       "rotation": 0.0,
+      "apply":false,
     },
     {
       "imageList": SvgPath.frameWeb,
@@ -104,6 +107,7 @@ class ImageEditProvider extends ChangeNotifier {
       "left": 0.0,
       "scale": 1.0,
       "rotation": 0.0,
+      "apply":false,
     },
     {
       "imageList": SvgPath.frameLocation,
@@ -114,6 +118,7 @@ class ImageEditProvider extends ChangeNotifier {
       "left": 0.0,
       "scale": 1.0,
       "rotation": 0.0,
+      "apply":false,
     },
   ];
   List<Map<String, dynamic>> EditDetails = [
