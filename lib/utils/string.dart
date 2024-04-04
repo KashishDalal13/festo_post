@@ -201,6 +201,14 @@ class SvgPath {
       transactionDate = 'assets/svg/transactionDate.svg',
       transactionAmt = 'assets/svg/transactionAmt.svg',
       audio = 'assets/svg/audio.svg',
+      play = 'assets/svg/play.svg',
+      pause = 'assets/svg/pause.svg',
+
+
+      audio1 = 'assets/audio/yoyo.mp3',
+      audio2 = 'assets/audio/songs.mp3',
+      audio3 = 'assets/audio/zindagi.mp3',
+      audio4 = 'assets/audio/onandon.mp3',
 
 
 

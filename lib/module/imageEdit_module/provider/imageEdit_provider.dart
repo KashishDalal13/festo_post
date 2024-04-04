@@ -168,11 +168,11 @@ class ImageEditProvider extends ChangeNotifier {
     {
       "label": "All",
       "audios": [
-        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
-        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
-        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
-        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
-        {"image": SvgPath.trend1, "audio": "nature", "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": SvgPath.audio1, "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": SvgPath.audio2, "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": SvgPath.audio3, "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": SvgPath.audio4, "duration": "10.0"},
+        {"image": SvgPath.trend1, "audio": SvgPath.audio1, "duration": "10.0"},
       ]
     },
     {
@@ -216,6 +216,22 @@ class ImageEditProvider extends ChangeNotifier {
       ]
     },
   ];
+  final AudioPlayer audioPlayer = AudioPlayer(); // Ensure this is from just_audio package
+  bool isPlaying = false;
+  int playingIndex=0;
+
+
+  void togglePlayback(int index) {
+    if (isPlaying) {
+      audioPlayer.pause();
+      playingIndex=index;
+    } else {
+      audioPlayer.play();
+      playingIndex=index;
+    }
+    isPlaying = !isPlaying;
+    notifyListeners();
+  }
 
   final GlobalKey repaintBoundaryKey = GlobalKey();
 

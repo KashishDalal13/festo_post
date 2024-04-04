@@ -19,119 +19,205 @@ class MyBrandView extends StatelessWidget {
             appBar: AppBar(
               leading: IconButton(
                 onPressed: () => provider.onBack(),
-                icon: Icon(Icons.arrow_back_ios_rounded, size: 20, color: ColorRef.textPrimaryColor),
+                icon: Icon(Icons.arrow_back_ios_rounded,
+                    size: width * 0.06, color: ColorRef.textPrimaryColor),
               ),
               centerTitle: true,
-              title: Text(StrRef.myBrand, style: const TextStyle(fontFamily: 'Lato', fontSize: 20)),
+              title: Text(StrRef.myBrand,
+                  style: TextStyle(fontFamily: 'Lato', fontSize: width * 0.05)),
             ),
             resizeToAvoidBottomInset: false,
             body: Column(
               children: [
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  padding: const EdgeInsets.all(10.0),
+                  margin: EdgeInsets.symmetric(
+                      horizontal: width * 0.05, vertical: height * 0.02),
+                  padding: EdgeInsets.all(width * 0.025),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(width * 0.04),
                     border: Border.all(color: ColorRef.greyD6D6D6),
                   ),
                   child: Row(
                     children: [
                       Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-                        padding: const EdgeInsets.all(10.0),
-                        height: 80,
-                        width: 80,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: width * 0.025, vertical: width * 0.025),
+                        padding: EdgeInsets.all(width * 0.025),
+                        height: width * 0.2,
+                        width: width * 0.2,
                         decoration: BoxDecoration(
-                          color: BoolRef.themeChange ? ColorRef.white : ColorRef.transparent,
-                          borderRadius: BorderRadius.circular(15),
+                          color: BoolRef.themeChange
+                              ? ColorRef.white
+                              : ColorRef.transparent,
+                          borderRadius: BorderRadius.circular(width * 0.04),
                           border: Border.all(color: ColorRef.greyD6D6D6),
                         ),
                         child: Image.asset(SvgPath.logo),
                       ),
                       Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                        margin: EdgeInsets.symmetric(
+                            horizontal: width * 0.025, vertical: width * 0.025),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               StrRef.loopbots,
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, fontFamily: "Lato", color: ColorRef.textPrimaryColor),
+                              style: TextStyle(
+                                  fontSize: width * 0.04,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Lato",
+                                  color: ColorRef.textPrimaryColor),
                             ),
-                            const SizedBox(height: 5),
+                            SizedBox(height: width * 0.01),
                             Text(StrRef.technology,
                                 style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w400, fontFamily: "Lato", color: BoolRef.themeChange ? ColorRef.whiteFFFFFF : ColorRef.grey494949)),
+                                    fontSize: width * 0.035,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Lato",
+                                    color: BoolRef.themeChange
+                                        ? ColorRef.whiteFFFFFF
+                                        : ColorRef.grey494949)),
                           ],
                         ),
                       ),
-                      const Spacer(),
+                      Spacer(),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: width * 0.025),
                         child: Column(
                           children: [
                             GestureDetector(
-                              onTap:() => NavigationService.routeToNamed('brandDetails'),
+                              onTap: () => NavigationService.routeToNamed(
+                                  'brandDetails'),
                               child: SvgPicture.asset(
                                 SvgPath.iconFrame,
-                                height: 25,
-                                width: 25,
+                                height: width * 0.06,
+                                width: width * 0.06,
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+                            SizedBox(height: width * 0.02),
                             GestureDetector(
                                 onTap: () {
                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
                                       return BackdropFilter(
-                                        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                                        filter: ImageFilter.blur(
+                                            sigmaX: 5, sigmaY: 5),
                                         child: AlertDialog(
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-                                          backgroundColor: BoolRef.themeChange?ColorRef.black1E2A38:ColorRef.whiteFFFFFF,
-                                          surfaceTintColor: ColorRef.whiteFFFFFF,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      width * 0.05)),
+                                          backgroundColor: BoolRef.themeChange
+                                              ? ColorRef.black1E2A38
+                                              : ColorRef.whiteFFFFFF,
+                                          surfaceTintColor:
+                                              ColorRef.whiteFFFFFF,
                                           content: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Text(StrRef.delete, style: TextStyle(color: ColorRef.textPrimaryColor,fontFamily: 'Lato', fontSize: 20, fontWeight: FontWeight.bold)),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
+                                              Text(StrRef.delete,
+                                                  style: TextStyle(
+                                                      color: ColorRef
+                                                          .textPrimaryColor,
+                                                      fontFamily: 'Lato',
+                                                      fontSize: width * 0.05,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              SizedBox(height: width * 0.01),
                                               Padding(
-                                                padding: const EdgeInsets.symmetric(horizontal: 22),
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: width * 0.1),
                                                 child: Text(StrRef.deleteSure,
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(fontFamily: 'Lato', fontSize: 16, fontWeight: FontWeight.w400, color: BoolRef.themeChange?ColorRef.greyDFDFDF:ColorRef.grey757575)),
+                                                    style: TextStyle(
+                                                        fontFamily: 'Lato',
+                                                        fontSize: width * 0.04,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        color: BoolRef
+                                                                .themeChange
+                                                            ? ColorRef
+                                                                .greyDFDFDF
+                                                            : ColorRef
+                                                                .grey757575)),
                                               ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
+                                              SizedBox(height: width * 0.02),
                                               Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   GestureDetector(
-                                                    onTap: () => NavigationService.goBack(),
+                                                    onTap: () =>
+                                                        NavigationService
+                                                            .goBack(),
                                                     child: Container(
-                                                      padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 10),
-                                                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  width * 0.1,
+                                                              vertical: width *
+                                                                  0.025),
+                                                      margin:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  width * 0.01),
                                                       decoration: BoxDecoration(
-                                                        color: BoolRef.themeChange?ColorRef.backgroundColor:ColorRef.greyE7E7E7,
-                                                        borderRadius: BorderRadius.circular(10),
+                                                        color: BoolRef
+                                                                .themeChange
+                                                            ? ColorRef
+                                                                .backgroundColor
+                                                            : ColorRef
+                                                                .greyE7E7E7,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    width *
+                                                                        0.03),
                                                       ),
-                                                      child:
-                                                          Text(StrRef.no, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.textPrimaryColor)),
+                                                      child: Text(StrRef.no,
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  'Lato',
+                                                              fontSize:
+                                                                  width * 0.035,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: ColorRef
+                                                                  .textPrimaryColor)),
                                                     ),
                                                   ),
                                                   Container(
-                                                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                                                    margin: const EdgeInsets.symmetric(horizontal: 5),
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal:
+                                                                width * 0.1,
+                                                            vertical:
+                                                                width * 0.025),
+                                                    margin:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal:
+                                                                width * 0.01),
                                                     decoration: BoxDecoration(
-                                                      color: ColorRef.yellowFFA500,
-                                                      borderRadius: BorderRadius.circular(10),
+                                                      color:
+                                                          ColorRef.yellowFFA500,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              width * 0.03),
                                                     ),
-                                                    child: Text(StrRef.yes, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.black202020)),
+                                                    child: Text(StrRef.yes,
+                                                        style: TextStyle(
+                                                            fontFamily: 'Lato',
+                                                            fontSize:
+                                                                width * 0.035,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            color: ColorRef
+                                                                .black202020)),
                                                   ),
                                                 ],
                                               ),
@@ -142,31 +228,44 @@ class MyBrandView extends StatelessWidget {
                                     },
                                   );
                                 },
-                                child: SvgPicture.asset(SvgPath.trash, height: 25, width: 25)),
+                                child: SvgPicture.asset(SvgPath.trash,
+                                    height: width * 0.06, width: width * 0.06)),
                           ],
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: width * 0.08,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: GestureDetector(onTap:()=>NavigationService.routeToNamed('brandDetails'),child: SvgPicture.asset(SvgPath.brandadd, height: 50, width: 50)),
+                  padding: EdgeInsets.symmetric(vertical: height * 0.02),
+                  child: GestureDetector(
+                      onTap: () =>
+                          NavigationService.routeToNamed('brandDetails'),
+                      child: SvgPicture.asset(SvgPath.brandadd,
+                          height: width * 0.2, width: width * 0.2)),
                 ),
-                const Spacer(),
+                Spacer(),
                 GestureDetector(
-                  onTap: () => NavigationService.routeToNamed('SubscriptionPlan'),
+                  onTap: () =>
+                      NavigationService.routeToNamed('SubscriptionPlan'),
                   child: Container(
-                    height: 40,
-                    margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 50),
-                    decoration: BoxDecoration(color: ColorRef.yellowFFA500, borderRadius: BorderRadius.circular(10)),
+                    height: height * 0.05,
+                    margin: EdgeInsets.symmetric(
+                        horizontal: width * 0.1, vertical: height * 0.05),
+                    decoration: BoxDecoration(
+                        color: ColorRef.yellowFFA500,
+                        borderRadius: BorderRadius.circular(width * 0.03)),
                     alignment: Alignment.center,
                     child: Text(
                       StrRef.subscribe,
-                      style: TextStyle(color: ColorRef.black202020, fontSize: 15, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
+                      style: TextStyle(
+                          color: ColorRef.black202020,
+                          fontSize: width * 0.035,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Lato'),
                     ),
                   ),
                 ),

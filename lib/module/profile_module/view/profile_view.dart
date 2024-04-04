@@ -1,7 +1,7 @@
 import 'package:festo_post/app_export.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+  const ProfileView({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,8 @@ class ProfileView extends StatelessWidget {
             body: Column(
               children: [
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  padding: const EdgeInsets.all(10.0),
+                  margin: EdgeInsets.symmetric(horizontal: width * 0.05, vertical: height * 0.01),
+                  padding: EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6),
@@ -40,8 +40,8 @@ class ProfileView extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
                             padding: const EdgeInsets.all(10.0),
-                            height: 80,
-                            width: 80,
+                            height: width * 0.2,
+                            width: width * 0.2,
                             decoration: BoxDecoration(
                               color: BoolRef.themeChange ? ColorRef.white : ColorRef.transparent,
                               borderRadius: BorderRadius.circular(15),
@@ -56,11 +56,11 @@ class ProfileView extends StatelessWidget {
                               children: [
                                 Text(
                                   StrRef.loopbots,
-                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, fontFamily: "Lato", color: ColorRef.textPrimaryColor),
+                                  style: TextStyle(fontSize: width * 0.05, fontWeight: FontWeight.w400, fontFamily: "Lato", color: ColorRef.textPrimaryColor),
                                 ),
                                 Text(StrRef.phnNo,
                                     style: TextStyle(
-                                        fontSize: 15, fontWeight: FontWeight.w400, fontFamily: "Lato", color: BoolRef.themeChange ? ColorRef.whiteFFFFFF : ColorRef.blue0250A4)),
+                                        fontSize: width * 0.04, fontWeight: FontWeight.w400, fontFamily: "Lato", color: BoolRef.themeChange ? ColorRef.whiteFFFFFF : ColorRef.blue0250A4)),
                               ],
                             ),
                           ),
@@ -69,8 +69,8 @@ class ProfileView extends StatelessWidget {
                             onTap: () => provider.onTapEdit(),
                             child: SvgPicture.asset(
                               provider.isEdit ? SvgPath.cancelEdit : SvgPath.iconFrame,
-                              height: 25,
-                              width: 25,
+                              height: width * 0.05,
+                              width: width * 0.05,
                             ),
                           ),
                         ],
@@ -87,10 +87,10 @@ class ProfileView extends StatelessWidget {
                                 decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                                   hintText: StrRef.AddName,
-                                  hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: ColorRef.textPrimaryColor),
+                                  hintStyle: TextStyle(fontFamily: 'Lato', fontSize: width * 0.035, color: ColorRef.textPrimaryColor),
                                   prefixIcon: Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                    child: SvgPicture.asset(SvgPath.profile, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4, ),
+                                    child: SvgPicture.asset(SvgPath.profile, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
                                   ),
                                 ),
                               ),
@@ -105,10 +105,10 @@ class ProfileView extends StatelessWidget {
                                   contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                                   hintText: StrRef.AddPhone,
                                   fillColor: ColorRef.textPrimaryColor,
-                                  hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: ColorRef.textPrimaryColor),
+                                  hintStyle: TextStyle(fontFamily: 'Lato', fontSize: width * 0.035, color: ColorRef.textPrimaryColor),
                                   prefixIcon: Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                    child: SvgPicture.asset(SvgPath.phone, color:BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
+                                    child: SvgPicture.asset(SvgPath.phone, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
                                   ),
                                 ),
                               ),
@@ -125,7 +125,7 @@ class ProfileView extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child: Text(
                                   StrRef.update,
-                                  style: TextStyle(color: ColorRef.textPrimaryColor, fontSize: 15, fontWeight: FontWeight.w500, fontFamily: 'Lato'),
+                                  style: TextStyle(color: ColorRef.textPrimaryColor, fontSize: width * 0.035, fontWeight: FontWeight.w500, fontFamily: 'Lato'),
                                 ),
                               ),
                             ),
@@ -140,23 +140,23 @@ class ProfileView extends StatelessWidget {
                 Expanded(
                   child: ListView.separated(
                     itemCount: provider.profileDetails.length,
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
                         decoration:
-                            BoxDecoration(border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6), borderRadius: BorderRadius.circular(15)),
+                        BoxDecoration(border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6), borderRadius: BorderRadius.circular(15)),
                         child: ListTile(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                           leading: SvgPicture.asset(
                             provider.profileDetails[index]['icon'],
-                            height: 20,
-                            width: 20,
+                            height: width * 0.04,
+                            width: width * 0.04,
                             colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn),
                           ),
-                          trailing: Icon(Icons.arrow_forward_ios_rounded, size: 20, color: ColorRef.textPrimaryColor),
+                          trailing: Icon(Icons.arrow_forward_ios_rounded, size: width * 0.04, color: ColorRef.textPrimaryColor),
                           title: Text(
                             provider.profileDetails[index]['label'],
-                            style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.textPrimaryColor, fontSize: 15),
+                            style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.textPrimaryColor, fontSize: width * 0.035),
                           ),
                           onTap: () => provider.onMyAccountNavigate(index, context),
                         ),

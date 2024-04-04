@@ -48,7 +48,7 @@ dependencies:
   flutter_colorpicker: ^1.0.3
   path_provider: ^2.1.2
   image_gallery_saver: ^2.0.3
-  audioplayers: ^6.0.0
+  just_audio: ^0.9.37
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +78,7 @@ flutter:
 #     - images/a_dot_ham.jpeg
      - assets/svg/
      - assets/png/
+     - assets/audio/
      - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
