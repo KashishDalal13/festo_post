@@ -11,9 +11,7 @@ Future<void> main() async {
     systemNavigationBarColor: ColorRef.white,
     statusBarColor: ColorRef.white,
     statusBarBrightness: Brightness.dark,
-    //set as per theme
     statusBarIconBrightness: Brightness.dark,
-    //set as per theme
     systemNavigationBarIconBrightness: Brightness.dark, //set as per theme
   ));
   runApp(const MyApp());

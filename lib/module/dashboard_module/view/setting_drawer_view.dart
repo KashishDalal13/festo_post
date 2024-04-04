@@ -33,7 +33,7 @@ class SettingDrawer extends StatelessWidget {
                 final item = provider.settingDetails[index];
                 return GestureDetector(
                   onTap: (){
-                    provider
+                    // provider
                   },
                   child: Container(
                     decoration: BoxDecoration(border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6), borderRadius: BorderRadius.circular(15)),

@@ -74,7 +74,10 @@ class ImageEditView extends StatelessWidget {
                                                 builder: (context, setState) {
                                                   return BackdropFilter(
                                                       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                                                      child: EditingBottomSheet(provider: provider,item: t,));
+                                                      child: EditingBottomSheet(
+                                                        provider: provider,
+                                                        item: t,
+                                                      ));
                                                 },
                                               );
                                             },
@@ -90,7 +93,8 @@ class ImageEditView extends StatelessWidget {
                                                 : provider.selectedTextCase == 'aa'
                                                     ? t.customText!.toLowerCase()
                                                     : "${t.customText!.substring(0, 1).toUpperCase()}${t.customText!.substring(1).toLowerCase()}",
-                                            style: t.textStyle,
+                                            // style: t.textStyle,
+                                            style: TextStyle(color: t.fontColor, fontSize: t.fontSize, fontFamily: t.fontFamily, fontStyle: t.fontStyle),
                                           ),
                                         ),
                                       ),
@@ -282,8 +286,7 @@ class ImageEditView extends StatelessWidget {
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: BoolRef.themeChange ? ColorRef.grey304359 : ColorRef.white),
                                       child: SvgPicture.asset(provider.EditDetails[index]['image']),
                                     ),
-                                    Text(provider.EditDetails[index]['label'] ?? '',
-                                        style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12, color: ColorRef.textPrimaryColor))
+                                    Text(provider.EditDetails[index]['label'] ?? '', style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12, color: ColorRef.textPrimaryColor))
                                   ],
                                 ),
                               );

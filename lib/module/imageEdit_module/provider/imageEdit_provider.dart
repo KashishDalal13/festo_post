@@ -1,6 +1,8 @@
 import 'dart:ui' as ui;
 
 import 'package:festo_post/app_export.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ImageEditProvider extends ChangeNotifier {
   int audioIndex = 0;
@@ -126,13 +128,7 @@ class ImageEditProvider extends ChangeNotifier {
   List<Map<String, dynamic>> stickerList = [
     {
       "label": "All",
-      "imageList": [
-        SvgPath.sticker4,
-        SvgPath.sticker1,
-        SvgPath.sticker10,
-        SvgPath.sticker1,
-        SvgPath.sticker2
-      ]
+      "imageList": [SvgPath.sticker4, SvgPath.sticker1, SvgPath.sticker10, SvgPath.sticker1, SvgPath.sticker2]
     },
     {
       "label": "Sale",
@@ -197,7 +193,7 @@ class ImageEditProvider extends ChangeNotifier {
     },
     {
       "label": "Offer",
-      "audios":[
+      "audios": [
         {"image": SvgPath.trend1, "audio": "Offer", "duration": "10.0"},
         {"image": SvgPath.trend1, "audio": "Offer", "duration": "10.0"},
         {"image": SvgPath.trend1, "audio": "Offer", "duration": "10.0"},
@@ -218,16 +214,15 @@ class ImageEditProvider extends ChangeNotifier {
   ];
   final AudioPlayer audioPlayer = AudioPlayer(); // Ensure this is from just_audio package
   bool isPlaying = false;
-  int playingIndex=0;
-
+  int playingIndex = 0;
 
   void togglePlayback(int index) {
     if (isPlaying) {
       audioPlayer.pause();
-      playingIndex=index;
+      playingIndex = index;
     } else {
       audioPlayer.play();
-      playingIndex=index;
+      playingIndex = index;
     }
     isPlaying = !isPlaying;
     notifyListeners();
@@ -302,10 +297,7 @@ class ImageEditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void edit(
-      {required int index,
-      required BuildContext context,
-      required ImageEditProvider provider}) async {
+  void edit({required int index, required BuildContext context, required ImageEditProvider provider}) async {
     currentIndex = index.toString();
     notifyListeners();
 
@@ -316,8 +308,7 @@ class ImageEditProvider extends ChangeNotifier {
         barrierColor: Colors.black.withOpacity(0.3),
         builder: (BuildContext context) {
           return BackdropFilter(
-            filter: ui.ImageFilter.blur(
-                sigmaX: 0.3, sigmaY: 0.3, tileMode: TileMode.decal),
+            filter: ui.ImageFilter.blur(sigmaX: 0.3, sigmaY: 0.3, tileMode: TileMode.decal),
             child: Dialog(
               backgroundColor: Colors.transparent,
               elevation: 0,
@@ -336,22 +327,17 @@ class ImageEditProvider extends ChangeNotifier {
                           // margin: const EdgeInsets.all(6.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: BoolRef.themeChange
-                                ? ColorRef.black202020
-                                : ColorRef.whiteFFFFFF,
+                            color: BoolRef.themeChange ? ColorRef.black202020 : ColorRef.whiteFFFFFF,
                           ),
                           child: IconButton(
                             padding: EdgeInsets.zero,
-                            visualDensity: const VisualDensity(
-                                horizontal: -4, vertical: -4),
+                            visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
                             alignment: Alignment.center,
                             onPressed: () => provider.onBack(),
                             icon: Icon(
                               Icons.close,
                               size: 18,
-                              color: BoolRef.themeChange
-                                  ? ColorRef.whiteFFFFFF
-                                  : ColorRef.black202020,
+                              color: BoolRef.themeChange ? ColorRef.whiteFFFFFF : ColorRef.black202020,
                             ),
                           ),
                         ),
@@ -360,26 +346,18 @@ class ImageEditProvider extends ChangeNotifier {
                     const SizedBox(height: 10),
                     Container(
                       alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 50, horizontal: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
                       decoration: BoxDecoration(
-                        color: BoolRef.themeChange
-                            ? ColorRef.black202020.withOpacity(0.7)
-                            : ColorRef.white.withOpacity(0.8),
+                        color: BoolRef.themeChange ? ColorRef.black202020.withOpacity(0.7) : ColorRef.white.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: TextField(
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: ColorRef.textPrimaryColor,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Lato',
-                            fontSize: 20),
+                        style: TextStyle(color: ColorRef.textPrimaryColor, fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 20),
                         decoration: InputDecoration(
                           hintText: 'Write Here',
                           contentPadding: EdgeInsets.zero,
-                          hintStyle:
-                              TextStyle(color: ColorRef.textPrimaryColor),
+                          hintStyle: TextStyle(color: ColorRef.textPrimaryColor),
                           border: InputBorder.none,
                         ),
                         onChanged: (value) => text = value,
@@ -396,8 +374,7 @@ class ImageEditProvider extends ChangeNotifier {
                           color: ColorRef.yellowFFA500,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Text('Done',
-                            style: TextStyle(color: ColorRef.black202020)),
+                        child: Text('Done', style: TextStyle(color: ColorRef.black202020)),
                       ),
                     ),
                   ],
@@ -410,10 +387,7 @@ class ImageEditProvider extends ChangeNotifier {
 
       if (result != null) {
         boardController.add<CustomItem>(
-          CustomItem(
-            customText: result,
-            onDel: () async => true,
-          ),
+          CustomItem(customText: result, onDel: () async => true, fontStyle: FontStyle.normal, fontFamily: 'Lato', fontSize: 14, fontColor: Colors.black),
         );
       }
     } else if (index == 1) {
@@ -557,8 +531,7 @@ class ImageEditProvider extends ChangeNotifier {
     activeItem['top'] += (details.focalPointDelta.dy);
     activeItem['left'] = (activeItem['left'] as double).clamp(2, width - w);
     activeItem['top'] = (activeItem['top'] as double).clamp(2, 280);
-    activeItem['position'] =
-        Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
+    activeItem['position'] = Offset(activeItem['left'].toDouble(), activeItem['top'].toDouble());
     activeItem['rotation'] = details.rotation + currentRotation!;
     double scale = max(min(details.scale * currentScale!, 2), 0.3);
     activeItem['scale'] = scale;
@@ -584,13 +557,10 @@ class ImageEditProvider extends ChangeNotifier {
   File? capturedImageData;
 
   Future<Uint8List?> captureEditedImage() async {
-    RenderRepaintBoundary boundary = repaintBoundaryKey.currentContext!
-        .findRenderObject() as RenderRepaintBoundary;
+    RenderRepaintBoundary boundary = repaintBoundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
     ui.Image image = await boundary.toImage(pixelRatio: 3.0);
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    NavigationService.routeTo(MaterialPageRoute(
-        builder: (context) =>
-            DownloadPostView(imageData: byteData?.buffer.asUint8List())));
+    NavigationService.routeTo(MaterialPageRoute(builder: (context) => DownloadPostView(imageData: byteData?.buffer.asUint8List())));
     return byteData?.buffer.asUint8List();
   }
 
@@ -609,6 +579,10 @@ class ImageEditProvider extends ChangeNotifier {
 class CustomItem extends StackBoardItem {
   CustomItem({
     this.customText,
+    this.fontColor,
+    this.fontSize,
+    this.fontFamily,
+    this.fontStyle,
     this.imageList,
     this.add,
     this.show,
@@ -631,6 +605,10 @@ class CustomItem extends StackBoardItem {
   }
 
   final String? customText;
+  String? fontFamily;
+  double? fontSize;
+  Color? fontColor;
+  FontStyle? fontStyle;
   String? imageList;
   String? add;
   bool? show;
@@ -647,6 +625,11 @@ class CustomItem extends StackBoardItem {
     CaseStyle? caseStyle,
     Widget? child,
     int? id,
+    String? customText,
+    String? fontFamily,
+    double? fontSize,
+    Color? fontColor,
+    FontStyle? fontStyle,
     String? imageList,
     String? add,
     bool? show,
@@ -665,6 +648,10 @@ class CustomItem extends StackBoardItem {
       CustomItem(
         onDel: onDel ?? this.onDel,
         id: id ?? this.id,
+        fontColor: fontColor,
+        fontFamily: fontFamily,
+        fontSize: fontSize,
+        fontStyle: fontStyle,
         customText: customText ?? this.customText,
         imageList: imageList ?? this.imageList,
         add: add ?? this.add,
