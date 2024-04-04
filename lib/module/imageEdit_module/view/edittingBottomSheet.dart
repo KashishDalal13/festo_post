@@ -6,26 +6,24 @@ class EditingBottomSheet extends StatefulWidget {
   final ImageEditProvider? provider;
   final CustomItem? item;
 
-  const EditingBottomSheet({super.key, this.provider,this.item});
+  const EditingBottomSheet({super.key, this.provider, this.item});
 
   @override
   State<EditingBottomSheet> createState() => _EditingBottomSheetState();
 }
 
 class _EditingBottomSheetState extends State<EditingBottomSheet> {
-
-
   @override
   Widget build(BuildContext context) {
     ImageEditProvider provider = widget.provider!;
-    CustomItem stackBoardItem=widget.item!;
+    CustomItem stackBoardItem = widget.item!;
     return Theme(
       data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
       child: Container(
         height: 230,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
-          color: BoolRef.themeChange?ColorRef.blue304359:ColorRef.greyEDEDED,
+          color: BoolRef.themeChange ? ColorRef.blue304359 : ColorRef.greyEDEDED,
         ),
         child: Column(
           children: [
@@ -34,7 +32,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(StrRef.editText, style: TextStyle(color: ColorRef.textPrimaryColor,fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
+                Text(StrRef.editText, style: TextStyle(color: ColorRef.textPrimaryColor, fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
               ],
             ),
             const SizedBox(height: 15),
@@ -52,7 +50,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                         itemBuilder: (BuildContext context) {
                           return provider.fontFamilies.map((String fontFamily) {
-                            final bool isSelected = provider.selectedFontFamily == fontFamily;
+                            final bool isSelected = stackBoardItem.fontFamily == fontFamily;
                             return PopupMenuItem(
                               value: fontFamily,
                               child: Container(
@@ -68,7 +66,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                                         if (newValue != null && newValue) {
                                           setState(() {
                                             provider.setSelectedFontFamily(fontFamily);
-                                            stackBoardItem.textStyle=TextStyle(fontFamily: fontFamily);
+                                            stackBoardItem.fontFamily = fontFamily;
                                             provider.onBack();
                                           });
                                         }
@@ -92,7 +90,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                         onSelected: (String selectedFontFamily) {
                           setState(() {
                             provider.setSelectedFontFamily(selectedFontFamily);
-                            stackBoardItem.textStyle=TextStyle(fontFamily: selectedFontFamily);
+                            stackBoardItem.fontFamily = selectedFontFamily;
                           });
                         },
                         child: Container(
@@ -104,7 +102,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                           ),
                           child: Center(
                             child: Text(
-                              provider.selectedFontFamily == '' ? "Fonts" : provider.selectedFontFamily,
+                              stackBoardItem.fontFamily ?? "Fonts",
                               style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
                             ),
                           ),
@@ -116,7 +114,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                         children: provider.letters.map((e) {
                           int index = provider.letters.indexOf(e);
                           return GestureDetector(
-                            onTap: () => setState(() => provider.toggleTextStyle(index,stackBoardItem)),
+                            onTap: () => setState(() => provider.toggleTextStyle(index, stackBoardItem)),
                             child: Container(
                               padding: const EdgeInsets.all(12),
                               margin: const EdgeInsets.all(5),
@@ -147,8 +145,8 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         itemBuilder: (BuildContext context) {
-                          return provider.fontSize.map((int fontFontSize) {
-                            final bool isSelected = provider.selectedFontSize == fontFontSize;
+                          return provider.fontSize.map((double fontFontSize) {
+                            final bool isSelected = stackBoardItem.fontSize == fontFontSize;
                             return PopupMenuItem(
                               value: fontFontSize,
                               child: Container(
@@ -164,7 +162,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                                         if (newValue != null && newValue) {
                                           setState(() {
                                             provider.setSelectedFontSize(fontFontSize);
-                                            stackBoardItem.textStyle = TextStyle(fontSize: fontFontSize.toDouble());
+                                            stackBoardItem.fontSize = fontFontSize;
                                             provider.onBack();
                                           });
                                         }
@@ -185,10 +183,10 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                             );
                           }).toList();
                         },
-                        onSelected: (int selectedFontSize) {
+                        onSelected: (double selectedFontSize) {
                           setState(() {
                             provider.setSelectedFontSize(selectedFontSize);
-                            stackBoardItem.textStyle = TextStyle(fontSize: selectedFontSize.toDouble()); // Convert int to double
+                            stackBoardItem.fontSize = selectedFontSize;
                           });
                         },
                         child: Container(
@@ -202,7 +200,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
-                                provider.selectedFontSize.toString(),
+                                (stackBoardItem.fontSize??22).toString(),
                                 style: const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.w400),
                               ),
                               const Icon(Icons.keyboard_arrow_down_outlined)
@@ -218,13 +216,14 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                           return GestureDetector(
                             onTap: () {
                               setState(() {
-                                provider.toggleTextCase(provider.cases[index], index,stackBoardItem);
+                                provider.toggleTextCase(provider.cases[index], index, stackBoardItem);
                               });
                             },
                             child: Container(
                               padding: const EdgeInsets.all(8),
                               margin: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: provider.selectedCaseIndex == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5), color: provider.selectedCaseIndex == index.toString() ? ColorRef.yellowFFA500 : ColorRef.white),
                               child: Text(provider.cases[index], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Lato')),
                             ),
                           );
@@ -249,8 +248,8 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                           child: AlertDialog(
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                            backgroundColor: BoolRef.themeChange?ColorRef.blue1E2A38:ColorRef.whiteFFFFFF,
-                            surfaceTintColor: BoolRef.themeChange?ColorRef.blue1E2A38:ColorRef.whiteFFFFFF,
+                            backgroundColor: BoolRef.themeChange ? ColorRef.blue1E2A38 : ColorRef.whiteFFFFFF,
+                            surfaceTintColor: BoolRef.themeChange ? ColorRef.blue1E2A38 : ColorRef.whiteFFFFFF,
                             content: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -260,8 +259,8 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                                   onColorChanged: (Color color) {
                                     setState(() {
                                       provider.selectedColor = color;
-                                      provider.onColorChange(color);
-                                      stackBoardItem.textStyle=TextStyle(color: color);
+                                      provider.onColorChange(color, stackBoardItem);
+                                      stackBoardItem.color =color;
                                     });
                                   },
                                   colorPickerWidth: 232.0,
@@ -319,14 +318,14 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                       return GestureDetector(
                         onTap: () {
                           setState(() {
-                            provider.onColorOpacityChange(opacity,stackBoardItem);
+                            provider.onColorOpacityChange(opacity, stackBoardItem);
                           });
                         },
                         child: Container(
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                            color: provider.selectedColor.withOpacity(opacity), // Apply opacity to the selected color
+                            color: stackBoardItem.color?.withOpacity(opacity)??ColorRef.black202020.withOpacity(opacity), // Apply opacity to the selected color
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
