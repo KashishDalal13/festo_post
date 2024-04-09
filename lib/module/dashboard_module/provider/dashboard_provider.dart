@@ -1,13 +1,13 @@
 import 'package:festo_post/app_export.dart';
 
 class DashboardProvider extends ChangeNotifier {
-  DashboardProvider() {
-    loadData();
-  }
-
-  loadData() async {
-    switchValue = await Injector.getTheme();
-  }
+  // DashboardProvider() {
+  //   loadData();
+  // }
+  //
+  // loadData() async {
+  //   switchValue = await Injector.getTheme();
+  // }
 
   int _current = 0, eventIndex = 0, trendingIndex = 0;
   late final List<String> selectedImageList;
@@ -186,39 +186,6 @@ class DashboardProvider extends ChangeNotifier {
           builder: (context) => FrameEditorView(imageList: selectedImageList, label: selectedLabel),
         ),
       );
-    }
-  }
-
-
-
-  // settingDrawer
-  bool switchValue = false;
-  List<Map<String, dynamic>> settingDetails = [
-    {"icon": SvgPath.profile, "label": StrRef.myAccount, "route": 'profile'},
-    {"icon": SvgPath.contactUs, "label": StrRef.contactUs, "route": 'contactUs'},
-    {"icon": SvgPath.aboutUs, "label": StrRef.aboutUs, "route": 'aboutUs'},
-    {"icon": SvgPath.privacy, "label": StrRef.privacy, "route": 'privacy'},
-    {"icon": SvgPath.refund, "label": StrRef.refund, "route": 'refund'},
-    {"icon": SvgPath.terms, "label": StrRef.terms, "route": 'terms'},
-    {"icon": SvgPath.theme, "label": StrRef.darkTheme, "route": null},
-    {"icon": SvgPath.logout, "label": StrRef.logout, "route": null},
-  ];
-
-  void toggleTheme() async {
-    switchValue = !switchValue;
-    Injector.setTheme(themeVal: switchValue);
-    notifyListeners();
-    // NavigationService.replaceAllToNamed("/");
-    ThemeSettings();
-  }
-
-  onDrawerTileTap({required int index,required String type}) {
-    if (type == StrRef.logout) {
-      Injector.setSignIn(signIn: false);
-      NavigationService.replaceAllToNamed("register");
-    }
-    else{
-      NavigationService.replaceAllToNamed(settingDetails[index]['route']);
     }
   }
 }

@@ -23,7 +23,7 @@ export 'package:flutter/rendering.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:image_gallery_saver/image_gallery_saver.dart';
 export 'package:just_audio/just_audio.dart';
-export 'package:download_assets/download_assets.dart';
+// export 'package:download_assets/download_assets.dart';
 
 //utils
 export 'package:festo_post/utils/bool.dart';
@@ -67,7 +67,6 @@ export 'package:festo_post/module/image_edit_module/view/sticker_bottom_sheet.da
 export 'package:festo_post/module/image_edit_module/view/audio_view.dart';
 export 'package:festo_post/module/frame_editing_module/view/frame_editing_view.dart';
 export 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
-export 'package:festo_post/module/profile_module/view/setting_drawer_view.dart';
 export 'package:festo_post/module/profile_module/view/contact_us_view.dart';
 export 'package:festo_post/module/profile_module/view/about_us_view.dart';
 export 'package:festo_post/module/profile_module/view/privacy_view.dart';

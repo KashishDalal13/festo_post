@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:festo_post/app_export.dart';
 
 class ProfileProvider extends ChangeNotifier {
+  bool switchValue = false;
   ProfileProvider() {
     loadData();
   }
@@ -10,7 +11,7 @@ class ProfileProvider extends ChangeNotifier {
   loadData() async {
     switchValue = await Injector.getTheme();
   }
-  bool switchValue = false;
+
   List<Map<String, dynamic>> profileDetails = [
     {"icon": SvgPath.savePost, "label": StrRef.savePost, "route": 'myPost'},
     {"icon": SvgPath.tag, "label": StrRef.brandSubscript, "route": 'myBrand'},
@@ -162,7 +163,7 @@ class ProfileProvider extends ChangeNotifier {
 
   onBack({BuildContext? context}) {
     NavigationService.goBack();
-    DashboardProvider();
+    // DashboardProvider();
   }
 
   onListTileTap({required int index}) {
