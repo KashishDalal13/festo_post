@@ -1,4 +1,4 @@
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class RefundView extends StatelessWidget {
   const RefundView({super.key});

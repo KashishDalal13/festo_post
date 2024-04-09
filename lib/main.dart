@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               'referralPoints': (context) => const ReferralPoints(),
               'transaction': (context) => const TransactionView(),
               'audio': (context) => const AudioView(),
-              'contactUs': (context) => const ConttactUsView(),
+              'contactUs': (context) => const ContactUsView(),
               'aboutUs': (context) => const AboutUsView(),
               'privacy': (context) => const PrivacyView(),
               'refund': (context) => const RefundView(),

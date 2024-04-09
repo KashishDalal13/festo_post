@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class ReferralPoints extends StatelessWidget {
   const ReferralPoints({super.key});
@@ -24,9 +21,7 @@ class ReferralPoints extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              bottomRight: Radius.circular(30.0),
-                              bottomLeft: Radius.circular(30.0)),
+                          borderRadius: const BorderRadius.only(bottomRight: Radius.circular(30.0), bottomLeft: Radius.circular(30.0)),
                           color: ColorRef.yellowFFA500,
                         ),
                         alignment: Alignment.center,
@@ -40,32 +35,23 @@ class ReferralPoints extends StatelessWidget {
                             children: [
                               IconButton(
                                 onPressed: () => NavigationService.goBack(),
-                                icon: Icon(Icons.arrow_back_ios_new_rounded,
-                                    size: 24, color: ColorRef.black202020),
+                                icon: Icon(Icons.arrow_back_ios_new_rounded, size: 24, color: ColorRef.black202020),
                               ),
                               const Spacer(),
                               Text(
                                 StrRef.referralPoints,
-                                style: TextStyle(
-                                    fontFamily: 'Lato',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: ColorRef.black202020),
+                                style: TextStyle(fontFamily: 'Lato', fontSize: 18, fontWeight: FontWeight.w500, color: ColorRef.black202020),
                               ),
                               const Spacer(),
                             ],
                           ),
                           const SizedBox(height: 10),
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                             decoration: BoxDecoration(
                               color: ColorRef.whiteFFFFFF,
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: BoolRef.themeChange
-                                      ? ColorRef.transparent
-                                      : ColorRef.greyD6D6D6),
+                              border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -111,8 +97,7 @@ class ReferralPoints extends StatelessWidget {
                             height: 10,
                           ),
                           Padding(
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 50.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 50.0),
                             child: Text(
                               textAlign: TextAlign.center,
                               StrRef.refferalText,
@@ -128,8 +113,7 @@ class ReferralPoints extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                                 decoration: BoxDecoration(
                                   color: ColorRef.yellowFFA500,
                                   borderRadius: BorderRadius.circular(10),
@@ -149,11 +133,9 @@ class ReferralPoints extends StatelessWidget {
                                     ),
                                     const SizedBox(width: 10),
                                     GestureDetector(
-                                      onTap: () => Clipboard.setData(
-                                          const ClipboardData(text: "EB1483")),
+                                      onTap: () => Clipboard.setData(const ClipboardData(text: "EB1483")),
                                       child: const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10.0),
+                                        padding: EdgeInsets.symmetric(horizontal: 10.0),
                                         child: Icon(
                                           Icons.copy_outlined,
                                           size: 20,
@@ -168,17 +150,13 @@ class ReferralPoints extends StatelessWidget {
                                 margin: const EdgeInsets.all(10.0),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
-                                  color: BoolRef.themeChange
-                                      ? ColorRef.black1E2A38
-                                      : ColorRef.whiteFFFFFF,
+                                  color: BoolRef.themeChange ? ColorRef.black1E2A38 : ColorRef.whiteFFFFFF,
                                 ),
                                 child: SvgPicture.asset(
                                   SvgPath.share,
                                   height: 20,
                                   width: 20,
-                                  color: BoolRef.themeChange
-                                      ? ColorRef.whiteFFFFFF
-                                      : ColorRef.black202020,
+                                  colorFilter: ColorFilter.mode(BoolRef.themeChange ? ColorRef.whiteFFFFFF : ColorRef.black202020, BlendMode.srcIn),
                                 ),
                               ),
                             ],
@@ -197,8 +175,7 @@ class ReferralPoints extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         itemCount: provider.referralDetail.length,
                         padding: const EdgeInsets.symmetric(horizontal: 15),
-                        separatorBuilder: (BuildContext context, int index) =>
-                        const SizedBox(height: 5),
+                        separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 5),
                         itemBuilder: (context, index) {
                           final item = provider.referralDetail[index];
                           return Container(
@@ -209,19 +186,12 @@ class ReferralPoints extends StatelessWidget {
                                   children: [
                                     Flexible(
                                       child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           Text(
                                             item["label"],
-                                            style: TextStyle(
-                                                color:
-                                                ColorRef.textPrimaryColor,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 15,
-                                                fontFamily: 'Lato'),
+                                            style: TextStyle(color: ColorRef.textPrimaryColor, fontWeight: FontWeight.w500, fontSize: 15, fontFamily: 'Lato'),
                                           ),
                                           const SizedBox(height: 5),
                                           Row(
@@ -229,9 +199,7 @@ class ReferralPoints extends StatelessWidget {
                                               Text(
                                                 item["date"],
                                                 style: TextStyle(
-                                                    color: BoolRef.themeChange
-                                                        ? ColorRef.greyB0B0B0
-                                                        : ColorRef.grey7B7B7B,
+                                                    color: BoolRef.themeChange ? ColorRef.greyB0B0B0 : ColorRef.grey7B7B7B,
                                                     fontWeight: FontWeight.w500,
                                                     fontSize: 15,
                                                     fontFamily: 'Lato'),
@@ -242,9 +210,7 @@ class ReferralPoints extends StatelessWidget {
                                               Text(
                                                 item["time"],
                                                 style: TextStyle(
-                                                    color: BoolRef.themeChange
-                                                        ? ColorRef.greyB0B0B0
-                                                        : ColorRef.grey7B7B7B,
+                                                    color: BoolRef.themeChange ? ColorRef.greyB0B0B0 : ColorRef.grey7B7B7B,
                                                     fontWeight: FontWeight.w500,
                                                     fontSize: 15,
                                                     fontFamily: 'Lato'),
@@ -258,9 +224,7 @@ class ReferralPoints extends StatelessWidget {
                                     Text(
                                       item["points"],
                                       style: TextStyle(
-                                        color: item["points"].startsWith('+')
-                                            ? ColorRef.green2A9442
-                                            : ColorRef.redD94242,
+                                        color: item["points"].startsWith('+') ? ColorRef.green2A9442 : ColorRef.redD94242,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 17,
                                         fontFamily: 'Lato',

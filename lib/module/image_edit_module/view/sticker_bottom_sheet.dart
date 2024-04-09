@@ -1,18 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:festo_post/app_export.dart';
-import 'dart:io';
 
 class StickerBottomSheet extends StatefulWidget {
   final ImageEditProvider? provider;
 
-  const StickerBottomSheet({Key? key, this.provider}) : super(key: key);
+  const StickerBottomSheet({super.key, this.provider});
 
   @override
-  _StickerBottomSheetState createState() => _StickerBottomSheetState();
+  State<StickerBottomSheet> createState() => _StickerBottomSheetState();
 }
-//payal
+
 class _StickerBottomSheetState extends State<StickerBottomSheet> {
   late String _localImagePath;
 
@@ -28,7 +25,7 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
     // Check if the image is already downloaded
     final Directory appDocDir = await getApplicationDocumentsDirectory();
     final String appDocPath = appDocDir.path;
-    final String fileName = 'image.png'; // Update filename if needed
+    const String fileName = 'image.png'; // Update filename if needed
     final File imageFile = File('$appDocPath/$fileName');
     if (await imageFile.exists()) {
       // Image is already downloaded, set the local image path
@@ -70,7 +67,8 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                     },
                     child: Container(
                       height: 30,
-                      width: screenWidth * 0.2, // Adjust width based on screen size
+                      width: screenWidth * 0.2,
+                      // Adjust width based on screen size
                       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -120,7 +118,8 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10),
                               height: 50,
-                              width: screenWidth * 0.4, // Adjust width based on screen size
+                              width: screenWidth * 0.4,
+                              // Adjust width based on screen size
                               decoration: BoxDecoration(
                                 color: ColorRef.yellowFFA500,
                                 borderRadius: BorderRadius.circular(10.0),
@@ -140,9 +139,7 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                         ],
                       ),
                       // Display the downloaded image if available
-                      _localImagePath.isNotEmpty
-                          ? Image.file(File(_localImagePath))
-                          : const SizedBox(), // Show nothing if image path is empty
+                      _localImagePath.isNotEmpty ? Image.file(File(_localImagePath)) : const SizedBox(), // Show nothing if image path is empty
                     ],
                   ),
                 ),
@@ -171,18 +168,18 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
       final File file = await cacheManager.getSingleFile(imageUrl);
 
       // Copy the cached image file to the local storage directory
-      final String fileName = 'image.png'; // Change the filename as needed
+      const String fileName = 'image.png'; // Change the filename as needed
       final String localFilePath = '$appDocPath/$fileName';
       final File localFile = await file.copy(localFilePath);
 
-      print('Image downloaded and saved to: $localFilePath');
+      debugPrint('Image downloaded and saved to: $localFilePath');
 
       // Set the local image path and update the UI
       setState(() {
         _localImagePath = localFile.path;
       });
     } catch (e) {
-      print('Error downloading and saving image: $e');
+      debugPrint('Error downloading and saving image: $e');
     }
   }
 }

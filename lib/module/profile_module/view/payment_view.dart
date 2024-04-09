@@ -1,10 +1,8 @@
-import 'dart:ui';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import '../../../app_export.dart';
+
+import 'package:festo_post/app_export.dart';
 
 class PaymentView extends StatelessWidget {
-  const PaymentView({Key? key});
+  const PaymentView({super.key});
 
   @override
   Widget build(BuildContext context) {

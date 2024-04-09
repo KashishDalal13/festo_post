@@ -25,8 +25,8 @@ class OnBoardingScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer(),
-                Container(
+                const Spacer(),
+                SizedBox(
                   height: height / 2,
                   child: PageView(
                     controller: provider.pageController,
@@ -60,7 +60,7 @@ class OnBoardingScreen extends StatelessWidget {
                     effect: ExpandingDotsEffect(activeDotColor: ColorRef.yellowFFA500, dotColor: ColorRef.white898989, spacing: 3, dotHeight: 5, dotWidth: 10, expansionFactor: 2),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             ),
             floatingActionButton: provider.introIndex == 2

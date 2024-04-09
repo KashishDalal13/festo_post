@@ -1,5 +1,5 @@
 
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class AudioView extends StatelessWidget {
   const AudioView({super.key});
@@ -42,7 +42,7 @@ class AudioView extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        SvgPicture.asset(SvgPath.audio, height: 20, width: 20,color:ColorRef.textPrimaryColor,),
+                        SvgPicture.asset(SvgPath.audio, height: 20, width: 20,colorFilter:ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn)),
                         const SizedBox(
                           width: 10,
                         ),

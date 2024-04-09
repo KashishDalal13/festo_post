@@ -38,15 +38,16 @@ class ProfileProvider extends ChangeNotifier {
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: AlertDialog(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-                backgroundColor: BoolRef.themeChange ? ColorRef.blue1E2A38: ColorRef.whiteFFFFFF,
-                surfaceTintColor: BoolRef.themeChange ? ColorRef.blue1E2A38: ColorRef.whiteFFFFFF,
+                backgroundColor: BoolRef.themeChange ? ColorRef.blue1E2A38 : ColorRef.whiteFFFFFF,
+                surfaceTintColor: BoolRef.themeChange ? ColorRef.blue1E2A38 : ColorRef.whiteFFFFFF,
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const SizedBox(
                       height: 10,
                     ),
-                    SvgPicture.asset(SvgPath.logout, height: 35, width: 35, color:BoolRef.themeChange ? ColorRef.textPrimaryColor: ColorRef.grey5c5c5c),
+                    SvgPicture.asset(SvgPath.logout,
+                        height: 35, width: 35, colorFilter: ColorFilter.mode(BoolRef.themeChange ? ColorRef.textPrimaryColor! : ColorRef.grey5c5c5c, BlendMode.srcIn)),
                     const SizedBox(
                       height: 15,
                     ),
@@ -89,12 +90,37 @@ class ProfileProvider extends ChangeNotifier {
     {"svg": SvgPath.web, "label": StrRef.website, "controller": TextEditingController()},
     {"svg": SvgPath.location, "label": StrRef.businessAddress, "controller": TextEditingController()},
   ];
+
   //bnb
 
   List<Map<String, dynamic>> subscription = [
-    {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
-    {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
-    {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
+    {
+      "title": StrRef.subscriptionTitle,
+      "offer": StrRef.subscriptOfferRupees,
+      "actualRupees": StrRef.subscriptionRupees,
+      "offerDetails1": StrRef.offerDetails1,
+      "offerDetails2": StrRef.offerDetails2,
+      "offerDetails3": StrRef.offerDetails3,
+      "offerDetails4": StrRef.offerDetails4
+    },
+    {
+      "title": StrRef.subscriptionTitle,
+      "offer": StrRef.subscriptOfferRupees,
+      "actualRupees": StrRef.subscriptionRupees,
+      "offerDetails1": StrRef.offerDetails1,
+      "offerDetails2": StrRef.offerDetails2,
+      "offerDetails3": StrRef.offerDetails3,
+      "offerDetails4": StrRef.offerDetails4
+    },
+    {
+      "title": StrRef.subscriptionTitle,
+      "offer": StrRef.subscriptOfferRupees,
+      "actualRupees": StrRef.subscriptionRupees,
+      "offerDetails1": StrRef.offerDetails1,
+      "offerDetails2": StrRef.offerDetails2,
+      "offerDetails3": StrRef.offerDetails3,
+      "offerDetails4": StrRef.offerDetails4
+    },
   ];
 
   List<Map<String, dynamic>> availableCoupons = [
@@ -108,7 +134,6 @@ class ProfileProvider extends ChangeNotifier {
     {"icon": SvgPath.creditCard, "type": StrRef.creditCard},
     {"icon": SvgPath.upi, "type": StrRef.upi},
     {"icon": SvgPath.wallet, "type": StrRef.wallet},
-
   ];
 
   List<Map<String, dynamic>> referralDetail = [
@@ -143,8 +168,9 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool isEdit=false;
-  onTapEdit(){
+  bool isEdit = false;
+
+  onTapEdit() {
     isEdit = !isEdit;
     notifyListeners();
   }

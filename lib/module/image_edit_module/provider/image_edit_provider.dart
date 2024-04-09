@@ -121,10 +121,10 @@ class ImageEditProvider extends ChangeNotifier {
       "apply": false,
     },
   ];
-  List<Map<String, dynamic>> EditDetails = [
+  List<Map<String, dynamic>> editDetails = [
     {"image": SvgPath.text, "label": "Text"},
     {"image": SvgPath.sticker, "label": "Sticker"},
-    {"image": SvgPath.image_gallery, "label": "Image"},
+    {"image": SvgPath.imageGallery, "label": "Image"},
     {"image": SvgPath.volume, "label": "Audio"},
   ];
 
@@ -290,17 +290,17 @@ class ImageEditProvider extends ChangeNotifier {
     selectedCaseIndex = index.toString();
     if (selectedCase == 'AA') {
       selectedTextCase = 'AA';
-      item.styleCase=selectedCase;
+      item.styleCase = selectedCase;
       isUppercase = true;
     }
     if (selectedCase == 'Aa') {
       selectedTextCase = 'Aa';
-      item.styleCase=selectedCase;
+      item.styleCase = selectedCase;
       isUppercase = false;
     }
     if (selectedCase == 'aa') {
       selectedTextCase = 'aa';
-      item.styleCase=selectedCase;
+      item.styleCase = selectedCase;
       isUppercase = false;
     }
     notifyListeners();
@@ -581,7 +581,7 @@ class ImageEditProvider extends ChangeNotifier {
 
   void updateItemTextStyle(String id, TextStyle newTextStyle) {
     debugPrint("$items");
-    final index = items.indexWhere((item) => item.id == id);
+    final index = items.indexWhere((item) => "${item.id}" == id);
     if (index != -1) {
       items[index] = items[index].copyWith(textStyle: newTextStyle);
       notifyListeners();
@@ -611,34 +611,30 @@ class CustomItem extends StackBoardItem {
     this.color,
     Future<bool> Function()? onDel,
     int? id,
-  }) : super(
-          child: const Text(''),
-          onDel: onDel,
-          id: id,
-        ) {
+  }) : super(child: const Text(''), onDel: onDel, id: id) {
     // Ensure that each CustomItem has its own instance of TextStyle
-    this.textStyle = textStyle?.copyWith();
+    textStyle = textStyle?.copyWith();
   }
 
   final String? customText;
-  String? imageList;
-  String? add;
-  bool? show;
-  Offset? position;
-  double? top;
-  double? left;
-  double? scale;
-  double? rotation;
-  Widget? editWidget;
-  String? fontFamily;
-  FontWeight? fontWeight;
-  FontStyle? fontStyle;
-  TextDecoration? decoration;
-  String? styleCase;
-  double? fontSize;
+  final String? imageList;
+  final String? add;
+  final bool? show;
+  final Offset? position;
+  final double? top;
+  final double? left;
+  final double? scale;
+  final double? rotation;
+  final Widget? editWidget;
+  late final String? fontFamily;
+  late final FontWeight? fontWeight;
+  late final FontStyle? fontStyle;
+  late final TextDecoration? decoration;
+  late final String? styleCase;
+  late final double? fontSize;
 
-  Color? color;
-  TextStyle? textStyle; // TextStyle property
+  late final Color? color;
+  late final TextStyle? textStyle; // TextStyle property
 
   @override
   CustomItem copyWith({
@@ -669,7 +665,7 @@ class CustomItem extends StackBoardItem {
       CustomItem(
         onDel: onDel ?? this.onDel,
         id: id ?? this.id,
-        customText: customText ?? this.customText,
+        customText: customText ?? customText,
         imageList: imageList ?? this.imageList,
         add: add ?? this.add,
         show: show ?? this.show,
@@ -682,7 +678,7 @@ class CustomItem extends StackBoardItem {
         fontWeight: fontWeight ?? this.fontWeight,
         fontStyle: fontStyle ?? this.fontStyle,
         decoration: decoration ?? this.decoration,
-        styleCase:styleCase??this.styleCase,
+        styleCase: styleCase ?? this.styleCase,
         color: color ?? this.color,
         rotation: rotation ?? this.rotation,
         editWidget: editWidget ?? this.editWidget,

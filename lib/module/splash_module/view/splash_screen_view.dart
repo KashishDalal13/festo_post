@@ -8,7 +8,6 @@ class SplashScreenView extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => SplashViewProvider(),
         builder: (context, child) {
-          SplashViewProvider provider = context.watch<SplashViewProvider>();
           return Theme(
             data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
             child: const Scaffold(
