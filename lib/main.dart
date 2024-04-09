@@ -2,7 +2,7 @@ import 'package:festo_post/app_export.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Injector.getTheme();
+  Injector();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: ColorRef.white,
     statusBarColor: ColorRef.white,
@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => ThemeSettings(),
         builder: (context, child) {
+          ThemeSettings themeSettings = context.watch<ThemeSettings>();
           return MaterialApp(
             initialRoute: '/',
             navigatorKey: NavigationService.navigatorKey,
