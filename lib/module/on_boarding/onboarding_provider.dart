@@ -23,12 +23,13 @@ class IntroProvider extends ChangeNotifier {
       //implement logic for navigating to next screen
     }
     introIndex++;
-    pageController.animateToPage(introIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    pageController.animateToPage(introIndex, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     notifyListeners();
   }
 
   onIndexChange({required int index}) {
     introIndex = index;
+    pageController.animateToPage(introIndex, duration: const Duration(milliseconds: 200), curve: Curves.easeInOut);
     notifyListeners();
   }
 
