@@ -66,12 +66,30 @@ class ImageEditView extends StatelessWidget {
                                         onTap: () {
                                           debugPrint(t.id.toString());
                                           provider.currentItemId = t.id.toString();
+                                          for (var element in provider.letters) {
+                                            if (t.fontStyle == FontStyle.italic) {
+                                              element['apply'] = true;
+                                            } else {
+                                              element['apply'] = false;
+                                            }
+                                            if (t.fontWeight == FontWeight.bold) {
+                                              element['apply'] = true;
+                                            } else {
+                                              element['apply'] = false;
+                                            }
+                                            if (t.decoration == TextDecoration.underline) {
+                                              element['apply'] = true;
+                                            } else {
+                                              element['apply'] = false;
+                                            }
+                                          }
                                           showModalBottomSheet(
                                             context: context,
                                             backgroundColor: ColorRef.transparent,
                                             builder: (BuildContext context) {
                                               return StatefulBuilder(
                                                 builder: (context, setState) {
+
                                                   return EditingBottomSheet(
                                                     provider: provider,
                                                     item: t,

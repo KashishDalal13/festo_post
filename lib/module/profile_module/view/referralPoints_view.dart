@@ -112,7 +112,7 @@ class ReferralPoints extends StatelessWidget {
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 50.0),
+                            const EdgeInsets.symmetric(horizontal: 50.0),
                             child: Text(
                               textAlign: TextAlign.center,
                               StrRef.refferalText,
@@ -198,7 +198,7 @@ class ReferralPoints extends StatelessWidget {
                         itemCount: provider.referralDetail.length,
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         separatorBuilder: (BuildContext context, int index) =>
-                            const SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         itemBuilder: (context, index) {
                           final item = provider.referralDetail[index];
                           return Container(
@@ -210,15 +210,15 @@ class ReferralPoints extends StatelessWidget {
                                     Flexible(
                                       child: Column(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        MainAxisAlignment.start,
                                         children: [
                                           Text(
                                             item["label"],
                                             style: TextStyle(
                                                 color:
-                                                    ColorRef.textPrimaryColor,
+                                                ColorRef.textPrimaryColor,
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 15,
                                                 fontFamily: 'Lato'),

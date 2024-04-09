@@ -28,12 +28,16 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
         child: Column(
           children: [
             const SizedBox(height: 15),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(StrRef.editText, style: TextStyle(color: ColorRef.textPrimaryColor, fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Row(
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(StrRef.editText, style: TextStyle(color: ColorRef.textPrimaryColor, fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
+                  Text(StrRef.done, style: TextStyle(color: ColorRef.blue0250A4, fontSize: 15, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
+                ],
+              ),
             ),
             const SizedBox(height: 15),
             Row(
@@ -113,6 +117,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: provider.letters.map((e) {
                           int index = provider.letters.indexOf(e);
+
                           return GestureDetector(
                             onTap: () => setState(() => provider.toggleTextStyle(index, stackBoardItem)),
                             child: Container(
@@ -120,7 +125,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                               margin: const EdgeInsets.all(5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: e['apply'] ? ColorRef.yellowFFA500 : ColorRef.white,
+                                color:  provider.letters[index]['apply'] ? ColorRef.yellowFFA500 : ColorRef.white,
                               ),
                               child: SvgPicture.asset(e['type'], height: 15, width: 15),
                             ),
@@ -130,7 +135,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                     ],
                   ),
                 ),
-                SizedBox(height: 92, child: VerticalDivider(color: ColorRef.greyD9D9D9, thickness: 1)),
+                // SizedBox(height: 92, child: VerticalDivider(color: ColorRef.greyD9D9D9, thickness: 1)),
                 Expanded(
                   child: Column(
                     children: [

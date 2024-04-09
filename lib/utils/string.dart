@@ -137,7 +137,8 @@ class StrRef {
       intro = "Introduction",
       personalData = "Personal data",
       dataSecurity = "Use of personal datasecurity precaution",
-      termsServices = "Terms of Services"
+      termsServices = "Terms of Services",
+      done = "Done"
 
 ;}
 
