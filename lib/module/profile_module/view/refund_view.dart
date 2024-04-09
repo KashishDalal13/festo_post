@@ -1,7 +1,7 @@
 import '../../../app_export.dart';
 
-class TermsView extends StatelessWidget {
-  const TermsView({super.key});
+class RefundView extends StatelessWidget {
+  const RefundView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +16,13 @@ class TermsView extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               leading: IconButton(
-                onPressed: () => NavigationService.routeToNamed('dashboard'),
+                onPressed: () => provider.onBack(),
                 icon: Icon(Icons.arrow_back_ios_rounded,
                     size: 20, color: ColorRef.textPrimaryColor),
               ),
               centerTitle: true,
               title: Text(
-                StrRef.terms,
+                StrRef.refund,
                 style: TextStyle(
                   color: ColorRef.textPrimaryColor,
                   fontFamily: 'Lato',
@@ -40,16 +40,6 @@ class TermsView extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    StrRef.termsServices,
-                    style: TextStyle(
-                      color: ColorRef.textPrimaryColor,
-                      fontFamily: 'Lato',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -73,7 +63,7 @@ class TermsView extends StatelessWidget {
                                 : ColorRef.grey757575,
                             fontFamily: 'Lato',
                             fontSize: 16,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
@@ -103,7 +93,7 @@ class TermsView extends StatelessWidget {
                                 : ColorRef.grey757575,
                             fontFamily: 'Lato',
                             fontSize: 16,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
@@ -133,109 +123,7 @@ class TermsView extends StatelessWidget {
                                 : ColorRef.grey757575,
                             fontFamily: 'Lato',
                             fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(height: 15),
-
-                  Text(
-                    StrRef.termsServices,
-                    style: TextStyle(
-                      color: ColorRef.textPrimaryColor,
-                      fontFamily: 'Lato',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '\u2022', // Unicode character for bullet dot
-                        style: TextStyle(
-                          color: BoolRef.themeChange
-                              ? ColorRef.greyF3F3F3
-                              : ColorRef.grey757575,
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      // Adjust the space between bullet and text
-                      Expanded(
-                        child: Text(
-                          StrRef.aboutText,
-                          style: TextStyle(
-                            color: BoolRef.themeChange
-                                ? ColorRef.greyF3F3F3
-                                : ColorRef.grey757575,
-                            fontFamily: 'Lato',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '\u2022', // Unicode character for bullet dot
-                        style: TextStyle(
-                          color: BoolRef.themeChange
-                              ? ColorRef.greyF3F3F3
-                              : ColorRef.grey757575,
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      // Adjust the space between bullet and text
-                      Expanded(
-                        child: Text(
-                          StrRef.aboutText,
-                          style: TextStyle(
-                            color: BoolRef.themeChange
-                                ? ColorRef.greyF3F3F3
-                                : ColorRef.grey757575,
-                            fontFamily: 'Lato',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '\u2022', // Unicode character for bullet dot
-                        style: TextStyle(
-                          color: BoolRef.themeChange
-                              ? ColorRef.greyF3F3F3
-                              : ColorRef.grey757575,
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      // Adjust the space between bullet and text
-                      Expanded(
-                        child: Text(
-                          StrRef.aboutText,
-                          style: TextStyle(
-                            color: BoolRef.themeChange
-                                ? ColorRef.greyF3F3F3
-                                : ColorRef.grey757575,
-                            fontFamily: 'Lato',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),

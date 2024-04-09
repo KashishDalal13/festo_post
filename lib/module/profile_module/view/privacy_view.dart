@@ -16,7 +16,7 @@ class PrivacyView extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               leading: IconButton(
-                onPressed: () => NavigationService.routeToNamed('dashboard'),
+                onPressed: () => provider.onBack(),
                 icon: Icon(Icons.arrow_back_ios_rounded,
                     size: 20, color: ColorRef.textPrimaryColor),
               ),

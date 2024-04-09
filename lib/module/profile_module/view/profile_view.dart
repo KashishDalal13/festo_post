@@ -16,7 +16,7 @@ class ProfileView extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               leading: IconButton(
-                onPressed: () => NavigationService.routeToNamed('dashboard'),
+                onPressed: () => provider.onBack(),
                 icon: Icon(Icons.arrow_back_ios_rounded, size: 20, color: ColorRef.textPrimaryColor),
               ),
               centerTitle: true,
@@ -142,23 +142,39 @@ class ProfileView extends StatelessWidget {
                     itemCount: provider.profileDetails.length,
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     itemBuilder: (BuildContext context, int index) {
+                      final item = provider.profileDetails[index];
                       return Container(
-                        decoration:
-                        BoxDecoration(border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6), borderRadius: BorderRadius.circular(15)),
+                        decoration: BoxDecoration(border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6), borderRadius: BorderRadius.circular(15)),
                         child: ListTile(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                          leading: SvgPicture.asset(
-                            provider.profileDetails[index]['icon'],
-                            height: width * 0.04,
-                            width: width * 0.04,
-                            colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn),
+                          leading: SvgPicture.asset(item['icon'],height: 20,width: 20, colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn)),
+                          trailing: item['label'] != StrRef.darkTheme
+                              ? Icon(Icons.arrow_forward_ios_rounded, size: 20, color: ColorRef.textPrimaryColor)
+                              : GestureDetector(
+                            onTap: () => provider.toggleTheme(),
+                            child: Container(
+                              width: 40.0,
+                              height: 20,
+                              padding: const EdgeInsets.symmetric(horizontal: 3),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                color: provider.switchValue ? ColorRef.blue1E2A38 : ColorRef.greyE0E0E0,
+                              ),
+                              child: AnimatedAlign(
+                                alignment: provider.switchValue ? Alignment.centerRight : Alignment.centerLeft,
+                                duration: const Duration(milliseconds: 200),
+                                curve: Curves.easeInOut,
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 200),
+                                  width: 14.0,
+                                  height: 14.0,
+                                  decoration: BoxDecoration(shape: BoxShape.circle, color: provider.switchValue ? ColorRef.blue3498DB : ColorRef.blue0250A4),
+                                ),
+                              ),
+                            ),
                           ),
-                          trailing: Icon(Icons.arrow_forward_ios_rounded, size: width * 0.04, color: ColorRef.textPrimaryColor),
-                          title: Text(
-                            provider.profileDetails[index]['label'],
-                            style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.textPrimaryColor, fontSize: width * 0.035),
-                          ),
-                          onTap: () => provider.onMyAccountNavigate(index, context),
+                          title: Text(item['label'], style: TextStyle(color: ColorRef.textPrimaryColor)),
+                          onTap: () => provider.onMyAccountNavigate(index,context),
                         ),
                       );
                     },

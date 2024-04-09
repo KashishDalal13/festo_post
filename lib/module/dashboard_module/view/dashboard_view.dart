@@ -15,12 +15,11 @@ class DashBoardView extends StatelessWidget {
           data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
           child: SafeArea(
             child: Scaffold(
-              key: scaffoldKey,
               appBar: AppBar(
-                leading: IconButton(
-                  onPressed: () => scaffoldKey.currentState?.openDrawer(),
-                  icon: Icon(Icons.menu, size: 24, color: ColorRef.textPrimaryColor),
-                ),
+                // leading: IconButton(
+                //   onPressed: () => scaffoldKey.currentState?.openDrawer(),
+                //   icon: Icon(Icons.menu, size: 24, color: ColorRef.textPrimaryColor),
+                // ),
                 centerTitle: true,
                 title: Text(StrRef.registerTitle2, style: const TextStyle(fontSize: 20, fontFamily: 'Lato', fontWeight: FontWeight.w400)),
                 actions: [
@@ -335,7 +334,7 @@ class DashBoardView extends StatelessWidget {
                   ),
                 ],
               ),
-              drawer: SettingDrawer(dashboardProvider: provider),
+              // drawer: SettingDrawer(dashboardProvider: provider),
             ),
           ),
         );

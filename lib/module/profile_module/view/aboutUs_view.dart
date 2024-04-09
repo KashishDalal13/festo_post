@@ -1,7 +1,9 @@
+import 'package:festo_post/utils/bool.dart';
+
 import '../../../app_export.dart';
 
-class ConttactUsView extends StatelessWidget {
-  const ConttactUsView({super.key});
+class AboutUsView extends StatelessWidget {
+  const AboutUsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +18,18 @@ class ConttactUsView extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               leading: IconButton(
-                onPressed: () => NavigationService.routeToNamed('dashboard'),
+                onPressed: () => provider.onBack(),
                 icon: Icon(Icons.arrow_back_ios_rounded,
                     size: 20, color: ColorRef.textPrimaryColor),
               ),
               centerTitle: true,
               title: Text(
-                StrRef.contactUs,
+                StrRef.aboutUs,
                 style: TextStyle(
                   color: ColorRef.textPrimaryColor,
                   fontFamily: 'Lato',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
@@ -37,107 +39,72 @@ class ConttactUsView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child:
-                        Image.asset(SvgPath.festoPost, height: 90, width: 90),
-                  ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20,),
                   Text(
-                    StrRef.contactTitle,
+                    StrRef.aboutTitle1,
+                    style: TextStyle(
+                      color: ColorRef.textPrimaryColor,
+                      fontFamily: 'Lato',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    StrRef.aboutText,
                     style: TextStyle(
                       color: BoolRef.themeChange
                           ? ColorRef.greyF3F3F3
                           : ColorRef.grey757575,
                       fontFamily: 'Lato',
                       fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    StrRef.aboutTitle2,
+                    style: TextStyle(
+                      color: ColorRef.textPrimaryColor,
+                      fontFamily: 'Lato',
+                      fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 15),
-                  Text(
-                    StrRef.contactLabel,
-                    style: TextStyle(
-                      color: ColorRef.textPrimaryColor,
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  Text(
-                    StrRef.emailId,
-                    style: TextStyle(
-                      color: ColorRef.textPrimaryColor,
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Text(
-                    "support@festopost.com",
-                    style: TextStyle(
-                      color: ColorRef.blue3498DB,
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  Text(
-                    StrRef.website,
-                    style: TextStyle(
-                      color: ColorRef.textPrimaryColor,
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Text(
-                    "Fesopost.com",
-                    style: TextStyle(
-                      color: ColorRef.blue3498DB,
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  Text(
-                    StrRef.phone,
-                    style: TextStyle(
-                      color: ColorRef.textPrimaryColor,
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Text(
-                    "+91 261 3573264",
-                    style: TextStyle(
-                      color: ColorRef.blue3498DB,
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  Text(
-                    StrRef.socialMedia,
-                    style: TextStyle(
-                      color: ColorRef.textPrimaryColor,
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
                   const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      SvgPicture.asset(SvgPath.facebook,height: 30,width: 30,),
-                      const SizedBox(width: 15,),
-                      SvgPicture.asset(SvgPath.instagram,height: 30,width: 30,),
-                    ],
+                  Text(
+                    StrRef.aboutText,
+                    style: TextStyle(
+                      color: BoolRef.themeChange
+                          ? ColorRef.greyF3F3F3
+                          : ColorRef.grey757575,
+                      fontFamily: 'Lato',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
+                  const SizedBox(height: 20),
+                  Text(
+                    StrRef.aboutQuery,
+                    style: TextStyle(
+                      color: ColorRef.textPrimaryColor,
+                      fontFamily: 'Lato',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    "contact@loopbots.com",
+                    style: TextStyle(
+                      color: ColorRef.blue3498DB,
+                      fontFamily: 'Lato',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  BoolRef.themeChange?Image.asset(SvgPath.loopBotsDark,height: 50,width: 250):Image.asset(SvgPath.loopBotsLight,height: 50,width: 250)
                 ],
               ),
             ),

@@ -3,13 +3,29 @@ import 'dart:ui';
 import 'package:festo_post/app_export.dart';
 
 class ProfileProvider extends ChangeNotifier {
+  bool switchValue = false;
   List<Map<String, dynamic>> profileDetails = [
     {"icon": SvgPath.savePost, "label": StrRef.savePost, "route": 'myPost'},
     {"icon": SvgPath.tag, "label": StrRef.brandSubscript, "route": 'myBrand'},
     {"icon": SvgPath.rewardPoints, "label": StrRef.rewardPoints, "route": 'referralPoints'},
     {"icon": SvgPath.transaction, "label": StrRef.transaction, "route": 'transaction'},
+    {"icon": SvgPath.theme, "label": StrRef.darkTheme, "route": null},
+    {"icon": SvgPath.contactUs, "label": StrRef.contactUs, "route": 'contactUs'},
+    {"icon": SvgPath.aboutUs, "label": StrRef.aboutUs, "route": 'aboutUs'},
+    {"icon": SvgPath.privacy, "label": StrRef.privacy, "route": 'privacy'},
+    {"icon": SvgPath.refund, "label": StrRef.refund, "route": 'refund'},
+    {"icon": SvgPath.terms, "label": StrRef.terms, "route": 'terms'},
     {"icon": SvgPath.logout, "label": StrRef.logout, "route": null},
+    // {"icon": SvgPath.logout, "label": StrRef.logout, "route": null},
   ];
+
+  void toggleTheme() async {
+    switchValue = !switchValue;
+    Injector.setTheme(themeVal: switchValue);
+    notifyListeners();
+    // NavigationService.replaceAllToNamed("/");
+    ThemeSettings();
+  }
 
   onMyAccountNavigate(int index, BuildContext context) {
     if (profileDetails[index]['label'] == StrRef.logout) {
