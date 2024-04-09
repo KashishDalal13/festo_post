@@ -1,4 +1,3 @@
-
 import 'package:festo_post/app_export.dart';
 
 class ImageEditView extends StatelessWidget {
@@ -57,10 +56,7 @@ class ImageEditView extends StatelessWidget {
                                       isCenter: false,
                                       onDel: () async => provider.boardController.remove(t.id),
                                       onTap: () => provider.boardController.moveItemToTop(t.id),
-                                      caseStyle: const CaseStyle(
-                                        borderColor: Colors.grey,
-                                        iconColor: Colors.white,
-                                      ),
+                                      caseStyle: const CaseStyle(borderColor: Colors.grey, iconColor: Colors.white),
                                       child: GestureDetector(
                                         onTap: () {
                                           debugPrint(t.id.toString());
@@ -88,7 +84,6 @@ class ImageEditView extends StatelessWidget {
                                             builder: (BuildContext context) {
                                               return StatefulBuilder(
                                                 builder: (context, setState) {
-
                                                   return EditingBottomSheet(
                                                     provider: provider,
                                                     item: t,

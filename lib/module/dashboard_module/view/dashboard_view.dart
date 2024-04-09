@@ -149,7 +149,11 @@ class DashBoardView extends StatelessWidget {
                                         style: const ButtonStyle(visualDensity: VisualDensity(vertical: -4, horizontal: -4)),
                                         onPressed: () => provider.onViewAll(context, index: index),
                                         child: Text(StrRef.viewAll,
-                                            style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4))),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: 'Lato',
+                                                fontSize: 13,
+                                                color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4))),
                                   ],
                                 ),
                                 Container(
@@ -202,8 +206,6 @@ class DashBoardView extends StatelessWidget {
                             ),
                           ],
                         ),
-
-
                         SizedBox(
                           height: 50,
                           child: ListView.separated(
@@ -306,14 +308,15 @@ class DashBoardView extends StatelessWidget {
                                       style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Lato', color: ColorRef.textPrimaryColor, fontSize: 15),
                                     ),
                                     TextButton(
-                                      onPressed: ()=> provider.onViewAllOffer(context, index: index),
+                                      onPressed: () => provider.onViewAllOffer(context, index: index),
                                       child: Text(
                                         StrRef.viewAll,
-                                        style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 13, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
                                       ),
                                     )
                                   ],
-                                ),//
+                                ), //
                                 SizedBox(
                                   height: 110,
                                   child: ListView.separated(

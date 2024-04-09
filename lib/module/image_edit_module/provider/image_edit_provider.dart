@@ -576,17 +576,6 @@ class ImageEditProvider extends ChangeNotifier {
     NavigationService.routeTo(MaterialPageRoute(builder: (context) => DownloadPostView(imageData: byteData?.buffer.asUint8List())));
     return byteData?.buffer.asUint8List();
   }
-
-  List<CustomItem> items = [];
-
-  void updateItemTextStyle(String id, TextStyle newTextStyle) {
-    debugPrint("$items");
-    final index = items.indexWhere((item) => "${item.id}" == id);
-    if (index != -1) {
-      items[index] = items[index].copyWith(textStyle: newTextStyle);
-      notifyListeners();
-    }
-  }
 }
 
 class CustomItem extends StackBoardItem {
@@ -615,26 +604,25 @@ class CustomItem extends StackBoardItem {
     // Ensure that each CustomItem has its own instance of TextStyle
     textStyle = textStyle?.copyWith();
   }
-
   final String? customText;
-  final String? imageList;
-  final String? add;
-  final bool? show;
-  final Offset? position;
-  final double? top;
-  final double? left;
-  final double? scale;
-  final double? rotation;
-  final Widget? editWidget;
-  late final String? fontFamily;
-  late final FontWeight? fontWeight;
-  late final FontStyle? fontStyle;
-  late final TextDecoration? decoration;
-  late final String? styleCase;
-  late final double? fontSize;
+  String? imageList;
+  String? add;
+  bool? show;
+  Offset? position;
+  double? top;
+  double? left;
+  double? scale;
+  double? rotation;
+  Widget? editWidget;
+  String? fontFamily;
+  FontWeight? fontWeight;
+  FontStyle? fontStyle;
+  TextDecoration? decoration;
+  String? styleCase;
+  double? fontSize;
 
-  late final Color? color;
-  late final TextStyle? textStyle; // TextStyle property
+  Color? color;
+  TextStyle? textStyle; // TextStyle property
 
   @override
   CustomItem copyWith({

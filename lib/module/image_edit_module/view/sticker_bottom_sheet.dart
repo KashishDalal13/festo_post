@@ -39,7 +39,6 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
   Widget build(BuildContext context) {
     ImageEditProvider? provider = widget.provider!;
     double screenWidth = MediaQuery.of(context).size.width;
-
     return Container(
       height: 420,
       decoration: BoxDecoration(
@@ -62,9 +61,7 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                 itemCount: provider.stickerList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
-                    onTap: () {
-                      downloadAndSaveImage(provider.stickerList[index]['imageUrl']);
-                    },
+                    onTap: () => setState(() => provider.onSelectSticker(index: index)),
                     child: Container(
                       height: 30,
                       width: screenWidth * 0.2,
@@ -83,9 +80,7 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                     ),
                   );
                 },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(width: 5);
-                },
+                separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 5),
               ),
             ),
             Expanded(
@@ -112,9 +107,7 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                           ),
                           const SizedBox(height: 25),
                           GestureDetector(
-                            onTap: () {
-                              setState(() => provider.onChangeStickerView());
-                            },
+                            onTap: () => setState(() => provider.onChangeStickerView()),
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10),
                               height: 50,

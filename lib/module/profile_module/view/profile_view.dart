@@ -138,9 +138,7 @@ class ProfileView extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Expanded(
                   child: ListView.separated(
                     itemCount: provider.profileDetails.length,

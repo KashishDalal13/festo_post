@@ -3,6 +3,13 @@ import 'dart:ui';
 import 'package:festo_post/app_export.dart';
 
 class ProfileProvider extends ChangeNotifier {
+  ProfileProvider() {
+    loadData();
+  }
+
+  loadData() async {
+    switchValue = await Injector.getTheme();
+  }
   bool switchValue = false;
   List<Map<String, dynamic>> profileDetails = [
     {"icon": SvgPath.savePost, "label": StrRef.savePost, "route": 'myPost'},
@@ -28,7 +35,10 @@ class ProfileProvider extends ChangeNotifier {
   }
 
   onMyAccountNavigate(int index, BuildContext context) {
-    if (profileDetails[index]['label'] == StrRef.logout) {
+    if (profileDetails[index]['label'] == StrRef.darkTheme) {
+      return;
+    }
+    else if (profileDetails[index]['label'] == StrRef.logout) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -150,8 +160,9 @@ class ProfileProvider extends ChangeNotifier {
   bool isUPI = false;
   String selectedBrandIndex = '';
 
-  onBack() {
+  onBack({BuildContext? context}) {
     NavigationService.goBack();
+    DashboardProvider();
   }
 
   onListTileTap({required int index}) {
