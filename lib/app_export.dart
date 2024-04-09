@@ -4,7 +4,6 @@ export 'package:festo_post/main.dart';
 export 'dart:async';
 export 'dart:math';
 export 'dart:io';
-import 'dart:typed_data';
 
 // Widget
 export 'package:festo_post/widget/toast.dart';
@@ -50,7 +49,7 @@ export 'package:festo_post/module/login_module/provider/register_provider.dart';
 export 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.dart';
 export 'package:festo_post/module/frameEditing_module/provider/frameEditing_provider.dart';
 export 'package:festo_post/module/dashboard_module/provider/dashboard_provider.dart';
-export 'package:festo_post/module/downloadPost_module/provider/downloadPost_provider.dart';
+export 'package:festo_post/module/download_post_module/provider/download_post_provider.dart';
 
 //view
 export 'package:festo_post/module/splash_module/view/splash_screen_view.dart';
@@ -75,7 +74,7 @@ export 'package:festo_post/module/profile_module/view/aboutUs_view.dart';
 export 'package:festo_post/module/profile_module/view/privacy_view.dart';
 export 'package:festo_post/module/profile_module/view/refund_view.dart';
 export 'package:festo_post/module/profile_module/view/terms_view.dart';
-export 'package:festo_post/module/downloadPost_module/view/downloadPost_view.dart';
+export 'package:festo_post/module/download_post_module/view/download_post_view.dart';
 export 'package:festo_post/module/profile_module/view/myBrand_view.dart';
 export 'package:festo_post/module/profile_module/view/brand_details_view.dart';
 export 'package:festo_post/module/profile_module/view/subscription_view.dart';

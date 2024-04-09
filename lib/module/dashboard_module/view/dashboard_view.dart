@@ -5,7 +5,6 @@ class DashBoardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     double width = MediaQuery.of(context).size.width;
     return ChangeNotifierProvider(
       create: (BuildContext context) => DashboardProvider(),

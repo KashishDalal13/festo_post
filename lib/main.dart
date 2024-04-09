@@ -1,9 +1,5 @@
 import 'package:festo_post/app_export.dart';
 
-import 'module/imageEdit_module/view/audio_view.dart';
-
-
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Injector.getTheme();
@@ -25,14 +21,12 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (BuildContext context) => ThemeSettings(),
         builder: (context, child) {
-          ThemeSettings themeSettings = context.watch<ThemeSettings>();
           return MaterialApp(
             initialRoute: '/',
             navigatorKey: NavigationService.navigatorKey,
             scaffoldMessengerKey: Toast.snackBarKey,
             debugShowCheckedModeBanner: false,
             theme: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
-            // theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
             routes: {
               '/': (context) => const SplashScreenView(),
               'onboarding': (context) => const OnBoardingScreen(),
