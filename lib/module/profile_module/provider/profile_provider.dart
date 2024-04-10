@@ -9,7 +9,9 @@ class ProfileProvider extends ChangeNotifier {
 
   loadData() async {
     switchValue = await Injector.getTheme();
+    notifyListeners();
   }
+
   bool switchValue = false;
   List<Map<String, dynamic>> profileDetails = [
     {"icon": SvgPath.savePost, "label": StrRef.savePost, "route": 'myPost'},
@@ -30,15 +32,13 @@ class ProfileProvider extends ChangeNotifier {
     switchValue = !switchValue;
     Injector.setTheme(themeVal: switchValue);
     notifyListeners();
-    // NavigationService.replaceAllToNamed("/");
     ThemeSettings();
   }
 
   onMyAccountNavigate(int index, BuildContext context) {
     if (profileDetails[index]['label'] == StrRef.darkTheme) {
       return;
-    }
-    else if (profileDetails[index]['label'] == StrRef.logout) {
+    } else if (profileDetails[index]['label'] == StrRef.logout) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -53,19 +53,13 @@ class ProfileProvider extends ChangeNotifier {
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     SvgPicture.asset(SvgPath.logout,
                         height: 35, width: 35, colorFilter: ColorFilter.mode(BoolRef.themeChange ? ColorRef.textPrimaryColor! : ColorRef.grey5c5c5c, BlendMode.srcIn)),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15),
                     Text(StrRef.logoutSure,
                         textAlign: TextAlign.center, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.textPrimaryColor)),
-                    const SizedBox(
-                      height: 22,
-                    ),
+                    const SizedBox(height: 22),
                     GestureDetector(
                       onTap: () {
                         Injector.setSignIn(signIn: false);
@@ -160,7 +154,7 @@ class ProfileProvider extends ChangeNotifier {
   bool isUPI = false;
   String selectedBrandIndex = '';
 
-  onBack({BuildContext? context}) {
+  onBack() {
     NavigationService.goBack();
     DashboardProvider();
   }

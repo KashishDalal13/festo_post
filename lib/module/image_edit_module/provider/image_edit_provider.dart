@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:festo_post/app_export.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class ImageEditProvider extends ChangeNotifier {
   int audioIndex = 0;
@@ -407,6 +408,7 @@ class ImageEditProvider extends ChangeNotifier {
       showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
+          provider.checkIfImageDownloaded();
           return StatefulBuilder(
             builder: (context, setState) {
               return StickerBottomSheet(provider: provider);
@@ -556,15 +558,67 @@ class ImageEditProvider extends ChangeNotifier {
     NavigationService.goBack();
   }
 
-  void onSelectSticker({required int index}) {
+  Future<void> onSelectSticker({required int index}) async {
     stickerIndex = index;
-    stickerViewIndex = 0;
+    debugPrint("$localImage $localImagePath");
+    await checkIfImageDownloaded();
     notifyListeners();
   }
 
-  onChangeStickerView() {
-    stickerViewIndex = 1;
-    notifyListeners();
+  String localImagePath = '';
+  List localImage = [];
+
+  Future<void> checkIfImageDownloaded() async {
+    // Check if the image is already downloaded
+    final Directory appDocDir = await getApplicationSupportDirectory();
+    final String appDocPath = appDocDir.path;
+    const String fileName = 'image.png'; // Update filename if needed
+    final File imageFile = File('$appDocPath/$fileName');
+    if (await imageFile.exists()) {
+      localImagePath = imageFile.path;
+      stickerViewIndex = 1;
+      notifyListeners();
+    } else {
+      stickerViewIndex = 0;
+      notifyListeners();
+    }
+  }
+
+  onChangeStickerView({required List<String> imageUrl}) async {
+    try {
+      if (localImage.isNotEmpty) {
+        // Image is already downloaded, do nothing
+        stickerViewIndex = 1;
+        notifyListeners();
+        return;
+      }
+      int i = 0;
+      for (var url in imageUrl) {
+        // Get the local storage directory
+        final Directory appDocDir = await getApplicationDocumentsDirectory();
+        final String appDocPath = appDocDir.path;
+
+        // Download and cache the image using flutter_cache_manager
+        final DefaultCacheManager cacheManager = DefaultCacheManager();
+        final File file = await cacheManager.getSingleFile(url);
+
+        // Copy the cached image file to the local storage directory
+        String fileName = 'image$i.png'; // Change the filename as needed
+        final String localFilePath = '$appDocPath/$fileName';
+        final File localFile = await file.copy(localFilePath);
+        i++;
+
+        debugPrint('Image downloaded and saved to: $localFilePath');
+
+        // Set the local image path and update the UI
+        stickerViewIndex = 1;
+        localImagePath = localFile.path;
+        localImage.add(localImagePath);
+        notifyListeners();
+      }
+    } catch (e) {
+      debugPrint('Error downloading and saving image: $e');
+    }
   }
 
   File? capturedImageData;
@@ -604,6 +658,7 @@ class CustomItem extends StackBoardItem {
     // Ensure that each CustomItem has its own instance of TextStyle
     textStyle = textStyle?.copyWith();
   }
+
   final String? customText;
   String? imageList;
   String? add;

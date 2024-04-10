@@ -130,7 +130,7 @@ class DashboardProvider extends ChangeNotifier {
   }
 
   onProfile() {
-    NavigationService.routeToNamed('profile');
+    NavigationService.routeToNamed('profile').then((value) => notifyListeners());
   }
 
   void onViewAll(BuildContext context, {required int index}) {
@@ -151,6 +151,7 @@ class DashboardProvider extends ChangeNotifier {
       ),
     );
   }
+
   void onViewAllOffer(BuildContext context, {required int index}) {
     if (index == 0) {
       selectedLabel = addCategoryOffer[index]["label"];
@@ -161,10 +162,10 @@ class DashboardProvider extends ChangeNotifier {
     } else if (index == 2) {
       selectedLabel = addCategoryOffer[index]["label"];
       selectedImageList = addCategoryOffer[index]["imageList"].cast<String>();
-    }else if (index == 3) {
+    } else if (index == 3) {
       selectedLabel = addCategoryOffer[index]["label"];
       selectedImageList = addCategoryOffer[index]["imageList"].cast<String>();
-    }else if (index == 4) {
+    } else if (index == 4) {
       selectedLabel = addCategoryOffer[index]["label"];
       selectedImageList = addCategoryOffer[index]["imageList"].cast<String>();
     }
@@ -175,6 +176,7 @@ class DashboardProvider extends ChangeNotifier {
       ),
     );
   }
+
   void onViewAllTrending(BuildContext context, {required int index}) {
     if (index >= 0 && index < addTrendingEvent.length) {
       selectedLabel = addTrendingEvent[index]["label"];
@@ -188,8 +190,6 @@ class DashboardProvider extends ChangeNotifier {
       );
     }
   }
-
-
 
   // settingDrawer
   bool switchValue = false;
@@ -212,12 +212,11 @@ class DashboardProvider extends ChangeNotifier {
     ThemeSettings();
   }
 
-  onDrawerTileTap({required int index,required String type}) {
+  onDrawerTileTap({required int index, required String type}) {
     if (type == StrRef.logout) {
       Injector.setSignIn(signIn: false);
       NavigationService.replaceAllToNamed("register");
-    }
-    else{
+    } else {
       NavigationService.replaceAllToNamed(settingDetails[index]['route']);
     }
   }

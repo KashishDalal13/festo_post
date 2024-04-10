@@ -11,28 +11,17 @@ class StickerBottomSheet extends StatefulWidget {
 }
 
 class _StickerBottomSheetState extends State<StickerBottomSheet> {
-  late String _localImagePath;
-
   @override
   void initState() {
     super.initState();
-    _localImagePath = '';
-    _checkIfImageDownloaded();
+    widget.provider!.localImage.isEmpty ? widget.provider!.stickerViewIndex = 0 : 1;
+    setState(() {});
+    // loadData();
   }
 
-  // Function to check if the image is already downloaded
-  Future<void> _checkIfImageDownloaded() async {
-    // Check if the image is already downloaded
-    final Directory appDocDir = await getApplicationDocumentsDirectory();
-    final String appDocPath = appDocDir.path;
-    const String fileName = 'image.png'; // Update filename if needed
-    final File imageFile = File('$appDocPath/$fileName');
-    if (await imageFile.exists()) {
-      // Image is already downloaded, set the local image path
-      setState(() {
-        _localImagePath = imageFile.path;
-      });
-    }
+  loadData() async {
+    await widget.provider!.checkIfImageDownloaded();
+    setState(() {});
   }
 
   @override
@@ -61,7 +50,10 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                 itemCount: provider.stickerList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
-                    onTap: () => setState(() => provider.onSelectSticker(index: index)),
+                    onTap: () {
+                      provider.onSelectSticker(index: index);
+                      setState(() {});
+                    },
                     child: Container(
                       height: 30,
                       width: screenWidth * 0.2,
@@ -107,7 +99,13 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                           ),
                           const SizedBox(height: 25),
                           GestureDetector(
-                            onTap: () => setState(() => provider.onChangeStickerView()),
+                            onTap: () {
+                              provider.onChangeStickerView(imageUrl: [
+                                "https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_1280.jpg",
+                                "https://www.istockphoto.com/en/photo/rear-view-on-senior-couple-cycling-on-treelined-path-through-majestic-autumn-leaf-gm887383558-246287854",
+                              ]);
+                              setState(() {});
+                            },
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10),
                               height: 50,
@@ -132,7 +130,16 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
                         ],
                       ),
                       // Display the downloaded image if available
-                      _localImagePath.isNotEmpty ? Image.file(File(_localImagePath)) : const SizedBox(), // Show nothing if image path is empty
+                      /*provider.localImage.isEmpty
+                          ? const SizedBox()
+                          : ListView.builder(
+                          itemCount: provider.localImage.length,
+                          itemBuilder: (context, index) {
+                            return Image.file(
+                              File("${provider.localImage[index]}"),
+                            );
+                          }),*/
+                      provider.localImage.isNotEmpty ? Image.file(File(provider.localImage[0])) : const SizedBox(), // Show nothing if image path is empty
                     ],
                   ),
                 ),
@@ -144,8 +151,8 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
     );
   }
 
-  // Function to download and save the image
-  Future<void> downloadAndSaveImage(String imageUrl) async {
+// Function to download and save the image
+/*Future<void> downloadAndSaveImage(String imageUrl) async {
     try {
       if (_localImagePath.isNotEmpty) {
         // Image is already downloaded, do nothing
@@ -174,5 +181,5 @@ class _StickerBottomSheetState extends State<StickerBottomSheet> {
     } catch (e) {
       debugPrint('Error downloading and saving image: $e');
     }
-  }
+  }*/
 }
