@@ -17,7 +17,6 @@ class ThemeSettings extends ChangeNotifier {
       ColorRef.textPrimaryColor = Colors.black;
       ColorRef.buttonColor = ColorRef.greyD6D6D6;
     }
-
     notifyListeners();
   }
 }

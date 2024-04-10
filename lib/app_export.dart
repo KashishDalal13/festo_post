@@ -4,7 +4,6 @@ export 'package:festo_post/main.dart';
 export 'dart:async';
 export 'dart:math';
 export 'dart:io';
-import 'dart:typed_data';
 
 // Widget
 export 'package:festo_post/widget/toast.dart';
@@ -24,8 +23,7 @@ export 'package:flutter/rendering.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:image_gallery_saver/image_gallery_saver.dart';
 export 'package:just_audio/just_audio.dart';
-export 'package:download_assets/download_assets.dart';
-
+// export 'package:download_assets/download_assets.dart';
 
 //utils
 export 'package:festo_post/utils/bool.dart';
@@ -47,10 +45,10 @@ export 'package:festo_post/module/splash_module/provider/splash_screen_provider.
 export 'package:festo_post/module/profile_module/provider/profile_provider.dart';
 export 'package:festo_post/module/on_boarding/onboarding_provider.dart';
 export 'package:festo_post/module/login_module/provider/register_provider.dart';
-export 'package:festo_post/module/imageEdit_module/provider/imageEdit_provider.dart';
-export 'package:festo_post/module/frameEditing_module/provider/frameEditing_provider.dart';
+export 'package:festo_post/module/image_edit_module/provider/image_edit_provider.dart';
+export 'package:festo_post/module/frame_editing_module/provider/frame_editing_provider.dart';
 export 'package:festo_post/module/dashboard_module/provider/dashboard_provider.dart';
-export 'package:festo_post/module/downloadPost_module/provider/downloadPost_provider.dart';
+export 'package:festo_post/module/download_post_module/provider/download_post_provider.dart';
 
 //view
 export 'package:festo_post/module/splash_module/view/splash_screen_view.dart';
@@ -63,29 +61,27 @@ export 'package:festo_post/module/login_module/view/referral_view.dart';
 export 'package:festo_post/module/login_module/view/register_view.dart';
 export 'package:festo_post/module/login_module/view/user_auth_view.dart';
 export 'package:festo_post/module/info_module/view/info_view.dart';
-export 'package:festo_post/module/imageEdit_module/view/imageEdit_view.dart';
-export 'package:festo_post/module/imageEdit_module/view/edittingBottomSheet.dart';
-export 'package:festo_post/module/imageEdit_module/view/stickerBottomSheet.dart';
-export 'package:festo_post/module/imageEdit_module/view/audio_view.dart';
-export 'package:festo_post/module/frameEditing_module/view/frameEditing_view.dart';
+export 'package:festo_post/module/image_edit_module/view/image_edit_view.dart';
+export 'package:festo_post/module/image_edit_module/view/editting_bottom_sheet.dart';
+export 'package:festo_post/module/image_edit_module/view/sticker_bottom_sheet.dart';
+export 'package:festo_post/module/image_edit_module/view/audio_view.dart';
+export 'package:festo_post/module/frame_editing_module/view/frame_editing_view.dart';
 export 'package:festo_post/module/dashboard_module/view/dashboard_view.dart';
-export 'package:festo_post/module/profile_module/view/setting_drawer_view.dart';
-export 'package:festo_post/module/profile_module/view/contactUs_view.dart';
-export 'package:festo_post/module/profile_module/view/aboutUs_view.dart';
+export 'package:festo_post/module/profile_module/view/contact_us_view.dart';
+export 'package:festo_post/module/profile_module/view/about_us_view.dart';
 export 'package:festo_post/module/profile_module/view/privacy_view.dart';
 export 'package:festo_post/module/profile_module/view/refund_view.dart';
 export 'package:festo_post/module/profile_module/view/terms_view.dart';
-export 'package:festo_post/module/downloadPost_module/view/downloadPost_view.dart';
-export 'package:festo_post/module/profile_module/view/myBrand_view.dart';
+export 'package:festo_post/module/download_post_module/view/download_post_view.dart';
+export 'package:festo_post/module/profile_module/view/my_brand_view.dart';
 export 'package:festo_post/module/profile_module/view/brand_details_view.dart';
 export 'package:festo_post/module/profile_module/view/subscription_view.dart';
 export 'package:festo_post/module/profile_module/view/payment_view.dart';
-export 'package:festo_post/module/profile_module/view/applyCouponDialogue_view.dart';
-export 'package:festo_post/module/profile_module/view/myPost_view.dart';
-export 'package:festo_post/module/profile_module/view/finalPayment_view.dart';
-export 'package:festo_post/module/profile_module/view/referralPoints_view.dart';
+export 'package:festo_post/module/profile_module/view/apply_coupon_dialogue_view.dart';
+export 'package:festo_post/module/profile_module/view/my_post_view.dart';
+export 'package:festo_post/module/profile_module/view/final_payment_view.dart';
+export 'package:festo_post/module/profile_module/view/referral_points_view.dart';
 export 'package:festo_post/module/profile_module/view/transaction_view.dart';
 
-
 //data models
-export 'package:festo_post/module/imageEdit_module/editable_item_data_model.dart';
+export 'package:festo_post/module/image_edit_module/editable_item_data_model.dart';

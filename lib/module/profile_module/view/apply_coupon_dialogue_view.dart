@@ -1,9 +1,6 @@
+
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class ApplyCouponView extends StatefulWidget {
   final ProfileProvider? provider;

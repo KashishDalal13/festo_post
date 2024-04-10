@@ -1,4 +1,5 @@
 import 'package:festo_post/app_export.dart';
+import 'package:flutter/cupertino.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -25,42 +26,38 @@ class OnBoardingScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer(),
-                Container(
-                  height: height / 2,
+                Expanded(
+                  flex: 3,
                   child: PageView(
                     controller: provider.pageController,
                     onPageChanged: (index) => provider.onIndexChange(index: index),
                     children: provider.items.map((e) {
                       OnBoardingInfo data = e;
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(data.image, height: width - 225),
-                          const SizedBox(height: 15),
-                          Text(data.title,
-                              style: TextStyle(fontSize: 25, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020, fontWeight: FontWeight.bold, fontFamily: 'Lato')),
-                          const SizedBox(height: 10),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 45),
-                            child: Text(data.descriptions,
-                                style: TextStyle(color: BoolRef.themeChange ? ColorRef.white : ColorRef.grey5c5c5c, fontSize: 15, fontFamily: 'Lato'), textAlign: TextAlign.center),
-                          ),
-                        ],
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 40, right: 40, top: 100),
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(data.image, height: width - 150),
+                            const SizedBox(height: 15),
+                            Text(data.title,
+                                style:
+                                    TextStyle(fontSize: 25, color: BoolRef.themeChange ? ColorRef.white : ColorRef.black202020, fontWeight: FontWeight.bold, fontFamily: 'Lato')),
+                            const SizedBox(height: 10),
+                            Text(data.descriptions,
+                                style: TextStyle(color: BoolRef.themeChange ? ColorRef.white : ColorRef.grey5c5c5c, fontSize: 15, fontFamily: 'Lato'),
+                                textAlign: TextAlign.center),
+                          ],
+                        ),
                       );
                     }).toList(),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: SmoothPageIndicator(
-                    controller: provider.pageController,
-                    count: provider.items.length,
-                    effect: ExpandingDotsEffect(activeDotColor: ColorRef.yellowFFA500, dotColor: ColorRef.white898989, spacing: 3, dotHeight: 5, dotWidth: 10, expansionFactor: 2),
-                  ),
+                SmoothPageIndicator(
+                  controller: provider.pageController,
+                  count: provider.items.length,
+                  effect: ExpandingDotsEffect(activeDotColor: ColorRef.yellowFFA500, dotColor: ColorRef.white898989, spacing: 3, dotHeight: 5, dotWidth: 10, expansionFactor: 2),
                 ),
-                Spacer(),
+                const Spacer()
               ],
             ),
             floatingActionButton: provider.introIndex == 2

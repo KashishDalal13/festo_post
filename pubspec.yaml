@@ -49,9 +49,6 @@ dependencies:
   path_provider: ^2.1.2
   image_gallery_saver: ^2.0.3
   just_audio: ^0.9.37
-  download_assets: ^3.2.0
-  http: ^1.2.1
-  flutter_cache_manager: ^3.3.1
 
 dev_dependencies:
   flutter_test:

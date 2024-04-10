@@ -1,11 +1,10 @@
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class TransactionView extends StatelessWidget {
   const TransactionView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    bool isChecked = false;
+  Widget build(BuildContext context) {    
     return ChangeNotifierProvider(
       create: (BuildContext context) => ProfileProvider(),
       builder: (context, child) {

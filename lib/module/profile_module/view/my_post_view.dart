@@ -1,4 +1,4 @@
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class MyPostView extends StatelessWidget {
   const MyPostView({super.key});
@@ -23,7 +23,7 @@ class MyPostView extends StatelessWidget {
               title: Text(StrRef.myPost, style: const TextStyle(fontFamily: 'Lato', fontSize: 20)),
             ),
             resizeToAvoidBottomInset: false,
-            body: Column(
+            body: const Column(
               children: [
 
               ],

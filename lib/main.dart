@@ -1,12 +1,8 @@
 import 'package:festo_post/app_export.dart';
 
-import 'module/imageEdit_module/view/audio_view.dart';
-
-
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Injector.getTheme();
+  Injector();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: ColorRef.white,
     statusBarColor: ColorRef.white,
@@ -32,7 +28,6 @@ class MyApp extends StatelessWidget {
             scaffoldMessengerKey: Toast.snackBarKey,
             debugShowCheckedModeBanner: false,
             theme: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
-            // theme: settings.switchValue ? ThemeData.dark() : ThemeData.light(),
             routes: {
               '/': (context) => const SplashScreenView(),
               'onboarding': (context) => const OnBoardingScreen(),
@@ -52,7 +47,7 @@ class MyApp extends StatelessWidget {
               'referralPoints': (context) => const ReferralPoints(),
               'transaction': (context) => const TransactionView(),
               'audio': (context) => const AudioView(),
-              'contactUs': (context) => const ConttactUsView(),
+              'contactUs': (context) => const ContactUsView(),
               'aboutUs': (context) => const AboutUsView(),
               'privacy': (context) => const PrivacyView(),
               'refund': (context) => const RefundView(),

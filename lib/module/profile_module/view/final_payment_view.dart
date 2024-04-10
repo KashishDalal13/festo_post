@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class FinalPayment extends StatelessWidget {
   const FinalPayment({super.key});
