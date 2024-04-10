@@ -1,4 +1,4 @@
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class TermsView extends StatelessWidget {
   const TermsView({super.key});
@@ -17,8 +17,7 @@ class TermsView extends StatelessWidget {
             appBar: AppBar(
               leading: IconButton(
                 onPressed: () => provider.onBack(),
-                icon: Icon(Icons.arrow_back_ios_rounded,
-                    size: 20, color: ColorRef.textPrimaryColor),
+                icon: Icon(Icons.arrow_back_ios_rounded, size: 20, color: ColorRef.textPrimaryColor),
               ),
               centerTitle: true,
               title: Text(
@@ -56,9 +55,7 @@ class TermsView extends StatelessWidget {
                       Text(
                         '\u2022', // Unicode character for bullet dot
                         style: TextStyle(
-                          color: BoolRef.themeChange
-                              ? ColorRef.greyF3F3F3
-                              : ColorRef.grey757575,
+                          color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                           fontSize: 16,
                         ),
                       ),
@@ -68,9 +65,7 @@ class TermsView extends StatelessWidget {
                         child: Text(
                           StrRef.aboutText,
                           style: TextStyle(
-                            color: BoolRef.themeChange
-                                ? ColorRef.greyF3F3F3
-                                : ColorRef.grey757575,
+                            color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                             fontFamily: 'Lato',
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -86,9 +81,7 @@ class TermsView extends StatelessWidget {
                       Text(
                         '\u2022', // Unicode character for bullet dot
                         style: TextStyle(
-                          color: BoolRef.themeChange
-                              ? ColorRef.greyF3F3F3
-                              : ColorRef.grey757575,
+                          color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                           fontSize: 16,
                         ),
                       ),
@@ -98,9 +91,7 @@ class TermsView extends StatelessWidget {
                         child: Text(
                           StrRef.aboutText,
                           style: TextStyle(
-                            color: BoolRef.themeChange
-                                ? ColorRef.greyF3F3F3
-                                : ColorRef.grey757575,
+                            color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                             fontFamily: 'Lato',
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -116,9 +107,7 @@ class TermsView extends StatelessWidget {
                       Text(
                         '\u2022', // Unicode character for bullet dot
                         style: TextStyle(
-                          color: BoolRef.themeChange
-                              ? ColorRef.greyF3F3F3
-                              : ColorRef.grey757575,
+                          color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                           fontSize: 16,
                         ),
                       ),
@@ -128,9 +117,7 @@ class TermsView extends StatelessWidget {
                         child: Text(
                           StrRef.aboutText,
                           style: TextStyle(
-                            color: BoolRef.themeChange
-                                ? ColorRef.greyF3F3F3
-                                : ColorRef.grey757575,
+                            color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                             fontFamily: 'Lato',
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -139,9 +126,7 @@ class TermsView extends StatelessWidget {
                       ),
                     ],
                   ),
-
-                  SizedBox(height: 15),
-
+                  const SizedBox(height: 15),
                   Text(
                     StrRef.termsServices,
                     style: TextStyle(
@@ -158,9 +143,7 @@ class TermsView extends StatelessWidget {
                       Text(
                         '\u2022', // Unicode character for bullet dot
                         style: TextStyle(
-                          color: BoolRef.themeChange
-                              ? ColorRef.greyF3F3F3
-                              : ColorRef.grey757575,
+                          color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                           fontSize: 16,
                         ),
                       ),
@@ -170,9 +153,7 @@ class TermsView extends StatelessWidget {
                         child: Text(
                           StrRef.aboutText,
                           style: TextStyle(
-                            color: BoolRef.themeChange
-                                ? ColorRef.greyF3F3F3
-                                : ColorRef.grey757575,
+                            color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                             fontFamily: 'Lato',
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -188,9 +169,7 @@ class TermsView extends StatelessWidget {
                       Text(
                         '\u2022', // Unicode character for bullet dot
                         style: TextStyle(
-                          color: BoolRef.themeChange
-                              ? ColorRef.greyF3F3F3
-                              : ColorRef.grey757575,
+                          color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                           fontSize: 16,
                         ),
                       ),
@@ -200,9 +179,7 @@ class TermsView extends StatelessWidget {
                         child: Text(
                           StrRef.aboutText,
                           style: TextStyle(
-                            color: BoolRef.themeChange
-                                ? ColorRef.greyF3F3F3
-                                : ColorRef.grey757575,
+                            color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                             fontFamily: 'Lato',
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -218,9 +195,7 @@ class TermsView extends StatelessWidget {
                       Text(
                         '\u2022', // Unicode character for bullet dot
                         style: TextStyle(
-                          color: BoolRef.themeChange
-                              ? ColorRef.greyF3F3F3
-                              : ColorRef.grey757575,
+                          color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                           fontSize: 16,
                         ),
                       ),
@@ -230,9 +205,7 @@ class TermsView extends StatelessWidget {
                         child: Text(
                           StrRef.aboutText,
                           style: TextStyle(
-                            color: BoolRef.themeChange
-                                ? ColorRef.greyF3F3F3
-                                : ColorRef.grey757575,
+                            color: BoolRef.themeChange ? ColorRef.greyF3F3F3 : ColorRef.grey757575,
                             fontFamily: 'Lato',
                             fontSize: 16,
                             fontWeight: FontWeight.w400,

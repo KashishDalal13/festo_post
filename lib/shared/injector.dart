@@ -4,8 +4,8 @@ class Injector {
   static late SharedPreferences prefs;
 
   Injector() {
-    getInstance().then((value) {
-      getTheme();
+    getInstance().then((value) async {
+      await getTheme();
     });
   }
 
@@ -31,7 +31,7 @@ class Injector {
     prefs.setBool(PrefsKey.theme, themeVal);
   }
 
-  static getTheme() async {
+  static Future getTheme() async {
     prefs = await SharedPreferences.getInstance();
     debugPrint("getTheme${prefs.getBool(PrefsKey.theme)}");
     return prefs.getBool(PrefsKey.theme) ?? false;

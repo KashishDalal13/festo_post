@@ -3,6 +3,15 @@ import 'dart:ui';
 import 'package:festo_post/app_export.dart';
 
 class ProfileProvider extends ChangeNotifier {
+  ProfileProvider() {
+    loadData();
+  }
+
+  loadData() async {
+    switchValue = await Injector.getTheme();
+    notifyListeners();
+  }
+
   bool switchValue = false;
   List<Map<String, dynamic>> profileDetails = [
     {"icon": SvgPath.savePost, "label": StrRef.savePost, "route": 'myPost'},
@@ -23,12 +32,13 @@ class ProfileProvider extends ChangeNotifier {
     switchValue = !switchValue;
     Injector.setTheme(themeVal: switchValue);
     notifyListeners();
-    // NavigationService.replaceAllToNamed("/");
     ThemeSettings();
   }
 
   onMyAccountNavigate(int index, BuildContext context) {
-    if (profileDetails[index]['label'] == StrRef.logout) {
+    if (profileDetails[index]['label'] == StrRef.darkTheme) {
+      return;
+    } else if (profileDetails[index]['label'] == StrRef.logout) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -38,23 +48,18 @@ class ProfileProvider extends ChangeNotifier {
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: AlertDialog(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-                backgroundColor: BoolRef.themeChange ? ColorRef.blue1E2A38: ColorRef.whiteFFFFFF,
-                surfaceTintColor: BoolRef.themeChange ? ColorRef.blue1E2A38: ColorRef.whiteFFFFFF,
+                backgroundColor: BoolRef.themeChange ? ColorRef.blue1E2A38 : ColorRef.whiteFFFFFF,
+                surfaceTintColor: BoolRef.themeChange ? ColorRef.blue1E2A38 : ColorRef.whiteFFFFFF,
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SvgPicture.asset(SvgPath.logout, height: 35, width: 35, color:BoolRef.themeChange ? ColorRef.textPrimaryColor: ColorRef.grey5c5c5c),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 10),
+                    SvgPicture.asset(SvgPath.logout,
+                        height: 35, width: 35, colorFilter: ColorFilter.mode(BoolRef.themeChange ? ColorRef.textPrimaryColor! : ColorRef.grey5c5c5c, BlendMode.srcIn)),
+                    const SizedBox(height: 15),
                     Text(StrRef.logoutSure,
                         textAlign: TextAlign.center, style: TextStyle(fontFamily: 'Lato', fontSize: 15, fontWeight: FontWeight.w400, color: ColorRef.textPrimaryColor)),
-                    const SizedBox(
-                      height: 22,
-                    ),
+                    const SizedBox(height: 22),
                     GestureDetector(
                       onTap: () {
                         Injector.setSignIn(signIn: false);
@@ -89,12 +94,37 @@ class ProfileProvider extends ChangeNotifier {
     {"svg": SvgPath.web, "label": StrRef.website, "controller": TextEditingController()},
     {"svg": SvgPath.location, "label": StrRef.businessAddress, "controller": TextEditingController()},
   ];
+
   //bnb
 
   List<Map<String, dynamic>> subscription = [
-    {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
-    {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
-    {"title": StrRef.subscriptionTitle, "offer": StrRef.subscriptOfferRupees, "actualRupees": StrRef.subscriptionRupees, "offerDetails1": StrRef.offerDetails1, "offerDetails2": StrRef.offerDetails2, "offerDetails3": StrRef.offerDetails3, "offerDetails4": StrRef.offerDetails4},
+    {
+      "title": StrRef.subscriptionTitle,
+      "offer": StrRef.subscriptOfferRupees,
+      "actualRupees": StrRef.subscriptionRupees,
+      "offerDetails1": StrRef.offerDetails1,
+      "offerDetails2": StrRef.offerDetails2,
+      "offerDetails3": StrRef.offerDetails3,
+      "offerDetails4": StrRef.offerDetails4
+    },
+    {
+      "title": StrRef.subscriptionTitle,
+      "offer": StrRef.subscriptOfferRupees,
+      "actualRupees": StrRef.subscriptionRupees,
+      "offerDetails1": StrRef.offerDetails1,
+      "offerDetails2": StrRef.offerDetails2,
+      "offerDetails3": StrRef.offerDetails3,
+      "offerDetails4": StrRef.offerDetails4
+    },
+    {
+      "title": StrRef.subscriptionTitle,
+      "offer": StrRef.subscriptOfferRupees,
+      "actualRupees": StrRef.subscriptionRupees,
+      "offerDetails1": StrRef.offerDetails1,
+      "offerDetails2": StrRef.offerDetails2,
+      "offerDetails3": StrRef.offerDetails3,
+      "offerDetails4": StrRef.offerDetails4
+    },
   ];
 
   List<Map<String, dynamic>> availableCoupons = [
@@ -108,7 +138,6 @@ class ProfileProvider extends ChangeNotifier {
     {"icon": SvgPath.creditCard, "type": StrRef.creditCard},
     {"icon": SvgPath.upi, "type": StrRef.upi},
     {"icon": SvgPath.wallet, "type": StrRef.wallet},
-
   ];
 
   List<Map<String, dynamic>> referralDetail = [
@@ -127,6 +156,7 @@ class ProfileProvider extends ChangeNotifier {
 
   onBack() {
     NavigationService.goBack();
+    DashboardProvider();
   }
 
   onListTileTap({required int index}) {
@@ -143,8 +173,9 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool isEdit=false;
-  onTapEdit(){
+  bool isEdit = false;
+
+  onTapEdit() {
     isEdit = !isEdit;
     notifyListeners();
   }

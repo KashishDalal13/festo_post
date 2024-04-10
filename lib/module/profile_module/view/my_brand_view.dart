@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class MyBrandView extends StatelessWidget {
   const MyBrandView({super.key});
@@ -80,7 +80,7 @@ class MyBrandView extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: width * 0.025),
@@ -247,7 +247,7 @@ class MyBrandView extends StatelessWidget {
                       child: SvgPicture.asset(SvgPath.brandadd,
                           height: width * 0.2, width: width * 0.2)),
                 ),
-                Spacer(),
+                const Spacer(),
                 GestureDetector(
                   onTap: () =>
                       NavigationService.routeToNamed('SubscriptionPlan'),

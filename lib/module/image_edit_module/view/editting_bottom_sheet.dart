@@ -272,7 +272,6 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                                   pickerAreaHeightPercent: 0.7,
                                   displayThumbColor: false,
                                   enableAlpha: false,
-                                  showLabel: false,
                                 ),
                                 Container(
                                   height: 35,
@@ -302,7 +301,7 @@ class _EditingBottomSheetState extends State<EditingBottomSheet> {
                     ),
                     alignment: Alignment.center,
                     child: SvgPicture.asset(
-                      SvgPath.color_selection,
+                      SvgPath.colorSelection,
                       height: 25,
                       width: 25,
                     ),

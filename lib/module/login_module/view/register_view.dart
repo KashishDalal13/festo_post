@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:festo_post/app_export.dart';
 
 class RegisterView extends StatelessWidget {
@@ -38,9 +40,10 @@ class RegisterView extends StatelessWidget {
               constraints: const BoxConstraints(maxHeight: 45),
               contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               hintText: StrRef.contact,
-              prefixIcon:
-                  Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: SvgPicture.asset(SvgPath.phone, colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn))),
-              hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: ColorRef.textPrimaryColor),
+              prefixIcon: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: SvgPicture.asset(SvgPath.phone, colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn))),
+              hintStyle: TextStyle(fontFamily: 'Lato', fontSize: 15, color: BoolRef.themeChange ? ColorRef.greyC5C5C5 : ColorRef.grey929292),
               border: InputBorder.none,
             ),
           ),
@@ -79,7 +82,8 @@ class RegisterView extends StatelessWidget {
               Text(provider.toggleLoginOrRegister ? StrRef.accountNotExists : StrRef.accountExists,
                   style: TextStyle(fontSize: 15, color: ColorRef.textPrimaryColor, fontWeight: FontWeight.normal, fontFamily: 'Lato')),
               const SizedBox(width: 5),
-              Text(provider.toggleLoginOrRegister ? StrRef.register : StrRef.login, style: TextStyle(color: ColorRef.blue0250A4, fontSize: 15, fontWeight: FontWeight.normal, fontFamily: 'Lato')),
+              Text(provider.toggleLoginOrRegister ? StrRef.register : StrRef.login,
+                  style: TextStyle(color: ColorRef.blue0250A4, fontSize: 15, fontWeight: FontWeight.normal, fontFamily: 'Lato')),
             ],
           ),
         ),

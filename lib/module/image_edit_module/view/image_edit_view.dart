@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:festo_post/app_export.dart';
 
 class ImageEditView extends StatelessWidget {
@@ -58,10 +56,7 @@ class ImageEditView extends StatelessWidget {
                                       isCenter: false,
                                       onDel: () async => provider.boardController.remove(t.id),
                                       onTap: () => provider.boardController.moveItemToTop(t.id),
-                                      caseStyle: const CaseStyle(
-                                        borderColor: Colors.grey,
-                                        iconColor: Colors.white,
-                                      ),
+                                      caseStyle: const CaseStyle(borderColor: Colors.grey, iconColor: Colors.white),
                                       child: GestureDetector(
                                         onTap: () {
                                           debugPrint(t.id.toString());
@@ -89,7 +84,6 @@ class ImageEditView extends StatelessWidget {
                                             builder: (BuildContext context) {
                                               return StatefulBuilder(
                                                 builder: (context, setState) {
-
                                                   return EditingBottomSheet(
                                                     provider: provider,
                                                     item: t,
@@ -307,7 +301,7 @@ class ImageEditView extends StatelessWidget {
                           child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
-                            itemCount: provider.EditDetails.length,
+                            itemCount: provider.editDetails.length,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                 onTap: () => provider.edit(index: index, context: context, provider: provider),
@@ -318,9 +312,9 @@ class ImageEditView extends StatelessWidget {
                                       margin: const EdgeInsets.only(bottom: 8),
                                       padding: const EdgeInsets.all(10.0),
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: BoolRef.themeChange ? ColorRef.grey304359 : ColorRef.white),
-                                      child: SvgPicture.asset(provider.EditDetails[index]['image']),
+                                      child: SvgPicture.asset(provider.editDetails[index]['image']),
                                     ),
-                                    Text(provider.EditDetails[index]['label'] ?? '',
+                                    Text(provider.editDetails[index]['label'] ?? '',
                                         style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Lato', fontSize: 12, color: ColorRef.textPrimaryColor))
                                   ],
                                 ),

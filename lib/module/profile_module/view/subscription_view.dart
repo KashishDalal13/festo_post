@@ -1,7 +1,4 @@
-import 'package:festo_post/utils/bool.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class SubscriptionPlanView extends StatelessWidget {
   const SubscriptionPlanView({Key? key}) : super(key: key);

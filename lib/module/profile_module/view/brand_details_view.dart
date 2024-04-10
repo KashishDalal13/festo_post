@@ -1,4 +1,4 @@
-import '../../../app_export.dart';
+import 'package:festo_post/app_export.dart';
 
 class BrandDetailsView extends StatelessWidget {
   const BrandDetailsView({super.key});
@@ -15,7 +15,7 @@ class BrandDetailsView extends StatelessWidget {
           data: BoolRef.themeChange ? ThemeRef.darkTheme : ThemeRef.lightTheme,
           child: Scaffold(
             appBar: AppBar(
-                leading: IconButton(onPressed: () => provider.onBack(), icon: Icon(Icons.arrow_back_ios_rounded, size: 20,color: ColorRef.textPrimaryColor)),
+                leading: IconButton(onPressed: () => provider.onBack(), icon: Icon(Icons.arrow_back_ios_rounded, size: 20, color: ColorRef.textPrimaryColor)),
                 centerTitle: true,
                 title: Text(StrRef.addDetails, style: const TextStyle(fontFamily: 'Lato', fontSize: 18))),
             resizeToAvoidBottomInset: false,
@@ -70,7 +70,7 @@ class BrandDetailsView extends StatelessWidget {
                                                 margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                                                 child: Row(
                                                   children: [
-                                                    SvgPicture.asset(SvgPath.suitcase, color: ColorRef.textPrimaryColor),
+                                                    SvgPicture.asset(SvgPath.suitcase, colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn)),
                                                     const SizedBox(
                                                       width: 15,
                                                     ),
@@ -79,7 +79,9 @@ class BrandDetailsView extends StatelessWidget {
                                                       style: TextStyle(fontFamily: 'Lato', fontSize: 15, color: ColorRef.textPrimaryColor),
                                                     ),
                                                     const Spacer(),
-                                                    provider.isExpand ?Icon(Icons.keyboard_arrow_down, color: ColorRef.textPrimaryColor):Icon(Icons.keyboard_arrow_up, color: ColorRef.textPrimaryColor),
+                                                    provider.isExpand
+                                                        ? Icon(Icons.keyboard_arrow_down, color: ColorRef.textPrimaryColor)
+                                                        : Icon(Icons.keyboard_arrow_up, color: ColorRef.textPrimaryColor),
                                                   ],
                                                 ),
                                               ),

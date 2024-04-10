@@ -1,7 +1,7 @@
 import 'package:festo_post/app_export.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({Key? key});
+  const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ProfileView extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: width * 0.05, vertical: height * 0.01),
-                  padding: EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6),
@@ -60,7 +60,10 @@ class ProfileView extends StatelessWidget {
                                 ),
                                 Text(StrRef.phnNo,
                                     style: TextStyle(
-                                        fontSize: width * 0.04, fontWeight: FontWeight.w400, fontFamily: "Lato", color: BoolRef.themeChange ? ColorRef.whiteFFFFFF : ColorRef.blue0250A4)),
+                                        fontSize: width * 0.04,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: "Lato",
+                                        color: BoolRef.themeChange ? ColorRef.whiteFFFFFF : ColorRef.blue0250A4)),
                               ],
                             ),
                           ),
@@ -86,11 +89,12 @@ class ProfileView extends StatelessWidget {
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                  hintText: StrRef.AddName,
+                                  hintText: StrRef.addName,
                                   hintStyle: TextStyle(fontFamily: 'Lato', fontSize: width * 0.035, color: ColorRef.textPrimaryColor),
                                   prefixIcon: Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                    child: SvgPicture.asset(SvgPath.profile, color: BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4),
+                                    child: SvgPicture.asset(SvgPath.profile,
+                                        colorFilter: ColorFilter.mode(BoolRef.themeChange ? ColorRef.blue3498DB : ColorRef.blue0250A4, BlendMode.srcIn)),
                                   ),
                                 ),
                               ),
@@ -103,7 +107,7 @@ class ProfileView extends StatelessWidget {
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                  hintText: StrRef.AddPhone,
+                                  hintText: StrRef.addPhone,
                                   fillColor: ColorRef.textPrimaryColor,
                                   hintStyle: TextStyle(fontFamily: 'Lato', fontSize: width * 0.035, color: ColorRef.textPrimaryColor),
                                   prefixIcon: Padding(
@@ -134,9 +138,7 @@ class ProfileView extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Expanded(
                   child: ListView.separated(
                     itemCount: provider.profileDetails.length,
@@ -144,37 +146,38 @@ class ProfileView extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       final item = provider.profileDetails[index];
                       return Container(
-                        decoration: BoxDecoration(border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6), borderRadius: BorderRadius.circular(15)),
+                        decoration:
+                            BoxDecoration(border: Border.all(color: BoolRef.themeChange ? ColorRef.transparent : ColorRef.greyD6D6D6), borderRadius: BorderRadius.circular(15)),
                         child: ListTile(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                          leading: SvgPicture.asset(item['icon'],height: 20,width: 20, colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn)),
+                          leading: SvgPicture.asset(item['icon'], height: 20, width: 20, colorFilter: ColorFilter.mode(ColorRef.textPrimaryColor!, BlendMode.srcIn)),
                           trailing: item['label'] != StrRef.darkTheme
                               ? Icon(Icons.arrow_forward_ios_rounded, size: 20, color: ColorRef.textPrimaryColor)
                               : GestureDetector(
-                            onTap: () => provider.toggleTheme(),
-                            child: Container(
-                              width: 40.0,
-                              height: 20,
-                              padding: const EdgeInsets.symmetric(horizontal: 3),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15.0),
-                                color: provider.switchValue ? ColorRef.blue1E2A38 : ColorRef.greyE0E0E0,
-                              ),
-                              child: AnimatedAlign(
-                                alignment: provider.switchValue ? Alignment.centerRight : Alignment.centerLeft,
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.easeInOut,
-                                child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
-                                  width: 14.0,
-                                  height: 14.0,
-                                  decoration: BoxDecoration(shape: BoxShape.circle, color: provider.switchValue ? ColorRef.blue3498DB : ColorRef.blue0250A4),
+                                  onTap: () => provider.toggleTheme(),
+                                  child: Container(
+                                    width: 40.0,
+                                    height: 20,
+                                    padding: const EdgeInsets.symmetric(horizontal: 3),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      color: provider.switchValue ? ColorRef.blue1E2A38 : ColorRef.greyE0E0E0,
+                                    ),
+                                    child: AnimatedAlign(
+                                      alignment: provider.switchValue ? Alignment.centerRight : Alignment.centerLeft,
+                                      duration: const Duration(milliseconds: 200),
+                                      curve: Curves.easeInOut,
+                                      child: AnimatedContainer(
+                                        duration: const Duration(milliseconds: 200),
+                                        width: 14.0,
+                                        height: 14.0,
+                                        decoration: BoxDecoration(shape: BoxShape.circle, color: provider.switchValue ? ColorRef.blue3498DB : ColorRef.blue0250A4),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
                           title: Text(item['label'], style: TextStyle(color: ColorRef.textPrimaryColor)),
-                          onTap: () => provider.onMyAccountNavigate(index,context),
+                          onTap: () => provider.onMyAccountNavigate(index, context),
                         ),
                       );
                     },
